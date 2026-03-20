@@ -1,8 +1,9 @@
 package main
 
 import (
-	// "bufio"
+	_ "embed"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -10,21 +11,10 @@ import (
 	"strings"
 )
 
+//go:embed kamus.json
+var kamusData []byte
+
 var words []string
-
-// func loadKamus() {
-// 	file, err := os.Open("serang.txt")
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-// 	defer file.Close()
-
-// 	scanner := bufio.NewScanner(file)
-
-// 	for scanner.Scan() {
-// 		words = append(words, strings.ToLower(scanner.Text()))
-// 	}
-// }
 
 var killerSuffix = map[string]int{
 	"cy": 130,
@@ -37,25 +27,18 @@ var killerSuffix = map[string]int{
 	"tt": 80,
 	"oo": 80,
 	"mp": 90,
-	"x" : 60,
+	"x":  60,
 	"ia": 100,
 	"oi": 120,
 	"pp": 100,
 }
 
 func loadKamus() {
-	file, err := os.Open("kamus.json")
+	err := json.Unmarshal(kamusData, &words)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Gagal parse kamus.json: ", err)
 	}
-	defer file.Close()
-
-	decoder := json.NewDecoder(file)
-
-	err = decoder.Decode(&words)
-	if err != nil {
-		log.Fatal(err)
-	}
+	fmt.Printf("Kamus berhasil dimuat: %d kata\n", len(words))
 }
 
 var prefixIndex = map[string][]string{}
@@ -81,7 +64,6 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	var scored []WordScore
 
 	for _, word := range words {
-
 		match := false
 
 		if mode == "prefix" && strings.HasPrefix(word, query) {
@@ -126,6 +108,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		result = append(result, s.Word)
 	}
 
+	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(result)
 }
 
@@ -137,7 +120,6 @@ func getByPrefix(prefix string) []string {
 }
 
 func bestMoveAdvanced(suffix string) []string {
-
 	candidates := getByPrefix(suffix)
 
 	type WordScore struct {
@@ -148,7 +130,6 @@ func bestMoveAdvanced(suffix string) []string {
 	var scored []WordScore
 
 	for _, word := range candidates {
-
 		if len(word) < 2 {
 			continue
 		}
@@ -192,28 +173,26 @@ func bestMoveAdvanced(suffix string) []string {
 }
 
 func aiHandler(w http.ResponseWriter, r *http.Request) {
-
 	query := strings.ToLower(r.URL.Query().Get("q"))
 
 	if len(query) < 2 {
+		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode([]string{})
 		return
 	}
 
 	suffix := query[len(query)-2:]
-
 	result := bestMoveAdvanced(suffix)
 
+	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(result)
 }
 
 func main() {
-
 	loadKamus()
 	buildIndex()
 
 	http.Handle("/", http.FileServer(http.Dir("./templates")))
-
 	http.HandleFunc("/search", searchHandler)
 	http.HandleFunc("/ai", aiHandler)
 
@@ -222,7 +201,8 @@ func main() {
 		port = "8000"
 	}
 
-	log.Println("Server running on :" + port)
+	// Gunakan fmt.Println agar Railway tidak anggap sebagai error
+	fmt.Println("Server running on :" + port)
 
 	err := http.ListenAndServe("0.0.0.0:"+port, nil)
 	if err != nil {
