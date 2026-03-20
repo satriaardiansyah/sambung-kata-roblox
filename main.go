@@ -28,15 +28,15 @@ var words []string
 
 var killerSuffix = map[string]int{
 	"cy": 130,
-	"gy": 110,
+	"gy": 90,
 	"ex": 120,
-	"rs": 120,
-	"ks": 120,
+	"rs": 70,
+	"ks": 70,
 	"ea": 60,
-	"ly": 120,
-	"tt": 120,
-	"oo": 120,
-	"mp": 120,
+	"ly": 60,
+	"tt": 80,
+	"oo": 80,
+	"mp": 90,
 	"x" : 60,
 	"ia": 100,
 	"oi": 120,
@@ -215,9 +215,17 @@ func main() {
 	http.Handle("/", http.FileServer(http.Dir("./templates")))
 
 	http.HandleFunc("/search", searchHandler)
-	http.HandleFunc("/ai", aiHandler) // ✅ tambahkan ini
+	http.HandleFunc("/ai", aiHandler)
 
-	log.Println("Server running http://localhost:8000")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8000"
+	}
 
-	log.Fatal(http.ListenAndServe(":8000", nil))
+	log.Println("Server running on :" + port)
+
+	err := http.ListenAndServe(":"+port, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
