@@ -224,7 +224,7 @@ func main() {
 
 	log.Println("Server running on :" + port)
 
-	err := http.ListenAndServe(":"+port, nil)
+	err := http.ListenAndServe("0.0.0.0:"+port, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
