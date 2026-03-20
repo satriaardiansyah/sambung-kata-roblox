@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Kamus Sambung Kata</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 30px;
+        background: #f5f5f5;
+      }
+
+      h2 {
+        margin-bottom: 10px;
+      }
+
+      .box {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 500px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+
+      input, select, button {
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+
+      input {
+        width: 100%;
+      }
+
+      button {
+        cursor: pointer;
+        background: #007bff;
+        color: white;
+        border: none;
+      }
+
+      button:hover {
+        background: #0056b3;
+      }
+
+      ul {
+        margin-top: 15px;
+        padding: 0;
+      }
+
+      li {
+        list-style: none;
+        padding: 6px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .best {
+        color: green;
+        font-weight: bold;
+      }
+
+      .mode {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="box">
+      <h2>Kamus Sambung Kata 🔥</h2>
+
+      <input id="search" placeholder="ketik kata lawan..." />
+
+      <div class="mode">
+        <select id="mode">
+          <option value="prefix">Awalan</option>
+          <option value="suffix">Akhiran</option>
+        </select>
+
+        <button onclick="aiSearch()">AI Jawaban</button>
+      </div>
+
+      <ul id="result"></ul>
+    </div>
+
+    <script>
+      const input = document.getElementById("search");
+      const mode = document.getElementById("mode");
+      const result = document.getElementById("result");
+
+      let timeout;
+
+      // 🔎 AUTO SEARCH (debounce)
+      input.addEventListener("keyup", () => {
+        clearTimeout(timeout);
+
+        timeout = setTimeout(async () => {
+          let q = input.value.trim();
+          let m = mode.value;
+
+          if (!q) {
+            result.innerHTML = "";
+            return;
+          }
+
+          let res = await fetch(`/search?q=${q}&mode=${m}`);
+          let data = await res.json();
+
+          renderResult(data);
+        }, 300);
+      });
+
+      // ⌨️ ENTER = AI MODE
+      input.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          aiSearch();
+        }
+      });
+
+      // 🧠 AI SEARCH
+      async function aiSearch() {
+        let q = input.value.trim();
+
+        if (!q) return;
+
+        let res = await fetch(`/ai?q=${q}`);
+        let data = await res.json();
+
+        renderResult(data, true);
+      }
+
+      // 🎯 RENDER RESULT
+      function renderResult(data, isAI = false) {
+        result.innerHTML = "";
+
+        data.slice(0, 20).forEach((word, i) => {
+          let li = document.createElement("li");
+
+          if (isAI && i === 0) {
+            li.textContent = "🔥 BEST: " + word;
+            li.classList.add("best");
+          } else {
+            li.textContent = word;
+          }
+
+          result.appendChild(li);
+        });
+      }
+    </script>
+
+  </body>
+</html>
