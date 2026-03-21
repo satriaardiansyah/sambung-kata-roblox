@@ -193,6 +193,12 @@ func main() {
     loadKamus()
     buildIndex()
 
+	if _, err := os.Stat("./templates"); os.IsNotExist(err) {
+    log.Println("❌ templates folder NOT FOUND")
+	} else {
+		log.Println("✅ templates folder FOUND")
+	}
+
     // 2. Register routes
     http.Handle("/", http.FileServer(http.Dir("./templates")))
     http.HandleFunc("/search", searchHandler)
