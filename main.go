@@ -200,16 +200,14 @@ func main() {
 	}
 
     // 2. Register routes
-    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("OK"))
-	})
+    http.Handle("/", http.FileServer(http.Dir("./templates")))
     http.HandleFunc("/search", searchHandler)
     http.HandleFunc("/ai", aiHandler)
 
     // 3. Baru listen
     port := os.Getenv("PORT")
     if port == "" {
-        port = "8000"
+        port = "8080"
     }
 
     fmt.Println("PORT env value:", port)
