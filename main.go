@@ -15,13 +15,14 @@ import (
 var kamusData []byte
 
 var words []string
+var suffixIndex = map[string][]string{}
 
 var killerSuffix = map[string]int{
 	"cy": 130,
 	"gy": 90,
 	"ex": 120,
-	"rs": 70,
-	"ks": 70,
+	"rs": 110,
+	"ks": 110,
 	"ea": 60,
 	"ly": 60,
 	"tt": 80,
@@ -46,8 +47,11 @@ var prefixIndex = map[string][]string{}
 func buildIndex() {
 	for _, w := range words {
 		if len(w) >= 2 {
-			key := w[:2]
-			prefixIndex[key] = append(prefixIndex[key], w)
+			prefix := w[:2]
+			suffix := w[len(w)-2:]
+
+			prefixIndex[prefix] = append(prefixIndex[prefix], w)
+			suffixIndex[suffix] = append(suffixIndex[suffix], w)
 		}
 	}
 }
@@ -61,20 +65,29 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		Score int
 	}
 
+	var candidates []string
+
+	//ambil kandidat dari index (BUKAN scan semua)
+	if len(query) >= 2 {
+		if mode == "prefix" {
+			candidates = prefixIndex[query[:2]]
+		} else if mode == "suffix" {
+			candidates = suffixIndex[query[len(query)-2:]]
+		}
+	} else {
+		// fallback kalau query pendek
+		candidates = words
+	}
+
 	var scored []WordScore
 
-	for _, word := range words {
-		match := false
+	for _, word := range candidates {
 
-		if mode == "prefix" && strings.HasPrefix(word, query) {
-			match = true
+		// filter sesuai mode
+		if mode == "prefix" && !strings.HasPrefix(word, query) {
+			continue
 		}
-
-		if mode == "suffix" && strings.HasSuffix(word, query) {
-			match = true
-		}
-
-		if !match {
+		if mode == "suffix" && !strings.HasSuffix(word, query) {
 			continue
 		}
 
@@ -84,10 +97,9 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 
 		end := word[len(word)-2:]
 
-		// base score (semakin kecil semakin bagus)
 		score := 1000
 
-		// 🔥 PRIORITAS KILLER SUFFIX
+		//killer suffix tetap dipakai
 		if bonus, ok := killerSuffix[end]; ok {
 			score -= bonus
 		}
@@ -103,9 +115,11 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		return scored[i].Score < scored[j].Score
 	})
 
+	//limit hasil (biar hemat)
+	limit := 50
 	var result []string
-	for _, s := range scored {
-		result = append(result, s.Word)
+	for i := 0; i < len(scored) && i < limit; i++ {
+		result = append(result, scored[i].Word)
 	}
 
 	w.Header().Set("Content-Type", "application/json")
@@ -207,7 +221,7 @@ func main() {
     // 3. Baru listen
     port := os.Getenv("PORT")
     if port == "" {
-        port = "8080"
+        port = "8000"
     }
 
     fmt.Println("PORT env value:", port)
