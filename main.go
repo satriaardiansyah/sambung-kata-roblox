@@ -189,28 +189,26 @@ func aiHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	loadKamus()
-	buildIndex()
+    // 1. Load data dulu
+    loadKamus()
+    buildIndex()
 
-	if _, err := os.Stat("./templates"); os.IsNotExist(err) {
-        log.Fatal("Folder templates tidak ditemukan!")
-    }
+    // 2. Register routes
+    http.Handle("/", http.FileServer(http.Dir("./templates")))
+    http.HandleFunc("/search", searchHandler)
+    http.HandleFunc("/ai", aiHandler)
 
-	http.Handle("/", http.FileServer(http.Dir("./templates")))
-	http.HandleFunc("/search", searchHandler)
-	http.HandleFunc("/ai", aiHandler)
-
-	port := os.Getenv("PORT")
-    fmt.Println("PORT env value:", port)  // ← lihat nilai aslinya
-
+    // 3. Baru listen
+    port := os.Getenv("PORT")
     if port == "" {
         port = "8080"
     }
 
+    fmt.Println("PORT env value:", port)
     fmt.Println("Listening on 0.0.0.0:" + port)
 
-	err := http.ListenAndServe("0.0.0.0:"+port, nil)
-	if err != nil {
-		log.Fatal(err)
-	}
+    err := http.ListenAndServe("0.0.0.0:"+port, nil)
+    if err != nil {
+        log.Fatal(err)
+    }
 }
