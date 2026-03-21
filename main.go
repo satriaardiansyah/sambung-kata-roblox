@@ -200,7 +200,9 @@ func main() {
 	}
 
     // 2. Register routes
-    http.Handle("/", http.FileServer(http.Dir("./templates")))
+    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("OK"))
+	})
     http.HandleFunc("/search", searchHandler)
     http.HandleFunc("/ai", aiHandler)
 
