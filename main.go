@@ -32,6 +32,10 @@ var killerSuffix = map[string]int{
 	"ia": 100,
 	"oi": 120,
 	"pp": 100,
+	"yab": 150,
+	"iki": 160,
+	"voi": 170,
+	// "ica": 140,
 }
 
 func loadKamus() {
@@ -95,13 +99,22 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 			continue
 		}
 
-		end := word[len(word)-2:]
-
 		score := 1000
 
-		//killer suffix tetap dipakai
-		if bonus, ok := killerSuffix[end]; ok {
-			score -= bonus
+		// cek 3 huruf dulu (prioritas lebih spesifik)
+		if len(word) >= 3 {
+			end3 := word[len(word)-3:]
+			if bonus, ok := killerSuffix[end3]; ok {
+				score -= bonus
+			}
+		}
+
+		// cek 2 huruf
+		if len(word) >= 2 {
+			end2 := word[len(word)-2:]
+			if bonus, ok := killerSuffix[end2]; ok {
+				score -= bonus
+			}
 		}
 
 		scored = append(scored, WordScore{
