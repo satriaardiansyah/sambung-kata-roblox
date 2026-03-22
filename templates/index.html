@@ -137,7 +137,7 @@
       function renderResult(data, isAI = false) {
         result.innerHTML = "";
 
-        data.slice(0, 20).forEach((word, i) => {
+        data.slice(0, 100).forEach((word, i) => {
           let li = document.createElement("li");
 
           if (isAI && i === 0) {
