@@ -32,9 +32,15 @@ var killerSuffix = map[string]int{
 	"ia": 100,
 	"oi": 120,
 	"pp": 100,
-	"yab": 150,
-	"iki": 160,
-	"voi": 170,
+	"yab": 200,
+	"iki": 200,
+	"ipe": 200,
+	"voi": 200,
+	"coe": 200,
+	"ez": 200,
+	"ou": 200,
+	"uo": 200,
+
 	// "ica": 140,
 }
 
@@ -220,16 +226,23 @@ func main() {
     loadKamus()
     buildIndex()
 
-	if _, err := os.Stat("./templates"); os.IsNotExist(err) {
-    log.Println("❌ templates folder NOT FOUND")
-	} else {
-		log.Println("✅ templates folder FOUND")
-	}
+	// halaman utama
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path != "/" {
+			http.NotFound(w, r)
+			return
+		}
+		http.ServeFile(w, r, "./templates/index2.html")
+	})
 
-    // 2. Register routes
-    http.Handle("/", http.FileServer(http.Dir("./templates")))
-    http.HandleFunc("/search", searchHandler)
-    http.HandleFunc("/ai", aiHandler)
+	// halaman kedua
+	http.HandleFunc("/page2", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./templates/index.html")
+	})
+
+	// API
+	http.HandleFunc("/search", searchHandler)
+	http.HandleFunc("/ai", aiHandler)
 
     // 3. Baru listen
     port := os.Getenv("PORT")
