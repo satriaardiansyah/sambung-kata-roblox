@@ -400,10 +400,10 @@
           <option value="suffix">🔤 Akhiran</option>
         </select>
 
-        <button class="btn btn-ai" onclick="aiSearch()">
+        <!-- <button class="btn btn-ai" onclick="aiSearch()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           AI Jawaban
-        </button>
+        </button> -->
 
         <button class="btn btn-love" id="loveBtn" onclick="showLove()">
           <span class="heart-icon">💖</span> Spesial
@@ -478,7 +478,7 @@
         result.innerHTML = "";
         data.slice(0, 100).forEach((word, i) => {
           const li = document.createElement("li");
-          li.style.animationDelay = `${i * 30}ms`;
+        //   li.style.animationDelay = `${i * 30}ms`;
           if (isAI && i === 0) {
             li.textContent = "🔥 BEST: " + word;
             li.classList.add("best");
