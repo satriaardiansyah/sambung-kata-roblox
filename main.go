@@ -21,6 +21,7 @@ var killerSuffix = map[string]int{
 	"cy": 130,
 	"gy": 90,
 	"ex": 120,
+	"eo": 120,
 	// "rs": 110,
 	"ks": 180,
 	// "ea": 50,
@@ -43,6 +44,7 @@ var killerSuffix = map[string]int{
 	"tl": 200,
 	"moi": 200,
 	"sm": 210,
+	"huh":250,
 	// "uo": 200,
 
 	// "ica": 140,
