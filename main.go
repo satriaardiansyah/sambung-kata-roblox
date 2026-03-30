@@ -50,6 +50,7 @@ var killerSuffix = map[string]int{
 	"pei": 250,
 	"ksa": 290,
 	"ng": 60,
+	"ml": 260,
 	// "uo": 200,
 
 	// "ica": 140,
