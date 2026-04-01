@@ -53,6 +53,7 @@ var killerSuffix = map[string]int{
 	"ml": 260,
 	"sih": 260,
 	"hih": 260,
+	"meh": 300,
 	// "uo": 200,
 
 	// "ica": 140,
