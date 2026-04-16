@@ -56,6 +56,8 @@ var killerSuffix = map[string]int{
 	"meh": 300,
 	"owa": 300,
 	"esi": 260,
+	"ngeh": 300,
+	"ngih": 300,
 	// "uo": 200,
 
 	// "ica": 140,
@@ -123,6 +125,14 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		score := 1000
+
+		//cek 4 huruf dulu (prioritas lebih spesifik)
+		if len(word) >= 4 {
+			end4 := word[len(word)-4:]
+			if bonus, ok := killerSuffix[end4]; ok {
+				score -= bonus
+			}
+		}
 
 		// cek 3 huruf dulu (prioritas lebih spesifik)
 		if len(word) >= 3 {
