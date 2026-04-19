@@ -112,7 +112,6 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 
 	for _, word := range candidates {
 
-		// filter sesuai mode
 		if mode == "prefix" && !strings.HasPrefix(word, query) {
 			continue
 		}
@@ -126,7 +125,13 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 
 		score := 1000
 
-		//cek 4 huruf dulu (prioritas lebih spesifik)
+		// ✅ penalti panjang kata
+		lengthDiff := len(word) - len(query)
+		if lengthDiff > 0 {
+			score += lengthDiff * 5
+		}
+
+		// cek 4 huruf
 		if len(word) >= 4 {
 			end4 := word[len(word)-4:]
 			if bonus, ok := killerSuffix[end4]; ok {
@@ -134,7 +139,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 
-		// cek 3 huruf dulu (prioritas lebih spesifik)
+		// cek 3 huruf
 		if len(word) >= 3 {
 			end3 := word[len(word)-3:]
 			if bonus, ok := killerSuffix[end3]; ok {
