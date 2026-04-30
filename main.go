@@ -33,6 +33,7 @@ var killerSuffix = map[string]int{
 	"ia": 60,
 	"oi": 120,
 	"pp": 100,
+	"iu": 200,
 	"eh": 100,
 	"yab": 200,
 	"iki": 200,
@@ -65,6 +66,8 @@ var killerSuffix = map[string]int{
 	"logis": 310,
 	"genik": 320,
 	"alah": 300,
+	"iat": 300,
+	"ngoh": 300,
 	// "uo": 200,
 
 	// "ica": 140,
@@ -95,6 +98,7 @@ func buildIndex() {
 func searchHandler(w http.ResponseWriter, r *http.Request) {
 	query := strings.ToLower(r.URL.Query().Get("q"))
 	mode := r.URL.Query().Get("mode")
+	searchMode := r.URL.Query().Get("searchMode")
 
 	type WordScore struct {
 		Word  string
@@ -140,20 +144,24 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 
 		//cek 5 huruf
 
-		if len(word) >= 5 {
-			end4 := word[len(word)-5:]
-			if bonus, ok := killerSuffix[end4]; ok {
-				score -= bonus
+		if searchMode == "brutal" {
+			if len(word) >= 5 {
+				end4 := word[len(word)-5:]
+				if bonus, ok := killerSuffix[end4]; ok {
+					score -= bonus
+				}
+			}
+
+			// cek 4 huruf
+			if len(word) >= 4 {
+				end4 := word[len(word)-4:]
+				if bonus, ok := killerSuffix[end4]; ok {
+					score -= bonus
+				}
 			}
 		}
 
-		// cek 4 huruf
-		if len(word) >= 4 {
-			end4 := word[len(word)-4:]
-			if bonus, ok := killerSuffix[end4]; ok {
-				score -= bonus
-			}
-		}
+		
 
 		// cek 3 huruf
 		if len(word) >= 3 {
