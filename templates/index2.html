@@ -3,27 +3,36 @@
   <head>
     <title>Kamus Sambung Kata</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
       :root {
         --bg: #0d0d14;
         --surface: #15151f;
         --surface2: #1c1c2a;
-        --border: rgba(255,255,255,0.07);
+        --border: rgba(255, 255, 255, 0.07);
         --accent: #f7c948;
         --accent2: #ff6b9d;
         --accent3: #6ee7b7;
         --text: #e8e8f0;
         --muted: #6b6b85;
         --radius: 16px;
-        --glow: 0 0 40px rgba(247,201,72,0.15);
+        --glow: 0 0 40px rgba(247, 201, 72, 0.15);
       }
 
       body {
-        font-family: 'DM Sans', sans-serif;
+        font-family: "DM Sans", sans-serif;
         background: var(--bg);
         color: var(--text);
         min-height: 100vh;
@@ -37,8 +46,9 @@
       }
 
       /* ── Ambient background blobs ── */
-      body::before, body::after {
-        content: '';
+      body::before,
+      body::after {
+        content: "";
         position: fixed;
         border-radius: 50%;
         filter: blur(80px);
@@ -46,14 +56,26 @@
         z-index: 0;
       }
       body::before {
-        width: 400px; height: 400px;
-        background: radial-gradient(circle, rgba(247,201,72,0.12) 0%, transparent 70%);
-        top: -100px; right: -100px;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(247, 201, 72, 0.12) 0%,
+          transparent 70%
+        );
+        top: -100px;
+        right: -100px;
       }
       body::after {
-        width: 350px; height: 350px;
-        background: radial-gradient(circle, rgba(255,107,157,0.10) 0%, transparent 70%);
-        bottom: -80px; left: -80px;
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 107, 157, 0.1) 0%,
+          transparent 70%
+        );
+        bottom: -80px;
+        left: -80px;
       }
 
       /* ── Card ── */
@@ -66,13 +88,21 @@
         border: 1px solid var(--border);
         border-radius: 24px;
         padding: 36px 32px 28px;
-        box-shadow: 0 8px 60px rgba(0,0,0,0.5), var(--glow);
-        animation: slideUp 0.6s cubic-bezier(.16,1,.3,1) both;
+        box-shadow:
+          0 8px 60px rgba(0, 0, 0, 0.5),
+          var(--glow);
+        animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
       }
 
       @keyframes slideUp {
-        from { opacity: 0; transform: translateY(30px); }
-        to   { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       /* ── Header ── */
@@ -83,7 +113,7 @@
         margin-bottom: 28px;
       }
       .header-left h1 {
-        font-family: 'Playfair Display', serif;
+        font-family: "Playfair Display", serif;
         font-size: clamp(1.4rem, 4vw, 1.75rem);
         color: var(--accent);
         letter-spacing: -0.5px;
@@ -121,7 +151,9 @@
         pointer-events: none;
         transition: color 0.2s;
       }
-      .input-wrap:focus-within svg { color: var(--accent); }
+      .input-wrap:focus-within svg {
+        color: var(--accent);
+      }
 
       input[type="text"] {
         width: 100%;
@@ -130,15 +162,19 @@
         border: 1.5px solid var(--border);
         border-radius: var(--radius);
         color: var(--text);
-        font-family: 'DM Sans', sans-serif;
+        font-family: "DM Sans", sans-serif;
         font-size: 0.97rem;
-        transition: border-color 0.25s, box-shadow 0.25s;
+        transition:
+          border-color 0.25s,
+          box-shadow 0.25s;
         outline: none;
       }
-      input[type="text"]::placeholder { color: var(--muted); }
+      input[type="text"]::placeholder {
+        color: var(--muted);
+      }
       input[type="text"]:focus {
-        border-color: rgba(247,201,72,0.5);
-        box-shadow: 0 0 0 3px rgba(247,201,72,0.08);
+        border-color: rgba(247, 201, 72, 0.5);
+        box-shadow: 0 0 0 3px rgba(247, 201, 72, 0.08);
       }
 
       /* ── Controls row ── */
@@ -157,7 +193,7 @@
         border: 1.5px solid var(--border);
         border-radius: var(--radius);
         color: var(--text);
-        font-family: 'DM Sans', sans-serif;
+        font-family: "DM Sans", sans-serif;
         font-size: 0.88rem;
         outline: none;
         cursor: pointer;
@@ -168,7 +204,9 @@
         background-position: right 12px center;
         padding-right: 34px;
       }
-      select:focus { border-color: rgba(247,201,72,0.4); }
+      select:focus {
+        border-color: rgba(247, 201, 72, 0.4);
+      }
 
       /* ── Buttons ── */
       .btn {
@@ -178,39 +216,63 @@
         padding: 12px 18px;
         border: none;
         border-radius: var(--radius);
-        font-family: 'DM Sans', sans-serif;
+        font-family: "DM Sans", sans-serif;
         font-size: 0.88rem;
         font-weight: 500;
         cursor: pointer;
-        transition: transform 0.15s, box-shadow 0.2s, filter 0.2s;
+        transition:
+          transform 0.15s,
+          box-shadow 0.2s,
+          filter 0.2s;
         white-space: nowrap;
       }
-      .btn:active { transform: scale(0.96); }
+      .btn:active {
+        transform: scale(0.96);
+      }
 
       .btn-ai {
         background: linear-gradient(135deg, #f7c948 0%, #ff9d3d 100%);
         color: #0d0d14;
-        box-shadow: 0 4px 20px rgba(247,201,72,0.3);
+        box-shadow: 0 4px 20px rgba(247, 201, 72, 0.3);
       }
-      .btn-ai:hover { filter: brightness(1.1); box-shadow: 0 6px 28px rgba(247,201,72,0.45); }
+      .btn-ai:hover {
+        filter: brightness(1.1);
+        box-shadow: 0 6px 28px rgba(247, 201, 72, 0.45);
+      }
 
       .btn-love {
         background: linear-gradient(135deg, #ff6b9d 0%, #ff4f7b 100%);
         color: white;
-        box-shadow: 0 4px 20px rgba(255,107,157,0.3);
+        box-shadow: 0 4px 20px rgba(255, 107, 157, 0.3);
         font-size: 0.9rem;
         position: relative;
         overflow: hidden;
       }
-      .btn-love:hover { filter: brightness(1.1); box-shadow: 0 6px 28px rgba(255,107,157,0.5); }
-      .btn-love.beating .heart-icon { animation: heartbeat 0.6s ease-in-out 3; }
+      .btn-love:hover {
+        filter: brightness(1.1);
+        box-shadow: 0 6px 28px rgba(255, 107, 157, 0.5);
+      }
+      .btn-love.beating .heart-icon {
+        animation: heartbeat 0.6s ease-in-out 3;
+      }
 
       @keyframes heartbeat {
-        0%,100% { transform: scale(1); }
-        20%      { transform: scale(1.35); }
-        40%      { transform: scale(0.95); }
-        60%      { transform: scale(1.25); }
-        80%      { transform: scale(1); }
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        20% {
+          transform: scale(1.35);
+        }
+        40% {
+          transform: scale(0.95);
+        }
+        60% {
+          transform: scale(1.25);
+        }
+        80% {
+          transform: scale(1);
+        }
       }
 
       /* ── Divider ── */
@@ -231,8 +293,13 @@
         scrollbar-width: thin;
         scrollbar-color: var(--surface2) transparent;
       }
-      #result::-webkit-scrollbar { width: 4px; }
-      #result::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 10px; }
+      #result::-webkit-scrollbar {
+        width: 4px;
+      }
+      #result::-webkit-scrollbar-thumb {
+        background: var(--surface2);
+        border-radius: 10px;
+      }
 
       #result li {
         padding: 10px 14px;
@@ -242,25 +309,49 @@
         font-size: 0.9rem;
         color: var(--text);
         cursor: pointer;
-        transition: background 0.2s, border-color 0.2s, transform 0.15s;
-        animation: fadeIn 0.3s ease both;
+        transition:
+          background 0.2s,
+          border-color 0.2s,
+          transform 0.15s;
       }
       #result li:hover {
-        background: rgba(255,255,255,0.05);
-        border-color: rgba(247,201,72,0.25);
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(247, 201, 72, 0.25);
         transform: translateX(3px);
       }
       #result li.best {
-        background: linear-gradient(135deg, rgba(247,201,72,0.12), rgba(255,157,61,0.08));
-        border-color: rgba(247,201,72,0.35);
+        background: linear-gradient(
+          135deg,
+          rgba(247, 201, 72, 0.12),
+          rgba(255, 157, 61, 0.08)
+        );
+        border-color: rgba(247, 201, 72, 0.35);
         color: var(--accent);
         font-weight: 600;
         font-size: 0.95rem;
       }
 
+      #result.refreshed {
+        animation: fadeIn 0.2s ease both;
+      }
+
       @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(6px); }
-        to   { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      #result li .match {
+        color: var(--accent);
+        font-weight: 600;
+        background: rgba(247, 201, 72, 0.12);
+        border-radius: 3px;
+        padding: 0 2px;
       }
 
       .empty-state {
@@ -269,7 +360,11 @@
         font-size: 0.85rem;
         padding: 24px 0;
       }
-      .empty-state span { display: block; font-size: 2rem; margin-bottom: 8px; }
+      .empty-state span {
+        display: block;
+        font-size: 2rem;
+        margin-bottom: 8px;
+      }
 
       /* ── Love overlay ── */
       #love-overlay {
@@ -277,35 +372,50 @@
         position: fixed;
         inset: 0;
         z-index: 9999;
-        background: rgba(10,10,18,0.85);
+        background: rgba(10, 10, 18, 0.85);
         backdrop-filter: blur(6px);
         align-items: center;
         justify-content: center;
         flex-direction: column;
         cursor: pointer;
       }
-      #love-overlay.active { display: flex; animation: fadeInOverlay 0.4s ease both; }
+      #love-overlay.active {
+        display: flex;
+        animation: fadeInOverlay 0.4s ease both;
+      }
 
       @keyframes fadeInOverlay {
-        from { opacity: 0; }
-        to   { opacity: 1; }
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
 
       .love-card {
         text-align: center;
         padding: 40px 48px;
         background: linear-gradient(135deg, #1c0a14 0%, #160a1c 100%);
-        border: 1px solid rgba(255,107,157,0.25);
+        border: 1px solid rgba(255, 107, 157, 0.25);
         border-radius: 28px;
-        box-shadow: 0 0 80px rgba(255,107,157,0.2), inset 0 0 40px rgba(255,107,157,0.05);
+        box-shadow:
+          0 0 80px rgba(255, 107, 157, 0.2),
+          inset 0 0 40px rgba(255, 107, 157, 0.05);
         max-width: 360px;
-        animation: popIn 0.5s cubic-bezier(.16,1,.3,1) both;
+        animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
         position: relative;
         overflow: hidden;
       }
       @keyframes popIn {
-        from { transform: scale(0.7) translateY(20px); opacity: 0; }
-        to   { transform: scale(1) translateY(0);      opacity: 1; }
+        from {
+          transform: scale(0.7) translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1) translateY(0);
+          opacity: 1;
+        }
       }
 
       .love-card .big-heart {
@@ -314,38 +424,45 @@
         animation: bigHeartbeat 1.2s ease-in-out infinite;
         display: block;
         margin-bottom: 16px;
-        filter: drop-shadow(0 0 20px rgba(255,107,157,0.7));
+        filter: drop-shadow(0 0 20px rgba(255, 107, 157, 0.7));
       }
       @keyframes bigHeartbeat {
-        0%,100% { transform: scale(1); }
-        50%      { transform: scale(1.12); }
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.12);
+        }
       }
 
       .love-card h2 {
-        font-family: 'Playfair Display', serif;
+        font-family: "Playfair Display", serif;
         font-size: 1.6rem;
         color: #ff6b9d;
         margin-bottom: 10px;
       }
       .love-card p {
         font-size: 0.88rem;
-        color: rgba(255,255,255,0.5);
+        color: rgba(255, 255, 255, 0.5);
         font-weight: 300;
         line-height: 1.6;
       }
       .love-close {
         margin-top: 24px;
         padding: 10px 28px;
-        background: rgba(255,107,157,0.15);
-        border: 1px solid rgba(255,107,157,0.3);
+        background: rgba(255, 107, 157, 0.15);
+        border: 1px solid rgba(255, 107, 157, 0.3);
         border-radius: 20px;
         color: #ff6b9d;
-        font-family: 'DM Sans', sans-serif;
+        font-family: "DM Sans", sans-serif;
         font-size: 0.85rem;
         cursor: pointer;
         transition: background 0.2s;
       }
-      .love-close:hover { background: rgba(255,107,157,0.25); }
+      .love-close:hover {
+        background: rgba(255, 107, 157, 0.25);
+      }
 
       /* Floating hearts */
       .heart-particle {
@@ -356,41 +473,74 @@
         animation: floatHeart 2s ease-out forwards;
       }
       @keyframes floatHeart {
-        0%   { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
-        100% { opacity: 0; transform: translateY(-200px) scale(1.6) rotate(20deg); }
+        0% {
+          opacity: 1;
+          transform: translateY(0) scale(1) rotate(0deg);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-200px) scale(1.6) rotate(20deg);
+        }
       }
 
       /* ── Responsive ── */
       @media (max-width: 480px) {
-        .card { padding: 28px 20px 24px; }
-        .controls { gap: 8px; }
-        .btn { padding: 11px 14px; font-size: 0.83rem; }
-        select { font-size: 0.83rem; }
-        .love-card { padding: 32px 28px; margin: 0 20px; }
+        .card {
+          padding: 28px 20px 24px;
+        }
+        .controls {
+          gap: 8px;
+        }
+        .btn {
+          padding: 11px 14px;
+          font-size: 0.83rem;
+        }
+        select {
+          font-size: 0.83rem;
+        }
+        .love-card {
+          padding: 32px 28px;
+          margin: 0 20px;
+        }
       }
     </style>
   </head>
 
   <body>
-
     <!-- ═══════════════ CARD ═══════════════ -->
     <div class="card">
-
       <!-- Header -->
       <div class="header">
         <div class="header-left">
           <h1>Sambung Kata By Yabi😆</h1>
-          <p>Ketik kata yang dicari sistem otomatis mencarikan kata yang sulit..</p>
+          <p>
+            Ketik kata yang dicari sistem otomatis mencarikan kata yang sulit..
+          </p>
         </div>
         <span class="badge">Beta</span>
       </div>
 
       <!-- Input -->
       <div class="input-wrap">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
         </svg>
-        <input id="search" type="text" placeholder="Ketik kata lawan..." autocomplete="off" />
+        <input
+          id="search"
+          type="text"
+          placeholder="Ketik kata lawan..."
+          autocomplete="off"
+        />
       </div>
 
       <!-- Controls -->
@@ -400,12 +550,17 @@
           <option value="suffix">🔤 Akhiran</option>
         </select>
 
-        <input type="radio" id="normal" name="searchMode" value="normal">
+        <input type="radio" id="normal" name="searchMode" value="normal" />
         <label for="normal">Normal</label>
 
-        <input type="radio" id="brutal" name="searchMode" value="brutal" checked>
+        <input
+          type="radio"
+          id="brutal"
+          name="searchMode"
+          value="brutal"
+          checked
+        />
         <label for="brutal">Brutal</label>
-        
 
         <!-- <button class="btn btn-ai" onclick="aiSearch()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -421,11 +576,10 @@
 
       <!-- Result -->
       <ul id="result">
-        <li class="empty-state" style="border:none;background:none;">
+        <li class="empty-state" style="border: none; background: none">
           <span>🔍</span>Mulai ketik untuk mencari kata...
         </li>
       </ul>
-
     </div>
 
     <!-- ═══════════════ LOVE OVERLAY ═══════════════ -->
@@ -433,15 +587,18 @@
       <div class="love-card" onclick="event.stopPropagation()">
         <span class="big-heart">💗</span>
         <h2>Untuk Kamu</h2>
-        <p>Kamu adalah kata terbaik<br/>yang pernah aku temukan<br/>dalam kamus hidupku. ✨</p>
+        <p>
+          Kamu adalah kata terbaik<br />yang pernah aku temukan<br />dalam kamus
+          hidupku. ✨
+        </p>
         <button class="love-close" onclick="closeLove()">Tutup 🌸</button>
       </div>
     </div>
 
     <!-- ═══════════════ SCRIPT ═══════════════ -->
     <script>
-      const input  = document.getElementById("search");
-      const mode   = document.getElementById("mode");
+      const input = document.getElementById("search");
+      const mode = document.getElementById("mode");
       const result = document.getElementById("result");
       const searchMode = document.getElementsByName("searchMode");
 
@@ -453,19 +610,28 @@
         timeout = setTimeout(async () => {
           const q = input.value.trim();
           const m = mode.value;
-          const selectedSearchMode = document.querySelector('input[name="searchMode"]:checked').value;
-          if (!q) { showEmpty(); return; }
+          const selectedSearchMode = document.querySelector(
+            'input[name="searchMode"]:checked',
+          ).value;
+          if (!q) {
+            showEmpty();
+            return;
+          }
 
           try {
-            const res  = await fetch(`/search?q=${q}&mode=${m}&searchMode=${selectedSearchMode}`);
+            const res = await fetch(
+              `/search?q=${q}&mode=${m}&searchMode=${selectedSearchMode}`,
+            );
             const data = await res.json();
             renderResult(data);
-          } catch { showEmpty("⚠️ Gagal memuat hasil."); }
+          } catch {
+            showEmpty("⚠️ Gagal memuat hasil.");
+          }
         }, 300);
       });
 
       /* ── ENTER → AI MODE ── */
-      input.addEventListener("keypress", e => {
+      input.addEventListener("keypress", (e) => {
         if (e.key === "Enter") aiSearch();
       });
 
@@ -475,28 +641,51 @@
         if (!q) return;
         result.innerHTML = `<li style="border:none;background:none;" class="empty-state"><span>⏳</span>Memuat AI...</li>`;
         try {
-          const res  = await fetch(`/ai?q=${q}`);
+          const res = await fetch(`/ai?q=${q}`);
           const data = await res.json();
           renderResult(data, true);
-        } catch { showEmpty("⚠️ AI tidak tersedia saat ini."); }
+        } catch {
+          showEmpty("⚠️ AI tidak tersedia saat ini.");
+        }
       }
 
       /* ── RENDER ── */
+      function highlightMatch(word, query, mode) {
+        if (mode === "prefix") {
+          return `<span class="match">${word.slice(0, query.length)}</span>${word.slice(query.length)}`;
+        } else {
+          const start = word.length - query.length;
+          return `${word.slice(0, start)}<span class="match">${word.slice(start)}</span>`;
+        }
+      }
+
       function renderResult(data, isAI = false) {
-        if (!data || !data.length) { showEmpty("😕 Tidak ada hasil ditemukan."); return; }
-        result.innerHTML = "";
-        data.slice(0, 100).forEach((word, i) => {
+        if (!data || !data.length) {
+          showEmpty("😕 Tidak ada hasil.");
+          return;
+        }
+
+        const q = input.value.trim().toLowerCase();
+        const m = mode.value;
+
+        const fragment = document.createDocumentFragment();
+        data.slice(0, 50).forEach((word, i) => {
           const li = document.createElement("li");
-        //   li.style.animationDelay = `${i * 30}ms`;
           if (isAI && i === 0) {
-            li.textContent = "🔥 BEST: " + word;
+            li.innerHTML = "🔥 BEST: " + highlightMatch(word, q, m);
             li.classList.add("best");
           } else {
-            li.textContent = word;
+            li.innerHTML = highlightMatch(word, q, m);
           }
-          li.onclick = () => { input.value = word; input.focus(); };
-          result.appendChild(li);
+          li.onclick = () => {
+            input.value = word;
+            input.focus();
+          };
+          fragment.appendChild(li);
         });
+
+        result.innerHTML = "";
+        result.appendChild(fragment);
       }
 
       function showEmpty(msg) {
@@ -516,9 +705,12 @@
         setTimeout(() => btn.classList.remove("beating"), 1800);
 
         // spawn floating hearts
-        const hearts = ["💗","💕","💓","🌸","✨","💝","🩷","💞"];
+        const hearts = ["💗", "💕", "💓", "🌸", "✨", "💝", "🩷", "💞"];
         for (let i = 0; i < 18; i++) {
-          setTimeout(() => spawnHeart(hearts[Math.floor(Math.random() * hearts.length)]), i * 80);
+          setTimeout(
+            () => spawnHeart(hearts[Math.floor(Math.random() * hearts.length)]),
+            i * 80,
+          );
         }
       }
 
@@ -526,10 +718,10 @@
         const el = document.createElement("span");
         el.className = "heart-particle";
         el.textContent = emoji;
-        el.style.left  = Math.random() * 100 + "vw";
+        el.style.left = Math.random() * 100 + "vw";
         el.style.bottom = "10vh";
-        el.style.fontSize = (1 + Math.random() * 1.5) + "rem";
-        el.style.animationDuration = (1.5 + Math.random()) + "s";
+        el.style.fontSize = 1 + Math.random() * 1.5 + "rem";
+        el.style.animationDuration = 1.5 + Math.random() + "s";
         document.body.appendChild(el);
         el.addEventListener("animationend", () => el.remove());
       }
@@ -540,6 +732,5 @@
         }
       }
     </script>
-
   </body>
 </html>
