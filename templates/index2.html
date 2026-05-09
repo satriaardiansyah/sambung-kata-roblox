@@ -731,6 +731,27 @@
           document.getElementById("love-overlay").classList.remove("active");
         }
       }
+
+      // SSE - terima kata dari Python
+      const evtSource = new EventSource("/sse");
+
+      evtSource.onmessage = (e) => {
+        const word = e.data.trim();
+        if (word && word !== input.value) {
+          input.value = word;
+
+          // Trigger search otomatis
+          input.dispatchEvent(new Event("keyup"));
+
+          // Visual feedback - flash border
+          input.style.borderColor = "rgba(110, 231, 183, 0.8)";
+          setTimeout(() => (input.style.borderColor = ""), 600);
+        }
+      };
+
+      evtSource.onerror = () => {
+        console.log("SSE disconnected, retrying...");
+      };
     </script>
   </body>
 </html>

@@ -9,6 +9,7 @@ import (
 	"os"
 	"sort"
 	"strings"
+	"sync"
 )
 
 //go:embed kbbi_filtered.json
@@ -60,7 +61,11 @@ var killerSuffix = map[string]int{
 	"owa": 260,
 	"esi": 260,
 	"iat": 350,
+	"anah": 250,
 	"ngeh": 270,
+	"nget": 270,
+	"losa": 270,
+	"iran": 270,
 	"ngih": 270,
 	"nggar": 300,
 	"wati": 300,
@@ -77,6 +82,9 @@ var killerSuffix = map[string]int{
 	"riksa": 400,
 	"fault": 400,
 	"burma": 400,
+	"ruang": 400,
+	"ahang": 400,
+	"arian": 270,
 	// "uo": 200,
 
 	// "ica": 140,
@@ -423,6 +431,57 @@ func searchHandlerV2(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(result)
 }
 
+// Channel untuk broadcast ke semua client
+var sseClients = map[chan string]bool{}
+var sseMu sync.Mutex
+
+func autoInputHandler(w http.ResponseWriter, r *http.Request) {
+    word := strings.ToLower(r.URL.Query().Get("q"))
+    if word == "" {
+        return
+    }
+
+    // Broadcast ke semua SSE client
+    sseMu.Lock()
+    for ch := range sseClients {
+        select {
+        case ch <- word:
+        default:
+        }
+    }
+    sseMu.Unlock()
+
+    w.WriteHeader(http.StatusOK)
+}
+
+func sseHandler(w http.ResponseWriter, r *http.Request) {
+    w.Header().Set("Content-Type", "text/event-stream")
+    w.Header().Set("Cache-Control", "no-cache")
+    w.Header().Set("Connection", "keep-alive")
+    w.Header().Set("Access-Control-Allow-Origin", "*")
+
+    ch := make(chan string, 5)
+    sseMu.Lock()
+    sseClients[ch] = true
+    sseMu.Unlock()
+
+    defer func() {
+        sseMu.Lock()
+        delete(sseClients, ch)
+        sseMu.Unlock()
+    }()
+
+    for {
+        select {
+        case word := <-ch:
+            fmt.Fprintf(w, "data: %s\n\n", word)
+            w.(http.Flusher).Flush()
+        case <-r.Context().Done():
+            return
+        }
+    }
+}
+
 func main() {
     // 1. Load data dulu
     loadKamus()
@@ -446,6 +505,8 @@ func main() {
 	// API
 	http.HandleFunc("/search", searchHandler)
 	http.HandleFunc("/search2",  searchHandlerV2)
+	http.HandleFunc("/auto-input", autoInputHandler)
+	http.HandleFunc("/sse", sseHandler)
 
     // 3. Baru listen
     port := os.Getenv("PORT")
