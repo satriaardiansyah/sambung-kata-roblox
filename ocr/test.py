@@ -1,77 +1,84 @@
-import pytesseract
 import pyautogui
 import requests
 import time
 import re
 import cv2
 import numpy as np
-from PIL import Image, ImageEnhance, ImageOps
+import easyocr
 
-pytesseract.pytesseract.tesseract_cmd = "/opt/homebrew/bin/tesseract"  # M1/M2/M3
-# pytesseract.pytesseract.tesseract_cmd = "/usr/local/bin/tesseract"   # Intel
+reader = easyocr.Reader(['en'], gpu=False)
 
-# Sesuaikan region ke area "Hurufnya adalah: SF" (teks putih di bawah karakter)
-# Dari screenshot kamu, area ini sekitar y=720 di layar Roblox
-REGION_HURUF = (1420, 880, 500, 60)  # (x, y, width, height) — sesuaikan!
-
+REGION_HURUF = (1390, 880, 620, 60)  # sesuaikan!
 LAST_WORD = ""
 
 def capture_and_read():
     screenshot = pyautogui.screenshot(region=REGION_HURUF)
-    screenshot.save("debug_region.png")  # simpan untuk debug
+    screenshot.save("debug_region.png")
 
-    # Convert ke numpy untuk OpenCV
     img_cv = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
     gray = cv2.cvtColor(img_cv, cv2.COLOR_BGR2GRAY)
 
-    # Adaptive threshold — tahan terhadap background warna apapun
-    thresh = cv2.adaptiveThreshold(
-        gray, 255,
-        cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-        cv2.THRESH_BINARY,
-        blockSize=31,  # ukuran area lokal, harus ganjil
-        C=10
+    # Step 1: Temukan kotak putih — perlonggar filter aspect ratio
+    _, white_mask = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
+    contours, _ = cv2.findContours(white_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    boxes = []
+    for cnt in contours:
+        x, y, w, h = cv2.boundingRect(cnt)
+        # ✅ Hapus filter aspect ratio, cukup filter area dan tinggi minimum
+        if w * h > 1000 and h > 15:
+            boxes.append((x, y, w, h))
+
+    if not boxes:
+        print("  ⚠️ Kotak putih tidak ditemukan")
+        return ""
+
+    # Ambil kotak TERBESAR (itu pasti kotak kata utama)
+    biggest = max(boxes, key=lambda b: b[2] * b[3])
+    x0, y0, w0, h0 = biggest
+
+    print(f"  Kotak terbesar: x={x0} y={y0} w={w0} h={h0}")
+
+    # Step 2: Crop dalam kotak
+    margin = 6
+    roi = img_cv[
+        max(0, y0 + margin) : y0 + h0 - margin,
+        max(0, x0 + margin) : x0 + w0 - margin
+    ]
+    cv2.imwrite("debug_roi.png", roi)
+
+    if roi.size == 0:
+        print("  ⚠️ ROI kosong")
+        return ""
+
+    # Step 3: EasyOCR
+    results = reader.readtext(
+        roi,
+        allowlist='ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        detail=1
     )
-    cv2.imwrite("debug_thresh.png", thresh)
 
-    # Resize 3x biar OCR lebih akurat
-    h, w = thresh.shape
-    big = cv2.resize(thresh, (w*3, h*3), interpolation=cv2.INTER_CUBIC)
+    if not results:
+        print("  ⚠️ EasyOCR tidak mendeteksi teks")
+        return ""
 
-    # OCR seluruh teks dulu
-    raw = pytesseract.image_to_string(
-        big,
-        config="--psm 7 -c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz :"
-    ).strip()
+    results.sort(key=lambda r: r[0][0][0])
+    raw = "".join(r[1] for r in results).upper()
+    raw = re.sub(r'[^A-Z]', '', raw)
 
     print(f"  Raw OCR: '{raw}'")
-
-    # Ekstrak huruf setelah "adalah:" pakai regex
-    match = re.search(r'adalah[:\s]+([A-Z]{1,3})', raw, re.IGNORECASE)
-    if match:
-        return match.group(1).upper()
-
-    # Fallback: ambil semua huruf kapital satu per satu
-    caps = re.findall(r'[A-Z]', raw)
-    if caps:
-        # Hapus duplikat berurutan & karakter noise umum (I, T, L sering muncul palsu)
-        NOISE_CHARS = {'I', 'T', 'L', '1', '|'} if len(caps) > 2 else set()
-        caps = [c for c in caps if c not in NOISE_CHARS]
-        # Ambil maks 3 karakter pertama
-        return "".join(caps[:3])
-
-    return ""
+    return raw
 
 def send_to_web(word):
     try:
         url = f"http://localhost:8000/auto-input?q={word.lower()}"
         requests.get(url, timeout=1)
-        print(f"  Sent to web: {url}")
+        print(f"  Sent: {url}")
     except Exception as e:
         print(f"  Web error: {e}")
 
 print("OCR berjalan... tekan Ctrl+C untuk stop")
-print("Cek debug_region.png dan debug_thresh.png jika gagal\n")
+print("Cek debug_region.png dan debug_roi.png jika gagal\n")
 
 while True:
     word = capture_and_read()
@@ -80,5 +87,5 @@ while True:
         send_to_web(word)
         LAST_WORD = word
     else:
-        print(f"  (tidak ada perubahan atau kosong)")
+        print(f"  (tidak ada perubahan)")
     time.sleep(0.5)
