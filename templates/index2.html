@@ -543,6 +543,31 @@
         />
       </div>
 
+      <div
+        id="mode-indicator"
+        style="
+          font-size: 0.72rem;
+          color: var(--muted);
+          margin-bottom: 10px;
+          margin-top: -8px;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        "
+      >
+        <span
+          id="mode-dot"
+          style="
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #6ee7b7;
+            display: inline-block;
+          "
+        ></span>
+        <span id="mode-label">Auto OCR aktif</span>
+      </div>
+
       <!-- Controls -->
       <div class="controls">
         <select id="mode">
@@ -734,16 +759,31 @@
 
       // SSE - terima kata dari Python
       const evtSource = new EventSource("/sse");
+      let manualMode = false;
+      let manualTimeout;
+
+      // Deteksi ketika user ketik manual
+      input.addEventListener("keydown", (e) => {
+        // Aktifkan manual mode
+        manualMode = true;
+        clearTimeout(manualTimeout);
+
+        // Kembali ke auto mode setelah 5 detik tidak ada ketikan
+        manualTimeout = setTimeout(() => {
+          manualMode = false;
+        }, 4000);
+      });
 
       evtSource.onmessage = (e) => {
+        // Skip kalau sedang manual mode
+        if (manualMode) return;
+
         const word = e.data.trim();
         if (word && word !== input.value) {
           input.value = word;
-
-          // Trigger search otomatis
           input.dispatchEvent(new Event("keyup"));
 
-          // Visual feedback - flash border
+          // Visual feedback hijau = dari OCR
           input.style.borderColor = "rgba(110, 231, 183, 0.8)";
           setTimeout(() => (input.style.borderColor = ""), 600);
         }
@@ -752,6 +792,24 @@
       evtSource.onerror = () => {
         console.log("SSE disconnected, retrying...");
       };
+
+      const modeDot = document.getElementById("mode-dot");
+      const modeLabel = document.getElementById("mode-label");
+
+      input.addEventListener("keydown", (e) => {
+        manualMode = true;
+        clearTimeout(manualTimeout);
+
+        // Tampilkan mode manual
+        modeDot.style.background = "#f7c948";
+        modeLabel.textContent = "Mode manual (auto resume 4 detik)";
+
+        manualTimeout = setTimeout(() => {
+          manualMode = false;
+          modeDot.style.background = "#6ee7b7";
+          modeLabel.textContent = "Auto OCR aktif";
+        }, 5000);
+      });
     </script>
   </body>
 </html>
