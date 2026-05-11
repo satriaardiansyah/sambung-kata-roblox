@@ -771,7 +771,7 @@
         // Kembali ke auto mode setelah 5 detik tidak ada ketikan
         manualTimeout = setTimeout(() => {
           manualMode = false;
-        }, 4000);
+        }, 2000);
       });
 
       evtSource.onmessage = (e) => {
@@ -802,13 +802,13 @@
 
         // Tampilkan mode manual
         modeDot.style.background = "#f7c948";
-        modeLabel.textContent = "Mode manual (auto resume 4 detik)";
+        modeLabel.textContent = "Mode manual (auto resume 2 detik)";
 
         manualTimeout = setTimeout(() => {
           manualMode = false;
           modeDot.style.background = "#6ee7b7";
           modeLabel.textContent = "Auto OCR aktif";
-        }, 5000);
+        }, 2000);
       });
     </script>
   </body>

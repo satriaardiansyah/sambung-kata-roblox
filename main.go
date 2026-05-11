@@ -12,7 +12,7 @@ import (
 	"sync"
 )
 
-//go:embed kbbi_filtered.json
+//go:embed kbbi_updated.json
 var kamusData []byte
 
 var words []string
@@ -67,12 +67,12 @@ var killerSuffix = map[string]int{
 	"losa": 270,
 	"iran": 270,
 	"ngih": 270,
-	"nggar": 300,
+	"nggar": 470,
 	"wati": 300,
 	"riko": 300,
 	"inggu": 300,
-	"logis": 400,
-	"genik": 400,
+	"logis": 500,
+	"genik": 480,
 	"alah": 300,
 	"ngoh": 300,
 	"tiol": 350,
@@ -86,6 +86,10 @@ var killerSuffix = map[string]int{
 	"ruang": 400,
 	"ahang": 400,
 	"arian": 270,
+	"inggi": 460,
+	"duksi": 450,
+	"ratif": 450,
+	"ilok": 320,
 	// "uo": 200,
 
 	// "ica": 140,
