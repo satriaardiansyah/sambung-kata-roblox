@@ -287,7 +287,7 @@
         list-style: none;
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 6px;
         max-height: 1000px;
         overflow-y: auto;
         scrollbar-width: thin;
@@ -301,19 +301,19 @@
         border-radius: 10px;
       }
 
-      #result li {
-        padding: 10px 14px;
+      /* #result li {
+        padding: 7px 12px;
         background: var(--surface2);
         border: 1px solid var(--border);
         border-radius: 10px;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         color: var(--text);
         cursor: pointer;
         transition:
           background 0.2s,
           border-color 0.2s,
           transform 0.15s;
-      }
+      } */
       #result li:hover {
         background: rgba(255, 255, 255, 0.05);
         border-color: rgba(247, 201, 72, 0.25);
@@ -333,6 +333,13 @@
 
       #result.refreshed {
         animation: fadeIn 0.2s ease both;
+      }
+
+      #result li.empty-state-li {
+        display: block !important;
+        text-align: center;
+        border: none !important;
+        background: none !important;
       }
 
       @keyframes fadeIn {
@@ -358,12 +365,12 @@
         text-align: center;
         color: var(--muted);
         font-size: 0.85rem;
-        padding: 24px 0;
+        padding: 12px 0; /* dari 24px */
       }
       .empty-state span {
         display: block;
-        font-size: 2rem;
-        margin-bottom: 8px;
+        font-size: 1.3rem; /* dari 2rem */
+        margin-bottom: 4px; /* dari 8px */
       }
 
       /* ── Love overlay ── */
@@ -506,11 +513,23 @@
 
       /* deleted handler */
       /* ── Delete button di tiap hasil ── */
-      #result li {
+      /* Hanya li biasa yang pakai flex, bukan empty state */
+      #result li:not(.empty-state-li) {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 8px;
+        padding: 7px 12px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        font-size: 0.85rem;
+        color: var(--text);
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          border-color 0.2s,
+          transform 0.15s;
       }
       .word-label {
         flex: 1;
@@ -558,7 +577,7 @@
         font-size: 0.83rem;
         color: var(--text);
         opacity: 0;
-        pointer-events: none;
+        pointer-events: auto;
         transition:
           opacity 0.25s,
           transform 0.25s;
@@ -667,7 +686,10 @@
 
       <!-- Result -->
       <ul id="result">
-        <li class="empty-state" style="border: none; background: none">
+        <li
+          class="empty-state empty-state-li"
+          style="border: none; background: none"
+        >
           <span>🔍</span>Mulai ketik untuk mencari kata...
         </li>
       </ul>
@@ -833,7 +855,9 @@
       function showEmpty(msg) {
         const icon = msg ? "⚠️" : "🔍";
         const text = msg || "Mulai ketik untuk mencari kata...";
-        result.innerHTML = `<li style="border:none;background:none;" class="empty-state"><span>${icon}</span>${text}</li>`;
+        result.innerHTML = `<li class="empty-state empty-state-li" style="border:none;background:none;">
+    <span>${icon}</span>${text}
+  </li>`;
       }
 
       /* ── LOVE ── */
@@ -881,13 +905,18 @@
 
       // Deteksi ketika user ketik manual
       input.addEventListener("keydown", (e) => {
-        // Aktifkan manual mode
+        if (e.key === "Tab") {
+          e.preventDefault();
+          return;
+        }
         manualMode = true;
         clearTimeout(manualTimeout);
-
-        // Kembali ke auto mode setelah 5 detik tidak ada ketikan
+        modeDot.style.background = "#f7c948";
+        modeLabel.textContent = "Mode manual (auto resume 2 detik)";
         manualTimeout = setTimeout(() => {
           manualMode = false;
+          modeDot.style.background = "#6ee7b7";
+          modeLabel.textContent = "Auto OCR aktif";
         }, 2000);
       });
 
@@ -914,18 +943,9 @@
       const modeLabel = document.getElementById("mode-label");
 
       input.addEventListener("keydown", (e) => {
-        manualMode = true;
-        clearTimeout(manualTimeout);
-
-        // Tampilkan mode manual
-        modeDot.style.background = "#f7c948";
-        modeLabel.textContent = "Mode manual (auto resume 2 detik)";
-
-        manualTimeout = setTimeout(() => {
-          manualMode = false;
-          modeDot.style.background = "#6ee7b7";
-          modeLabel.textContent = "Auto OCR aktif";
-        }, 2000);
+        if (e.key === "Tab") {
+          e.preventDefault(); // Tab tidak kemana-mana, tetap di input
+        }
       });
     </script>
   </body>
