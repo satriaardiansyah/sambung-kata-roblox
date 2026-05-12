@@ -40,7 +40,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        padding: 40px 20px 80px;
+        padding: 16px 20px 40px;
         overflow-x: hidden;
         position: relative;
       }
@@ -87,7 +87,7 @@
         background: var(--surface);
         border: 1px solid var(--border);
         border-radius: 24px;
-        padding: 36px 32px 28px;
+        padding: 20px 24px 20px;
         box-shadow:
           0 8px 60px rgba(0, 0, 0, 0.5),
           var(--glow);
@@ -110,11 +110,11 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 28px;
+        margin-bottom: 14px;
       }
       .header-left h1 {
         font-family: "Playfair Display", serif;
-        font-size: clamp(1.4rem, 4vw, 1.75rem);
+        font-size: clamp(1.1rem, 3vw, 1.35rem);
         color: var(--accent);
         letter-spacing: -0.5px;
         line-height: 1.1;
@@ -122,7 +122,7 @@
       .header-left p {
         font-size: 0.78rem;
         color: var(--muted);
-        margin-top: 4px;
+        margin-top: 2px;
         font-weight: 300;
         letter-spacing: 0.5px;
       }
@@ -140,7 +140,7 @@
       /* ── Input wrapper ── */
       .input-wrap {
         position: relative;
-        margin-bottom: 16px;
+        margin-bottom: 8px;
       }
       .input-wrap svg {
         position: absolute;
@@ -157,7 +157,7 @@
 
       input[type="text"] {
         width: 100%;
-        padding: 14px 14px 14px 44px;
+        padding: 10px 10px 10px 40px;
         background: var(--surface2);
         border: 1.5px solid var(--border);
         border-radius: var(--radius);
@@ -188,7 +188,7 @@
       select {
         flex: 1;
         min-width: 120px;
-        padding: 12px 14px;
+        padding: 9px 14px;
         background: var(--surface2);
         border: 1.5px solid var(--border);
         border-radius: var(--radius);
@@ -213,7 +213,7 @@
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        padding: 12px 18px;
+        padding: 9px 14px;
         border: none;
         border-radius: var(--radius);
         font-family: "DM Sans", sans-serif;
@@ -279,7 +279,7 @@
       .divider {
         height: 1px;
         background: var(--border);
-        margin: 22px 0 16px;
+        margin: 12px 0 10px;
       }
 
       /* ── Result list ── */
@@ -287,7 +287,7 @@
         list-style: none;
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: 4px;
         max-height: 1000px;
         overflow-y: auto;
         scrollbar-width: thin;
@@ -503,6 +503,72 @@
           margin: 0 20px;
         }
       }
+
+      /* deleted handler */
+      /* ── Delete button di tiap hasil ── */
+      #result li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .word-label {
+        flex: 1;
+        cursor: pointer;
+      }
+      .btn-del {
+        flex-shrink: 0;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 6px;
+        padding: 3px 8px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        color: var(--muted);
+        opacity: 0;
+        transition:
+          opacity 0.15s,
+          background 0.15s,
+          border-color 0.15s,
+          color 0.15s;
+        line-height: 1.4;
+      }
+      #result li:hover .btn-del {
+        opacity: 1;
+      }
+      .btn-del:hover {
+        background: rgba(255, 80, 80, 0.15);
+        border-color: rgba(255, 80, 80, 0.4);
+        color: #ff6b6b;
+      }
+      .btn-del:active {
+        transform: scale(0.93);
+      }
+
+      /* ── Toast notifikasi ── */
+      #toast {
+        position: fixed;
+        bottom: 28px;
+        left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 20px;
+        font-size: 0.83rem;
+        color: var(--text);
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 0.25s,
+          transform 0.25s;
+        z-index: 9998;
+        white-space: nowrap;
+      }
+      #toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
     </style>
   </head>
 
@@ -548,8 +614,8 @@
         style="
           font-size: 0.72rem;
           color: var(--muted);
-          margin-bottom: 10px;
-          margin-top: -8px;
+          margin-bottom: 8px !important; /* override inline style */
+          margin-top: -4px !important;
           display: flex;
           align-items: center;
           gap: 6px;
@@ -696,21 +762,72 @@
         const fragment = document.createDocumentFragment();
         data.slice(0, 50).forEach((word, i) => {
           const li = document.createElement("li");
-          if (isAI && i === 0) {
-            li.innerHTML = "🔥 BEST: " + highlightMatch(word, q, m);
-            li.classList.add("best");
-          } else {
-            li.innerHTML = highlightMatch(word, q, m);
-          }
-          li.onclick = () => {
+          if (isAI && i === 0) li.classList.add("best");
+
+          // Label kata (klik untuk pakai kata)
+          const label = document.createElement("span");
+          label.className = "word-label";
+          label.innerHTML =
+            (isAI && i === 0 ? "🔥 BEST: " : "") + highlightMatch(word, q, m);
+          label.onclick = () => {
             input.value = word;
             input.focus();
           };
+
+          // Tombol hapus
+          const del = document.createElement("button");
+          del.className = "btn-del";
+          del.textContent = "✕ hapus";
+          del.title = `Hapus "${word}" dari kamus`;
+          del.onclick = (e) => {
+            e.stopPropagation();
+            deleteWord(word, li);
+          };
+
+          li.appendChild(label);
+          li.appendChild(del);
           fragment.appendChild(li);
         });
 
         result.innerHTML = "";
         result.appendChild(fragment);
+      }
+
+      async function deleteWord(word, liEl) {
+        try {
+          const res = await fetch(`/delete-word?q=${encodeURIComponent(word)}`);
+          if (!res.ok) throw new Error();
+
+          // Animasi hilang
+          liEl.style.transition =
+            "opacity 0.25s, transform 0.25s, max-height 0.3s";
+          liEl.style.opacity = "0";
+          liEl.style.transform = "translateX(12px)";
+          liEl.style.maxHeight = liEl.offsetHeight + "px";
+          setTimeout(() => {
+            liEl.style.maxHeight = "0";
+            liEl.style.padding = "0";
+            liEl.style.margin = "0";
+          }, 250);
+          setTimeout(() => liEl.remove(), 500);
+
+          showToast(`🗑️ "${word}" dihapus dari kamus`);
+        } catch {
+          showToast("⚠️ Gagal menghapus kata.");
+        }
+      }
+
+      function showToast(msg) {
+        let toast = document.getElementById("toast");
+        if (!toast) {
+          toast = document.createElement("div");
+          toast.id = "toast";
+          document.body.appendChild(toast);
+        }
+        toast.textContent = msg;
+        toast.classList.add("show");
+        clearTimeout(toast._t);
+        toast._t = setTimeout(() => toast.classList.remove("show"), 2800);
       }
 
       function showEmpty(msg) {

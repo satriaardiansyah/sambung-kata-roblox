@@ -18,6 +18,10 @@ var kamusData []byte
 var words []string
 var suffixIndex = map[string][]string{}
 
+var deletedWords []string
+var deletedMu    sync.Mutex
+const deletedFile = "deleted_words.json"
+
 var killerSuffix = map[string]int{
 	"cy": 130,
 	"gy": 170,
@@ -487,9 +491,83 @@ func sseHandler(w http.ResponseWriter, r *http.Request) {
     }
 }
 
+func loadDeleted() {
+    data, err := os.ReadFile(deletedFile)
+    if err != nil {
+        return
+    }
+    json.Unmarshal(data, &deletedWords)
+    fmt.Printf("Deleted words dimuat: %d kata\n", len(deletedWords))
+
+    // Buat set untuk lookup cepat
+    deletedSet := map[string]bool{}
+    for _, w := range deletedWords {
+        deletedSet[w] = true
+    }
+
+    // Buang kata yang sudah dihapus dari words
+    filtered := words[:0]
+    for _, w := range words {
+        if !deletedSet[w] {
+            filtered = append(filtered, w)
+        }
+    }
+    words = filtered
+
+    fmt.Printf("Words setelah filter: %d kata\n", len(words))
+}
+
+func saveDeleted() {
+    data, _ := json.MarshalIndent(deletedWords, "", "  ")
+    os.WriteFile(deletedFile, data, 0644)
+}
+
+func deleteWordHandler(w http.ResponseWriter, r *http.Request) {
+    word := strings.ToLower(strings.TrimSpace(r.URL.Query().Get("q")))
+    if word == "" {
+        http.Error(w, "query kosong", 400)
+        return
+    }
+
+    deletedMu.Lock()
+    defer deletedMu.Unlock()
+
+    // Hapus dari words
+    newWords := words[:0]
+    found := false
+    for _, ww := range words {
+        if ww == word {
+            found = true
+        } else {
+            newWords = append(newWords, ww)
+        }
+    }
+    if !found {
+        http.Error(w, "kata tidak ditemukan", 404)
+        return
+    }
+    words = newWords
+
+    // Simpan ke deleted list
+    deletedWords = append(deletedWords, word)
+    saveDeleted()
+
+    // Rebuild index
+    prefixIndex = map[string][]string{}
+    suffixIndex = map[string][]string{}
+    prefixFrequency = map[string]int{}
+    deadEndSuffixes = map[string]bool{}
+    buildIndex()
+    buildSmartIndex()
+
+    w.Header().Set("Content-Type", "application/json")
+    json.NewEncoder(w).Encode(map[string]any{"status": "deleted", "word": word})
+}
+
 func main() {
     // 1. Load data dulu
     loadKamus()
+	loadDeleted() 
     buildIndex()
 	buildSmartIndex()
 
@@ -512,6 +590,7 @@ func main() {
 	http.HandleFunc("/search2",  searchHandlerV2)
 	http.HandleFunc("/auto-input", autoInputHandler)
 	http.HandleFunc("/sse", sseHandler)
+	http.HandleFunc("/delete-word", deleteWordHandler)  
 
     // 3. Baru listen
     port := os.Getenv("PORT")
