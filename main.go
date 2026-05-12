@@ -94,6 +94,7 @@ var killerSuffix = map[string]int{
 	"duksi": 450,
 	"ratif": 450,
 	"ilok": 320,
+	"arkil": 500,
 	// "uo": 200,
 
 	// "ica": 140,
