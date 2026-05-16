@@ -96,6 +96,15 @@ var killerSuffix = map[string]int{
 	"ilok": 320,
 	"arkil": 500,
 	"oleac": 500,
+
+	"nusuk": 450,
+	"jijik": 450,
+	"manat": 450,
+	"ensil": 500,
+	"meula": 450,
+	"tanai": 450,
+	"kolam": 450,
+	"ganas": 450,
 	// "uo": 200,
 
 	// "ica": 140,
