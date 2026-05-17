@@ -57,6 +57,9 @@ var killerSuffix = map[string]int{
 	"dot": 250,
 	"pei": 250,
 	"ksa": 290,
+	"bou": 250,
+	"pso": 250,
+
 	"ng": 60,
 	"ml": 260,
 	"sih": 260,
@@ -66,11 +69,13 @@ var killerSuffix = map[string]int{
 	"esi": 260,
 	"iat": 350,
 	"anah": 250,
-	"ngeh": 270,
+	"ngeh": 300,
 	"nget": 270,
 	"losa": 270,
 	"iran": 270,
 	"ngih": 270,
+	"awak": 270,
+	"atat": 270,
 	"nggar": 470,
 	"wati": 300,
 	"riko": 300,
@@ -102,9 +107,17 @@ var killerSuffix = map[string]int{
 	"manat": 450,
 	"ensil": 500,
 	"meula": 450,
-	"tanai": 450,
+	"tanai": 500,
 	"kolam": 450,
 	"ganas": 450,
+	"olong": 500,
+	"garpu": 450,
+	"umang": 450,
+	"ngudo": 550,
+	"sosro": 550,
+
+
+
 	// "uo": 200,
 
 	// "ica": 140,
