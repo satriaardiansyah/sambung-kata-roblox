@@ -80,8 +80,8 @@ var killerSuffix = map[string]int{
 	"wati": 300,
 	"riko": 300,
 	"inggu": 300,
-	"logis": 500,
-	"genik": 480,
+	"logis": 600,
+	"genik": 590,
 	"alah": 300,
 	"ngoh": 300,
 	"tiol": 350,
@@ -115,6 +115,8 @@ var killerSuffix = map[string]int{
 	"umang": 450,
 	"ngudo": 550,
 	"sosro": 550,
+	"litik": 550,
+	"olang": 550,
 
 
 
