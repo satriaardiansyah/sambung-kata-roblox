@@ -1,4 +1,3 @@
-# test_mss.py
 import mss
 import mss.tools
 
