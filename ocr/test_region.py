@@ -3,18 +3,19 @@ import mss
 import mss.tools
 import time
 
-REGION_HURUF = (1155, 700, 120, 90)
+# Coba beberapa region sekaligus untuk perbandingan
+regions = {
+    "kotak_besar": (1413, 867, 238, 72),   # kotak OBAT di kanan atas
+    "huruf_bawah":  (1150, 690, 80,  80),    # kotak O di "Hurufnya adalah"
+    "huruf_bawah2": (1130, 670, 120, 120),   # sedikit lebih lebar
+}
 
-print("Screenshot dalam 3 detik, pastikan Roblox terlihat...")
+print("Screenshot dalam 3 detik...")
 time.sleep(3)
 
 with mss.MSS() as sct:
-    monitor = {
-        "left":   REGION_HURUF[0],
-        "top":    REGION_HURUF[1],
-        "width":  REGION_HURUF[2],
-        "height": REGION_HURUF[3]
-    }
-    shot = sct.grab(monitor)
-    mss.tools.to_png(shot.rgb, shot.size, output="test_region.png")
-    print("✅ Disimpan ke test_region.png")
+    for nama, r in regions.items():
+        monitor = {"left": r[0], "top": r[1], "width": r[2], "height": r[3]}
+        shot = sct.grab(monitor)
+        mss.tools.to_png(shot.rgb, shot.size, output=f"test_{nama}.png")
+        print(f"✅ test_{nama}.png disimpan")
