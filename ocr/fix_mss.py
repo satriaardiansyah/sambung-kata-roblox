@@ -8,6 +8,7 @@ import re
 import cv2
 import numpy as np
 import easyocr
+import hashlib
 from concurrent.futures import ThreadPoolExecutor
 
 reader   = easyocr.Reader(['en'], gpu=False, verbose=False)
@@ -15,7 +16,31 @@ executor = ThreadPoolExecutor(max_workers=1)
 
 REGION_HURUF = (1390, 867, 238, 72)
 LAST_WORD    = ""
-INTERVAL     = 0.6
+INTERVAL     = 0.4
+last_hash    = ""
+
+# ✅ Buat MSS sekali, simpan sebagai global
+_sct = mss.MSS()
+
+def get_sct():
+    """Kembalikan sct global, recreate kalau rusak."""
+    global _sct
+    try:
+        # Test apakah masih hidup
+        _sct.monitors
+        return _sct
+    except Exception:
+        print("  ♻️ Recreate MSS context...")
+        try:
+            _sct.close()
+        except Exception:
+            pass
+        _sct = mss.MSS()
+        return _sct
+
+def image_hash(img_cv):
+    small = cv2.resize(img_cv, (32, 16))
+    return hashlib.md5(small.tobytes()).hexdigest()
 
 def preprocess(img_cv):
     gray = cv2.cvtColor(img_cv, cv2.COLOR_BGR2GRAY)
@@ -37,16 +62,25 @@ def preprocess(img_cv):
     return roi if roi.size > 0 else None
 
 def capture_and_read():
-    # ← buat mss baru setiap capture, lebih stabil
-    with mss.MSS() as sct:
-        monitor = {
-            "left":   REGION_HURUF[0],
-            "top":    REGION_HURUF[1],
-            "width":  REGION_HURUF[2],
-            "height": REGION_HURUF[3]
-        }
-        screenshot = sct.grab(monitor)
-        img_cv = cv2.cvtColor(np.array(screenshot), cv2.COLOR_BGRA2BGR)
+    global last_hash
+
+    monitor = {
+        "left":   REGION_HURUF[0],
+        "top":    REGION_HURUF[1],
+        "width":  REGION_HURUF[2],
+        "height": REGION_HURUF[3]
+    }
+
+    # ✅ Pakai sct yang sama, tidak buka/tutup tiap capture
+    sct = get_sct()
+    screenshot = sct.grab(monitor)
+    img_cv = cv2.cvtColor(np.array(screenshot), cv2.COLOR_BGRA2BGR)
+
+    # Skip OCR kalau gambar tidak berubah
+    h = image_hash(img_cv)
+    if h == last_hash:
+        return ""
+    last_hash = h
 
     roi = preprocess(img_cv)
     if roi is None:
@@ -92,15 +126,20 @@ while True:
             print(f"✅ Detected: '{word}'")
             send_to_web(word)
             LAST_WORD = word
-        error_count = 0  # reset error count kalau berhasil
+        error_count = 0
 
     except Exception as e:
         error_count += 1
         print(f"  Loop error ({error_count}): {e}")
+        # Kalau error, paksa recreate sct
+        try:
+            _sct.close()
+        except Exception:
+            pass
+        _sct = mss.MSS()
 
-        # Kalau error terus-terusan, tunggu lebih lama
         if error_count >= 3:
-            print("  ⚠️ Banyak error, tunggu 3 detik...")
+            print("  ⚠️ Tunggu 3 detik...")
             time.sleep(3)
             error_count = 0
 

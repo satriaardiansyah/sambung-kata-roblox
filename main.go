@@ -37,6 +37,7 @@ var killerSuffix = map[string]int{
 	"F": 60,
 	"V": 60,
 	"ia": 60,
+	"eq": 120,
 	"oi": 120,
 	"pp": 100,
 	"iu": 200,
@@ -72,7 +73,7 @@ var killerSuffix = map[string]int{
 	"ngeh": 300,
 	"nget": 270,
 	"losa": 270,
-	"iran": 270,
+	"iran": 550,
 	"ngih": 270,
 	"awak": 270,
 	"atat": 270,
@@ -84,6 +85,8 @@ var killerSuffix = map[string]int{
 	"genik": 590,
 	"alah": 300,
 	"ngoh": 300,
+	"anki": 300,
+	"unc": 300,
 	"tiol": 350,
 	"taat": 400,
 	"stis": 300,
@@ -96,7 +99,7 @@ var killerSuffix = map[string]int{
 	"ahang": 400,
 	"arian": 270,
 	"inggi": 460,
-	"duksi": 450,
+	"duksi": 600,
 	"ratif": 450,
 	"ilok": 320,
 	"arkil": 500,
@@ -119,12 +122,28 @@ var killerSuffix = map[string]int{
 	"olang": 550,
 	"amang": 550,
 	"trium": 550,
+	"inkan": 550,
+	"yala": 550,
+	"hohon": 550,
 
 
 
 	// "uo": 200,
 
 	// "ica": 140,
+}
+
+var killerOpener = map[string]int{
+    "nggaro":    0,
+    "genikulum": 0,
+    "logistik":  0,
+    "iranika":   0,
+    "iranga":    0,
+    "garpuan":   0,
+	"olanggara": 0,
+	"ahangkara": 0,
+	"umangkapala": 0,
+
 }
 
 func loadKamus() {
@@ -150,116 +169,111 @@ func buildIndex() {
 }
 
 func searchHandler(w http.ResponseWriter, r *http.Request) {
-	query := strings.ToLower(r.URL.Query().Get("q"))
-	mode := r.URL.Query().Get("mode")
-	searchMode := r.URL.Query().Get("searchMode")
+    query := strings.ToLower(r.URL.Query().Get("q"))
+    mode := r.URL.Query().Get("mode")
+    searchMode := r.URL.Query().Get("searchMode")
 
-	type WordScore struct {
-		Word  string
-		Score int
-	}
+    type WordScore struct {
+        Word  string
+        Score int
+    }
 
-	var candidates []string
+    var candidates []string
 
-	//ambil kandidat dari index (BUKAN scan semua)
-	if len(query) >= 2 {
-		if mode == "prefix" {
-			candidates = prefixIndex[query[:2]]
-		} else if mode == "suffix" {
-			candidates = suffixIndex[query[len(query)-2:]]
-		}
-	} else {
-		// fallback kalau query pendek
-		candidates = words
-	}
+    if len(query) >= 2 {
+        if mode == "prefix" {
+            candidates = prefixIndex[query[:2]]
+        } else if mode == "suffix" {
+            candidates = suffixIndex[query[len(query)-2:]]
+        }
+    } else {
+        candidates = words
+    }
 
-	var scored []WordScore
+    var scored []WordScore
 
-	for _, word := range candidates {
+    for _, word := range candidates {
 
-		if mode == "prefix" && !strings.HasPrefix(word, query) {
-			continue
-		}
-		if mode == "suffix" && !strings.HasSuffix(word, query) {
-			continue
-		}
+        if mode == "prefix" && !strings.HasPrefix(word, query) {
+            continue
+        }
+        if mode == "suffix" && !strings.HasSuffix(word, query) {
+            continue
+        }
 
-		if len(word) < 2 {
-			continue
-		}
+        if len(word) < 2 {
+            continue
+        }
 
-		score := 1000
+        score := 1000
 
-		// ✅ penalti panjang kata
-		lengthDiff := len(word) - len(query)
-		if lengthDiff > 0 {
-			score += lengthDiff * 5
-		}
+        // ✅ KILLER OPENER — muncul paling atas
+        if mode == "prefix" {
+            if _, isOpener := killerOpener[word]; isOpener {
+                score = -9999 // paksa paling atas
+            }
+        }
 
-		//cek 5 huruf
+        // penalti panjang kata
+        lengthDiff := len(word) - len(query)
+        if lengthDiff > 0 {
+            score += lengthDiff * 5
+        }
 
-		if searchMode == "brutal" {
-			if len(word) >= 5 {
-				end4 := word[len(word)-5:]
-				if bonus, ok := killerSuffix[end4]; ok {
-					score -= bonus
-				}
-			}
+        if searchMode == "brutal" {
+            if len(word) >= 5 {
+                end5 := word[len(word)-5:]
+                if bonus, ok := killerSuffix[end5]; ok {
+                    score -= bonus
+                }
+            }
+            if len(word) >= 4 {
+                end4 := word[len(word)-4:]
+                if bonus, ok := killerSuffix[end4]; ok {
+                    score -= bonus
+                }
+            }
+        }
 
-			// cek 4 huruf
-			if len(word) >= 4 {
-				end4 := word[len(word)-4:]
-				if bonus, ok := killerSuffix[end4]; ok {
-					score -= bonus
-				}
-			}
-		}
+        if len(word) >= 3 {
+            end3 := word[len(word)-3:]
+            if bonus, ok := killerSuffix[end3]; ok {
+                score -= bonus
+            }
+        }
 
-		
+        if len(word) >= 2 {
+            end2 := word[len(word)-2:]
+            if bonus, ok := killerSuffix[end2]; ok {
+                score -= bonus
+            }
+        }
 
-		// cek 3 huruf
-		if len(word) >= 3 {
-			end3 := word[len(word)-3:]
-			if bonus, ok := killerSuffix[end3]; ok {
-				score -= bonus
-			}
-		}
+        if len(word) >= 1 {
+            end1 := word[len(word)-1:]
+            if bonus, ok := killerSuffix[end1]; ok {
+                score -= bonus
+            }
+        }
 
-		// cek 2 huruf
-		if len(word) >= 2 {
-			end2 := word[len(word)-2:]
-			if bonus, ok := killerSuffix[end2]; ok {
-				score -= bonus
-			}
-		}
+        scored = append(scored, WordScore{
+            Word:  word,
+            Score: score,
+        })
+    }
 
-		if len(word) >= 1 {
-			end1 := word[len(word)-1:]
-			if bonus, ok := killerSuffix[end1]; ok {
-				score -= bonus
-			}
-		}
+    sort.Slice(scored, func(i, j int) bool {
+        return scored[i].Score < scored[j].Score
+    })
 
-		scored = append(scored, WordScore{
-			Word:  word,
-			Score: score,
-		})
-	}
+    limit := 50
+    var result []string
+    for i := 0; i < len(scored) && i < limit; i++ {
+        result = append(result, scored[i].Word)
+    }
 
-	// sorting
-	sort.Slice(scored, func(i, j int) bool {
-		return scored[i].Score < scored[j].Score
-	})
-
-	//limit hasil (biar hemat)
-	limit := 50
-	var result []string
-	for i := 0; i < len(scored) && i < limit; i++ {
-		result = append(result, scored[i].Word)
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(result)
+    w.Header().Set("Content-Type", "application/json")
+    json.NewEncoder(w).Encode(result)
 }
 
 // =============================================
