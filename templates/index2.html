@@ -672,6 +672,14 @@
         />
         <label for="brutal">Brutal</label>
 
+        <input
+          type="checkbox"
+          id="is_warningword"
+          name="warningWords"
+          value="1"
+        />
+        <label for="is_warningword">Bahaya</label>
+
         <!-- <button class="btn btn-ai" onclick="aiSearch()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           AI Jawaban
@@ -726,6 +734,8 @@
           const selectedSearchMode = document.querySelector(
             'input[name="searchMode"]:checked',
           ).value;
+          const isWarningWord =
+            document.getElementById("is_warningword").checked;
           if (!q) {
             showEmpty();
             return;
@@ -733,7 +743,7 @@
 
           try {
             const res = await fetch(
-              `/search?q=${q}&mode=${m}&searchMode=${selectedSearchMode}`,
+              `/search?q=${q}&mode=${m}&searchMode=${selectedSearchMode}&isWarningWord=${isWarningWord ? 1 : 0}`,
             );
             const data = await res.json();
             renderResult(data);
@@ -782,13 +792,26 @@
         const m = mode.value;
 
         const fragment = document.createDocumentFragment();
-        data.slice(0, 50).forEach((word, i) => {
+        data.slice(0, 50).forEach((item, i) => {
+          // Support both string (AI mode) and object (normal mode)
+          const word = typeof item === "string" ? item : item.word;
+          const isWarn = typeof item === "object" && item.warning;
+
           const li = document.createElement("li");
           if (isAI && i === 0) li.classList.add("best");
 
-          // Label kata (klik untuk pakai kata)
+          // Warna merah jika warning
+          if (isWarn) {
+            li.style.borderColor = "rgba(255, 80, 80, 0.35)";
+            li.style.background = "rgba(255, 80, 80, 0.08)";
+          }
+
           const label = document.createElement("span");
           label.className = "word-label";
+
+          // Teks merah jika warning
+          if (isWarn) label.style.color = "#ff6b6b";
+
           label.innerHTML =
             (isAI && i === 0 ? "🔥 BEST: " : "") + highlightMatch(word, q, m);
           label.onclick = () => {
@@ -796,7 +819,6 @@
             input.focus();
           };
 
-          // Tombol hapus
           const del = document.createElement("button");
           del.className = "btn-del";
           del.textContent = "✕ hapus";

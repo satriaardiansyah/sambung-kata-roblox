@@ -135,6 +135,7 @@ var killerSuffix = map[string]int{
 
 var killerOpener = map[string]int{
     "nggaro":    0,
+	"inggih":   0,
     "genikulum": 0,
     "logistik":  0,
     "iranika":   0,
@@ -143,7 +144,15 @@ var killerOpener = map[string]int{
 	"olanggara": 0,
 	"ahangkara": 0,
 	"umangkapala": 0,
+}
 
+var warningWords = map[string]int{
+	"nggar": 0,
+	"genik": 0,
+	"logis": 0,
+	"iran": 0,
+	"iat": 0,
+	"nggil": 0,
 }
 
 func loadKamus() {
@@ -172,6 +181,14 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
     query := strings.ToLower(r.URL.Query().Get("q"))
     mode := r.URL.Query().Get("mode")
     searchMode := r.URL.Query().Get("searchMode")
+
+	isWarningWord := r.URL.Query().Get("isWarningWord") == "1"
+
+    // Ganti type result
+    type WordResult struct {
+        Word    string `json:"word"`
+        Warning bool   `json:"warning"`
+    }
 
     type WordScore struct {
         Word  string
@@ -267,9 +284,43 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
     })
 
     limit := 50
-    var result []string
+    var result []WordResult
     for i := 0; i < len(scored) && i < limit; i++ {
-        result = append(result, scored[i].Word)
+        word := scored[i].Word
+        warn := false
+
+		//jika ingin 2 huruf terakhir
+        // if isWarningWord {
+        //     // Cek apakah ada suffix kata yang cocok dengan warningWords
+        //     for suffix := range warningWords {
+        //         if strings.HasSuffix(word, suffix) {
+        //             warn = true
+        //             break
+        //         }
+        //     }
+        // }
+
+		// jika ingin cek semua sub-suffix dari warningWords
+		if isWarningWord {
+			wordLower := strings.ToLower(word)
+			for suffix := range warningWords {
+				// Cek semua sub-suffix dari suffix key tersebut
+				// misal key "nggar" → cek: "r", "ar", "gar", "ngar", "nggar"  ← SALAH
+				// yang benar: cek apakah word berakhiran "n", "ng", "ngg", "ngga", "nggar"
+				for l := 1; l <= len(suffix); l++ {
+					sub := suffix[:l]  // ambil dari DEPAN: "n", "ng", "ngg", "ngga", "nggar"
+					if strings.HasSuffix(wordLower, sub) {
+						warn = true
+						break
+					}
+				}
+				if warn {
+					break
+				}
+			}
+		}
+
+        result = append(result, WordResult{Word: word, Warning: warn})
     }
 
     w.Header().Set("Content-Type", "application/json")
