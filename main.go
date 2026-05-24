@@ -23,114 +23,111 @@ var deletedMu    sync.Mutex
 const deletedFile = "deleted_words.json"
 
 var killerSuffix = map[string]int{
-	"cy": 130,
-	"gy": 170,
-	"ex": 120,
-	"eo": 120,
-	"ks": 180,
-	"oo": 140,
-	"x":  60,
-	"z":  60,
-	"q":  60,
-	"w": 60,
-	"c": 60,
-	"F": 60,
-	"V": 60,
-	"ia": 60,
-	"eq": 120,
-	"oi": 120,
-	"pp": 100,
-	"iu": 200,
-	"eh": 100,
-	"yab": 200,
-	"iki": 200,
-	"ipe": 200,
-	"voi": 200,
-	"coe": 200,
-	"ez": 200,
-	"ou": 200,
-	"ox": 150,
-	"tl": 200,
-	"moi": 200,
-	"sm": 210,
-	"huh":250,
-	"iya": 220,
-	"dot": 250,
-	"pei": 250,
+	"nggar": 610,
+	"logis": 600,
+	"duksi": 900,
+	"gatot": 900,
+	"ahang": 580,
+	"genik": 590,
+	"riksa": 550,
+	"iran": 550,
+	"ngudo": 900,
+	"sosro": 900,
+	"litik": 550,
+	"olang": 900,
+	"amang": 550,
+	"trium": 550,
+	"inkan": 400,
+	"yala": 550,
+	"hohon": 550,
+	"isian": 550,
+	"arkil": 500,
+	"oleac": 500,
+	"ensil": 500,
+	"tanai": 500,
+	"olong": 500,
+	"ratif": 450,
+	"nusuk": 450,
+	"jijik": 450,
+	"manat": 450,
+	"meula": 450,
+	"kolam": 450,
+	"ganas": 450,
+	"garpu": 450,
+	"umang": 450,
+	"abraka": 400,
+	"tikam": 400,
+	"taat": 400,
+	"fault": 400,
+	"burma": 400,
+	"ruang": 400,
+	"iat": 350,
+	"tiol": 350,
+	"ilok": 320,
+	"ngeh": 300,
+	"wati": 300,
+	"riko": 300,
+	"inggu": 300,
+	"alah": 300,
+	"ngoh": 300,
+	"anki": 300,
+	"unc": 300,
+	"stis": 300,
+	"kanya": 300,
+	"angus": 300,
 	"ksa": 290,
-	"bou": 250,
-	"pso": 250,
-
-	"ng": 60,
-	"ml": 260,
+	"nget": 270,
+	"losa": 270,
+	"eusi": 270,
+	"ngih": 270,
+	"awak": 270,
+	"atat": 270,
+	"arian": 270,
+	"inggi": 460,
 	"sih": 260,
 	"hih": 260,
 	"meh": 260,
 	"owa": 260,
 	"esi": 260,
-	"iat": 350,
+	"huh": 250,
+	"dot": 250,
+	"pei": 250,
+	"bou": 250,
+	"pso": 250,
 	"anah": 250,
-	"ngeh": 300,
-	"nget": 270,
-	"losa": 270,
-	"iran": 550,
-	"ngih": 270,
-	"awak": 270,
-	"atat": 270,
-	"nggar": 610,
-	"wati": 300,
-	"riko": 300,
-	"inggu": 300,
-	"logis": 600,
-	"genik": 590,
-	"alah": 300,
-	"ngoh": 300,
-	"anki": 300,
-	"unc": 300,
-	"tiol": 350,
-	"taat": 400,
-	"stis": 300,
-	"kanya": 300,
-	"angus": 300,
-	"riksa": 400,
-	"fault": 400,
-	"burma": 400,
-	"ruang": 400,
-	"ahang": 400,
-	"arian": 270,
-	"inggi": 460,
-	"duksi": 600,
-	"ratif": 450,
-	"ilok": 320,
-	"arkil": 500,
-	"oleac": 500,
-
-	"nusuk": 450,
-	"jijik": 450,
-	"manat": 450,
-	"ensil": 500,
-	"meula": 450,
-	"tanai": 500,
-	"kolam": 450,
-	"ganas": 450,
-	"olong": 500,
-	"garpu": 450,
-	"umang": 450,
-	"ngudo": 550,
-	"sosro": 550,
-	"litik": 550,
-	"olang": 550,
-	"amang": 550,
-	"trium": 550,
-	"inkan": 550,
-	"yala": 550,
-	"hohon": 550,
-
-
-
-	// "uo": 200,
-
-	// "ica": 140,
+	"iya": 220,
+	"yab": 200,
+	"iki": 200,
+	"ipe": 200,
+	"voi": 200,
+	"coe": 200,
+	"ml": 260,
+	"sm": 210,
+	"iu": 200,
+	"ez": 200,
+	"ou": 200,
+	"tl": 200,
+	"moi": 200,
+	"ks": 180,
+	"gy": 170,
+	"ox": 150,
+	"oo": 140,
+	"cy": 130,
+	"ex": 120,
+	"eo": 120,
+	"eq": 120,
+	"oi": 120,
+	"pp": 100,
+	"eh": 100,
+	"x": 60,
+	"z": 60,
+	"q": 60,
+	"w": 60,
+	"c": 60,
+	"F": 60,
+	"V": 60,
+	"ia": 60,
+	"ng": 60,
 }
 
 var killerOpener = map[string]int{
@@ -144,6 +141,8 @@ var killerOpener = map[string]int{
 	"olanggara": 0,
 	"ahangkara": 0,
 	"umangkapala": 0,
+	"gatotkaca": 0,
+	"tikaman": 0,
 }
 
 var warningWords = map[string]int{
@@ -153,6 +152,7 @@ var warningWords = map[string]int{
 	"iran": 0,
 	"iat": 0,
 	"nggil": 0,
+	"riksaan": 0,
 }
 
 func loadKamus() {
@@ -178,153 +178,95 @@ func buildIndex() {
 }
 
 func searchHandler(w http.ResponseWriter, r *http.Request) {
-    query := strings.ToLower(r.URL.Query().Get("q"))
-    mode := r.URL.Query().Get("mode")
-    searchMode := r.URL.Query().Get("searchMode")
+	query      := strings.ToLower(r.URL.Query().Get("q"))
+	mode       := r.URL.Query().Get("mode")
+	searchMode := r.URL.Query().Get("searchMode")
 
-	isWarningWord := r.URL.Query().Get("isWarningWord") == "1"
+	type WordScore struct {
+		Word  string
+		Score int
+	}
 
-    // Ganti type result
-    type WordResult struct {
-        Word    string `json:"word"`
-        Warning bool   `json:"warning"`
-    }
+	var candidates []string
+	if len(query) >= 2 {
+		if mode == "prefix" {
+			candidates = prefixIndex[query[:2]]
+		} else if mode == "suffix" {
+			candidates = suffixIndex[query[len(query)-2:]]
+		}
+	} else {
+		candidates = words
+	}
 
-    type WordScore struct {
-        Word  string
-        Score int
-    }
+	var scored []WordScore
+	for _, word := range candidates {
+		if mode == "prefix" && !strings.HasPrefix(word, query) {
+			continue
+		}
+		if mode == "suffix" && !strings.HasSuffix(word, query) {
+			continue
+		}
+		if len(word) < 2 {
+			continue
+		}
 
-    var candidates []string
+		score := 1000
 
-    if len(query) >= 2 {
-        if mode == "prefix" {
-            candidates = prefixIndex[query[:2]]
-        } else if mode == "suffix" {
-            candidates = suffixIndex[query[len(query)-2:]]
-        }
-    } else {
-        candidates = words
-    }
-
-    var scored []WordScore
-
-    for _, word := range candidates {
-
-        if mode == "prefix" && !strings.HasPrefix(word, query) {
-            continue
-        }
-        if mode == "suffix" && !strings.HasSuffix(word, query) {
-            continue
-        }
-
-        if len(word) < 2 {
-            continue
-        }
-
-        score := 1000
-
-        // ✅ KILLER OPENER — muncul paling atas
-        if mode == "prefix" {
-            if _, isOpener := killerOpener[word]; isOpener {
-                score = -9999 // paksa paling atas
-            }
-        }
-
-        // penalti panjang kata
-        lengthDiff := len(word) - len(query)
-        if lengthDiff > 0 {
-            score += lengthDiff * 5
-        }
-
-        if searchMode == "brutal" {
-            if len(word) >= 5 {
-                end5 := word[len(word)-5:]
-                if bonus, ok := killerSuffix[end5]; ok {
-                    score -= bonus
-                }
-            }
-            if len(word) >= 4 {
-                end4 := word[len(word)-4:]
-                if bonus, ok := killerSuffix[end4]; ok {
-                    score -= bonus
-                }
-            }
-        }
-
-        if len(word) >= 3 {
-            end3 := word[len(word)-3:]
-            if bonus, ok := killerSuffix[end3]; ok {
-                score -= bonus
-            }
-        }
-
-        if len(word) >= 2 {
-            end2 := word[len(word)-2:]
-            if bonus, ok := killerSuffix[end2]; ok {
-                score -= bonus
-            }
-        }
-
-        if len(word) >= 1 {
-            end1 := word[len(word)-1:]
-            if bonus, ok := killerSuffix[end1]; ok {
-                score -= bonus
-            }
-        }
-
-        scored = append(scored, WordScore{
-            Word:  word,
-            Score: score,
-        })
-    }
-
-    sort.Slice(scored, func(i, j int) bool {
-        return scored[i].Score < scored[j].Score
-    })
-
-    limit := 50
-    var result []WordResult
-    for i := 0; i < len(scored) && i < limit; i++ {
-        word := scored[i].Word
-        warn := false
-
-		//jika ingin 2 huruf terakhir
-        // if isWarningWord {
-        //     // Cek apakah ada suffix kata yang cocok dengan warningWords
-        //     for suffix := range warningWords {
-        //         if strings.HasSuffix(word, suffix) {
-        //             warn = true
-        //             break
-        //         }
-        //     }
-        // }
-
-		// jika ingin cek semua sub-suffix dari warningWords
-		if isWarningWord {
-			wordLower := strings.ToLower(word)
-			for suffix := range warningWords {
-				// Cek semua sub-suffix dari suffix key tersebut
-				// misal key "nggar" → cek: "r", "ar", "gar", "ngar", "nggar"  ← SALAH
-				// yang benar: cek apakah word berakhiran "n", "ng", "ngg", "ngga", "nggar"
-				for l := 1; l <= len(suffix); l++ {
-					sub := suffix[:l]  // ambil dari DEPAN: "n", "ng", "ngg", "ngga", "nggar"
-					if strings.HasSuffix(wordLower, sub) {
-						warn = true
-						break
-					}
-				}
-				if warn {
-					break
-				}
+		if mode == "prefix" {
+			if _, isOpener := killerOpener[word]; isOpener {
+				score = -9999
 			}
 		}
 
-        result = append(result, WordResult{Word: word, Warning: warn})
-    }
+		lengthDiff := len(word) - len(query)
+		if lengthDiff > 0 {
+			score += lengthDiff * 5
+		}
 
-    w.Header().Set("Content-Type", "application/json")
-    json.NewEncoder(w).Encode(result)
+		if searchMode == "brutal" {
+			if len(word) >= 5 {
+				if bonus, ok := killerSuffix[word[len(word)-5:]]; ok {
+					score -= bonus
+				}
+			}
+			if len(word) >= 4 {
+				if bonus, ok := killerSuffix[word[len(word)-4:]]; ok {
+					score -= bonus
+				}
+			}
+		}
+		if len(word) >= 3 {
+			if bonus, ok := killerSuffix[word[len(word)-3:]]; ok {
+				score -= bonus
+			}
+		}
+		if len(word) >= 2 {
+			if bonus, ok := killerSuffix[word[len(word)-2:]]; ok {
+				score -= bonus
+			}
+		}
+		if len(word) >= 1 {
+			if bonus, ok := killerSuffix[word[len(word)-1:]]; ok {
+				score -= bonus
+			}
+		}
+
+		scored = append(scored, WordScore{Word: word, Score: score})
+	}
+
+	sort.Slice(scored, func(i, j int) bool {
+		return scored[i].Score < scored[j].Score
+	})
+
+	// Return []string biasa — warning logic ada di FE
+	limit  := 50
+	result := make([]string, 0, limit)
+	for i := 0; i < len(scored) && i < limit; i++ {
+		result = append(result, scored[i].Word)
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(result)
 }
 
 // =============================================

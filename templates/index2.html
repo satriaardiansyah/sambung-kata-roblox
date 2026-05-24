@@ -7,7 +7,6 @@
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-
     <style>
       *,
       *::before,
@@ -39,13 +38,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
         padding: 16px 20px 40px;
         overflow-x: hidden;
         position: relative;
       }
-
-      /* ── Ambient background blobs ── */
       body::before,
       body::after {
         content: "";
@@ -78,7 +74,6 @@
         left: -80px;
       }
 
-      /* ── Card ── */
       .card {
         position: relative;
         z-index: 1;
@@ -87,13 +82,12 @@
         background: var(--surface);
         border: 1px solid var(--border);
         border-radius: 24px;
-        padding: 20px 24px 20px;
+        padding: 20px 24px;
         box-shadow:
           0 8px 60px rgba(0, 0, 0, 0.5),
           var(--glow);
         animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
       }
-
       @keyframes slideUp {
         from {
           opacity: 0;
@@ -105,7 +99,7 @@
         }
       }
 
-      /* ── Header ── */
+      /* Header */
       .header {
         display: flex;
         align-items: center;
@@ -117,7 +111,6 @@
         font-size: clamp(1.1rem, 3vw, 1.35rem);
         color: var(--accent);
         letter-spacing: -0.5px;
-        line-height: 1.1;
       }
       .header-left p {
         font-size: 0.78rem;
@@ -137,7 +130,7 @@
         border-radius: 20px;
       }
 
-      /* ── Input wrapper ── */
+      /* Input */
       .input-wrap {
         position: relative;
         margin-bottom: 8px;
@@ -177,7 +170,7 @@
         box-shadow: 0 0 0 3px rgba(247, 201, 72, 0.08);
       }
 
-      /* ── Controls row ── */
+      /* Controls */
       .controls {
         display: flex;
         gap: 10px;
@@ -208,7 +201,6 @@
         border-color: rgba(247, 201, 72, 0.4);
       }
 
-      /* ── Buttons ── */
       .btn {
         display: inline-flex;
         align-items: center;
@@ -230,23 +222,10 @@
         transform: scale(0.96);
       }
 
-      .btn-ai {
-        background: linear-gradient(135deg, #f7c948 0%, #ff9d3d 100%);
-        color: #0d0d14;
-        box-shadow: 0 4px 20px rgba(247, 201, 72, 0.3);
-      }
-      .btn-ai:hover {
-        filter: brightness(1.1);
-        box-shadow: 0 6px 28px rgba(247, 201, 72, 0.45);
-      }
-
       .btn-love {
         background: linear-gradient(135deg, #ff6b9d 0%, #ff4f7b 100%);
         color: white;
         box-shadow: 0 4px 20px rgba(255, 107, 157, 0.3);
-        font-size: 0.9rem;
-        position: relative;
-        overflow: hidden;
       }
       .btn-love:hover {
         filter: brightness(1.1);
@@ -255,7 +234,6 @@
       .btn-love.beating .heart-icon {
         animation: heartbeat 0.6s ease-in-out 3;
       }
-
       @keyframes heartbeat {
         0%,
         100% {
@@ -270,19 +248,64 @@
         60% {
           transform: scale(1.25);
         }
-        80% {
-          transform: scale(1);
-        }
       }
 
-      /* ── Divider ── */
+      /* Tombol Bahaya */
+      .btn-danger {
+        background: rgba(255, 80, 80, 0.1);
+        border: 1.5px solid rgba(255, 80, 80, 0.25);
+        color: #ff6b6b;
+        position: relative;
+      }
+      .btn-danger:hover {
+        background: rgba(255, 80, 80, 0.18);
+        border-color: rgba(255, 80, 80, 0.45);
+      }
+      .btn-danger.has-active {
+        background: rgba(255, 80, 80, 0.2);
+        border-color: rgba(255, 80, 80, 0.55);
+        box-shadow: 0 0 12px rgba(255, 80, 80, 0.2);
+      }
+      .badge-count {
+        display: none;
+        background: #ff5050;
+        color: white;
+        border-radius: 10px;
+        padding: 1px 6px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        line-height: 1.4;
+      }
+      .badge-count.show {
+        display: inline;
+      }
+
+      /* Mode indicator */
+      #mode-indicator {
+        font-size: 0.72rem;
+        color: var(--muted);
+        margin-bottom: 8px;
+        margin-top: -4px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      #mode-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #6ee7b7;
+        display: inline-block;
+      }
+
+      /* Divider */
       .divider {
         height: 1px;
         background: var(--border);
         margin: 12px 0 10px;
       }
 
-      /* ── Result list ── */
+      /* Result */
       #result {
         list-style: none;
         display: flex;
@@ -301,219 +324,6 @@
         border-radius: 10px;
       }
 
-      /* #result li {
-        padding: 7px 12px;
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        font-size: 0.85rem;
-        color: var(--text);
-        cursor: pointer;
-        transition:
-          background 0.2s,
-          border-color 0.2s,
-          transform 0.15s;
-      } */
-      #result li:hover {
-        background: rgba(255, 255, 255, 0.05);
-        border-color: rgba(247, 201, 72, 0.25);
-        transform: translateX(3px);
-      }
-      #result li.best {
-        background: linear-gradient(
-          135deg,
-          rgba(247, 201, 72, 0.12),
-          rgba(255, 157, 61, 0.08)
-        );
-        border-color: rgba(247, 201, 72, 0.35);
-        color: var(--accent);
-        font-weight: 600;
-        font-size: 0.95rem;
-      }
-
-      #result.refreshed {
-        animation: fadeIn 0.2s ease both;
-      }
-
-      #result li.empty-state-li {
-        display: block !important;
-        text-align: center;
-        border: none !important;
-        background: none !important;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(6px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      #result li .match {
-        color: var(--accent);
-        font-weight: 600;
-        background: rgba(247, 201, 72, 0.12);
-        border-radius: 3px;
-        padding: 0 2px;
-      }
-
-      .empty-state {
-        text-align: center;
-        color: var(--muted);
-        font-size: 0.85rem;
-        padding: 12px 0; /* dari 24px */
-      }
-      .empty-state span {
-        display: block;
-        font-size: 1.3rem; /* dari 2rem */
-        margin-bottom: 4px; /* dari 8px */
-      }
-
-      /* ── Love overlay ── */
-      #love-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        background: rgba(10, 10, 18, 0.85);
-        backdrop-filter: blur(6px);
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        cursor: pointer;
-      }
-      #love-overlay.active {
-        display: flex;
-        animation: fadeInOverlay 0.4s ease both;
-      }
-
-      @keyframes fadeInOverlay {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      .love-card {
-        text-align: center;
-        padding: 40px 48px;
-        background: linear-gradient(135deg, #1c0a14 0%, #160a1c 100%);
-        border: 1px solid rgba(255, 107, 157, 0.25);
-        border-radius: 28px;
-        box-shadow:
-          0 0 80px rgba(255, 107, 157, 0.2),
-          inset 0 0 40px rgba(255, 107, 157, 0.05);
-        max-width: 360px;
-        animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-        position: relative;
-        overflow: hidden;
-      }
-      @keyframes popIn {
-        from {
-          transform: scale(0.7) translateY(20px);
-          opacity: 0;
-        }
-        to {
-          transform: scale(1) translateY(0);
-          opacity: 1;
-        }
-      }
-
-      .love-card .big-heart {
-        font-size: 5rem;
-        line-height: 1;
-        animation: bigHeartbeat 1.2s ease-in-out infinite;
-        display: block;
-        margin-bottom: 16px;
-        filter: drop-shadow(0 0 20px rgba(255, 107, 157, 0.7));
-      }
-      @keyframes bigHeartbeat {
-        0%,
-        100% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.12);
-        }
-      }
-
-      .love-card h2 {
-        font-family: "Playfair Display", serif;
-        font-size: 1.6rem;
-        color: #ff6b9d;
-        margin-bottom: 10px;
-      }
-      .love-card p {
-        font-size: 0.88rem;
-        color: rgba(255, 255, 255, 0.5);
-        font-weight: 300;
-        line-height: 1.6;
-      }
-      .love-close {
-        margin-top: 24px;
-        padding: 10px 28px;
-        background: rgba(255, 107, 157, 0.15);
-        border: 1px solid rgba(255, 107, 157, 0.3);
-        border-radius: 20px;
-        color: #ff6b9d;
-        font-family: "DM Sans", sans-serif;
-        font-size: 0.85rem;
-        cursor: pointer;
-        transition: background 0.2s;
-      }
-      .love-close:hover {
-        background: rgba(255, 107, 157, 0.25);
-      }
-
-      /* Floating hearts */
-      .heart-particle {
-        position: fixed;
-        font-size: 1.5rem;
-        pointer-events: none;
-        z-index: 10000;
-        animation: floatHeart 2s ease-out forwards;
-      }
-      @keyframes floatHeart {
-        0% {
-          opacity: 1;
-          transform: translateY(0) scale(1) rotate(0deg);
-        }
-        100% {
-          opacity: 0;
-          transform: translateY(-200px) scale(1.6) rotate(20deg);
-        }
-      }
-
-      /* ── Responsive ── */
-      @media (max-width: 480px) {
-        .card {
-          padding: 28px 20px 24px;
-        }
-        .controls {
-          gap: 8px;
-        }
-        .btn {
-          padding: 11px 14px;
-          font-size: 0.83rem;
-        }
-        select {
-          font-size: 0.83rem;
-        }
-        .love-card {
-          padding: 32px 28px;
-          margin: 0 20px;
-        }
-      }
-
-      /* deleted handler */
-      /* ── Delete button di tiap hasil ── */
-      /* Hanya li biasa yang pakai flex, bukan empty state */
       #result li:not(.empty-state-li) {
         display: flex;
         align-items: center;
@@ -531,10 +341,68 @@
           border-color 0.2s,
           transform 0.15s;
       }
+      #result li:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(247, 201, 72, 0.25);
+        transform: translateX(3px);
+      }
+      #result li.best {
+        background: linear-gradient(
+          135deg,
+          rgba(247, 201, 72, 0.12),
+          rgba(255, 157, 61, 0.08)
+        );
+        border-color: rgba(247, 201, 72, 0.35);
+        color: var(--accent);
+        font-weight: 600;
+      }
+      /* Warning style */
+      #result li.is-warning {
+        background: rgba(255, 80, 80, 0.07);
+        border-color: rgba(255, 80, 80, 0.3);
+      }
+      #result li.is-warning:hover {
+        background: rgba(255, 80, 80, 0.12);
+        border-color: rgba(255, 80, 80, 0.45);
+      }
+      #result li.is-warning .word-label {
+        color: #ff6b6b;
+      }
+      #result li.is-warning .match {
+        color: #ff9090;
+        background: rgba(255, 80, 80, 0.15);
+      }
+
+      #result li.empty-state-li {
+        display: block !important;
+        text-align: center;
+        border: none !important;
+        background: none !important;
+      }
+      .empty-state {
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+        padding: 12px 0;
+      }
+      .empty-state span {
+        display: block;
+        font-size: 1.3rem;
+        margin-bottom: 4px;
+      }
+
       .word-label {
         flex: 1;
         cursor: pointer;
       }
+      .match {
+        color: var(--accent);
+        font-weight: 600;
+        background: rgba(247, 201, 72, 0.12);
+        border-radius: 3px;
+        padding: 0 2px;
+      }
+
       .btn-del {
         flex-shrink: 0;
         background: transparent;
@@ -564,7 +432,7 @@
         transform: scale(0.93);
       }
 
-      /* ── Toast notifikasi ── */
+      /* Toast */
       #toast {
         position: fixed;
         bottom: 28px;
@@ -577,7 +445,6 @@
         font-size: 0.83rem;
         color: var(--text);
         opacity: 0;
-        pointer-events: auto;
         transition:
           opacity 0.25s,
           transform 0.25s;
@@ -588,11 +455,277 @@
         opacity: 1;
         transform: translateX(-50%) translateY(0);
       }
+
+      /* ── WARNING MODAL ── */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(10, 10, 18, 0.85);
+        backdrop-filter: blur(6px);
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-overlay.active {
+        display: flex;
+        animation: fadeInOverlay 0.3s ease both;
+      }
+      @keyframes fadeInOverlay {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .modal-box {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 26px 28px 24px;
+        width: 90%;
+        max-width: 380px;
+        box-shadow: 0 8px 60px rgba(0, 0, 0, 0.6);
+        animation: popIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+      @keyframes popIn {
+        from {
+          transform: scale(0.85) translateY(16px);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1) translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 6px;
+      }
+      .modal-header h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.05rem;
+        color: #ff6b6b;
+      }
+      .modal-close {
+        background: none;
+        border: none;
+        color: var(--muted);
+        font-size: 1.1rem;
+        cursor: pointer;
+        padding: 2px 6px;
+        border-radius: 6px;
+        transition:
+          color 0.2s,
+          background 0.2s;
+      }
+      .modal-close:hover {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .modal-desc {
+        font-size: 0.76rem;
+        color: var(--muted);
+        margin-bottom: 16px;
+        line-height: 1.5;
+      }
+
+      .warning-list {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        max-height: 300px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: var(--surface2) transparent;
+        margin-bottom: 16px;
+      }
+
+      .warning-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 13px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        cursor: pointer;
+        transition:
+          border-color 0.18s,
+          background 0.18s;
+        user-select: none;
+      }
+      .warning-item:hover {
+        border-color: rgba(255, 80, 80, 0.3);
+        background: rgba(255, 80, 80, 0.05);
+      }
+      .warning-item.checked {
+        border-color: rgba(255, 80, 80, 0.45);
+        background: rgba(255, 80, 80, 0.09);
+      }
+      .warning-item input[type="checkbox"] {
+        width: 15px;
+        height: 15px;
+        accent-color: #ff6b6b;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      .warning-suffix {
+        font-family: monospace;
+        font-size: 0.92rem;
+        color: var(--text);
+        letter-spacing: 0.3px;
+      }
+      .warning-item.checked .warning-suffix {
+        color: #ff6b6b;
+        font-weight: 600;
+      }
+      .warning-suffix-hint {
+        font-size: 0.72rem;
+        color: var(--muted);
+        margin-left: auto;
+      }
+
+      .modal-actions {
+        display: flex;
+        gap: 8px;
+      }
+      .btn-modal {
+        flex: 1;
+        padding: 8px 12px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.82rem;
+        cursor: pointer;
+        transition:
+          background 0.18s,
+          border-color 0.18s;
+      }
+      .btn-modal:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.15);
+      }
+
+      /* Love overlay */
+      #love-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        background: rgba(10, 10, 18, 0.85);
+        backdrop-filter: blur(6px);
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        cursor: pointer;
+      }
+      #love-overlay.active {
+        display: flex;
+        animation: fadeInOverlay 0.4s ease both;
+      }
+      .love-card {
+        text-align: center;
+        padding: 40px 48px;
+        background: linear-gradient(135deg, #1c0a14 0%, #160a1c 100%);
+        border: 1px solid rgba(255, 107, 157, 0.25);
+        border-radius: 28px;
+        box-shadow:
+          0 0 80px rgba(255, 107, 157, 0.2),
+          inset 0 0 40px rgba(255, 107, 157, 0.05);
+        max-width: 360px;
+        animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+      .love-card .big-heart {
+        font-size: 5rem;
+        line-height: 1;
+        animation: bigHeartbeat 1.2s ease-in-out infinite;
+        display: block;
+        margin-bottom: 16px;
+        filter: drop-shadow(0 0 20px rgba(255, 107, 157, 0.7));
+      }
+      @keyframes bigHeartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.12);
+        }
+      }
+      .love-card h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.6rem;
+        color: #ff6b9d;
+        margin-bottom: 10px;
+      }
+      .love-card p {
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 300;
+        line-height: 1.6;
+      }
+      .love-close {
+        margin-top: 24px;
+        padding: 10px 28px;
+        background: rgba(255, 107, 157, 0.15);
+        border: 1px solid rgba(255, 107, 157, 0.3);
+        border-radius: 20px;
+        color: #ff6b9d;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .love-close:hover {
+        background: rgba(255, 107, 157, 0.25);
+      }
+      .heart-particle {
+        position: fixed;
+        font-size: 1.5rem;
+        pointer-events: none;
+        z-index: 10001;
+        animation: floatHeart 2s ease-out forwards;
+      }
+      @keyframes floatHeart {
+        0% {
+          opacity: 1;
+          transform: translateY(0) scale(1) rotate(0deg);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-200px) scale(1.6) rotate(20deg);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .card {
+          padding: 20px 16px;
+        }
+        .controls {
+          gap: 8px;
+        }
+        .btn {
+          padding: 9px 12px;
+          font-size: 0.83rem;
+        }
+        .love-card {
+          padding: 32px 28px;
+          margin: 0 20px;
+        }
+      }
     </style>
   </head>
 
   <body>
-    <!-- ═══════════════ CARD ═══════════════ -->
     <div class="card">
       <!-- Header -->
       <div class="header">
@@ -628,28 +761,9 @@
         />
       </div>
 
-      <div
-        id="mode-indicator"
-        style="
-          font-size: 0.72rem;
-          color: var(--muted);
-          margin-bottom: 8px !important; /* override inline style */
-          margin-top: -4px !important;
-          display: flex;
-          align-items: center;
-          gap: 6px;
-        "
-      >
-        <span
-          id="mode-dot"
-          style="
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #6ee7b7;
-            display: inline-block;
-          "
-        ></span>
+      <!-- Mode indicator -->
+      <div id="mode-indicator">
+        <span id="mode-dot"></span>
         <span id="mode-label">Auto OCR aktif</span>
       </div>
 
@@ -672,18 +786,15 @@
         />
         <label for="brutal">Brutal</label>
 
-        <input
-          type="checkbox"
-          id="is_warningword"
-          name="warningWords"
-          value="1"
-        />
-        <label for="is_warningword">Bahaya</label>
-
-        <!-- <button class="btn btn-ai" onclick="aiSearch()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          AI Jawaban
-        </button> -->
+        <!-- Tombol Bahaya → buka modal -->
+        <button
+          class="btn btn-danger"
+          id="btnBahaya"
+          onclick="openWarningModal()"
+        >
+          ⚠️ Bahaya
+          <span class="badge-count" id="badgeCount">0</span>
+        </button>
 
         <button class="btn btn-love" id="loveBtn" onclick="showLove()">
           <span class="heart-icon">💖</span> Spesial
@@ -703,7 +814,34 @@
       </ul>
     </div>
 
-    <!-- ═══════════════ LOVE OVERLAY ═══════════════ -->
+    <!-- ═══ WARNING MODAL ═══ -->
+    <div
+      class="modal-overlay"
+      id="warningModal"
+      onclick="closeWarningModal(event)"
+    >
+      <div class="modal-box" onclick="event.stopPropagation()">
+        <div class="modal-header">
+          <h2>⚠️ Warning Words</h2>
+          <button class="modal-close" onclick="closeWarningModal()">✕</button>
+        </div>
+        <p class="modal-desc">
+          Centang akhiran yang ingin ditandai merah pada hasil pencarian. Kata
+          yang berakhiran huruf-huruf tersebut akan diwarnai.
+        </p>
+        <div class="warning-list" id="warningList"></div>
+        <div class="modal-actions">
+          <button class="btn-modal" onclick="selectAllWarnings(true)">
+            ✓ Pilih Semua
+          </button>
+          <button class="btn-modal" onclick="selectAllWarnings(false)">
+            ✕ Hapus Semua
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ LOVE OVERLAY ═══ -->
     <div id="love-overlay" onclick="closeLove(event)">
       <div class="love-card" onclick="event.stopPropagation()">
         <span class="big-heart">💗</span>
@@ -716,65 +854,180 @@
       </div>
     </div>
 
-    <!-- ═══════════════ SCRIPT ═══════════════ -->
+    <!-- Toast -->
+    <div id="toast"></div>
+
     <script>
+      // ═══════════════════════════════════════════
+      // WARNING WORDS — config sepenuhnya di FE
+      // tambah / hapus key di sini sesuai kebutuhan
+      // ═══════════════════════════════════════════
+      const WARNING_WORDS = ["nggar", "genik", "logis", "iran", "iat", "nggil", "ahang", "alah", "riksa"];
+
+      const activeWarnings = new Set();
+      let lastResults = [];
+
+      function isWarning(word) {
+        if (activeWarnings.size === 0) return false;
+        const w = word.toLowerCase();
+        for (const suffix of activeWarnings) {
+          for (let l = 1; l <= suffix.length; l++) {
+            const sub = suffix.slice(0, l); // dari DEPAN: n, ng, ngg, ngga, nggar
+            if (w.endsWith(sub)) return true;
+          }
+        }
+        return false;
+      }
+
+      // ── Mode 1: sub-suffix dari BELAKANG key (saat ini aktif)
+      // key "nggar" → cek "r","ar","gar","ggar","nggar"
+      // kata "cenggар" → ✅, kata "makan" → ❌
+      // function isWarning(word) {
+      //   if (activeWarnings.size === 0) return false;
+      //   const w = word.toLowerCase();
+      //   for (const suffix of activeWarnings) {
+      //     for (let l = 1; l <= suffix.length; l++) {
+      //       const sub = suffix.slice(suffix.length - l); // dari BELAKANG
+      //       if (w.endsWith(sub)) return true;
+      //     }
+      //   }
+      //   return false;
+      // }
+
+      // ── Mode 2: sub-suffix dari DEPAN key (sama persis logika BE lama)
+      // key "nggar" → cek "n","ng","ngg","ngga","nggar"
+      // kata "makan" → ✅ (berakhiran "n"), kata "datang" → ✅ (berakhiran "ng")
+      // function isWarning(word) {
+      //   if (activeWarnings.size === 0) return false;
+      //   const w = word.toLowerCase();
+      //   for (const suffix of activeWarnings) {
+      //     for (let l = 1; l <= suffix.length; l++) {
+      //       const sub = suffix.slice(0, l); // dari DEPAN: suffix[:l]
+      //       if (w.endsWith(sub)) return true;
+      //     }
+      //   }
+      //   return false;
+      // }
+
+      // ═══════════════════════════════════════════
+      // MODAL
+      // ═══════════════════════════════════════════
+      function renderWarningList() {
+        const container = document.getElementById("warningList");
+        container.innerHTML = "";
+
+        WARNING_WORDS.forEach((suffix) => {
+          const checked = activeWarnings.has(suffix);
+
+          const label = document.createElement("label");
+          label.className = "warning-item" + (checked ? " checked" : "");
+
+          // Hitung contoh: 1-2 huruf akhir
+          const hint = "…" + suffix;
+
+          label.innerHTML = `
+            <input type="checkbox" ${checked ? "checked" : ""}>
+            <span class="warning-suffix">${hint}</span>
+            <span class="warning-suffix-hint">akhiran kata</span>
+          `;
+
+          const cb = label.querySelector("input");
+          cb.addEventListener("change", () => {
+            if (cb.checked) {
+              activeWarnings.add(suffix);
+              label.classList.add("checked");
+            } else {
+              activeWarnings.delete(suffix);
+              label.classList.remove("checked");
+            }
+            updateBadge();
+            // Re-render hasil yang sudah ada — tanpa fetch ulang
+            if (lastResults.length) renderResult(lastResults);
+          });
+
+          container.appendChild(label);
+        });
+      }
+
+      function updateBadge() {
+        const badge = document.getElementById("badgeCount");
+        const btn = document.getElementById("btnBahaya");
+        const n = activeWarnings.size;
+        badge.textContent = n;
+        badge.classList.toggle("show", n > 0);
+        btn.classList.toggle("has-active", n > 0);
+      }
+
+      function openWarningModal() {
+        renderWarningList();
+        document.getElementById("warningModal").classList.add("active");
+      }
+
+      function closeWarningModal(e) {
+        if (!e || e.target === document.getElementById("warningModal")) {
+          document.getElementById("warningModal").classList.remove("active");
+        }
+      }
+
+      function selectAllWarnings(val) {
+        WARNING_WORDS.forEach((s) =>
+          val ? activeWarnings.add(s) : activeWarnings.delete(s),
+        );
+        renderWarningList();
+        updateBadge();
+        if (lastResults.length) renderResult(lastResults);
+      }
+
+      // ═══════════════════════════════════════════
+      // SEARCH
+      // ═══════════════════════════════════════════
       const input = document.getElementById("search");
-      const mode = document.getElementById("mode");
+      const modeEl = document.getElementById("mode");
       const result = document.getElementById("result");
-      const searchMode = document.getElementsByName("searchMode");
+      const modeDot = document.getElementById("mode-dot");
+      const modeLabel = document.getElementById("mode-label");
 
       let timeout;
 
-      /* ── AUTO SEARCH (debounce) ── */
-      input.addEventListener("keyup", () => {
+      function triggerSearch() {
         clearTimeout(timeout);
         timeout = setTimeout(async () => {
           const q = input.value.trim();
-          const m = mode.value;
-          const selectedSearchMode = document.querySelector(
+          const m = modeEl.value;
+          const sm = document.querySelector(
             'input[name="searchMode"]:checked',
           ).value;
-          const isWarningWord =
-            document.getElementById("is_warningword").checked;
+
           if (!q) {
             showEmpty();
+            lastResults = [];
             return;
           }
 
           try {
             const res = await fetch(
-              `/search?q=${q}&mode=${m}&searchMode=${selectedSearchMode}&isWarningWord=${isWarningWord ? 1 : 0}`,
+              `/search?q=${encodeURIComponent(q)}&mode=${m}&searchMode=${sm}`,
             );
             const data = await res.json();
-            renderResult(data);
+            lastResults = data || [];
+            renderResult(lastResults);
           } catch {
             showEmpty("⚠️ Gagal memuat hasil.");
           }
         }, 300);
-      });
-
-      /* ── ENTER → AI MODE ── */
-      input.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") aiSearch();
-      });
-
-      /* ── AI SEARCH ── */
-      async function aiSearch() {
-        const q = input.value.trim();
-        if (!q) return;
-        result.innerHTML = `<li style="border:none;background:none;" class="empty-state"><span>⏳</span>Memuat AI...</li>`;
-        try {
-          const res = await fetch(`/ai?q=${q}`);
-          const data = await res.json();
-          renderResult(data, true);
-        } catch {
-          showEmpty("⚠️ AI tidak tersedia saat ini.");
-        }
       }
 
-      /* ── RENDER ── */
-      function highlightMatch(word, query, mode) {
-        if (mode === "prefix") {
+      input.addEventListener("keyup", triggerSearch);
+      modeEl.addEventListener("change", triggerSearch);
+      document.querySelectorAll('input[name="searchMode"]').forEach((r) => {
+        r.addEventListener("change", triggerSearch);
+      });
+
+      // ═══════════════════════════════════════════
+      // RENDER
+      // ═══════════════════════════════════════════
+      function highlightMatch(word, query, m) {
+        if (m === "prefix") {
           return `<span class="match">${word.slice(0, query.length)}</span>${word.slice(query.length)}`;
         } else {
           const start = word.length - query.length;
@@ -782,39 +1035,26 @@
         }
       }
 
-      function renderResult(data, isAI = false) {
+      function renderResult(data) {
         if (!data || !data.length) {
           showEmpty("😕 Tidak ada hasil.");
           return;
         }
 
         const q = input.value.trim().toLowerCase();
-        const m = mode.value;
-
+        const m = modeEl.value;
         const fragment = document.createDocumentFragment();
-        data.slice(0, 50).forEach((item, i) => {
-          // Support both string (AI mode) and object (normal mode)
-          const word = typeof item === "string" ? item : item.word;
-          const isWarn = typeof item === "object" && item.warning;
+
+        data.slice(0, 50).forEach((word, i) => {
+          const warn = isWarning(word); // ← semua logika warning di FE
 
           const li = document.createElement("li");
-          if (isAI && i === 0) li.classList.add("best");
+          if (warn) li.classList.add("is-warning");
 
-          // Warna merah jika warning
-          if (isWarn) {
-            li.style.borderColor = "rgba(255, 80, 80, 0.35)";
-            li.style.background = "rgba(255, 80, 80, 0.08)";
-          }
-
-          const label = document.createElement("span");
-          label.className = "word-label";
-
-          // Teks merah jika warning
-          if (isWarn) label.style.color = "#ff6b6b";
-
-          label.innerHTML =
-            (isAI && i === 0 ? "🔥 BEST: " : "") + highlightMatch(word, q, m);
-          label.onclick = () => {
+          const lbl = document.createElement("span");
+          lbl.className = "word-label";
+          lbl.innerHTML = highlightMatch(word, q, m);
+          lbl.onclick = () => {
             input.value = word;
             input.focus();
           };
@@ -828,7 +1068,7 @@
             deleteWord(word, li);
           };
 
-          li.appendChild(label);
+          li.appendChild(lbl);
           li.appendChild(del);
           fragment.appendChild(li);
         });
@@ -837,12 +1077,14 @@
         result.appendChild(fragment);
       }
 
+      // ═══════════════════════════════════════════
+      // DELETE WORD
+      // ═══════════════════════════════════════════
       async function deleteWord(word, liEl) {
         try {
           const res = await fetch(`/delete-word?q=${encodeURIComponent(word)}`);
           if (!res.ok) throw new Error();
 
-          // Animasi hilang
           liEl.style.transition =
             "opacity 0.25s, transform 0.25s, max-height 0.3s";
           liEl.style.opacity = "0";
@@ -855,44 +1097,39 @@
           }, 250);
           setTimeout(() => liEl.remove(), 500);
 
+          // Hapus dari lastResults juga
+          lastResults = lastResults.filter((w) => w !== word);
           showToast(`🗑️ "${word}" dihapus dari kamus`);
         } catch {
           showToast("⚠️ Gagal menghapus kata.");
         }
       }
 
+      // ═══════════════════════════════════════════
+      // UTILS
+      // ═══════════════════════════════════════════
+      function showEmpty(msg) {
+        const icon = msg ? "⚠️" : "🔍";
+        const text = msg || "Mulai ketik untuk mencari kata...";
+        result.innerHTML = `<li class="empty-state empty-state-li" style="border:none;background:none;"><span>${icon}</span>${text}</li>`;
+      }
+
       function showToast(msg) {
-        let toast = document.getElementById("toast");
-        if (!toast) {
-          toast = document.createElement("div");
-          toast.id = "toast";
-          document.body.appendChild(toast);
-        }
+        const toast = document.getElementById("toast");
         toast.textContent = msg;
         toast.classList.add("show");
         clearTimeout(toast._t);
         toast._t = setTimeout(() => toast.classList.remove("show"), 2800);
       }
 
-      function showEmpty(msg) {
-        const icon = msg ? "⚠️" : "🔍";
-        const text = msg || "Mulai ketik untuk mencari kata...";
-        result.innerHTML = `<li class="empty-state empty-state-li" style="border:none;background:none;">
-    <span>${icon}</span>${text}
-  </li>`;
-      }
-
-      /* ── LOVE ── */
+      // ═══════════════════════════════════════════
+      // LOVE
+      // ═══════════════════════════════════════════
       function showLove() {
-        const overlay = document.getElementById("love-overlay");
-        overlay.classList.add("active");
-
-        // heartbeat button
+        document.getElementById("love-overlay").classList.add("active");
         const btn = document.getElementById("loveBtn");
         btn.classList.add("beating");
         setTimeout(() => btn.classList.remove("beating"), 1800);
-
-        // spawn floating hearts
         const hearts = ["💗", "💕", "💓", "🌸", "✨", "💝", "🩷", "💞"];
         for (let i = 0; i < 18; i++) {
           setTimeout(
@@ -901,7 +1138,6 @@
           );
         }
       }
-
       function spawnHeart(emoji) {
         const el = document.createElement("span");
         el.className = "heart-particle";
@@ -913,19 +1149,19 @@
         document.body.appendChild(el);
         el.addEventListener("animationend", () => el.remove());
       }
-
       function closeLove(e) {
         if (!e || e.target === document.getElementById("love-overlay")) {
           document.getElementById("love-overlay").classList.remove("active");
         }
       }
 
-      // SSE - terima kata dari Python
+      // ═══════════════════════════════════════════
+      // SSE — Auto OCR
+      // ═══════════════════════════════════════════
       const evtSource = new EventSource("/sse");
       let manualMode = false;
       let manualTimeout;
 
-      // Deteksi ketika user ketik manual
       input.addEventListener("keydown", (e) => {
         if (e.key === "Tab") {
           e.preventDefault();
@@ -943,32 +1179,16 @@
       });
 
       evtSource.onmessage = (e) => {
-        // Skip kalau sedang manual mode
         if (manualMode) return;
-
         const word = e.data.trim();
         if (word && word !== input.value) {
           input.value = word;
           input.dispatchEvent(new Event("keyup"));
-
-          // Visual feedback hijau = dari OCR
-          input.style.borderColor = "rgba(110, 231, 183, 0.8)";
+          input.style.borderColor = "rgba(110,231,183,0.8)";
           setTimeout(() => (input.style.borderColor = ""), 600);
         }
       };
-
-      evtSource.onerror = () => {
-        console.log("SSE disconnected, retrying...");
-      };
-
-      const modeDot = document.getElementById("mode-dot");
-      const modeLabel = document.getElementById("mode-label");
-
-      input.addEventListener("keydown", (e) => {
-        if (e.key === "Tab") {
-          e.preventDefault(); // Tab tidak kemana-mana, tetap di input
-        }
-      });
+      evtSource.onerror = () => console.log("SSE disconnected, retrying...");
     </script>
   </body>
 </html>
