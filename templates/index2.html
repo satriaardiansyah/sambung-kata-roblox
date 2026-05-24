@@ -862,56 +862,60 @@
       // WARNING WORDS — config sepenuhnya di FE
       // tambah / hapus key di sini sesuai kebutuhan
       // ═══════════════════════════════════════════
-      const WARNING_WORDS = ["nggar", "genik", "logis", "iran", "iat", "nggil", "ahang", "alah", "riksa"];
+      const WARNING_WORDS = [
+        "nggar",
+        "genik",
+        "logis",
+        "iran",
+        "iat",
+        "nggil",
+        "ahang",
+        "alah",
+        "riksa",
+      ];
 
       const activeWarnings = new Set();
       let lastResults = [];
+      let dangerPrefixIndex = new Set();
 
-      function isWarning(word) {
-        if (activeWarnings.size === 0) return false;
-        const w = word.toLowerCase();
-        for (const suffix of activeWarnings) {
-          for (let l = 1; l <= suffix.length; l++) {
-            const sub = suffix.slice(0, l); // dari DEPAN: n, ng, ngg, ngga, nggar
-            if (w.endsWith(sub)) return true;
+      // ── Fetch kata berbahaya dari BE, bangun prefix index ──
+      async function buildDangerIndex() {
+        if (activeWarnings.size === 0) {
+          dangerPrefixIndex = new Set();
+          if (lastResults.length) renderResult(lastResults);
+          return;
+        }
+
+        const suffixes = [...activeWarnings].join(",");
+        const res = await fetch(
+          `/danger-words?suffixes=${encodeURIComponent(suffixes)}`,
+        );
+        const data = await res.json();
+
+        dangerPrefixIndex = new Set();
+        for (const [, katalist] of Object.entries(data)) {
+          for (const kata of katalist) {
+            for (let l = 1; l <= Math.min(5, kata.length); l++) {
+              dangerPrefixIndex.add(kata.slice(0, l).toLowerCase());
+            }
           }
+        }
+
+        if (lastResults.length) renderResult(lastResults);
+      }
+
+      // ── isWarning: cek akhiran kata ada di dangerPrefixIndex ──
+      function isWarning(word) {
+        if (dangerPrefixIndex.size === 0) return false;
+        const w = word.toLowerCase();
+        for (let l = 2; l <= Math.min(5, w.length); l++) {
+          const tail = w.slice(w.length - l);
+          if (dangerPrefixIndex.has(tail)) return true;
         }
         return false;
       }
 
-      // ── Mode 1: sub-suffix dari BELAKANG key (saat ini aktif)
-      // key "nggar" → cek "r","ar","gar","ggar","nggar"
-      // kata "cenggар" → ✅, kata "makan" → ❌
-      // function isWarning(word) {
-      //   if (activeWarnings.size === 0) return false;
-      //   const w = word.toLowerCase();
-      //   for (const suffix of activeWarnings) {
-      //     for (let l = 1; l <= suffix.length; l++) {
-      //       const sub = suffix.slice(suffix.length - l); // dari BELAKANG
-      //       if (w.endsWith(sub)) return true;
-      //     }
-      //   }
-      //   return false;
-      // }
-
-      // ── Mode 2: sub-suffix dari DEPAN key (sama persis logika BE lama)
-      // key "nggar" → cek "n","ng","ngg","ngga","nggar"
-      // kata "makan" → ✅ (berakhiran "n"), kata "datang" → ✅ (berakhiran "ng")
-      // function isWarning(word) {
-      //   if (activeWarnings.size === 0) return false;
-      //   const w = word.toLowerCase();
-      //   for (const suffix of activeWarnings) {
-      //     for (let l = 1; l <= suffix.length; l++) {
-      //       const sub = suffix.slice(0, l); // dari DEPAN: suffix[:l]
-      //       if (w.endsWith(sub)) return true;
-      //     }
-      //   }
-      //   return false;
-      // }
-
-      // ═══════════════════════════════════════════
-      // MODAL
-      // ═══════════════════════════════════════════
+      // ── MODAL ──
       function renderWarningList() {
         const container = document.getElementById("warningList");
         container.innerHTML = "";
@@ -921,15 +925,11 @@
 
           const label = document.createElement("label");
           label.className = "warning-item" + (checked ? " checked" : "");
-
-          // Hitung contoh: 1-2 huruf akhir
-          const hint = "…" + suffix;
-
           label.innerHTML = `
-            <input type="checkbox" ${checked ? "checked" : ""}>
-            <span class="warning-suffix">${hint}</span>
-            <span class="warning-suffix-hint">akhiran kata</span>
-          `;
+      <input type="checkbox" ${checked ? "checked" : ""}>
+      <span class="warning-suffix">…${suffix}</span>
+      <span class="warning-suffix-hint">akhiran kata</span>
+    `;
 
           const cb = label.querySelector("input");
           cb.addEventListener("change", () => {
@@ -941,8 +941,7 @@
               label.classList.remove("checked");
             }
             updateBadge();
-            // Re-render hasil yang sudah ada — tanpa fetch ulang
-            if (lastResults.length) renderResult(lastResults);
+            buildDangerIndex(); // ← fetch ulang + rebuild index + re-render
           });
 
           container.appendChild(label);
@@ -975,7 +974,7 @@
         );
         renderWarningList();
         updateBadge();
-        if (lastResults.length) renderResult(lastResults);
+        buildDangerIndex(); // ← fetch ulang juga saat pilih/hapus semua
       }
 
       // ═══════════════════════════════════════════

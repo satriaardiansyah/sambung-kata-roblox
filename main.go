@@ -269,6 +269,27 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(result)
 }
 
+func dangerWordsHandler(w http.ResponseWriter, r *http.Request) {
+    // Terima suffixes dari FE
+    suffixes := strings.Split(r.URL.Query().Get("suffixes"), ",")
+    
+    result := map[string][]string{} // suffix → []kata
+    
+    for _, word := range words {
+        wl := strings.ToLower(word)
+        for _, suffix := range suffixes {
+            suffix = strings.TrimSpace(suffix)
+            if suffix == "" { continue }
+            if strings.HasSuffix(wl, suffix) {
+                result[suffix] = append(result[suffix], word)
+            }
+        }
+    }
+    
+    w.Header().Set("Content-Type", "application/json")
+    json.NewEncoder(w).Encode(result)
+}
+
 // =============================================
 // DATA STRUCTURES (tambahkan di level package)
 // =============================================
@@ -626,6 +647,7 @@ func main() {
 	http.HandleFunc("/auto-input", autoInputHandler)
 	http.HandleFunc("/sse", sseHandler)
 	http.HandleFunc("/delete-word", deleteWordHandler)  
+	http.HandleFunc("/danger-words", dangerWordsHandler)
 
     // 3. Baru listen
     port := os.Getenv("PORT")
