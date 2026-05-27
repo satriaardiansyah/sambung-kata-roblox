@@ -24,6 +24,7 @@ const deletedFile = "deleted_words.json"
 
 var killerSuffix = map[string]int{
 	"nggar": 999,
+	"nggor": 999,
 	"recht": 900,
 	"logis": 600,
 	"duksi": 580,
@@ -182,6 +183,18 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	query      := strings.ToLower(r.URL.Query().Get("q"))
 	mode       := r.URL.Query().Get("mode")
 	searchMode := r.URL.Query().Get("searchMode")
+	prioritas  := r.URL.Query().Get("prioritas") // ← TAMBAH INI
+
+    // Parse prioritas jadi slice
+    var prioritasList []string
+    if prioritas != "" {
+        for _, p := range strings.Split(prioritas, ",") {
+            p = strings.TrimSpace(p)
+            if p != "" {
+                prioritasList = append(prioritasList, p)
+            }
+        }
+    }
 
 	type WordScore struct {
 		Word  string
@@ -251,6 +264,13 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 				score -= bonus
 			}
 		}
+
+		for _, pSuffix := range prioritasList {
+            if strings.HasSuffix(word, pSuffix) {
+                score -= 2000 // nilai sangat rendah = muncul paling atas
+                break
+            }
+        }
 
 		scored = append(scored, WordScore{Word: word, Score: score})
 	}
@@ -621,6 +641,27 @@ func deleteWordHandler(w http.ResponseWriter, r *http.Request) {
     json.NewEncoder(w).Encode(map[string]any{"status": "deleted", "word": word})
 }
 
+// Handler baru: kembalikan semua key dari killerSuffix beserta skornya
+func killerSuffixHandler(w http.ResponseWriter, r *http.Request) {
+    type SuffixItem struct {
+        Suffix string `json:"suffix"`
+        Score  int    `json:"score"`
+    }
+
+    items := make([]SuffixItem, 0, len(killerSuffix))
+    for suffix, score := range killerSuffix {
+        items = append(items, SuffixItem{Suffix: suffix, Score: score})
+    }
+
+    // Sort by score descending (yang paling "mematikan" di atas)
+    sort.Slice(items, func(i, j int) bool {
+        return items[i].Score > items[j].Score
+    })
+
+    w.Header().Set("Content-Type", "application/json")
+    json.NewEncoder(w).Encode(items)
+}
+
 func main() {
     // 1. Load data dulu
     loadKamus()
@@ -649,6 +690,7 @@ func main() {
 	http.HandleFunc("/sse", sseHandler)
 	http.HandleFunc("/delete-word", deleteWordHandler)  
 	http.HandleFunc("/danger-words", dangerWordsHandler)
+	http.HandleFunc("/killer-suffix", killerSuffixHandler)
 
     // 3. Baru listen
     port := os.Getenv("PORT")

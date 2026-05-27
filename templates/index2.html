@@ -99,7 +99,6 @@
         }
       }
 
-      /* Header */
       .header {
         display: flex;
         align-items: center;
@@ -130,7 +129,6 @@
         border-radius: 20px;
       }
 
-      /* Input */
       .input-wrap {
         position: relative;
         margin-bottom: 8px;
@@ -170,7 +168,6 @@
         box-shadow: 0 0 0 3px rgba(247, 201, 72, 0.08);
       }
 
-      /* Controls */
       .controls {
         display: flex;
         gap: 10px;
@@ -250,7 +247,6 @@
         }
       }
 
-      /* Tombol Bahaya */
       .btn-danger {
         background: rgba(255, 80, 80, 0.1);
         border: 1.5px solid rgba(255, 80, 80, 0.25);
@@ -266,6 +262,7 @@
         border-color: rgba(255, 80, 80, 0.55);
         box-shadow: 0 0 12px rgba(255, 80, 80, 0.2);
       }
+
       .badge-count {
         display: none;
         background: #ff5050;
@@ -280,7 +277,6 @@
         display: inline;
       }
 
-      /* Mode indicator */
       #mode-indicator {
         font-size: 0.72rem;
         color: var(--muted);
@@ -298,14 +294,12 @@
         display: inline-block;
       }
 
-      /* Divider */
       .divider {
         height: 1px;
         background: var(--border);
         margin: 12px 0 10px;
       }
 
-      /* Result */
       #result {
         list-style: none;
         display: flex;
@@ -356,7 +350,6 @@
         color: var(--accent);
         font-weight: 600;
       }
-      /* Warning style */
       #result li.is-warning {
         background: rgba(255, 80, 80, 0.07);
         border-color: rgba(255, 80, 80, 0.3);
@@ -371,6 +364,28 @@
       #result li.is-warning .match {
         color: #ff9090;
         background: rgba(255, 80, 80, 0.15);
+      }
+
+      /* Prioritas */
+      #result li.is-prioritas {
+        background: linear-gradient(
+          135deg,
+          rgba(110, 231, 183, 0.13),
+          rgba(52, 211, 153, 0.07)
+        );
+        border-color: rgba(110, 231, 183, 0.45);
+      }
+      #result li.is-prioritas:hover {
+        background: rgba(110, 231, 183, 0.18);
+        border-color: rgba(110, 231, 183, 0.6);
+      }
+      #result li.is-prioritas .word-label {
+        color: #6ee7b7;
+        font-weight: 600;
+      }
+      #result li.is-prioritas .match {
+        color: #34d399;
+        background: rgba(110, 231, 183, 0.15);
       }
 
       #result li.empty-state-li {
@@ -432,7 +447,6 @@
         transform: scale(0.93);
       }
 
-      /* Toast */
       #toast {
         position: fixed;
         bottom: 28px;
@@ -456,7 +470,7 @@
         transform: translateX(-50%) translateY(0);
       }
 
-      /* ── WARNING MODAL ── */
+      /* MODAL */
       .modal-overlay {
         display: none;
         position: fixed;
@@ -486,7 +500,7 @@
         border-radius: 22px;
         padding: 26px 28px 24px;
         width: 90%;
-        max-width: 380px;
+        max-width: 400px;
         box-shadow: 0 8px 60px rgba(0, 0, 0, 0.6);
         animation: popIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
       }
@@ -512,6 +526,9 @@
         font-size: 1.05rem;
         color: #ff6b6b;
       }
+      .modal-header-p h2 {
+        color: #6ee7b7;
+      }
       .modal-close {
         background: none;
         border: none;
@@ -532,15 +549,59 @@
       .modal-desc {
         font-size: 0.76rem;
         color: var(--muted);
-        margin-bottom: 16px;
+        margin-bottom: 10px;
         line-height: 1.5;
+      }
+
+      /* Search di dalam modal */
+      .modal-search-wrap {
+        position: relative;
+        margin-bottom: 10px;
+      }
+      .modal-search-wrap svg {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--muted);
+        pointer-events: none;
+      }
+      .modal-search-input {
+        width: 100%;
+        padding: 8px 8px 8px 32px !important;
+        background: var(--surface2);
+        border: 1.5px solid var(--border);
+        border-radius: 10px;
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.82rem;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+      .modal-search-input:focus {
+        border-color: rgba(110, 231, 183, 0.45);
+        box-shadow: 0 0 0 3px rgba(110, 231, 183, 0.07);
+      }
+      /* warning modal search focus */
+      .modal-search-input.warn-search:focus {
+        border-color: rgba(255, 80, 80, 0.45);
+        box-shadow: 0 0 0 3px rgba(255, 80, 80, 0.07);
+      }
+      .modal-search-count {
+        font-size: 0.7rem;
+        color: var(--muted);
+        text-align: right;
+        margin-top: -6px;
+        margin-bottom: 8px;
       }
 
       .warning-list {
         display: flex;
         flex-direction: column;
         gap: 7px;
-        max-height: 300px;
+        max-height: 260px;
         overflow-y: auto;
         scrollbar-width: thin;
         scrollbar-color: var(--surface2) transparent;
@@ -586,10 +647,49 @@
         color: #ff6b6b;
         font-weight: 600;
       }
+
+      /* Prioritas item override */
+      .priority-item:hover {
+        border-color: rgba(110, 231, 183, 0.3) !important;
+        background: rgba(110, 231, 183, 0.05) !important;
+      }
+      .priority-item.checked {
+        border-color: rgba(110, 231, 183, 0.45) !important;
+        background: rgba(110, 231, 183, 0.09) !important;
+      }
+      .priority-item input[type="checkbox"] {
+        accent-color: #6ee7b7 !important;
+      }
+      .priority-item.checked .warning-suffix {
+        color: #6ee7b7 !important;
+        font-weight: 600;
+      }
+
       .warning-suffix-hint {
         font-size: 0.72rem;
         color: var(--muted);
         margin-left: auto;
+      }
+      /* skor badge di modal prioritas */
+      .score-badge {
+        font-size: 0.65rem;
+        font-weight: 700;
+        padding: 1px 6px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        margin-left: 4px;
+      }
+      .score-high {
+        background: rgba(255, 80, 80, 0.2);
+        color: #ff6b6b;
+      }
+      .score-mid {
+        background: rgba(247, 201, 72, 0.2);
+        color: #f7c948;
+      }
+      .score-low {
+        background: rgba(110, 231, 183, 0.15);
+        color: #6ee7b7;
       }
 
       .modal-actions {
@@ -615,7 +715,37 @@
         border-color: rgba(255, 255, 255, 0.15);
       }
 
-      /* Love overlay */
+      /* Tombol Prioritas */
+      .btn-prioritas {
+        background: rgba(110, 231, 183, 0.1);
+        border: 1.5px solid rgba(110, 231, 183, 0.25);
+        color: #6ee7b7;
+        position: relative;
+      }
+      .btn-prioritas:hover {
+        background: rgba(110, 231, 183, 0.18);
+        border-color: rgba(110, 231, 183, 0.45);
+      }
+      .btn-prioritas.has-active {
+        background: rgba(110, 231, 183, 0.2);
+        border-color: rgba(110, 231, 183, 0.55);
+        box-shadow: 0 0 12px rgba(110, 231, 183, 0.2);
+      }
+      .badge-count-p {
+        display: none;
+        background: #34d399;
+        color: #0d0d14;
+        border-radius: 10px;
+        padding: 1px 6px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        line-height: 1.4;
+      }
+      .badge-count-p.show {
+        display: inline;
+      }
+
+      /* Love */
       #love-overlay {
         display: none;
         position: fixed;
@@ -727,7 +857,6 @@
 
   <body>
     <div class="card">
-      <!-- Header -->
       <div class="header">
         <div class="header-left">
           <h1>Sambung Kata By Yabi😆</h1>
@@ -738,7 +867,6 @@
         <span class="badge">Beta</span>
       </div>
 
-      <!-- Input -->
       <div class="input-wrap">
         <svg
           width="16"
@@ -761,13 +889,11 @@
         />
       </div>
 
-      <!-- Mode indicator -->
       <div id="mode-indicator">
         <span id="mode-dot"></span>
         <span id="mode-label">Auto OCR aktif</span>
       </div>
 
-      <!-- Controls -->
       <div class="controls">
         <select id="mode">
           <option value="prefix">🔡 Awalan</option>
@@ -776,7 +902,6 @@
 
         <input type="radio" id="normal" name="searchMode" value="normal" />
         <label for="normal">Normal</label>
-
         <input
           type="radio"
           id="brutal"
@@ -786,7 +911,6 @@
         />
         <label for="brutal">Brutal</label>
 
-        <!-- Tombol Bahaya → buka modal -->
         <button
           class="btn btn-danger"
           id="btnBahaya"
@@ -795,7 +919,14 @@
           ⚠️ Bahaya
           <span class="badge-count" id="badgeCount">0</span>
         </button>
-
+        <button
+          class="btn btn-prioritas"
+          id="btnPrioritas"
+          onclick="openPrioritasModal()"
+        >
+          ⭐ Prioritas
+          <span class="badge-count-p" id="badgeCountP">0</span>
+        </button>
         <button class="btn btn-love" id="loveBtn" onclick="showLove()">
           <span class="heart-icon">💖</span> Spesial
         </button>
@@ -803,7 +934,6 @@
 
       <div class="divider"></div>
 
-      <!-- Result -->
       <ul id="result">
         <li
           class="empty-state empty-state-li"
@@ -826,15 +956,95 @@
           <button class="modal-close" onclick="closeWarningModal()">✕</button>
         </div>
         <p class="modal-desc">
-          Centang akhiran yang ingin ditandai merah pada hasil pencarian. Kata
-          yang berakhiran huruf-huruf tersebut akan diwarnai.
+          Centang akhiran yang ingin ditandai merah pada hasil pencarian.
         </p>
+
+        <!-- Search di modal warning -->
+        <div class="modal-search-wrap">
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+          <input
+            type="text"
+            class="modal-search-input warn-search"
+            id="warningSearch"
+            placeholder="Cari akhiran..."
+            autocomplete="off"
+            oninput="renderWarningList()"
+          />
+        </div>
+        <div class="modal-search-count" id="warningSearchCount"></div>
+
         <div class="warning-list" id="warningList"></div>
         <div class="modal-actions">
           <button class="btn-modal" onclick="selectAllWarnings(true)">
             ✓ Pilih Semua
           </button>
           <button class="btn-modal" onclick="selectAllWarnings(false)">
+            ✕ Hapus Semua
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PRIORITAS MODAL ═══ -->
+    <div
+      class="modal-overlay"
+      id="prioritasModal"
+      onclick="closePrioritasModal(event)"
+    >
+      <div class="modal-box" onclick="event.stopPropagation()">
+        <div class="modal-header modal-header-p">
+          <h2>⭐ Prioritas Akhiran</h2>
+          <button class="modal-close" onclick="closePrioritasModal()">✕</button>
+        </div>
+        <p class="modal-desc">
+          Centang akhiran yang ingin diprioritaskan. Kata dengan akhiran
+          tersebut akan muncul paling atas dan berwarna hijau.
+        </p>
+
+        <!-- Search di modal prioritas -->
+        <div class="modal-search-wrap">
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+          <input
+            type="text"
+            class="modal-search-input"
+            id="prioritasSearch"
+            placeholder="Cari akhiran..."
+            autocomplete="off"
+            oninput="renderPrioritasList()"
+          />
+        </div>
+        <div class="modal-search-count" id="prioritasSearchCount"></div>
+
+        <div class="warning-list" id="prioritasList"></div>
+        <div class="modal-actions">
+          <button class="btn-modal" onclick="selectAllPrioritas(true)">
+            ✓ Pilih Semua
+          </button>
+          <button class="btn-modal" onclick="selectAllPrioritas(false)">
             ✕ Hapus Semua
           </button>
         </div>
@@ -854,14 +1064,12 @@
       </div>
     </div>
 
-    <!-- Toast -->
     <div id="toast"></div>
 
     <script>
-      // ═══════════════════════════════════════════
-      // WARNING WORDS — config sepenuhnya di FE
-      // tambah / hapus key di sini sesuai kebutuhan
-      // ═══════════════════════════════════════════
+      // ══════════════════════════════════════
+      // WARNING WORDS
+      // ══════════════════════════════════════
       const WARNING_WORDS = [
         "nggar",
         "genik",
@@ -872,26 +1080,26 @@
         "ahang",
         "alah",
         "riksa",
+        "anah",
+        "ratif",
+        "duksi",
       ];
 
       const activeWarnings = new Set();
       let lastResults = [];
       let dangerPrefixIndex = new Set();
 
-      // ── Fetch kata berbahaya dari BE, bangun prefix index ──
       async function buildDangerIndex() {
         if (activeWarnings.size === 0) {
           dangerPrefixIndex = new Set();
           if (lastResults.length) renderResult(lastResults);
           return;
         }
-
         const suffixes = [...activeWarnings].join(",");
         const res = await fetch(
           `/danger-words?suffixes=${encodeURIComponent(suffixes)}`,
         );
         const data = await res.json();
-
         dangerPrefixIndex = new Set();
         for (const [, katalist] of Object.entries(data)) {
           for (const kata of katalist) {
@@ -900,37 +1108,38 @@
             }
           }
         }
-
         if (lastResults.length) renderResult(lastResults);
       }
 
-      // ── isWarning: cek akhiran kata ada di dangerPrefixIndex ──
       function isWarning(word) {
         if (dangerPrefixIndex.size === 0) return false;
         const w = word.toLowerCase();
         for (let l = 2; l <= Math.min(5, w.length); l++) {
-          const tail = w.slice(w.length - l);
-          if (dangerPrefixIndex.has(tail)) return true;
+          if (dangerPrefixIndex.has(w.slice(w.length - l))) return true;
         }
         return false;
       }
 
-      // ── MODAL ──
       function renderWarningList() {
         const container = document.getElementById("warningList");
+        const filter = (
+          document.getElementById("warningSearch").value || ""
+        ).toLowerCase();
+        const filtered = WARNING_WORDS.filter((s) => s.includes(filter));
+
+        document.getElementById("warningSearchCount").textContent = filter
+          ? `${filtered.length} dari ${WARNING_WORDS.length} akhiran`
+          : "";
+
         container.innerHTML = "";
-
-        WARNING_WORDS.forEach((suffix) => {
+        filtered.forEach((suffix) => {
           const checked = activeWarnings.has(suffix);
-
           const label = document.createElement("label");
           label.className = "warning-item" + (checked ? " checked" : "");
           label.innerHTML = `
-      <input type="checkbox" ${checked ? "checked" : ""}>
-      <span class="warning-suffix">…${suffix}</span>
-      <span class="warning-suffix-hint">akhiran kata</span>
-    `;
-
+            <input type="checkbox" ${checked ? "checked" : ""}>
+            <span class="warning-suffix">…${suffix}</span>
+            <span class="warning-suffix-hint">akhiran kata</span>`;
           const cb = label.querySelector("input");
           cb.addEventListener("change", () => {
             if (cb.checked) {
@@ -941,9 +1150,8 @@
               label.classList.remove("checked");
             }
             updateBadge();
-            buildDangerIndex(); // ← fetch ulang + rebuild index + re-render
+            buildDangerIndex();
           });
-
           container.appendChild(label);
         });
       }
@@ -958,28 +1166,30 @@
       }
 
       function openWarningModal() {
+        document.getElementById("warningSearch").value = "";
         renderWarningList();
         document.getElementById("warningModal").classList.add("active");
       }
-
       function closeWarningModal(e) {
-        if (!e || e.target === document.getElementById("warningModal")) {
+        if (!e || e.target === document.getElementById("warningModal"))
           document.getElementById("warningModal").classList.remove("active");
-        }
       }
-
       function selectAllWarnings(val) {
-        WARNING_WORDS.forEach((s) =>
+        const filter = (
+          document.getElementById("warningSearch").value || ""
+        ).toLowerCase();
+        const filtered = WARNING_WORDS.filter((s) => s.includes(filter));
+        filtered.forEach((s) =>
           val ? activeWarnings.add(s) : activeWarnings.delete(s),
         );
         renderWarningList();
         updateBadge();
-        buildDangerIndex(); // ← fetch ulang juga saat pilih/hapus semua
+        buildDangerIndex();
       }
 
-      // ═══════════════════════════════════════════
+      // ══════════════════════════════════════
       // SEARCH
-      // ═══════════════════════════════════════════
+      // ══════════════════════════════════════
       const input = document.getElementById("search");
       const modeEl = document.getElementById("mode");
       const result = document.getElementById("result");
@@ -987,7 +1197,6 @@
       const modeLabel = document.getElementById("mode-label");
 
       let timeout;
-
       function triggerSearch() {
         clearTimeout(timeout);
         timeout = setTimeout(async () => {
@@ -996,6 +1205,7 @@
           const sm = document.querySelector(
             'input[name="searchMode"]:checked',
           ).value;
+          const prioritasParam = [...activePrioritas].join(",");
 
           if (!q) {
             showEmpty();
@@ -1005,7 +1215,7 @@
 
           try {
             const res = await fetch(
-              `/search?q=${encodeURIComponent(q)}&mode=${m}&searchMode=${sm}`,
+              `/search?q=${encodeURIComponent(q)}&mode=${m}&searchMode=${sm}&prioritas=${encodeURIComponent(prioritasParam)}`,
             );
             const data = await res.json();
             lastResults = data || [];
@@ -1018,13 +1228,13 @@
 
       input.addEventListener("keyup", triggerSearch);
       modeEl.addEventListener("change", triggerSearch);
-      document.querySelectorAll('input[name="searchMode"]').forEach((r) => {
-        r.addEventListener("change", triggerSearch);
-      });
+      document
+        .querySelectorAll('input[name="searchMode"]')
+        .forEach((r) => r.addEventListener("change", triggerSearch));
 
-      // ═══════════════════════════════════════════
-      // RENDER
-      // ═══════════════════════════════════════════
+      // ══════════════════════════════════════
+      // RENDER — BUG FIX: isPrioritas di dalam forEach
+      // ══════════════════════════════════════
       function highlightMatch(word, query, m) {
         if (m === "prefix") {
           return `<span class="match">${word.slice(0, query.length)}</span>${word.slice(query.length)}`;
@@ -1045,10 +1255,16 @@
         const fragment = document.createDocumentFragment();
 
         data.slice(0, 50).forEach((word, i) => {
-          const warn = isWarning(word); // ← semua logika warning di FE
+          // ✅ FIX: isPrioritas dihitung per-kata di dalam forEach
+          const isPrioritas =
+            activePrioritas.size > 0 &&
+            [...activePrioritas].some((suf) => word.endsWith(suf));
+          const warn = !isPrioritas && isWarning(word);
 
           const li = document.createElement("li");
-          if (warn) li.classList.add("is-warning");
+          if (isPrioritas) li.classList.add("is-prioritas");
+          else if (warn) li.classList.add("is-warning");
+          else if (i === 0) li.classList.add("best");
 
           const lbl = document.createElement("span");
           lbl.className = "word-label";
@@ -1076,14 +1292,13 @@
         result.appendChild(fragment);
       }
 
-      // ═══════════════════════════════════════════
-      // DELETE WORD
-      // ═══════════════════════════════════════════
+      // ══════════════════════════════════════
+      // DELETE
+      // ══════════════════════════════════════
       async function deleteWord(word, liEl) {
         try {
           const res = await fetch(`/delete-word?q=${encodeURIComponent(word)}`);
           if (!res.ok) throw new Error();
-
           liEl.style.transition =
             "opacity 0.25s, transform 0.25s, max-height 0.3s";
           liEl.style.opacity = "0";
@@ -1095,8 +1310,6 @@
             liEl.style.margin = "0";
           }, 250);
           setTimeout(() => liEl.remove(), 500);
-
-          // Hapus dari lastResults juga
           lastResults = lastResults.filter((w) => w !== word);
           showToast(`🗑️ "${word}" dihapus dari kamus`);
         } catch {
@@ -1104,15 +1317,14 @@
         }
       }
 
-      // ═══════════════════════════════════════════
+      // ══════════════════════════════════════
       // UTILS
-      // ═══════════════════════════════════════════
+      // ══════════════════════════════════════
       function showEmpty(msg) {
         const icon = msg ? "⚠️" : "🔍";
         const text = msg || "Mulai ketik untuk mencari kata...";
         result.innerHTML = `<li class="empty-state empty-state-li" style="border:none;background:none;"><span>${icon}</span>${text}</li>`;
       }
-
       function showToast(msg) {
         const toast = document.getElementById("toast");
         toast.textContent = msg;
@@ -1121,21 +1333,20 @@
         toast._t = setTimeout(() => toast.classList.remove("show"), 2800);
       }
 
-      // ═══════════════════════════════════════════
+      // ══════════════════════════════════════
       // LOVE
-      // ═══════════════════════════════════════════
+      // ══════════════════════════════════════
       function showLove() {
         document.getElementById("love-overlay").classList.add("active");
         const btn = document.getElementById("loveBtn");
         btn.classList.add("beating");
         setTimeout(() => btn.classList.remove("beating"), 1800);
         const hearts = ["💗", "💕", "💓", "🌸", "✨", "💝", "🩷", "💞"];
-        for (let i = 0; i < 18; i++) {
+        for (let i = 0; i < 18; i++)
           setTimeout(
             () => spawnHeart(hearts[Math.floor(Math.random() * hearts.length)]),
             i * 80,
           );
-        }
       }
       function spawnHeart(emoji) {
         const el = document.createElement("span");
@@ -1149,17 +1360,117 @@
         el.addEventListener("animationend", () => el.remove());
       }
       function closeLove(e) {
-        if (!e || e.target === document.getElementById("love-overlay")) {
+        if (!e || e.target === document.getElementById("love-overlay"))
           document.getElementById("love-overlay").classList.remove("active");
+      }
+
+      // ══════════════════════════════════════
+      // PRIORITAS — load dari BE
+      // ══════════════════════════════════════
+      let PRIORITAS_DATA = []; // [{ suffix, score }, ...]
+      const activePrioritas = new Set();
+
+      async function loadPrioritasWords() {
+        try {
+          const res = await fetch("/killer-suffix");
+          PRIORITAS_DATA = await res.json(); // [{ suffix: "nggar", score: 999 }, ...]
+        } catch {
+          console.error("Gagal load killer-suffix dari BE");
         }
       }
 
-      // ═══════════════════════════════════════════
-      // SSE — Auto OCR
-      // ═══════════════════════════════════════════
+      function renderPrioritasList() {
+        const container = document.getElementById("prioritasList");
+        const filter = (
+          document.getElementById("prioritasSearch").value || ""
+        ).toLowerCase();
+        const filtered = PRIORITAS_DATA.filter((d) =>
+          d.suffix.includes(filter),
+        );
+
+        document.getElementById("prioritasSearchCount").textContent = filter
+          ? `${filtered.length} dari ${PRIORITAS_DATA.length} akhiran`
+          : "";
+
+        container.innerHTML = "";
+        filtered.forEach(({ suffix, score }) => {
+          const checked = activePrioritas.has(suffix);
+
+          // badge warna berdasarkan skor
+          let scoreClass = "score-low";
+          if (score >= 500) scoreClass = "score-high";
+          else if (score >= 250) scoreClass = "score-mid";
+
+          const label = document.createElement("label");
+          label.className =
+            "warning-item priority-item" + (checked ? " checked" : "");
+          label.innerHTML = `
+            <input type="checkbox" ${checked ? "checked" : ""}>
+            <span class="warning-suffix">…${suffix}</span>
+            <span class="score-badge ${scoreClass}">${score}</span>
+            <span class="warning-suffix-hint">akhiran prioritas</span>`;
+
+          const cb = label.querySelector("input");
+          cb.addEventListener("change", () => {
+            if (cb.checked) {
+              activePrioritas.add(suffix);
+              label.classList.add("checked");
+            } else {
+              activePrioritas.delete(suffix);
+              label.classList.remove("checked");
+            }
+            updateBadgeP();
+            triggerSearch();
+          });
+          container.appendChild(label);
+        });
+      }
+
+      function updateBadgeP() {
+        const badge = document.getElementById("badgeCountP");
+        const btn = document.getElementById("btnPrioritas");
+        const n = activePrioritas.size;
+        badge.textContent = n;
+        badge.classList.toggle("show", n > 0);
+        btn.classList.toggle("has-active", n > 0);
+      }
+
+      function openPrioritasModal() {
+        if (PRIORITAS_DATA.length === 0) {
+          showToast("⏳ Masih memuat daftar akhiran...");
+          return;
+        }
+        document.getElementById("prioritasSearch").value = "";
+        renderPrioritasList();
+        document.getElementById("prioritasModal").classList.add("active");
+      }
+      function closePrioritasModal(e) {
+        if (!e || e.target === document.getElementById("prioritasModal"))
+          document.getElementById("prioritasModal").classList.remove("active");
+      }
+      function selectAllPrioritas(val) {
+        const filter = (
+          document.getElementById("prioritasSearch").value || ""
+        ).toLowerCase();
+        const filtered = PRIORITAS_DATA.filter((d) =>
+          d.suffix.includes(filter),
+        );
+        filtered.forEach((d) =>
+          val
+            ? activePrioritas.add(d.suffix)
+            : activePrioritas.delete(d.suffix),
+        );
+        renderPrioritasList();
+        updateBadgeP();
+        triggerSearch();
+      }
+
+      // ══════════════════════════════════════
+      // SSE
+      // ══════════════════════════════════════
       const evtSource = new EventSource("/sse");
-      let manualMode = false;
-      let manualTimeout;
+      let manualMode = false,
+        manualTimeout;
 
       input.addEventListener("keydown", (e) => {
         if (e.key === "Tab") {
@@ -1188,6 +1499,9 @@
         }
       };
       evtSource.onerror = () => console.log("SSE disconnected, retrying...");
+
+      // Init
+      loadPrioritasWords();
     </script>
   </body>
 </html>
