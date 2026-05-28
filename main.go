@@ -28,6 +28,8 @@ var killerSuffix = map[string]int{
 	"recht": 900,
 	"logis": 600,
 	"duksi": 580,
+	"fauna": 580,
+	"mboli": 580,
 	"gatot": 580,
 	"ahang": 580,
 	"genik": 590,
@@ -41,6 +43,7 @@ var killerSuffix = map[string]int{
 	"trium": 550,
 	"inkan": 400,
 	"yala": 550,
+	"aesi": 550,
 	"hohon": 550,
 	"isian": 550,
 	"arkil": 500,
@@ -145,6 +148,7 @@ var killerOpener = map[string]int{
 	"umangkapala": 0,
 	"gatotkaca": 0,
 	"tikaman": 0,
+	"faunasia": 0,
 }
 
 var warningWords = map[string]int{
