@@ -1145,12 +1145,18 @@
             if (cb.checked) {
               activeWarnings.add(suffix);
               label.classList.add("checked");
+              // ✅ Sync ke Prioritas
+              activePrioritas.add(suffix);
             } else {
               activeWarnings.delete(suffix);
               label.classList.remove("checked");
+              // ✅ Sync ke Prioritas
+              activePrioritas.delete(suffix);
             }
             updateBadge();
+            updateBadgeP(); // ✅ tambah ini
             buildDangerIndex();
+            triggerSearch(); // ✅ tambah ini
           });
           container.appendChild(label);
         });
@@ -1179,12 +1185,15 @@
           document.getElementById("warningSearch").value || ""
         ).toLowerCase();
         const filtered = WARNING_WORDS.filter((s) => s.includes(filter));
-        filtered.forEach((s) =>
-          val ? activeWarnings.add(s) : activeWarnings.delete(s),
-        );
+        filtered.forEach((s) => {
+          val ? activeWarnings.add(s) : activeWarnings.delete(s);
+          val ? activePrioritas.add(s) : activePrioritas.delete(s); // ✅ sync
+        });
         renderWarningList();
         updateBadge();
+        updateBadgeP(); // ✅
         buildDangerIndex();
+        triggerSearch(); // ✅
       }
 
       // ══════════════════════════════════════
@@ -1415,11 +1424,21 @@
             if (cb.checked) {
               activePrioritas.add(suffix);
               label.classList.add("checked");
+              // ✅ Sync ke Warning (hanya jika suffix ada di WARNING_WORDS)
+              if (WARNING_WORDS.includes(suffix)) {
+                activeWarnings.add(suffix);
+              }
             } else {
               activePrioritas.delete(suffix);
               label.classList.remove("checked");
+              // ✅ Sync ke Warning
+              if (WARNING_WORDS.includes(suffix)) {
+                activeWarnings.delete(suffix);
+              }
             }
             updateBadgeP();
+            updateBadge(); // ✅ tambah ini
+            buildDangerIndex(); // ✅ tambah ini
             triggerSearch();
           });
           container.appendChild(label);
@@ -1455,13 +1474,21 @@
         const filtered = PRIORITAS_DATA.filter((d) =>
           d.suffix.includes(filter),
         );
-        filtered.forEach((d) =>
+        filtered.forEach((d) => {
           val
             ? activePrioritas.add(d.suffix)
-            : activePrioritas.delete(d.suffix),
-        );
+            : activePrioritas.delete(d.suffix);
+          // ✅ sync ke warning jika suffix ada di WARNING_WORDS
+          if (WARNING_WORDS.includes(d.suffix)) {
+            val
+              ? activeWarnings.add(d.suffix)
+              : activeWarnings.delete(d.suffix);
+          }
+        });
         renderPrioritasList();
         updateBadgeP();
+        updateBadge(); // ✅
+        buildDangerIndex(); // ✅
         triggerSearch();
       }
 
