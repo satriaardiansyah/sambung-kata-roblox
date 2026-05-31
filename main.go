@@ -23,9 +23,9 @@ var deletedMu    sync.Mutex
 const deletedFile = "deleted_words.json"
 
 var killerSuffix = map[string]int{
-	"nggar": 999,
-	"nggor": 999,
-	"recht": 900,
+	"nggar": 900,
+	"nggor": 900,
+	"recth": 900,
 	"logis": 600,
 	"duksi": 580,
 	"fauna": 580,
@@ -35,8 +35,10 @@ var killerSuffix = map[string]int{
 	"genik": 590,
 	"riksa": 550,
 	"iran": 550,
+	"abaka": 999,
 	"ngudo": 580,
 	"sosro": 580,
+	"garot": 580,
 	"litik": 550,
 	"olang": 580,
 	"amang": 550,
@@ -72,6 +74,7 @@ var killerSuffix = map[string]int{
 	"ngeh": 300,
 	"wati": 300,
 	"riko": 300,
+	"apet": 200,
 	"inggu": 300,
 	"alah": 300,
 	"ngoh": 300,
