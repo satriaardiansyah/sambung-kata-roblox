@@ -1070,29 +1070,39 @@
       // ══════════════════════════════════════
       // WARNING WORDS
       // ══════════════════════════════════════
-      const WARNING_WORDS = [
-        "nggar",
-        "genik",
-        "logis",
-        "iran",
-        "iat",
-        "nggil",
-        "ahang",
-        "alah",
-        "riksa",
-        "anah",
-        "ratif",
-        "duksi",
-        "garot",
-        "gatot",
-        "fauna",
-        "inkan",
-        "garpu",
-        "umang",
-        
+      // const WARNING_WORDS = [
+      //   "nggar",
+      //   "genik",
+      //   "logis",
+      //   "iran",
+      //   "iat",
+      //   "nggil",
+      //   "ahang",
+      //   "alah",
+      //   "riksa",
+      //   "anah",
+      //   "ratif",
+      //   "duksi",
+      //   "garot",
+      //   "gatot",
+      //   "fauna",
+      //   "inkan",
+      //   "garpu",
+      //   "umang",
+      //   "ansor",
 
+      // ];
 
-      ];
+      let WARNING_WORDS = [];
+
+      fetch("/killer-suffix")
+        .then((res) => res.json())
+        .then((data) => {
+          // hanya ambil suffix-nya
+          WARNING_WORDS = data.map((item) => item.suffix);
+
+          console.log(WARNING_WORDS);
+        });
 
       const activeWarnings = new Set();
       let lastResults = [];

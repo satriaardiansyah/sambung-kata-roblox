@@ -157,6 +157,9 @@ var killerSuffix = map[string]int{
 	"anasi": 950,
 	"tusa": 900,
 	"eni": 300,
+	"ergot" : 900,
+	"bouea" : 900,
+	"angsa" : 900,
 
 
 }
