@@ -1,0 +1,1459 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sambung Kata — Widget</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0d0d14;
+        --surface: #15151f;
+        --surface2: #1c1c2a;
+        --border: rgba(255, 255, 255, 0.08);
+        --text: #e8e8f0;
+        --muted: #6b6b85;
+        --accent: #f7c948;
+        --green: #6ee7b7;
+        --red: #ff6b6b;
+        --pink: #ff6b9d;
+        --blue: #60a5fa;
+        --radius: 10px;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        font-family: "DM Sans", sans-serif;
+        font-size: 13px;
+        color: var(--text);
+        overflow: hidden;
+      }
+
+      /* ── WIDGET SHELL ── */
+      #widget {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        width: 270px;
+        min-width: 220px;
+        min-height: 240px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      /* ── TITLEBAR ── */
+      #titlebar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 7px 10px;
+        background: var(--surface2);
+        border-bottom: 1px solid var(--border);
+        cursor: move;
+        flex-shrink: 0;
+      }
+      #titlebar .title {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text);
+      }
+      #titlebar .cnt {
+        font-size: 10px;
+        color: var(--muted);
+      }
+
+      /* ── MODE indicator (OCR status) ── */
+      #modeIndicator {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 10px;
+        font-size: 10px;
+        color: var(--muted);
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+      #modeDot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--green);
+        flex-shrink: 0;
+        transition: background 0.2s;
+      }
+
+      /* ── MODE ROW ── */
+      .mode-row {
+        display: flex;
+        gap: 4px;
+        padding: 6px 8px 4px;
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+      .mbn {
+        flex: 1;
+        padding: 4px 0;
+        font-size: 11px;
+        font-weight: 500;
+        font-family: "DM Sans", sans-serif;
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--muted);
+        border-radius: 7px;
+        cursor: pointer;
+        transition: all 0.15s;
+        white-space: nowrap;
+      }
+      .mbn.on {
+        background: rgba(96, 165, 250, 0.15);
+        color: var(--blue);
+        border-color: rgba(96, 165, 250, 0.35);
+      }
+      .mbn.brutal-on {
+        background: rgba(255, 107, 157, 0.12);
+        color: var(--pink);
+        border-color: rgba(255, 107, 157, 0.35);
+      }
+
+      /* ── TOOL ROW ── */
+      .tool-row {
+        display: flex;
+        gap: 4px;
+        padding: 4px 8px 5px;
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+      .tbn {
+        flex: 1;
+        padding: 4px 0;
+        font-size: 11px;
+        font-weight: 500;
+        font-family: "DM Sans", sans-serif;
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--muted);
+        border-radius: 7px;
+        cursor: pointer;
+        transition: all 0.15s;
+        position: relative;
+        white-space: nowrap;
+      }
+      .tbn:hover {
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+      }
+      .tbn.warn-on {
+        background: rgba(255, 80, 80, 0.15);
+        color: var(--red);
+        border-color: rgba(255, 80, 80, 0.35);
+      }
+      .tbn.prio-on {
+        background: rgba(110, 231, 183, 0.12);
+        color: var(--green);
+        border-color: rgba(110, 231, 183, 0.35);
+      }
+      .tbn.love-btn {
+        background: rgba(255, 107, 157, 0.1);
+        color: var(--pink);
+        border-color: rgba(255, 107, 157, 0.25);
+      }
+      .tbn.love-btn:hover {
+        background: rgba(255, 107, 157, 0.18);
+      }
+      .tbn.love-btn.beating .hi {
+        display: inline-block;
+        animation: heartbeat 0.6s ease-in-out 3;
+      }
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        20% {
+          transform: scale(1.35);
+        }
+        40% {
+          transform: scale(0.95);
+        }
+        60% {
+          transform: scale(1.25);
+        }
+      }
+
+      .badge {
+        display: none;
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        background: var(--red);
+        color: #fff;
+        border-radius: 8px;
+        padding: 0 4px;
+        font-size: 9px;
+        font-weight: 700;
+        line-height: 14px;
+      }
+      .badge.pg {
+        background: #34d399;
+        color: #0d0d14;
+      }
+      .badge.show {
+        display: block;
+      }
+
+      /* ── SEARCH ── */
+      .search-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 8px;
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+      .search-row svg {
+        flex-shrink: 0;
+        color: var(--muted);
+        transition: color 0.2s;
+      }
+      .search-row:focus-within svg {
+        color: var(--accent);
+      }
+      #q {
+        flex: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 13px;
+        font-family: "DM Sans", sans-serif;
+        color: var(--text);
+      }
+      #q::placeholder {
+        color: var(--muted);
+      }
+      #q.flash {
+        color: var(--green);
+      }
+      .xcbtn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--muted);
+        font-size: 13px;
+        padding: 0 2px;
+        line-height: 1;
+        transition: color 0.15s;
+      }
+      .xcbtn:hover {
+        color: var(--text);
+      }
+
+      /* ── WORD LIST ── */
+      #wordList {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: var(--surface2) transparent;
+      }
+      #wordList::-webkit-scrollbar {
+        width: 3px;
+      }
+      #wordList::-webkit-scrollbar-thumb {
+        background: var(--surface2);
+        border-radius: 4px;
+      }
+
+      .wi {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 10px;
+        border-bottom: 1px solid var(--border);
+        cursor: pointer;
+        transition: background 0.1s;
+      }
+      .wi:last-child {
+        border-bottom: none;
+      }
+      .wi:hover {
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .wi.best {
+        background: rgba(247, 201, 72, 0.1);
+      }
+      .wi.best .wt {
+        color: var(--accent);
+        font-weight: 600;
+      }
+      .wi.prio {
+        background: rgba(110, 231, 183, 0.1);
+      }
+      .wi.prio .wt {
+        color: var(--green);
+        font-weight: 600;
+      }
+      .wi.warn {
+        background: rgba(255, 80, 80, 0.08);
+      }
+      .wi.warn .wt {
+        color: var(--red);
+      }
+      .wt {
+        flex: 1;
+        font-size: 12px;
+        color: var(--text);
+      }
+      .wt .hl {
+        font-weight: 700;
+      }
+      .delbtn {
+        font-size: 10px;
+        background: none;
+        border: none;
+        color: var(--muted);
+        cursor: pointer;
+        padding: 2px 5px;
+        border-radius: 5px;
+        font-family: "DM Sans", sans-serif;
+        opacity: 0;
+        transition:
+          opacity 0.15s,
+          background 0.15s;
+        flex-shrink: 0;
+      }
+      .wi:hover .delbtn {
+        opacity: 1;
+      }
+      .delbtn:hover {
+        background: rgba(255, 80, 80, 0.18);
+        color: var(--red);
+      }
+
+      .empty {
+        padding: 24px 10px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 2;
+      }
+      .empty .ico {
+        font-size: 22px;
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      /* ── STATUS ── */
+      #statusBar {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 4px 10px;
+        border-top: 1px solid var(--border);
+        font-size: 10px;
+        color: var(--muted);
+        flex-shrink: 0;
+      }
+      .dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--muted);
+        flex-shrink: 0;
+      }
+      .dot.live {
+        background: var(--green);
+      }
+      .dot.err {
+        background: var(--red);
+      }
+
+      /* ── TOAST ── */
+      #toast {
+        position: fixed;
+        bottom: 14px;
+        left: 50%;
+        transform: translateX(-50%) translateY(8px);
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 5px 14px;
+        font-size: 11px;
+        color: var(--text);
+        opacity: 0;
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+        pointer-events: none;
+        white-space: nowrap;
+        z-index: 9999;
+      }
+      #toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      /* ── MODAL (warning / prioritas) ── */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 8888;
+        background: rgba(10, 10, 18, 0.82);
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-overlay.open {
+        display: flex;
+      }
+      .mbox {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 18px 18px 14px;
+        width: 88%;
+        max-width: 320px;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .mhead {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .mhead h2 {
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .mhead h2.danger {
+        color: var(--red);
+      }
+      .mhead h2.prio {
+        color: var(--green);
+      }
+      .mclose {
+        background: none;
+        border: none;
+        color: var(--muted);
+        cursor: pointer;
+        font-size: 16px;
+        padding: 0 4px;
+      }
+      .mdesc {
+        font-size: 11px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+      .msearch {
+        width: 100%;
+        padding: 6px 10px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        font-size: 12px;
+        outline: none;
+      }
+      .msearch:focus {
+        border-color: rgba(110, 231, 183, 0.4);
+      }
+      .mcount {
+        font-size: 10px;
+        color: var(--muted);
+        text-align: right;
+      }
+      .mlist {
+        flex: 1;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        scrollbar-width: thin;
+        scrollbar-color: var(--surface2) transparent;
+      }
+      .mitem {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 10px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        cursor: pointer;
+        transition:
+          border-color 0.15s,
+          background 0.15s;
+        user-select: none;
+      }
+      .mitem:hover {
+        border-color: rgba(255, 80, 80, 0.3);
+        background: rgba(255, 80, 80, 0.05);
+      }
+      .mitem.checked {
+        border-color: rgba(255, 80, 80, 0.45);
+        background: rgba(255, 80, 80, 0.09);
+      }
+      .mitem.pi:hover {
+        border-color: rgba(110, 231, 183, 0.3);
+        background: rgba(110, 231, 183, 0.05);
+      }
+      .mitem.pi.checked {
+        border-color: rgba(110, 231, 183, 0.45);
+        background: rgba(110, 231, 183, 0.09);
+      }
+      .mitem input[type="checkbox"] {
+        width: 14px;
+        height: 14px;
+        accent-color: var(--red);
+        flex-shrink: 0;
+        cursor: pointer;
+      }
+      .mitem.pi input[type="checkbox"] {
+        accent-color: var(--green);
+      }
+      .msuffix {
+        font-family: monospace;
+        font-size: 12px;
+        color: var(--text);
+      }
+      .mitem.checked .msuffix {
+        color: var(--red);
+        font-weight: 600;
+      }
+      .mitem.pi.checked .msuffix {
+        color: var(--green);
+        font-weight: 600;
+      }
+      .mscore {
+        font-size: 9px;
+        font-weight: 700;
+        padding: 1px 5px;
+        border-radius: 6px;
+        margin-left: auto;
+        flex-shrink: 0;
+      }
+      .sh {
+        background: rgba(255, 80, 80, 0.2);
+        color: var(--red);
+      }
+      .sm {
+        background: rgba(247, 201, 72, 0.2);
+        color: var(--accent);
+      }
+      .sl {
+        background: rgba(110, 231, 183, 0.15);
+        color: var(--green);
+      }
+      .mhint {
+        font-size: 10px;
+        color: var(--muted);
+        margin-left: auto;
+      }
+      .mactions {
+        display: flex;
+        gap: 6px;
+      }
+      .mact {
+        flex: 1;
+        padding: 7px 8px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        font-size: 11px;
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+      .mact:hover {
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      /* ── LOVE OVERLAY ── */
+      #loveOverlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(10, 10, 18, 0.88);
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        cursor: pointer;
+      }
+      #loveOverlay.open {
+        display: flex;
+      }
+      .lcard {
+        text-align: center;
+        padding: 36px 40px;
+        background: linear-gradient(135deg, #1c0a14 0%, #160a1c 100%);
+        border: 1px solid rgba(255, 107, 157, 0.25);
+        border-radius: 22px;
+        box-shadow:
+          0 0 60px rgba(255, 107, 157, 0.18),
+          inset 0 0 30px rgba(255, 107, 157, 0.05);
+        max-width: 300px;
+        cursor: default;
+      }
+      .lcard .bh {
+        font-size: 4rem;
+        display: block;
+        margin-bottom: 12px;
+        animation: bbeat 1.2s ease-in-out infinite;
+        filter: drop-shadow(0 0 18px rgba(255, 107, 157, 0.6));
+      }
+      @keyframes bbeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.12);
+        }
+      }
+      .lcard h2 {
+        font-size: 1.3rem;
+        color: var(--pink);
+        margin-bottom: 8px;
+      }
+      .lcard p {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.45);
+        line-height: 1.7;
+      }
+      .lclose {
+        margin-top: 20px;
+        padding: 8px 24px;
+        background: rgba(255, 107, 157, 0.15);
+        border: 1px solid rgba(255, 107, 157, 0.3);
+        border-radius: 16px;
+        color: var(--pink);
+        font-family: "DM Sans", sans-serif;
+        font-size: 12px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .lclose:hover {
+        background: rgba(255, 107, 157, 0.25);
+      }
+      .hpart {
+        position: fixed;
+        font-size: 1.4rem;
+        pointer-events: none;
+        z-index: 10000;
+        animation: fh 2s ease-out forwards;
+      }
+      @keyframes fh {
+        0% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-180px) scale(1.5) rotate(15deg);
+        }
+      }
+
+      /* ── RESIZE HANDLES (semua sisi) ── */
+      .rh {
+        position: absolute;
+        z-index: 10;
+      }
+      .rh-e {
+        top: 0;
+        right: -3px;
+        width: 6px;
+        height: 100%;
+        cursor: ew-resize;
+      }
+      .rh-s {
+        bottom: -3px;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        cursor: ns-resize;
+      }
+      .rh-se {
+        bottom: -3px;
+        right: -3px;
+        width: 14px;
+        height: 14px;
+        cursor: se-resize;
+      }
+      .rh-se::after {
+        content: "";
+        position: absolute;
+        right: 4px;
+        bottom: 4px;
+        width: 8px;
+        height: 8px;
+        border-right: 2px solid var(--muted);
+        border-bottom: 2px solid var(--muted);
+        border-radius: 1px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ══ WIDGET ══ -->
+    <div id="widget">
+      <div id="titlebar">
+        <span class="title">📖 Sambung Kata</span>
+        <span class="cnt" id="cnt"></span>
+      </div>
+
+      <div id="modeIndicator">
+        <span id="modeDot"></span>
+        <span id="modeLabel">Auto OCR aktif</span>
+      </div>
+
+      <div class="mode-row">
+        <button class="mbn on" id="btnPrefix" onclick="setMode('prefix')">
+          Awalan
+        </button>
+        <button class="mbn" id="btnSuffix" onclick="setMode('suffix')">
+          Akhiran
+        </button>
+        <button
+          class="mbn brutal-on"
+          id="btnBrutal"
+          onclick="toggleBrutal()"
+          style="max-width: 60px"
+        >
+          Brutal
+        </button>
+      </div>
+
+      <div class="tool-row">
+        <button class="tbn" id="btnBahaya" onclick="openModal('warn')">
+          ⚠️ Bahaya
+          <span class="badge" id="bdgW">0</span>
+        </button>
+        <button class="tbn" id="btnPrioritas" onclick="openModal('prio')">
+          ⭐ Prioritas
+          <span class="badge pg" id="bdgP">0</span>
+        </button>
+        <button class="tbn love-btn" id="btnSpesial" onclick="showLove()">
+          <span class="hi">💖</span> Spesial
+        </button>
+      </div>
+
+      <div class="search-row">
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
+        </svg>
+        <input
+          id="q"
+          type="text"
+          placeholder="Ketik kata lawan..."
+          autocomplete="off"
+        />
+        <button class="xcbtn" onclick="clearQ()" title="Hapus">✕</button>
+      </div>
+
+      <div id="wordList">
+        <div class="empty">
+          <span class="ico">🔍</span>Mulai ketik untuk mencari kata...
+        </div>
+      </div>
+
+      <div id="statusBar">
+        <span class="dot" id="dot"></span>
+        <span id="sTxt">Siap</span>
+      </div>
+
+      <div class="rh rh-e"></div>
+      <div class="rh rh-s"></div>
+      <div class="rh rh-se"></div>
+    </div>
+
+    <!-- ══ MODAL WARNING ══ -->
+    <div
+      class="modal-overlay"
+      id="modalWarn"
+      onclick="closeModal('warn', event)"
+    >
+      <div class="mbox" onclick="event.stopPropagation()">
+        <div class="mhead">
+          <h2 class="danger">⚠️ Warning Words</h2>
+          <button class="mclose" onclick="closeModal('warn')">✕</button>
+        </div>
+        <p class="mdesc">
+          Centang akhiran yang ingin ditandai merah pada hasil pencarian.
+        </p>
+        <input
+          class="msearch"
+          id="wSearch"
+          type="text"
+          placeholder="Cari akhiran..."
+          oninput="renderWarnList()"
+        />
+        <div class="mcount" id="wCount"></div>
+        <div class="mlist" id="wList"></div>
+        <div class="mactions">
+          <button class="mact" onclick="selAllWarn(true)">✓ Pilih Semua</button>
+          <button class="mact" onclick="selAllWarn(false)">
+            ✕ Hapus Semua
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL PRIORITAS ══ -->
+    <div
+      class="modal-overlay"
+      id="modalPrio"
+      onclick="closeModal('prio', event)"
+    >
+      <div class="mbox" onclick="event.stopPropagation()">
+        <div class="mhead">
+          <h2 class="prio">⭐ Prioritas Akhiran</h2>
+          <button class="mclose" onclick="closeModal('prio')">✕</button>
+        </div>
+        <p class="mdesc">
+          Centang akhiran yang ingin diprioritaskan. Kata dengan akhiran
+          tersebut muncul paling atas dan berwarna hijau.
+        </p>
+        <input
+          class="msearch"
+          id="pSearch"
+          type="text"
+          placeholder="Cari akhiran..."
+          oninput="renderPrioList()"
+        />
+        <div class="mcount" id="pCount"></div>
+        <div class="mlist" id="pList"></div>
+        <div class="mactions">
+          <button class="mact" onclick="selAllPrio(true)">✓ Pilih Semua</button>
+          <button class="mact" onclick="selAllPrio(false)">
+            ✕ Hapus Semua
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ LOVE OVERLAY ══ -->
+    <div id="loveOverlay" onclick="closeLove(event)">
+      <div class="lcard" onclick="event.stopPropagation()">
+        <span class="bh">💗</span>
+        <h2>Untuk Kamu</h2>
+        <p>
+          Kamu adalah kata terbaik<br />yang pernah aku temukan<br />dalam kamus
+          hidupku. ✨
+        </p>
+        <button class="lclose" onclick="closeLove()">Tutup 🌸</button>
+      </div>
+    </div>
+
+    <div id="toast"></div>
+
+    <script>
+      // ══════════════════════════════
+      // STATE
+      // ══════════════════════════════
+      let mode = "prefix";
+      let brutal = true; // sesuai default asli (radio "brutal" checked)
+      let lastResults = [];
+      let searchTimer;
+
+      let WARNING_WORDS = []; // string[]
+      let PRIORITAS_DATA = []; // [{suffix, score}]
+      const activeWarnings = new Set();
+      const activePrioritas = new Set();
+      let dangerPrefixIndex = new Set();
+
+      const input = document.getElementById("q");
+      const wordList = document.getElementById("wordList");
+      const modeDot = document.getElementById("modeDot");
+      const modeLabel = document.getElementById("modeLabel");
+
+      // ══════════════════════════════
+      // INIT — load killer-suffix (untuk Warning + Prioritas)
+      // ══════════════════════════════
+      fetch("/killer-suffix")
+        .then((res) => res.json())
+        .then((data) => {
+          PRIORITAS_DATA = data || [];
+          WARNING_WORDS = PRIORITAS_DATA.map((item) => item.suffix);
+          console.log(WARNING_WORDS);
+        })
+        .catch(() => console.error("Gagal load killer-suffix dari BE"));
+
+      // ══════════════════════════════
+      // DANGER INDEX
+      // ══════════════════════════════
+      async function buildDangerIndex() {
+        if (activeWarnings.size === 0) {
+          dangerPrefixIndex = new Set();
+          if (lastResults.length) renderResult(lastResults);
+          return;
+        }
+        try {
+          const suffixes = [...activeWarnings].join(",");
+          const res = await fetch(
+            `/danger-words?suffixes=${encodeURIComponent(suffixes)}`,
+          );
+          const data = await res.json();
+          dangerPrefixIndex = new Set();
+          for (const [, katalist] of Object.entries(data)) {
+            for (const kata of katalist) {
+              for (let l = 1; l <= Math.min(5, kata.length); l++)
+                dangerPrefixIndex.add(kata.slice(0, l).toLowerCase());
+            }
+          }
+        } catch (_) {}
+        if (lastResults.length) renderResult(lastResults);
+      }
+
+      function isWarning(word) {
+        if (dangerPrefixIndex.size === 0) return false;
+        const w = word.toLowerCase();
+        for (let l = 2; l <= Math.min(5, w.length); l++)
+          if (dangerPrefixIndex.has(w.slice(w.length - l))) return true;
+        return false;
+      }
+
+      // ══════════════════════════════
+      // MODE / BRUTAL TOGGLE
+      // ══════════════════════════════
+      function setMode(m) {
+        mode = m;
+        document
+          .getElementById("btnPrefix")
+          .classList.toggle("on", m === "prefix");
+        document
+          .getElementById("btnSuffix")
+          .classList.toggle("on", m === "suffix");
+        triggerSearch();
+      }
+      function toggleBrutal() {
+        brutal = !brutal;
+        document
+          .getElementById("btnBrutal")
+          .classList.toggle("brutal-on", brutal);
+        triggerSearch();
+      }
+      function clearQ() {
+        input.value = "";
+        lastResults = [];
+        document.getElementById("cnt").textContent = "";
+        showEmpty();
+        setStatus("idle");
+      }
+
+      // ══════════════════════════════
+      // SEARCH (debounced, sama seperti versi asli)
+      // ══════════════════════════════
+      function triggerSearch() {
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(async () => {
+          const q = input.value.trim();
+          const sm = brutal ? "brutal" : "normal";
+          const prioritasParam = [...activePrioritas].join(",");
+
+          if (!q) {
+            showEmpty();
+            lastResults = [];
+            return;
+          }
+
+          setStatus("loading");
+          try {
+            const res = await fetch(
+              `/search?q=${encodeURIComponent(q)}&mode=${mode}&searchMode=${sm}&prioritas=${encodeURIComponent(prioritasParam)}`,
+            );
+            const data = await res.json();
+            lastResults = data || [];
+            renderResult(lastResults);
+            setStatus("ok", lastResults.length);
+          } catch {
+            showEmpty("⚠️ Gagal memuat hasil.");
+            setStatus("err");
+          }
+        }, 300);
+      }
+      input.addEventListener("keyup", triggerSearch);
+
+      // ══════════════════════════════
+      // RENDER
+      // ══════════════════════════════
+      function highlightMatch(word, query, m) {
+        if (m === "prefix") {
+          return `<span class="hl">${esc(word.slice(0, query.length))}</span>${esc(word.slice(query.length))}`;
+        } else {
+          const start = word.length - query.length;
+          return `${esc(word.slice(0, start))}<span class="hl">${esc(word.slice(start))}</span>`;
+        }
+      }
+      function esc(s) {
+        return s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+      }
+
+      function renderResult(data) {
+        if (!data || !data.length) {
+          showEmpty("😕 Tidak ada hasil.");
+          return;
+        }
+
+        const q = input.value.trim().toLowerCase();
+        const m = mode;
+        const fragment = document.createDocumentFragment();
+
+        data.forEach((word, i) => {
+          const isPrioritas =
+            activePrioritas.size > 0 &&
+            [...activePrioritas].some((suf) => word.endsWith(suf));
+          const warn = !isPrioritas && isWarning(word);
+
+          const li = document.createElement("div");
+          li.className = "wi";
+          if (isPrioritas) li.classList.add("prio");
+          else if (warn) li.classList.add("warn");
+          else if (i === 0) li.classList.add("best");
+
+          const lbl = document.createElement("span");
+          lbl.className = "wt";
+          lbl.innerHTML = highlightMatch(word, q, m);
+          lbl.onclick = () => {
+            input.value = word;
+            input.focus();
+          };
+
+          const del = document.createElement("button");
+          del.className = "delbtn";
+          del.textContent = "✕";
+          del.title = `Hapus "${word}" dari kamus`;
+          del.onclick = (e) => {
+            e.stopPropagation();
+            deleteWord(word, li);
+          };
+
+          li.appendChild(lbl);
+          li.appendChild(del);
+          fragment.appendChild(li);
+        });
+
+        wordList.innerHTML = "";
+        wordList.appendChild(fragment);
+        document.getElementById("cnt").textContent = data.length + " kata";
+      }
+
+      function showEmpty(msg) {
+        const icon = msg ? "⚠️" : "🔍";
+        const text = msg || "Mulai ketik untuk mencari kata...";
+        wordList.innerHTML = `<div class="empty"><span class="ico">${icon}</span>${text}</div>`;
+        document.getElementById("cnt").textContent = "";
+      }
+
+      // ══════════════════════════════
+      // DELETE
+      // ══════════════════════════════
+      async function deleteWord(word, liEl) {
+        try {
+          const res = await fetch(`/delete-word?q=${encodeURIComponent(word)}`);
+          if (!res.ok) throw new Error();
+          liEl.style.transition =
+            "opacity .25s, transform .25s, max-height .3s";
+          liEl.style.opacity = "0";
+          liEl.style.transform = "translateX(12px)";
+          liEl.style.maxHeight = liEl.offsetHeight + "px";
+          setTimeout(() => {
+            liEl.style.maxHeight = "0";
+            liEl.style.padding = "0";
+            liEl.style.margin = "0";
+          }, 250);
+          setTimeout(() => liEl.remove(), 500);
+          lastResults = lastResults.filter((w) => w !== word);
+          showToast(`🗑️ "${word}" dihapus dari kamus`);
+        } catch {
+          showToast("⚠️ Gagal menghapus kata.");
+        }
+      }
+
+      // ══════════════════════════════
+      // TOAST
+      // ══════════════════════════════
+      function showToast(msg) {
+        const toast = document.getElementById("toast");
+        toast.textContent = msg;
+        toast.classList.add("show");
+        clearTimeout(toast._t);
+        toast._t = setTimeout(() => toast.classList.remove("show"), 2800);
+      }
+
+      // ══════════════════════════════
+      // STATUS BAR
+      // ══════════════════════════════
+      function setStatus(state, count) {
+        const dot = document.getElementById("dot");
+        const txt = document.getElementById("sTxt");
+        dot.className = "dot";
+        if (state === "loading") {
+          txt.textContent = "Mencari...";
+        } else if (state === "ok") {
+          dot.className = "dot live";
+          txt.textContent = count
+            ? `${count} kata ditemukan`
+            : "Tidak ada hasil";
+        } else if (state === "err") {
+          dot.className = "dot err";
+          txt.textContent = "Koneksi gagal";
+        } else {
+          txt.textContent = "Siap";
+        }
+      }
+
+      // ══════════════════════════════
+      // WARNING MODAL
+      // ══════════════════════════════
+      function renderWarnList() {
+        const container = document.getElementById("wList");
+        const filter = (
+          document.getElementById("wSearch").value || ""
+        ).toLowerCase();
+        const filtered = WARNING_WORDS.filter((s) => s.includes(filter));
+
+        document.getElementById("wCount").textContent = filter
+          ? `${filtered.length} dari ${WARNING_WORDS.length} akhiran`
+          : "";
+
+        container.innerHTML = "";
+        filtered.forEach((suffix) => {
+          const checked = activeWarnings.has(suffix);
+          const label = document.createElement("label");
+          label.className = "mitem" + (checked ? " checked" : "");
+          label.innerHTML = `
+      <input type="checkbox" ${checked ? "checked" : ""}>
+      <span class="msuffix">…${suffix}</span>
+      <span class="mhint">akhiran kata</span>`;
+          const cb = label.querySelector("input");
+          cb.addEventListener("change", () => {
+            if (cb.checked) {
+              activeWarnings.add(suffix);
+              label.classList.add("checked");
+              activePrioritas.add(suffix); // sync ke Prioritas
+            } else {
+              activeWarnings.delete(suffix);
+              label.classList.remove("checked");
+              activePrioritas.delete(suffix); // sync ke Prioritas
+            }
+            updateBadge();
+            updateBadgeP();
+            buildDangerIndex();
+            triggerSearch();
+          });
+          container.appendChild(label);
+        });
+      }
+
+      function updateBadge() {
+        const badge = document.getElementById("bdgW");
+        const btn = document.getElementById("btnBahaya");
+        const n = activeWarnings.size;
+        badge.textContent = n;
+        badge.classList.toggle("show", n > 0);
+        btn.classList.toggle("warn-on", n > 0);
+      }
+
+      function openWarningModal() {
+        document.getElementById("wSearch").value = "";
+        renderWarnList();
+        document.getElementById("modalWarn").classList.add("open");
+      }
+      function closeWarningModal(e) {
+        if (!e || e.target === document.getElementById("modalWarn"))
+          document.getElementById("modalWarn").classList.remove("open");
+      }
+      function selAllWarn(val) {
+        const filter = (
+          document.getElementById("wSearch").value || ""
+        ).toLowerCase();
+        const filtered = WARNING_WORDS.filter((s) => s.includes(filter));
+        filtered.forEach((s) => {
+          val ? activeWarnings.add(s) : activeWarnings.delete(s);
+          val ? activePrioritas.add(s) : activePrioritas.delete(s); // sync
+        });
+        renderWarnList();
+        updateBadge();
+        updateBadgeP();
+        buildDangerIndex();
+        triggerSearch();
+      }
+
+      // ══════════════════════════════
+      // PRIORITAS MODAL
+      // ══════════════════════════════
+      function renderPrioList() {
+        const container = document.getElementById("pList");
+        const filter = (
+          document.getElementById("pSearch").value || ""
+        ).toLowerCase();
+        const filtered = PRIORITAS_DATA.filter((d) =>
+          d.suffix.includes(filter),
+        );
+
+        document.getElementById("pCount").textContent = filter
+          ? `${filtered.length} dari ${PRIORITAS_DATA.length} akhiran`
+          : "";
+
+        container.innerHTML = "";
+        filtered.forEach(({ suffix, score }) => {
+          const checked = activePrioritas.has(suffix);
+
+          let scoreClass = "sl";
+          if (score >= 500) scoreClass = "sh";
+          else if (score >= 250) scoreClass = "sm";
+
+          const label = document.createElement("label");
+          label.className = "mitem pi" + (checked ? " checked" : "");
+          label.innerHTML = `
+      <input type="checkbox" ${checked ? "checked" : ""}>
+      <span class="msuffix">…${suffix}</span>
+      <span class="mscore ${scoreClass}">${score}</span>
+      <span class="mhint">akhiran prioritas</span>`;
+
+          const cb = label.querySelector("input");
+          cb.addEventListener("change", () => {
+            if (cb.checked) {
+              activePrioritas.add(suffix);
+              label.classList.add("checked");
+              if (WARNING_WORDS.includes(suffix)) activeWarnings.add(suffix); // sync
+            } else {
+              activePrioritas.delete(suffix);
+              label.classList.remove("checked");
+              if (WARNING_WORDS.includes(suffix)) activeWarnings.delete(suffix); // sync
+            }
+            updateBadgeP();
+            updateBadge();
+            buildDangerIndex();
+            triggerSearch();
+          });
+          container.appendChild(label);
+        });
+      }
+
+      function updateBadgeP() {
+        const badge = document.getElementById("bdgP");
+        const btn = document.getElementById("btnPrioritas");
+        const n = activePrioritas.size;
+        badge.textContent = n;
+        badge.classList.toggle("show", n > 0);
+        btn.classList.toggle("prio-on", n > 0);
+      }
+
+      function openPrioritasModal() {
+        if (PRIORITAS_DATA.length === 0) {
+          showToast("⏳ Masih memuat daftar akhiran...");
+          return;
+        }
+        document.getElementById("pSearch").value = "";
+        renderPrioList();
+        document.getElementById("modalPrio").classList.add("open");
+      }
+      function closePrioritasModal(e) {
+        if (!e || e.target === document.getElementById("modalPrio"))
+          document.getElementById("modalPrio").classList.remove("open");
+      }
+      function selAllPrio(val) {
+        const filter = (
+          document.getElementById("pSearch").value || ""
+        ).toLowerCase();
+        const filtered = PRIORITAS_DATA.filter((d) =>
+          d.suffix.includes(filter),
+        );
+        filtered.forEach((d) => {
+          val
+            ? activePrioritas.add(d.suffix)
+            : activePrioritas.delete(d.suffix);
+          if (WARNING_WORDS.includes(d.suffix)) {
+            val
+              ? activeWarnings.add(d.suffix)
+              : activeWarnings.delete(d.suffix);
+          }
+        });
+        renderPrioList();
+        updateBadgeP();
+        updateBadge();
+        buildDangerIndex();
+        triggerSearch();
+      }
+
+      // ══════════════════════════════
+      // MODAL OPEN/CLOSE WRAPPERS
+      // ══════════════════════════════
+      function openModal(type) {
+        type === "warn" ? openWarningModal() : openPrioritasModal();
+      }
+      function closeModal(type, e) {
+        type === "warn" ? closeWarningModal(e) : closePrioritasModal(e);
+      }
+
+      // ══════════════════════════════
+      // LOVE
+      // ══════════════════════════════
+      function showLove() {
+        document.getElementById("loveOverlay").classList.add("open");
+        const btn = document.getElementById("btnSpesial");
+        btn.classList.add("beating");
+        setTimeout(() => btn.classList.remove("beating"), 1800);
+        const hearts = ["💗", "💕", "💓", "🌸", "✨", "💝", "🩷", "💞"];
+        for (let i = 0; i < 18; i++)
+          setTimeout(
+            () => spawnHeart(hearts[Math.floor(Math.random() * hearts.length)]),
+            i * 80,
+          );
+      }
+      function spawnHeart(emoji) {
+        const el = document.createElement("span");
+        el.className = "hpart";
+        el.textContent = emoji;
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.bottom = "10vh";
+        el.style.fontSize = 1 + Math.random() * 1.5 + "rem";
+        el.style.animationDuration = 1.5 + Math.random() + "s";
+        document.body.appendChild(el);
+        el.addEventListener("animationend", () => el.remove());
+      }
+      function closeLove(e) {
+        if (!e || e.target === document.getElementById("loveOverlay"))
+          document.getElementById("loveOverlay").classList.remove("open");
+      }
+
+      // ══════════════════════════════
+      // SSE — Auto OCR (fitur penting, dipertahankan utuh)
+      // ══════════════════════════════
+      const evtSource = new EventSource("/sse");
+      let manualMode = false,
+        manualTimeout;
+
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Tab") {
+          e.preventDefault();
+          return;
+        }
+        manualMode = true;
+        clearTimeout(manualTimeout);
+        modeDot.style.background = "#f7c948";
+        modeLabel.textContent = "Mode manual (auto resume 2 detik)";
+        manualTimeout = setTimeout(() => {
+          manualMode = false;
+          modeDot.style.background = "#6ee7b7";
+          modeLabel.textContent = "Auto OCR aktif";
+        }, 2000);
+      });
+
+      evtSource.onmessage = (e) => {
+        if (manualMode) return;
+        const word = e.data.trim();
+        if (word && word !== input.value) {
+          input.value = word;
+          input.dispatchEvent(new Event("keyup"));
+          input.classList.add("flash");
+          setTimeout(() => input.classList.remove("flash"), 600);
+        }
+      };
+      evtSource.onerror = () => console.log("SSE disconnected, retrying...");
+
+      // ══════════════════════════════
+      // DRAG (titlebar)
+      // ══════════════════════════════
+      const widget = document.getElementById("widget");
+      const titlebar = document.getElementById("titlebar");
+      let drag = false,
+        ox = 0,
+        oy = 0;
+
+      titlebar.addEventListener("mousedown", (e) => {
+        drag = true;
+        ox = e.clientX - widget.offsetLeft;
+        oy = e.clientY - widget.offsetTop;
+        e.preventDefault();
+      });
+      document.addEventListener("mousemove", (e) => {
+        if (!drag) return;
+        let nx = e.clientX - ox;
+        let ny = e.clientY - oy;
+        nx = Math.max(0, Math.min(window.innerWidth - widget.offsetWidth, nx));
+        ny = Math.max(
+          0,
+          Math.min(window.innerHeight - widget.offsetHeight, ny),
+        );
+        widget.style.left = nx + "px";
+        widget.style.top = ny + "px";
+      });
+      document.addEventListener("mouseup", () => (drag = false));
+
+      // ══════════════════════════════
+      // RESIZE — kanan, bawah, dan diagonal (semua arah)
+      // ══════════════════════════════
+      function setupResize(handle, dirX, dirY) {
+        let resizing = false,
+          sx = 0,
+          sy = 0,
+          sw = 0,
+          sh = 0;
+        handle.addEventListener("mousedown", (e) => {
+          resizing = true;
+          sx = e.clientX;
+          sy = e.clientY;
+          sw = widget.offsetWidth;
+          sh = widget.offsetHeight;
+          e.preventDefault();
+          e.stopPropagation();
+        });
+        document.addEventListener("mousemove", (e) => {
+          if (!resizing) return;
+          if (dirX) {
+            const nw = Math.max(220, sw + (e.clientX - sx));
+            widget.style.width = nw + "px";
+          }
+          if (dirY) {
+            const nh = Math.max(240, sh + (e.clientY - sy));
+            widget.style.height = nh + "px";
+          }
+        });
+        document.addEventListener("mouseup", () => (resizing = false));
+      }
+      setupResize(document.querySelector(".rh-e"), true, false);
+      setupResize(document.querySelector(".rh-s"), false, true);
+      setupResize(document.querySelector(".rh-se"), true, true);
+
+      // ══════════════════════════════
+      // INIT
+      // ══════════════════════════════
+      input.focus();
+    </script>
+  </body>
+</html>

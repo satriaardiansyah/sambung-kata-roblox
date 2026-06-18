@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sambung Kata — Launcher</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0d0d14;
+        --surface: #15151f;
+        --border: rgba(255, 255, 255, 0.08);
+        --text: #e8e8f0;
+        --muted: #9494ab;
+        --accent: #f7c948;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        background: var(--bg);
+        font-family: "DM Sans", sans-serif;
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .panel {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px 30px;
+        width: 90%;
+        max-width: 320px;
+        text-align: center;
+        box-shadow: 0 8px 50px rgba(0, 0, 0, 0.5);
+      }
+      .panel h1 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .panel p {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 20px;
+        line-height: 1.6;
+      }
+
+      #openBtn {
+        width: 100%;
+        padding: 11px 0;
+        background: var(--accent);
+        color: #1a1305;
+        border: none;
+        border-radius: 10px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          filter 0.15s,
+          transform 0.1s;
+      }
+      #openBtn:hover {
+        filter: brightness(1.08);
+      }
+      #openBtn:active {
+        transform: scale(0.97);
+      }
+
+      #note {
+        margin-top: 12px;
+        font-size: 11px;
+        color: var(--muted);
+        min-height: 14px;
+      }
+      #note.err {
+        color: #ff7a7a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="panel">
+      <h1>📖 Sambung Kata</h1>
+      <p>
+        Klik tombol di bawah untuk membuka kamus dalam jendela kecil terpisah,
+        mengapung di atas aplikasi lain.
+      </p>
+      <button id="openBtn" onclick="openWidget()">Buka Widget</button>
+      <div id="note"></div>
+    </div>
+
+    <script>
+      // Ganti path ini jika widget.html disajikan di route lain pada server Go kamu
+      const WIDGET_URL = "widget2.html";
+
+      function openWidget() {
+        const note = document.getElementById("note");
+        note.classList.remove("err");
+        note.textContent = "";
+
+        const w = window.open(
+          "",
+          "sambungKataWidget",
+          "width=500,height=1000,resizable=yes,alwaysRaised=yes",
+        );
+
+        if (!w) {
+          note.classList.add("err");
+          note.textContent =
+            "⚠️ Popup diblokir browser. Izinkan popup untuk halaman ini.";
+          return;
+        }
+
+        w.location.href = WIDGET_URL;
+        w.focus();
+      }
+    </script>
+  </body>
+</html>

@@ -140,7 +140,7 @@ var killerSuffix = map[string]int{
 	"V": 60,
 	"ia": 60,
 	"ng": 60,
-	"ns": 600,
+	"ns": 300,
 	"andur" : 900,
 	"latah" : 900,
 	"lahad" : 900,
@@ -158,8 +158,13 @@ var killerSuffix = map[string]int{
 	"tusa": 900,
 	"eni": 300,
 	"ergot" : 900,
-	"bouea" : 900,
+	"ofoni" : 900,
 	"angsa" : 900,
+	"aksis": 900,
+	"meter" : 100,
+	"nder" : 100,
+	"ogram" : 100,
+	"ts" :  100,
 
 
 }
@@ -167,11 +172,10 @@ var killerSuffix = map[string]int{
 
 
 var killerOpener = map[string]int{
-    "nggaro":    0,
+	"bouea": 0,
+	"ofonik": 0,
+	"aksismus": 0,
 	"ansori": 0,
-	"inggih":   0,
-    "genikulum": 0,
-    "logistik":  0,
     "iranika":   0,
     "iranga":    0,
     "garpuan":   0,
@@ -181,7 +185,21 @@ var killerOpener = map[string]int{
 	"gatotkaca": 0,
 	"tikaman": 0,
 	"faunasia": 0,
+	"faunal": 0,
 	"tisisme": 0,
+	"andurabian": 0, 
+	"angsang": 0,
+	 "angsar": 0,
+	 "angsana": 0,
+	 "tonikum,": 0,
+	 "ikadabuki": 0,
+	 "alarima": 0,
+	 "arongan": 0,
+	 "tipuse": 0,
+	 "litikafobia": 0,
+	 "riksaan": 0,
+	 "nggore": 0,
+	 "ratifikasi": 0,
 }
 
 var warningWords = map[string]int{
@@ -718,6 +736,13 @@ func main() {
 	// halaman kedua
 	http.HandleFunc("/page2", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./templates/index.html")
+	})
+
+	http.HandleFunc("/launcher.html", func(w http.ResponseWriter, r *http.Request) {
+    http.ServeFile(w, r, "./templates/launcher.html")
+	})
+	http.HandleFunc("/widget2.html", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./templates/widget2.html")
 	})
 
 	// API
