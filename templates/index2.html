@@ -852,12 +852,46 @@
           margin: 0 20px;
         }
       }
+
+      .toggle-pill {
+        display: flex;
+        background: var(--surface2);
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius);
+        padding: 3px;
+        gap: 3px;
+        flex-shrink: 0;
+      }
+
+      .toggle-pill input[type="radio"] {
+        display: none;
+      }
+
+      .toggle-pill label {
+        padding: 6px 14px;
+        border-radius: 10px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--muted);
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          color 0.2s;
+        white-space: nowrap;
+        user-select: none;
+      }
+
+      .toggle-pill input[type="radio"]:checked + label {
+        background: var(--accent);
+        color: #0d0d14;
+        font-weight: 700;
+      }
     </style>
   </head>
 
   <body>
     <div class="card">
-      <div class="header">
+      <!-- <div class="header">
         <div class="header-left">
           <h1>Sambung Kata By Yabi😆</h1>
           <p>
@@ -865,7 +899,7 @@
           </p>
         </div>
         <span class="badge">Beta</span>
-      </div>
+      </div> -->
 
       <div class="input-wrap">
         <svg
@@ -900,16 +934,19 @@
           <option value="suffix">🔤 Akhiran</option>
         </select>
 
-        <input type="radio" id="normal" name="searchMode" value="normal" />
-        <label for="normal">Normal</label>
-        <input
-          type="radio"
-          id="brutal"
-          name="searchMode"
-          value="brutal"
-          checked
-        />
-        <label for="brutal">Brutal</label>
+        <!-- Ganti radio button dengan toggle pill -->
+        <div class="toggle-pill">
+          <input type="radio" id="normal" name="searchMode" value="normal" />
+          <label for="normal">Normal</label>
+          <input
+            type="radio"
+            id="brutal"
+            name="searchMode"
+            value="brutal"
+            checked
+          />
+          <label for="brutal">Brutal</label>
+        </div>
 
         <button
           class="btn btn-danger"
@@ -927,9 +964,9 @@
           ⭐ Prioritas
           <span class="badge-count-p" id="badgeCountP">0</span>
         </button>
-        <button class="btn btn-love" id="loveBtn" onclick="showLove()">
+        <!-- <button class="btn btn-love" id="loveBtn" onclick="showLove()">
           <span class="heart-icon">💖</span> Spesial
-        </button>
+        </button> -->
       </div>
 
       <div class="divider"></div>
@@ -1398,13 +1435,37 @@
       let PRIORITAS_DATA = []; // [{ suffix, score }, ...]
       const activePrioritas = new Set();
 
+      const DEFAULT_ACTIVE_WORDS = ["virus", "angsa"]; // ← tambah kata di sini
+
       async function loadPrioritasWords() {
         try {
           const res = await fetch("/killer-suffix");
-          PRIORITAS_DATA = await res.json(); // [{ suffix: "nggar", score: 999 }, ...]
+          PRIORITAS_DATA = await res.json();
+
+          // Setelah data loaded, auto-check suffix dari kata default
+          applyDefaultActives();
         } catch {
           console.error("Gagal load killer-suffix dari BE");
         }
+      }
+
+      function applyDefaultActives() {
+        // Ambil akhiran dari kata-kata default
+        // Cocokkan dengan suffix yang ada di PRIORITAS_DATA
+        DEFAULT_ACTIVE_WORDS.forEach((word) => {
+          PRIORITAS_DATA.forEach(({ suffix }) => {
+            if (word.endsWith(suffix)) {
+              activePrioritas.add(suffix);
+              if (WARNING_WORDS.includes(suffix)) {
+                activeWarnings.add(suffix);
+              }
+            }
+          });
+        });
+
+        updateBadge();
+        updateBadgeP();
+        buildDangerIndex();
       }
 
       function renderPrioritasList() {

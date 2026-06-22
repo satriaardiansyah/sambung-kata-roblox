@@ -146,7 +146,7 @@ var killerSuffix = map[string]int{
 	"lahad" : 900,
 	"tonik" : 900,
 	"tipus" : 900,
-	"virus" : 900,
+	"virus" : 1000,
 	"arong" : 900,
 	"hapak" : 900,
 	"ancar" : 900,
@@ -159,12 +159,16 @@ var killerSuffix = map[string]int{
 	"eni": 300,
 	"ergot" : 900,
 	"ofoni" : 900,
-	"angsa" : 900,
+	"angsa" : 1000,
 	"aksis": 900,
 	"meter" : 100,
 	"nder" : 100,
 	"ogram" : 100,
 	"ts" :  100,
+	"anser": 900,
+	"elli": 900,
+	"antem": 900,
+	"ritis": 900,
 
 
 }
