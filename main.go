@@ -22,160 +22,296 @@ var deletedWords []string
 var deletedMu    sync.Mutex
 const deletedFile = "deleted_words.json"
 
-var killerSuffix = map[string]int{
-	"nggar": 500,
-	"nggor": 500,
-	"logis": 400,
-	"stele": 999,
-	"duksi": 580,
-	"fauna": 580,
-	"mboli": 580,
-	"gatot": 580,
-	"ahang": 580,
-	"genik": 590,
-	"riksa": 550,
-	"iran": 550,
-	"abaka": 999,
-	"ngudo": 580,
-	"sosro": 580,
-	"garot": 580,
-	"litik": 550,
-	"olang": 580,
-	"amang": 550,
-	"trium": 550,
-	"inkan": 400,
-	"yala": 550,
-	"aesi": 550,
-	"hohon": 550,
-	"isian": 550,
-	"arkil": 500,
-	"oleac": 500,
-	"ensil": 500,
-	"tanai": 500,
-	"olong": 500,
-	"hiran": 500,
-	"ratif": 450,
-	"nusuk": 450,
-	"jijik": 450,
-	"manat": 450,
-	"meula": 450,
-	"kolam": 450,
-	"ganas": 450,
-	"garpu": 450,
-	"umang": 450,
-	"abraka": 400,
-	"tikam": 400,
-	"taat": 400,
-	"fault": 400,
-	"burma": 400,
-	"ruang": 400,
-	"iat": 350,
-	"tiol": 350,
-	"ilok": 320,
-	"lipe": 320,
-	"ngeh": 300,
-	"wati": 300,
-	"riko": 300,
-	"apet": 200,
-	"inggu": 300,
-	"alah": 300,
-	"ngoh": 300,
-	"anki": 300,
-	"unc": 300,
-	"stis": 300,
-	"kanya": 300,
-	"angus": 300,
-	"ksa": 290,
-	"nget": 270,
-	"losa": 270,
-	"eusi": 270,
-	"ngih": 270,
-	"awak": 270,
-	"atat": 270,
-	"arian": 270,
-	"inggi": 460,
-	"sih": 260,
-	"hih": 260,
-	"meh": 260,
-	"owa": 260,
-	"esi": 260,
-	"huh": 250,
-	"dot": 250,
-	"pei": 250,
-	"bou": 250,
-	"pso": 250,
-	"anah": 250,
-	"asel": 250,
-	"iya": 220,
-	"yab": 200,
-	"iki": 200,
-	"ipe": 200,
-	"voi": 200,
-	"coe": 200,
-	"ml": 260,
-	"sm": 210,
-	"iu": 200,
-	"ez": 200,
-	"ou": 200,
-	"tl": 200,
-	"moi": 200,
-	"ks": 180,
-	"gy": 170,
-	"ox": 150,
-	"oo": 140,
-	"cy": 130,
-	"ex": 120,
-	"eo": 120,
-	"eq": 120,
-	"oi": 120,
-	"pp": 100,
-	"eh": 100,
-	"oh": 100,
-	"x": 60,
-	"z": 60,
-	"q": 60,
-	"w": 60,
-	"c": 60,
-	"F": 60,
-	"V": 60,
-	"ia": 60,
-	"ng": 60,
-	"ns": 300,
-	"andur" : 800,
-	"latah" : 800,
-	"lahad" : 800,
-	"tonik" : 800,
-	"tipus" : 800,
-	"virus" : 1000,
-	"arong" : 800,
-	"hapak" : 800,
-	"ancar" : 800,
-	"ansor" : 800,
-	"entil" : 950,
-	"tisis" : 800,
-	"alari": 950,
-	"anasi": 950,
-	"tusa": 800,
-	"eni": 300,
-	"ergot" : 800,
-	"ofoni" : 800,
-	"angsa" : 1000,
-	"aksis": 1000,
-	"meter" : 100,
-	"ogram" : 100,
-	"ts" :  100,
-	"anser": 900,
-	"elli": 800,
-	"antem": 800,
-	"ritis": 800,
-	"rodok": 900,
-	"likan": 800,
-	"ungsi": 800,
-	"akai": 800,
-	"kimah": 800,
-	"epik": 300,
-	"matis": 800,
+// =============================================
+// SUGGESTED SUFFIX LOGGER
+// Menyimpan query yang berpotensi jadi "killerSuffix" baru:
+// - panjang query > 3
+// - sebagai PREFIX hasilnya cuma 1-3 kata (susah disambung lawan)
+// - sebagai SUFFIX hasilnya >= 3 kata (banyak korban yang bisa kena)
+// =============================================
+var suggestedSuffixes = map[string]SuggestedSuffixEntry{}
+var suggestedMu sync.Mutex
+const suggestedFile = "suggested_suffixes.json"
 
+type SuggestedSuffixEntry struct {
+	Query        string   `json:"query"`
+	PrefixCount  int      `json:"prefix_count"`
+	PrefixWords  []string `json:"prefix_words"`
+	SuffixCount  int      `json:"suffix_count"`
+	SuffixWords  []string `json:"suffix_words"`
+	Hits         int      `json:"hits"` // berapa kali query ini muncul lagi
+}
+
+func loadSuggestedSuffixes() {
+	data, err := os.ReadFile(suggestedFile)
+	if err != nil {
+		return
+	}
+	json.Unmarshal(data, &suggestedSuffixes)
+	fmt.Printf("Suggested suffixes dimuat: %d entri\n", len(suggestedSuffixes))
+}
+
+func saveSuggestedSuffixes() {
+	data, _ := json.MarshalIndent(suggestedSuffixes, "", "  ")
+	os.WriteFile(suggestedFile, data, 0644)
+}
+
+// maybeLogSuggestedSuffix mengecek kriteria dan menyimpan kalau cocok.
+// Dipanggil dari searchHandler, pakai data words yang sudah ada (tanpa query ulang berat).
+func maybeLogSuggestedSuffix(query string) {
+	if len(query) <= 3 {
+		return
+	}
+
+	// Hitung match sebagai prefix (awalan query)
+	var prefixWords []string
+	for _, w := range words {
+		if strings.HasPrefix(w, query) {
+			prefixWords = append(prefixWords, w)
+		}
+	}
+
+	// Kriteria 1: awalan sedikit (1-3 kata)
+	if len(prefixWords) < 1 || len(prefixWords) > 3 {
+		return
+	}
+
+	// Hitung match sebagai suffix (akhiran query)
+	var suffixWords []string
+	for _, w := range words {
+		if strings.HasSuffix(w, query) {
+			suffixWords = append(suffixWords, w)
+		}
+	}
+
+	// Kriteria 2: akhiran banyak (>= 3 kata)
+	if len(suffixWords) < 2 {
+		return
+	}
+
+	suggestedMu.Lock()
+	defer suggestedMu.Unlock()
+
+	if existing, ok := suggestedSuffixes[query]; ok {
+		existing.Hits++
+		suggestedSuffixes[query] = existing
+	} else {
+		suggestedSuffixes[query] = SuggestedSuffixEntry{
+			Query:       query,
+			PrefixCount: len(prefixWords),
+			PrefixWords: prefixWords,
+			SuffixCount: len(suffixWords),
+			SuffixWords: suffixWords,
+			Hits:        1,
+		}
+	}
+	saveSuggestedSuffixes()
+}
+
+func suggestedSuffixHandler(w http.ResponseWriter, r *http.Request) {
+	suggestedMu.Lock()
+	defer suggestedMu.Unlock()
+
+	items := make([]SuggestedSuffixEntry, 0, len(suggestedSuffixes))
+	for _, v := range suggestedSuffixes {
+		items = append(items, v)
+	}
+
+	// Urutkan: paling sering muncul (hits) di atas, lalu suffix_count terbanyak
+	sort.Slice(items, func(i, j int) bool {
+		if items[i].Hits != items[j].Hits {
+			return items[i].Hits > items[j].Hits
+		}
+		return items[i].SuffixCount > items[j].SuffixCount
+	})
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(items)
+}
+
+func deleteSuggestedSuffixHandler(w http.ResponseWriter, r *http.Request) {
+	query := strings.ToLower(strings.TrimSpace(r.URL.Query().Get("q")))
+	if query == "" {
+		http.Error(w, "query kosong", 400)
+		return
+	}
+
+	suggestedMu.Lock()
+	defer suggestedMu.Unlock()
+
+	if _, ok := suggestedSuffixes[query]; !ok {
+		http.Error(w, "entri tidak ditemukan", 404)
+		return
+	}
+	delete(suggestedSuffixes, query)
+	saveSuggestedSuffixes()
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(map[string]any{"status": "deleted", "query": query})
+}
+
+var killerSuffix = map[string]int{
+	// 5 Karakter
+	"angsa":  1000,
+	"aksis":  1000,
+	"ering":  1000,
+	"virus":  500,
+	"abaka":  999,
+	"stele":  999,
+	"alari":  950,
+	"anasi":  950,
+	"entil":  950,
+	"anser":  900,
+	"rodok":  1000,
+	"ancar":  800,
+	"andur":  800,
+	"ansor":  800,
+	"antem":  800,
+	"arong":  800,
+	"elli":   800,
+	"ergot":  800,
+	"hapak":  800,
+	"lahad":  800,
+	"latah":  800,
+	"ofoni":  800,
+	"ritis":  800,
+	"tipus":  900,
+	"tisis":  800,
+	"tonik":  800,
+	"ungsi":  800,
+	"akai":   800,
+	"kimah":  800,
+	"matis":  800,
+	"likan":  700,
+	"genik":  300,
+	"ahang":  580,
+	"duksi":  300,
+	"fauna":  580,
+	"garot":  580,
+	"gatot":  580,
+	"mboli":  580,
+	"ngudo":  580,
+	"olang":  580,
+	"sosro":  580,
+	"amang":  550,
+	"litik":  550,
+	"riksa":  550,
+	"trium":  550,
+	"yala":   550,
+	"aesi":   550,
+	"hohon":  550,
+	"isian":  550,
+	"nggar":  300,
+	"nggor":  900,
+	"arkil":  800,
+	"oleac":  800,
+	"ensil":  800,
+	"tanai":  800,
+	"olong":  800,
+	"hiran":  500,
+	"inggi":  460,
+	"ganas":  450,
+	"garpu":  450,
+	"jijik":  450,
+	"kolam":  450,
+	"manat":  450,
+	"meula":  450,
+	"nusuk":  450,
+	"ratif":  450,
+	"umang":  450,
+	"logis":  300,
+	"burma":  400,
+	"fault":  400,
+	"ruang":  400,
+	"taat":   400,
+	"tikam":  400,
+	"angus":  800,
+	"kanya":  300,
+	"inggu":  300,
+	"arian":  270,
+	"losa":   270,
+	"nget":   270,
+	"eusi":   270,
+	"ngih":   270,
+	"awak":   270,
+	"atat":   300,
+	"meter":  100,
+	"ogram":  100,
+
+	// 4 Karakter
+	"tusa":  800,
+	"inkan": 400,
+	"iat":   350,
+	"tiol":  350,
+	"ilok":  320,
+	"lipe":  320,
+	"epik":  300,
+	"alah":  500,
+	"anki":  300,
+	"ngeh":  300,
+	"ngoh":  300,
+	"stis":  300,
+	"wati":  300,
+	"riko":  300,
+	"sih":   260,
+	"hih":   260,
+	"meh":   260,
+	"owa":   260,
+	"esi":   260,
+	"anah":  250,
+	"asel":  250,
+	"bou":   250,
+	"dot":   250,
+	"huh":   250,
+	"pei":   250,
+	"pso":   250,
+	"apet":  200,
+
+	// 3 Karakter
+	"eni":   300,
+	"ksa":   290,
+	"iran":  550, // 4 huruf sebenarnya, tapi "iran" di data awal tertulis 4 huruf. Jika typo dari 3 huruf diposisikan di sini.
+	"iya":   220,
+	"moi":   200,
+	"coe":   200,
+	"iki":   200,
+	"ipe":   200,
+	"voi":   200,
+	"yab":   200,
+
+	// 2 Karakter
+	"ns":    300,
+	"ml":    260,
+	"sm":    210,
+	"ez":    200,
+	"iu":    200,
+	"ou":    200,
+	"tl":    200,
+	"ks":    180,
+	"gy":    170,
+	"ox":    150,
+	"oo":    140,
+	"cy":    130,
+	"eo":    120,
+	"eq":    120,
+	"ex":    120,
+	"oi":    120,
+	"ts":    100,
+	"eh":    100,
+	"oh":    100,
+	"pp":    100,
+	"ia":    60,
+	"ng":    60,
+
+	// 1 Karakter
+	"F":     60,
+	"V":     60,
+	"c":     60,
+	"q":     60,
+	"w":     60,
+	"x":     60,
+	"z":     60,
+	"awang": 800,
 }
 
 
@@ -354,6 +490,9 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(result)
+
+	// Cek & simpan kandidat suffix baru (non-blocking biar ga ganggu response)
+	go maybeLogSuggestedSuffix(query)
 }
 
 func dangerWordsHandler(w http.ResponseWriter, r *http.Request) {
@@ -732,6 +871,7 @@ func main() {
     // 1. Load data dulu
     loadKamus()
 	loadDeleted() 
+	loadSuggestedSuffixes()
     buildIndex()
 	buildSmartIndex()
 
@@ -764,6 +904,8 @@ func main() {
 	http.HandleFunc("/delete-word", deleteWordHandler)  
 	http.HandleFunc("/danger-words", dangerWordsHandler)
 	http.HandleFunc("/killer-suffix", killerSuffixHandler)
+	http.HandleFunc("/suggested-suffix", suggestedSuffixHandler)
+	http.HandleFunc("/delete-suggested-suffix", deleteSuggestedSuffixHandler)
 
     // 3. Baru listen
     port := os.Getenv("PORT")
