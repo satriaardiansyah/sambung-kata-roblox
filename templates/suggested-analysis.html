@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analisis Suggested Suffix — Sambung Kata</title>
+    <style>
+      :root {
+        --bg: #0f1115;
+        --panel: #171a21;
+        --panel-2: #1e222b;
+        --border: #2a2f3a;
+        --text: #e7e9ee;
+        --muted: #8a90a0;
+        --accent: #5fd0a7;
+        --accent-2: #f2b84b;
+        --danger: #e2685f;
+        --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      header {
+        padding: 20px 28px 16px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      header h1 {
+        font-size: 17px;
+        margin: 0;
+        font-weight: 650;
+        letter-spacing: 0.2px;
+      }
+      header h1 .tag {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--accent);
+        border: 1px solid #2b4a3d;
+        background: #12241d;
+        padding: 2px 7px;
+        border-radius: 5px;
+        margin-left: 10px;
+      }
+      header .sub {
+        color: var(--muted);
+        font-size: 12.5px;
+      }
+
+      #status {
+        padding: 10px 28px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+      }
+      #status.err {
+        color: var(--danger);
+      }
+
+      #dropzone {
+        margin: 28px;
+        padding: 40px;
+        border: 1.5px dashed var(--border);
+        border-radius: 10px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 13px;
+        cursor: pointer;
+        transition:
+          border-color 0.15s,
+          background 0.15s;
+      }
+      #dropzone:hover,
+      #dropzone.drag {
+        border-color: var(--accent);
+        background: #12241d33;
+      }
+      #dropzone input {
+        display: none;
+      }
+
+      main {
+        padding: 20px 28px 60px;
+        display: none;
+      }
+      main.show {
+        display: block;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 12px;
+        margin-bottom: 22px;
+      }
+      .stat {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 14px 16px;
+      }
+      .stat .n {
+        font-family: var(--mono);
+        font-size: 22px;
+        font-weight: 600;
+      }
+      .stat .l {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .stat.accent .n {
+        color: var(--accent);
+      }
+      .stat.warn .n {
+        color: var(--accent-2);
+      }
+
+      .grid2 {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+      @media (max-width: 900px) {
+        .grid2 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 16px 18px;
+      }
+      .panel h2 {
+        font-size: 12.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        margin: 0 0 12px;
+      }
+
+      .bar-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 6px;
+        font-size: 12px;
+      }
+      .bar-row .lbl {
+        width: 110px;
+        flex-shrink: 0;
+        font-family: var(--mono);
+        color: var(--text);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .bar-row .track {
+        flex: 1;
+        background: var(--panel-2);
+        border-radius: 4px;
+        height: 14px;
+        overflow: hidden;
+      }
+      .bar-row .fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), #3fae86);
+        border-radius: 4px;
+      }
+      .bar-row .val {
+        width: 34px;
+        text-align: right;
+        font-family: var(--mono);
+        color: var(--muted);
+        flex-shrink: 0;
+      }
+
+      .hist {
+        display: flex;
+        align-items: flex-end;
+        gap: 6px;
+        height: 120px;
+      }
+      .hist .col {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      .hist .col .b {
+        width: 100%;
+        background: var(--accent-2);
+        border-radius: 3px 3px 0 0;
+        opacity: 0.85;
+      }
+      .hist .col .cap {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 5px;
+        text-align: center;
+      }
+
+      .controls {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 14px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      #search {
+        flex: 1;
+        min-width: 220px;
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 9px 12px;
+        border-radius: 8px;
+        font-size: 13px;
+        outline: none;
+      }
+      #search:focus {
+        border-color: var(--accent);
+      }
+      select,
+      .btn {
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 9px 12px;
+        border-radius: 8px;
+        font-size: 12.5px;
+        cursor: pointer;
+      }
+      .btn:hover {
+        border-color: var(--accent);
+      }
+      .btn.active {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      #count {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+      thead th {
+        text-align: left;
+        padding: 9px 10px;
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        border-bottom: 1px solid var(--border);
+        cursor: pointer;
+        user-select: none;
+        white-space: nowrap;
+      }
+      thead th:hover {
+        color: var(--text);
+      }
+      thead th.sorted {
+        color: var(--accent);
+      }
+      thead th .arrow {
+        margin-left: 4px;
+        font-size: 10px;
+      }
+      tbody tr {
+        border-bottom: 1px solid #1c1f28;
+        cursor: pointer;
+      }
+      tbody tr:hover {
+        background: #161920;
+      }
+      tbody td {
+        padding: 9px 10px;
+        vertical-align: top;
+      }
+      td.q {
+        font-family: var(--mono);
+        font-weight: 600;
+        color: var(--text);
+      }
+      td.num {
+        font-family: var(--mono);
+        text-align: right;
+        color: var(--muted);
+      }
+      td.num.hi {
+        color: var(--accent);
+      }
+      tr.detail-row td {
+        background: #12141a;
+        padding: 14px 16px;
+      }
+      tr.detail-row {
+        display: none;
+      }
+      tr.detail-row.open {
+        display: table-row;
+      }
+      .word-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 6px;
+      }
+      .word-chip {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        padding: 2px 8px;
+        border-radius: 12px;
+        color: var(--text);
+      }
+      .detail-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--muted);
+        margin-top: 10px;
+      }
+      .detail-label:first-child {
+        margin-top: 0;
+      }
+
+      #pager {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 14px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      #pager .btn {
+        padding: 6px 12px;
+      }
+      #pager .btn:disabled {
+        opacity: 0.35;
+        cursor: default;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Suggested Suffix — Analisis <span class="tag">sambung kata</span></h1>
+      <div class="sub">Data kandidat killer suffix hasil scan kamus</div>
+    </header>
+
+    <div id="status">
+      Memuat data dari <code>/api/suggested-suffix-data</code>…
+    </div>
+
+    <div id="dropzone">
+      Tidak bisa mengambil data otomatis.<br />
+      Klik untuk pilih file <b>suggested_suffixes.json</b>, atau drag &amp; drop
+      di sini.
+      <input type="file" id="fileInput" accept="application/json" />
+    </div>
+
+    <main id="main">
+      <div class="stats" id="stats"></div>
+
+      <div class="grid2">
+        <div class="panel">
+          <h2>Top 12 berdasarkan hits</h2>
+          <div id="topHits"></div>
+        </div>
+        <div class="panel">
+          <h2>Distribusi suffix_count</h2>
+          <div class="hist" id="hist"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Semua kandidat</h2>
+        <div class="controls">
+          <input
+            id="search"
+            type="text"
+            placeholder="Cari query, prefix_word, atau suffix_word…"
+          />
+          <select id="pageSize">
+            <option value="25">25 / halaman</option>
+            <option value="50" selected>50 / halaman</option>
+            <option value="100">100 / halaman</option>
+            <option value="999999">Semua</option>
+          </select>
+          <span id="count"></span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th data-key="query">Query <span class="arrow"></span></th>
+              <th data-key="hits" style="text-align: right">
+                Hits <span class="arrow"></span>
+              </th>
+              <th data-key="prefix_count" style="text-align: right">
+                Prefix # <span class="arrow"></span>
+              </th>
+              <th data-key="suffix_count" style="text-align: right">
+                Suffix # <span class="arrow"></span>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+        <div id="pager">
+          <span id="pageInfo"></span>
+          <div>
+            <button class="btn" id="prevBtn">← Sebelumnya</button>
+            <button class="btn" id="nextBtn">Berikutnya →</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      let raw = {}; // original object keyed by query
+      let rows = []; // array form
+      let filtered = [];
+      let sortKey = "hits";
+      let sortDir = -1; // -1 desc, 1 asc
+      let page = 0;
+      let openKey = null;
+
+      const statusEl = document.getElementById("status");
+      const dropzone = document.getElementById("dropzone");
+      const mainEl = document.getElementById("main");
+
+      function toRows(obj) {
+        return Object.keys(obj).map((k) => {
+          const v = obj[k];
+          return {
+            query: v.query || k,
+            prefix_count: v.prefix_count || 0,
+            prefix_words: v.prefix_words || [],
+            suffix_count: v.suffix_count || 0,
+            suffix_words: v.suffix_words || [],
+            hits: v.hits || 0,
+          };
+        });
+      }
+
+      function init(data) {
+        raw = data;
+        rows = toRows(data);
+        statusEl.style.display = "none";
+        dropzone.style.display = "none";
+        mainEl.classList.add("show");
+        renderStats();
+        renderTopHits();
+        renderHist();
+        applyFilterSort();
+      }
+
+      function renderStats() {
+        const n = rows.length;
+        const totalHits = rows.reduce((a, r) => a + r.hits, 0);
+        const totalSuffix = rows.reduce((a, r) => a + r.suffix_count, 0);
+        const avgSuffix = n ? totalSuffix / n : 0;
+        const zeroHit = rows.filter((r) => r.hits <= 1).length;
+        const top = rows.slice().sort((a, b) => b.hits - a.hits)[0];
+
+        const stats = [
+          { n: n.toLocaleString("id-ID"), l: "Total kandidat", cls: "" },
+          {
+            n: totalHits.toLocaleString("id-ID"),
+            l: "Total hits",
+            cls: "accent",
+          },
+          { n: avgSuffix.toFixed(1), l: "Rata² suffix_count", cls: "" },
+          {
+            n: zeroHit.toLocaleString("id-ID"),
+            l: "Hits ≤ 1 (jarang dipakai)",
+            cls: "warn",
+          },
+          {
+            n: top ? top.query : "-",
+            l: top ? `Hits tertinggi (${top.hits})` : "Hits tertinggi",
+            cls: "accent",
+          },
+        ];
+        document.getElementById("stats").innerHTML = stats
+          .map(
+            (s) => `
+    <div class="stat ${s.cls}"><div class="n">${s.n}</div><div class="l">${s.l}</div></div>
+  `,
+          )
+          .join("");
+      }
+
+      function renderTopHits() {
+        const top = rows
+          .slice()
+          .sort((a, b) => b.hits - a.hits)
+          .slice(0, 12);
+        const max = top.length ? top[0].hits : 1;
+        document.getElementById("topHits").innerHTML = top
+          .map(
+            (r) => `
+    <div class="bar-row">
+      <div class="lbl">${escapeHtml(r.query)}</div>
+      <div class="track"><div class="fill" style="width:${((r.hits / max) * 100).toFixed(1)}%"></div></div>
+      <div class="val">${r.hits}</div>
+    </div>
+  `,
+          )
+          .join("");
+      }
+
+      function renderHist() {
+        const buckets = [
+          { label: "1-5", min: 1, max: 5 },
+          { label: "6-15", min: 6, max: 15 },
+          { label: "16-30", min: 16, max: 30 },
+          { label: "31-60", min: 31, max: 60 },
+          { label: "61-120", min: 61, max: 120 },
+          { label: "121+", min: 121, max: Infinity },
+        ];
+        const counts = buckets.map(
+          (b) =>
+            rows.filter(
+              (r) => r.suffix_count >= b.min && r.suffix_count <= b.max,
+            ).length,
+        );
+        const max = Math.max(...counts, 1);
+        document.getElementById("hist").innerHTML = buckets
+          .map(
+            (b, i) => `
+    <div class="col">
+      <div class="b" style="height:${((counts[i] / max) * 100).toFixed(1)}px"></div>
+      <div class="cap">${b.label}<br>${counts[i]}</div>
+    </div>
+  `,
+          )
+          .join("");
+      }
+
+      function applyFilterSort() {
+        const q = document.getElementById("search").value.trim().toLowerCase();
+        filtered = !q
+          ? rows.slice()
+          : rows.filter(
+              (r) =>
+                r.query.toLowerCase().includes(q) ||
+                r.prefix_words.some((w) => w.toLowerCase().includes(q)) ||
+                r.suffix_words.some((w) => w.toLowerCase().includes(q)),
+            );
+        filtered.sort((a, b) => {
+          let av = a[sortKey],
+            bv = b[sortKey];
+          if (typeof av === "string") return sortDir * av.localeCompare(bv);
+          return sortDir * (av - bv);
+        });
+        page = 0;
+        renderTable();
+      }
+
+      function renderTable() {
+        const pageSize = parseInt(
+          document.getElementById("pageSize").value,
+          10,
+        );
+        const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+        page = Math.min(page, totalPages - 1);
+        const start = page * pageSize;
+        const pageRows = filtered.slice(start, start + pageSize);
+
+        document.getElementById("count").textContent =
+          `${filtered.length.toLocaleString("id-ID")} hasil`;
+        document.getElementById("pageInfo").textContent =
+          `Halaman ${page + 1} dari ${totalPages}`;
+        document.getElementById("prevBtn").disabled = page <= 0;
+        document.getElementById("nextBtn").disabled = page >= totalPages - 1;
+
+        document.querySelectorAll("thead th[data-key]").forEach((th) => {
+          th.classList.toggle("sorted", th.dataset.key === sortKey);
+          th.querySelector(".arrow").textContent =
+            th.dataset.key === sortKey ? (sortDir === 1 ? "▲" : "▼") : "";
+        });
+
+        const tbody = document.getElementById("tbody");
+        tbody.innerHTML = "";
+        pageRows.forEach((r) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+      <td class="q">${escapeHtml(r.query)}</td>
+      <td class="num ${r.hits >= 10 ? "hi" : ""}">${r.hits}</td>
+      <td class="num">${r.prefix_count}</td>
+      <td class="num">${r.suffix_count}</td>
+    `;
+          tr.addEventListener("click", () => toggleDetail(r.query));
+          tbody.appendChild(tr);
+
+          const dr = document.createElement("tr");
+          dr.className = "detail-row" + (openKey === r.query ? " open" : "");
+          dr.dataset.key = r.query;
+          dr.innerHTML = `
+      <td colspan="4">
+        <div class="detail-label">Prefix words (${r.prefix_count})</div>
+        <div class="word-list">${r.prefix_words.map((w) => `<span class="word-chip">${escapeHtml(w)}</span>`).join("")}</div>
+        <div class="detail-label">Suffix words (${r.suffix_count})</div>
+        <div class="word-list">${r.suffix_words.map((w) => `<span class="word-chip">${escapeHtml(w)}</span>`).join("")}</div>
+      </td>
+    `;
+          tbody.appendChild(dr);
+        });
+      }
+
+      function toggleDetail(key) {
+        openKey = openKey === key ? null : key;
+        document.querySelectorAll("tr.detail-row").forEach((tr) => {
+          tr.classList.toggle("open", tr.dataset.key === openKey);
+        });
+      }
+
+      function escapeHtml(s) {
+        return String(s).replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      }
+
+      document.querySelectorAll("thead th[data-key]").forEach((th) => {
+        th.addEventListener("click", () => {
+          const key = th.dataset.key;
+          if (sortKey === key) sortDir *= -1;
+          else {
+            sortKey = key;
+            sortDir = -1;
+          }
+          applyFilterSort();
+        });
+      });
+      document
+        .getElementById("search")
+        .addEventListener("input", applyFilterSort);
+      document.getElementById("pageSize").addEventListener("change", () => {
+        page = 0;
+        renderTable();
+      });
+      document.getElementById("prevBtn").addEventListener("click", () => {
+        page--;
+        renderTable();
+      });
+      document.getElementById("nextBtn").addEventListener("click", () => {
+        page++;
+        renderTable();
+      });
+
+      // --- data loading ---
+      dropzone.addEventListener("click", () =>
+        document.getElementById("fileInput").click(),
+      );
+      document.getElementById("fileInput").addEventListener("change", (e) => {
+        const f = e.target.files[0];
+        if (f) readFile(f);
+      });
+      ["dragover", "dragenter"].forEach((ev) =>
+        dropzone.addEventListener(ev, (e) => {
+          e.preventDefault();
+          dropzone.classList.add("drag");
+        }),
+      );
+      ["dragleave", "drop"].forEach((ev) =>
+        dropzone.addEventListener(ev, (e) => {
+          e.preventDefault();
+          dropzone.classList.remove("drag");
+        }),
+      );
+      dropzone.addEventListener("drop", (e) => {
+        const f = e.dataTransfer.files[0];
+        if (f) readFile(f);
+      });
+      function readFile(f) {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          try {
+            const data = JSON.parse(ev.target.result);
+            init(data);
+          } catch (err) {
+            statusEl.textContent = "File JSON tidak valid: " + err.message;
+            statusEl.classList.add("err");
+            statusEl.style.display = "block";
+          }
+        };
+        reader.readAsText(f);
+      }
+
+      // try auto-fetch from backend endpoint first
+      fetch("/api/suggested-suffix-data")
+        .then((r) => {
+          if (!r.ok) throw new Error("status " + r.status);
+          return r.json();
+        })
+        .then(init)
+        .catch((err) => {
+          statusEl.textContent =
+            "Tidak bisa fetch /api/suggested-suffix-data (" +
+            err.message +
+            "). Silakan pilih file secara manual.";
+          dropzone.style.display = "block";
+        });
+    </script>
+  </body>
+</html>
