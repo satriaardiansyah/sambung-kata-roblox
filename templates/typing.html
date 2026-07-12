@@ -322,10 +322,12 @@
       /* Hidden input field */
       .hidden-input {
         position: absolute;
-        top: -100px;
-        left: -100px;
+        width: 1px;
+        height: 1px;
         opacity: 0;
+        z-index: -1;
         pointer-events: none;
+        font-size: 16px; /* Mencegah auto-zoom di iOS Safari */
       }
 
       /* Unfocused overlay prompt */
@@ -853,6 +855,9 @@
             <!-- Words will be dynamically injected here -->
           </div>
 
+          <!-- Hidden input for typing capturing (placed inside scroll/focus area) -->
+          <input type="text" class="hidden-input" id="typing-input-field" autocomplete="off" autocapitalize="off" spellcheck="false" />
+
           <!-- Unfocused overlay -->
           <div class="focus-overlay" id="typing-focus-overlay">
             <div class="focus-prompt">
@@ -863,9 +868,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Hidden input for typing capturing -->
-        <input type="text" class="hidden-input" id="typing-input-field" autocomplete="off" autocapitalize="off" spellcheck="false" />
 
         <div class="action-controls">
           <button class="action-btn" id="btn-restart-game">
@@ -1402,6 +1404,10 @@
           
           typingCaret.style.left = `${caretLeft}px`;
           typingCaret.style.top = `${caretTop}px`;
+          
+          // Position input field exactly at caret to avoid screen scrolling on mobile
+          typingInputField.style.left = `${caretLeft}px`;
+          typingInputField.style.top = `${caretTop}px`;
           
           // Scroll handling
           const wordTop = activeWordSpan.getBoundingClientRect().top - containerRect.top;
