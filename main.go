@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"math/rand"
 	"net/http"
 	"os"
 	"sort"
@@ -994,6 +995,115 @@ func suggestedSuffixDataHandler(w http.ResponseWriter, r *http.Request) {
     json.NewEncoder(w).Encode(suggestedSuffixes)
 }
 
+// ============================================================================
+// TYPING PRACTICE MODULE (NEW FEATURE)
+// ============================================================================
+
+type TypingSuffix struct {
+	Suffix string `json:"suffix"`
+	Count  int    `json:"count"`
+	Score  int    `json:"score"`
+}
+
+var typingSuffixes []TypingSuffix
+
+func buildTypingSuffixIndex() {
+	suffixCount := map[string]int{}
+	
+	// Scan words to count matches for each killerSuffix key
+	for _, w := range words {
+		wClean := strings.ToLower(strings.TrimSpace(w))
+		for suf := range killerSuffix {
+			if strings.HasSuffix(wClean, suf) {
+				suffixCount[suf]++
+			}
+		}
+	}
+
+	var list []TypingSuffix
+	for suf, count := range suffixCount {
+		if count > 0 {
+			list = append(list, TypingSuffix{
+				Suffix: suf,
+				Count:  count,
+				Score:  killerSuffix[suf],
+			})
+		}
+	}
+
+	// Sort by:
+	// 1. score descending
+	// 2. count descending
+	// 3. suffix name alphabetically
+	sort.Slice(list, func(i, j int) bool {
+		if list[i].Score != list[j].Score {
+			return list[i].Score > list[j].Score
+		}
+		if list[i].Count != list[j].Count {
+			return list[i].Count > list[j].Count
+		}
+		return list[i].Suffix < list[j].Suffix
+	})
+
+	typingSuffixes = list
+	fmt.Printf("Typing suffix index built: %d suffixes (sourced from killerSuffix)\n", len(typingSuffixes))
+}
+
+func apiTypingSuffixesHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	json.NewEncoder(w).Encode(typingSuffixes)
+}
+
+func apiTypingWordsHandler(w http.ResponseWriter, r *http.Request) {
+	suffixesParam := r.URL.Query().Get("suffixes")
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
+	// If no suffixes are selected, enter "Semua Kata" (All Words) mode.
+	// We return 300 random words from the entire dataset.
+	if suffixesParam == "" {
+		count := 300
+		if len(words) < count {
+			count = len(words)
+		}
+		
+		randomWords := make([]string, 0, count)
+		if len(words) > 0 {
+			for i := 0; i < count; i++ {
+				idx := rand.Intn(len(words))
+				randomWords = append(randomWords, strings.ToLower(strings.TrimSpace(words[idx])))
+			}
+		}
+		
+		json.NewEncoder(w).Encode(map[string][]string{
+			"": randomWords,
+		})
+		return
+	}
+
+	sufs := strings.Split(suffixesParam, ",")
+	result := map[string][]string{}
+	for _, s := range sufs {
+		s = strings.ToLower(strings.TrimSpace(s))
+		if s == "" {
+			continue
+		}
+		result[s] = []string{}
+	}
+
+	for _, w := range words {
+		wClean := strings.ToLower(strings.TrimSpace(w))
+		for s := range result {
+			if strings.HasSuffix(wClean, s) {
+				result[s] = append(result[s], wClean)
+			}
+		}
+	}
+
+	json.NewEncoder(w).Encode(result)
+}
+
 func main() {
     // 1. Load data dulu
     loadKamus()
@@ -1001,6 +1111,7 @@ func main() {
 	loadSuggestedSuffixes()
     buildIndex()
 	buildSmartIndex()
+	buildTypingSuffixIndex()
 
 	// halaman utama
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -1037,6 +1148,13 @@ func main() {
     http.ServeFile(w, r, "./templates/suggested-analysis.html")
 	})
 	http.HandleFunc("/api/suggested-suffix-data", suggestedSuffixDataHandler)
+
+	// Typing Practice Routes
+	http.HandleFunc("/typing", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./templates/typing.html")
+	})
+	http.HandleFunc("/api/typing/suffixes", apiTypingSuffixesHandler)
+	http.HandleFunc("/api/typing/words", apiTypingWordsHandler)
 
     // 3. Baru listen
     port := os.Getenv("PORT")
