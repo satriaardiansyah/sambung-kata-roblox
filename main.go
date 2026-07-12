@@ -152,6 +152,8 @@ func deleteSuggestedSuffixHandler(w http.ResponseWriter, r *http.Request) {
 
 var killerSuffix = map[string]int{
 	// 5 Karakter
+	"orasi": 1000,
+	"kisme": 1000,
 	"sitas": 950,
 	"takan": 950,
 	"iskan": 950,
@@ -185,7 +187,7 @@ var killerSuffix = map[string]int{
 	"kimah": 800,
 	"lahad": 800,
 	"latah": 800,
-	"matis": 800,
+	"matis": 900,
 	"ofoni": 800,
 	"oleac": 800,
 	"olong": 800,
@@ -466,6 +468,7 @@ var killerOpener = map[string]int{
 	 "ratifikasi": 0,
 	 "ergoterapi": 0,
 	 "ergot": 0,
+	 "dehal": 0,
 }
 
 var warningWords = map[string]int{

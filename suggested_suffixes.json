@@ -55,6 +55,57 @@
     ],
     "hits": 2
   },
+  "abak": {
+    "query": "abak",
+    "prefix_count": 5,
+    "prefix_words": [
+      "abak",
+      "abaka",
+      "abaksial",
+      "abaktinal",
+      "abakus"
+    ],
+    "suffix_count": 36,
+    "suffix_words": [
+      "abak",
+      "babak",
+      "bajabak",
+      "balabak",
+      "banyabak",
+      "barabak",
+      "belabak",
+      "berbabak",
+      "bolabak",
+      "brabak",
+      "cabak",
+      "dabak",
+      "gabak",
+      "gadabak",
+      "garabak",
+      "gedabak",
+      "gerabak",
+      "grabak",
+      "jelabak",
+      "kabak",
+      "kelabak",
+      "labak",
+      "martabak",
+      "membabak",
+      "menabak",
+      "mendabak",
+      "menggabak",
+      "menggerabak",
+      "menyabak",
+      "merabak",
+      "rabak",
+      "sabak",
+      "sebabak",
+      "tabak",
+      "terabak",
+      "terjelabak"
+    ],
+    "hits": 1
+  },
   "abaka": {
     "query": "abaka",
     "prefix_count": 1,
@@ -66,7 +117,120 @@
       "abaka",
       "kabaka"
     ],
-    "hits": 10
+    "hits": 12
+  },
+  "abar": {
+    "query": "abar",
+    "prefix_count": 4,
+    "prefix_words": [
+      "abar",
+      "abaran",
+      "abarema",
+      "abarumbung"
+    ],
+    "suffix_count": 47,
+    "suffix_words": [
+      "abar",
+      "aljabar",
+      "armabar",
+      "babar",
+      "balabar",
+      "belabar",
+      "berkabar",
+      "bersabar",
+      "blabar",
+      "cabar",
+      "gabar",
+      "geniangabar",
+      "jabar",
+      "kabar",
+      "khabar",
+      "koarmabar",
+      "labar",
+      "mabar",
+      "malabar",
+      "malikuljabar",
+      "membabar",
+      "mempersabar",
+      "mengabar",
+      "muktabar",
+      "mutabar",
+      "nirabar",
+      "nyelabar",
+      "pabar",
+      "pangarmabar",
+      "pekabar",
+      "pembabar",
+      "pengabar",
+      "penjabar",
+      "penyabar",
+      "rabar",
+      "sabar",
+      "selabar",
+      "sesabar",
+      "sinabar",
+      "suratkabar",
+      "tabar",
+      "taksabar",
+      "terabar",
+      "terbabar",
+      "terkabar",
+      "tersabar",
+      "tnabar"
+    ],
+    "hits": 1
+  },
+  "abla": {
+    "query": "abla",
+    "prefix_count": 5,
+    "prefix_words": [
+      "ablasi",
+      "ablasio",
+      "ablastin",
+      "ablatif",
+      "ablaut"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "ehabla",
+      "kabla",
+      "tabla"
+    ],
+    "hits": 2
+  },
+  "abun": {
+    "query": "abun",
+    "prefix_count": 5,
+    "prefix_words": [
+      "abun",
+      "abundu",
+      "abung",
+      "abungbung",
+      "abunya"
+    ],
+    "suffix_count": 19,
+    "suffix_words": [
+      "abun",
+      "babun",
+      "balumakabun",
+      "berabun",
+      "berlabun",
+      "bersabun",
+      "disabun",
+      "gabun",
+      "labun",
+      "menabun",
+      "menyabun",
+      "merabun",
+      "parabun",
+      "penyabun",
+      "perabun",
+      "rabun",
+      "sabun",
+      "tabun",
+      "tatabun"
+    ],
+    "hits": 1
   },
   "abur": {
     "query": "abur",
@@ -109,6 +273,49 @@
       "tersabur",
       "tertabur",
       "zabur"
+    ],
+    "hits": 1
+  },
+  "abut": {
+    "query": "abut",
+    "prefix_count": 4,
+    "prefix_words": [
+      "abut",
+      "abutai",
+      "abute",
+      "abutmen"
+    ],
+    "suffix_count": 29,
+    "suffix_words": [
+      "abut",
+      "ankabut",
+      "antikabut",
+      "babut",
+      "bercabut",
+      "berkabut",
+      "berserabut",
+      "cabut",
+      "cerabut",
+      "dicabut",
+      "gabut",
+      "jabut",
+      "kabut",
+      "kelabut",
+      "labut",
+      "magabut",
+      "mencabut",
+      "mencerabut",
+      "mengabut",
+      "menyerabut",
+      "merabut",
+      "pencabut",
+      "pengabut",
+      "rabut",
+      "sabut",
+      "serabut",
+      "tabut",
+      "tercabut",
+      "tercerabut"
     ],
     "hits": 1
   },
@@ -171,7 +378,7 @@
       "terkadang",
       "wadang"
     ],
-    "hits": 1
+    "hits": 2
   },
   "adar": {
     "query": "adar",
@@ -223,7 +430,7 @@
       "tersadar",
       "wadar"
     ],
-    "hits": 2
+    "hits": 4
   },
   "adeg": {
     "query": "adeg",
@@ -238,6 +445,53 @@
       "adeg",
       "apangadeg",
       "badeg"
+    ],
+    "hits": 1
+  },
+  "adina": {
+    "query": "adina",
+    "prefix_count": 4,
+    "prefix_words": [
+      "adina",
+      "adinamia",
+      "adinandra",
+      "adinaton"
+    ],
+    "suffix_count": 5,
+    "suffix_words": [
+      "adina",
+      "madina",
+      "nagadina",
+      "piadina",
+      "siproheptadina"
+    ],
+    "hits": 1
+  },
+  "adir": {
+    "query": "adir",
+    "prefix_count": 3,
+    "prefix_words": [
+      "adiraja",
+      "adirata",
+      "adiratna"
+    ],
+    "suffix_count": 15,
+    "suffix_words": [
+      "alkadir",
+      "berhadir",
+      "brigadir",
+      "cadir",
+      "geladir",
+      "hadir",
+      "kadir",
+      "muktadir",
+      "nadir",
+      "ngadir",
+      "padir",
+      "sadir",
+      "tadir",
+      "takhadir",
+      "wadir"
     ],
     "hits": 1
   },
@@ -262,6 +516,44 @@
       "pepadun",
       "tamadun",
       "temadun"
+    ],
+    "hits": 2
+  },
+  "afiks": {
+    "query": "afiks",
+    "prefix_count": 2,
+    "prefix_words": [
+      "afiks",
+      "afiksasi"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "afiks",
+      "berafiks",
+      "suprafiks"
+    ],
+    "hits": 1
+  },
+  "afir": {
+    "query": "afir",
+    "prefix_count": 4,
+    "prefix_words": [
+      "afir",
+      "afirmasi",
+      "afirmatif",
+      "afirmatori"
+    ],
+    "suffix_count": 9,
+    "suffix_words": [
+      "afir",
+      "bermusafir",
+      "ghafir",
+      "grafir",
+      "kafir",
+      "musafir",
+      "musyafir",
+      "pengafir",
+      "safir"
     ],
     "hits": 2
   },
@@ -310,7 +602,7 @@
       "lahad",
       "mahad"
     ],
-    "hits": 10
+    "hits": 12
   },
   "ahana": {
     "query": "ahana",
@@ -336,7 +628,7 @@
       "terbahana",
       "wahana"
     ],
-    "hits": 3
+    "hits": 8
   },
   "ahang": {
     "query": "ahang",
@@ -365,7 +657,7 @@
       "sahang",
       "tahang"
     ],
-    "hits": 6
+    "hits": 8
   },
   "ahir": {
     "query": "ahir",
@@ -393,7 +685,7 @@
       "termahir",
       "zahir"
     ],
-    "hits": 5
+    "hits": 8
   },
   "akai": {
     "query": "akai",
@@ -436,6 +728,85 @@
       "yakai"
     ],
     "hits": 19
+  },
+  "akam": {
+    "query": "akam",
+    "prefix_count": 3,
+    "prefix_words": [
+      "akamelem",
+      "akamsi",
+      "akamul"
+    ],
+    "suffix_count": 13,
+    "suffix_words": [
+      "arakam",
+      "bakam",
+      "berakam",
+      "bermakam",
+      "gakam",
+      "hakam",
+      "mahakam",
+      "makam",
+      "merakam",
+      "ngakam",
+      "pemakam",
+      "pilkakam",
+      "rakam"
+    ],
+    "hits": 1
+  },
+  "akari": {
+    "query": "akari",
+    "prefix_count": 4,
+    "prefix_words": [
+      "akaridofag",
+      "akariosit",
+      "akariot",
+      "akarisida"
+    ],
+    "suffix_count": 7,
+    "suffix_words": [
+      "ditakari",
+      "gakari",
+      "membakari",
+      "menakari",
+      "mengelakari",
+      "walakari",
+      "yakari"
+    ],
+    "hits": 2
+  },
+  "akasa": {
+    "query": "akasa",
+    "prefix_count": 2,
+    "prefix_words": [
+      "akasa",
+      "akasaha"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "akasa",
+      "pakasa",
+      "udarakasa"
+    ],
+    "hits": 1
+  },
+  "akla": {
+    "query": "akla",
+    "prefix_count": 3,
+    "prefix_words": [
+      "akla",
+      "aklamasi",
+      "aklasia"
+    ],
+    "suffix_count": 4,
+    "suffix_words": [
+      "aakla",
+      "akla",
+      "lakla",
+      "sakla"
+    ],
+    "hits": 2
   },
   "aksis": {
     "query": "aksis",
@@ -487,7 +858,120 @@
       "trofalaksis",
       "zigotaksis"
     ],
-    "hits": 9
+    "hits": 20
+  },
+  "aksos": {
+    "query": "aksos",
+    "prefix_count": 2,
+    "prefix_words": [
+      "aksos",
+      "aksostil"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "aksos",
+      "baksos"
+    ],
+    "hits": 1
+  },
+  "akta": {
+    "query": "akta",
+    "prefix_count": 5,
+    "prefix_words": [
+      "akta",
+      "aktan",
+      "aktans",
+      "aktansi",
+      "aktapa"
+    ],
+    "suffix_count": 10,
+    "suffix_words": [
+      "akta",
+      "berakta",
+      "eksakta",
+      "fakta",
+      "mentifakta",
+      "noneksakta",
+      "pakta",
+      "parakta",
+      "samakta",
+      "tarbakta"
+    ],
+    "hits": 2
+  },
+  "aktan": {
+    "query": "aktan",
+    "prefix_count": 3,
+    "prefix_words": [
+      "aktan",
+      "aktans",
+      "aktansi"
+    ],
+    "suffix_count": 5,
+    "suffix_words": [
+      "aktan",
+      "atraktan",
+      "galaktan",
+      "reaktan",
+      "surfaktan"
+    ],
+    "hits": 2
+  },
+  "aktif": {
+    "query": "aktif",
+    "prefix_count": 5,
+    "prefix_words": [
+      "aktif",
+      "aktifis",
+      "aktifitas",
+      "aktifkan",
+      "aktifnya"
+    ],
+    "suffix_count": 41,
+    "suffix_words": [
+      "aktif",
+      "antiaktif",
+      "atraktif",
+      "awaaktif",
+      "benefaktif",
+      "bioaktif",
+      "distraktif",
+      "ekstraktif",
+      "faktif",
+      "fotoaktif",
+      "hiperaktif",
+      "hiperreaktif",
+      "hipoaktif",
+      "imunoreaktif",
+      "inaktif",
+      "interaktif",
+      "kontraktif",
+      "likuefaktif",
+      "nefaktif",
+      "nonaktif",
+      "noninteraktif",
+      "nonretroaktif",
+      "overaktif",
+      "pengaktif",
+      "proaktif",
+      "psikoaktif",
+      "radiaktif",
+      "radioaktif",
+      "reaktif",
+      "refraktif",
+      "retroaktif",
+      "seaktif",
+      "seinteraktif",
+      "simulfaktif",
+      "subtraktif",
+      "takaktif",
+      "teraktif",
+      "teratraktif",
+      "transaktif",
+      "troaktif",
+      "vasoaktif"
+    ],
+    "hits": 5
   },
   "akuik": {
     "query": "akuik",
@@ -669,7 +1153,7 @@
       "walah",
       "waspadalah"
     ],
-    "hits": 78
+    "hits": 117
   },
   "alap": {
     "query": "alap",
@@ -719,7 +1203,24 @@
       "nalari",
       "palari"
     ],
-    "hits": 11
+    "hits": 16
+  },
+  "alias": {
+    "query": "alias",
+    "prefix_count": 4,
+    "prefix_words": [
+      "alias",
+      "aliase",
+      "aliasi",
+      "aliasing"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "alias",
+      "antialias",
+      "galias"
+    ],
+    "hits": 1
   },
   "alib": {
     "query": "alib",
@@ -800,7 +1301,7 @@
       "uralik",
       "walik"
     ],
-    "hits": 2
+    "hits": 4
   },
   "alogi": {
     "query": "alogi",
@@ -908,6 +1409,45 @@
     ],
     "hits": 2
   },
+  "amang": {
+    "query": "amang",
+    "prefix_count": 4,
+    "prefix_words": [
+      "amang",
+      "amanganok",
+      "amanganti",
+      "amango"
+    ],
+    "suffix_count": 25,
+    "suffix_words": [
+      "amang",
+      "bamang",
+      "buamang",
+      "cimamang",
+      "damang",
+      "gamang",
+      "geramang",
+      "hamang",
+      "jamang",
+      "jejamang",
+      "kalamang",
+      "kamang",
+      "kemamang",
+      "lamang",
+      "malamang",
+      "mamang",
+      "maramang",
+      "mengamang",
+      "menggamang",
+      "namang",
+      "penggamang",
+      "ramang",
+      "sayamang",
+      "siamang",
+      "tergamang"
+    ],
+    "hits": 2
+  },
   "amas": {
     "query": "amas",
     "prefix_count": 3,
@@ -988,7 +1528,60 @@
       "terjambak",
       "terlambak"
     ],
-    "hits": 1
+    "hits": 2
+  },
+  "ambat": {
+    "query": "ambat",
+    "prefix_count": 4,
+    "prefix_words": [
+      "ambat",
+      "ambataran",
+      "ambataron",
+      "ambatos"
+    ],
+    "suffix_count": 39,
+    "suffix_words": [
+      "agisambat",
+      "ambat",
+      "berlambat",
+      "bersambat",
+      "bertambat",
+      "dihambat",
+      "diperlambat",
+      "dirambat",
+      "ditambat",
+      "gambat",
+      "hambat",
+      "jambat",
+      "lambat",
+      "mangambat",
+      "melambat",
+      "memperhambat",
+      "memperlambat",
+      "menambat",
+      "mengambat",
+      "menghambat",
+      "menyambat",
+      "merambat",
+      "ngambat",
+      "nyambat",
+      "pelambat",
+      "pemerlambat",
+      "penambat",
+      "pengambat",
+      "penghambat",
+      "perambat",
+      "perlambat",
+      "rambat",
+      "sambat",
+      "selambat",
+      "sesambat",
+      "tambat",
+      "terhambat",
+      "terlambat",
+      "tertambat"
+    ],
+    "hits": 2
   },
   "ambel": {
     "query": "ambel",
@@ -1022,7 +1615,7 @@
       "bambua",
       "tambua"
     ],
-    "hits": 1
+    "hits": 4
   },
   "ampan": {
     "query": "ampan",
@@ -1056,6 +1649,26 @@
       "tertampan",
       "tetampan",
       "tomanampan"
+    ],
+    "hits": 1
+  },
+  "amuka": {
+    "query": "amuka",
+    "prefix_count": 3,
+    "prefix_words": [
+      "amukake",
+      "amukall",
+      "amukan"
+    ],
+    "suffix_count": 7,
+    "suffix_words": [
+      "antarpramuka",
+      "apayamuka",
+      "berpramuka",
+      "dasamuka",
+      "pancamuka",
+      "pramuka",
+      "simhamuka"
     ],
     "hits": 1
   },
@@ -1119,7 +1732,7 @@
       "terpanah",
       "tumpuntanah"
     ],
-    "hits": 6
+    "hits": 7
   },
   "anani": {
     "query": "anani",
@@ -1163,7 +1776,7 @@
       "teakanasi",
       "terpanasi"
     ],
-    "hits": 14
+    "hits": 20
   },
   "ancar": {
     "query": "ancar",
@@ -1198,6 +1811,43 @@
       "terpancar"
     ],
     "hits": 11
+  },
+  "andak": {
+    "query": "andak",
+    "prefix_count": 4,
+    "prefix_words": [
+      "andak",
+      "andaka",
+      "andakah",
+      "andakon"
+    ],
+    "suffix_count": 23,
+    "suffix_words": [
+      "andak",
+      "bertandak",
+      "candak",
+      "cekgandak",
+      "handak",
+      "jihandak",
+      "khandak",
+      "lalandak",
+      "landak",
+      "mandak",
+      "mansorandak",
+      "memperpandak",
+      "menandak",
+      "mengandak",
+      "merandak",
+      "pacandak",
+      "pandak",
+      "parasandak",
+      "penandak",
+      "pengandak",
+      "randak",
+      "sandak",
+      "tandak"
+    ],
+    "hits": 1
   },
   "andar": {
     "query": "andar",
@@ -1244,7 +1894,41 @@
       "tersandar",
       "terstandar"
     ],
-    "hits": 2
+    "hits": 5
+  },
+  "anduk": {
+    "query": "anduk",
+    "prefix_count": 3,
+    "prefix_words": [
+      "anduk",
+      "andukan",
+      "andukou"
+    ],
+    "suffix_count": 21,
+    "suffix_words": [
+      "anduk",
+      "bapanduk",
+      "berhanduk",
+      "bertanduk",
+      "canduk",
+      "handuk",
+      "landuk",
+      "mamilanduk",
+      "manduk",
+      "menanduk",
+      "meranduk",
+      "nyanduk",
+      "paktanduk",
+      "panduk",
+      "pelanduk",
+      "penanduk",
+      "randuk",
+      "sepanduk",
+      "spanduk",
+      "tanduk",
+      "tertanduk"
+    ],
+    "hits": 1
   },
   "andur": {
     "query": "andur",
@@ -1266,7 +1950,7 @@
       "sandur",
       "tandur"
     ],
-    "hits": 4
+    "hits": 10
   },
   "aneh": {
     "query": "aneh",
@@ -1288,6 +1972,39 @@
       "teraneh"
     ],
     "hits": 1
+  },
+  "angai": {
+    "query": "angai",
+    "prefix_count": 2,
+    "prefix_words": [
+      "angai",
+      "angair"
+    ],
+    "suffix_count": 21,
+    "suffix_words": [
+      "angai",
+      "bangai",
+      "berangai",
+      "berperangai",
+      "bersangai",
+      "cangai",
+      "dangai",
+      "disangai",
+      "hangai",
+      "langai",
+      "menyangai",
+      "merangai",
+      "pelangai",
+      "perangai",
+      "rangai",
+      "sangai",
+      "semangai",
+      "tabangai",
+      "tangai",
+      "terbangai",
+      "tersangai"
+    ],
+    "hits": 6
   },
   "angat": {
     "query": "angat",
@@ -1331,7 +2048,7 @@
       "terhangat",
       "tersangat"
     ],
-    "hits": 4
+    "hits": 8
   },
   "angen": {
     "query": "angen",
@@ -1359,7 +2076,7 @@
       "sumilangen",
       "tangen"
     ],
-    "hits": 3
+    "hits": 4
   },
   "angon": {
     "query": "angon",
@@ -1391,7 +2108,7 @@
       "wilangon",
       "yangon"
     ],
-    "hits": 4
+    "hits": 6
   },
   "angsa": {
     "query": "angsa",
@@ -1442,7 +2159,7 @@
       "triwangsa",
       "wangsa"
     ],
-    "hits": 109
+    "hits": 329
   },
   "angus": {
     "query": "angus",
@@ -1468,7 +2185,7 @@
       "pemberangus",
       "penghangus"
     ],
-    "hits": 15
+    "hits": 32
   },
   "anik": {
     "query": "anik",
@@ -1531,7 +2248,7 @@
       "vulkanik",
       "iatromekanik"
     ],
-    "hits": 6
+    "hits": 16
   },
   "anjar": {
     "query": "anjar",
@@ -1573,7 +2290,7 @@
       "terkanjar",
       "wulanjar"
     ],
-    "hits": 6
+    "hits": 8
   },
   "anje": {
     "query": "anje",
@@ -1592,7 +2309,27 @@
       "paranje",
       "nsanje"
     ],
-    "hits": 6
+    "hits": 9
+  },
+  "anker": {
+    "query": "anker",
+    "prefix_count": 2,
+    "prefix_words": [
+      "anker",
+      "ankerit"
+    ],
+    "suffix_count": 8,
+    "suffix_words": [
+      "anker",
+      "antikanker",
+      "banker",
+      "ganker",
+      "kanker",
+      "nonkanker",
+      "prakanker",
+      "tanker"
+    ],
+    "hits": 1
   },
   "anof": {
     "query": "anof",
@@ -1641,7 +2378,7 @@
       "merganser",
       "panser"
     ],
-    "hits": 11
+    "hits": 17
   },
   "ansor": {
     "query": "ansor",
@@ -1655,7 +2392,7 @@
       "ansor",
       "skansor"
     ],
-    "hits": 14
+    "hits": 18
   },
   "antak": {
     "query": "antak",
@@ -1719,7 +2456,7 @@
       "terpantek",
       "wantek"
     ],
-    "hits": 2
+    "hits": 4
   },
   "antri": {
     "query": "antri",
@@ -1746,7 +2483,29 @@
       "sumantri",
       "tantri"
     ],
-    "hits": 7
+    "hits": 12
+  },
+  "antus": {
+    "query": "antus",
+    "prefix_count": 3,
+    "prefix_words": [
+      "antus",
+      "antusias",
+      "antusiasme"
+    ],
+    "suffix_count": 9,
+    "suffix_words": [
+      "amarantus",
+      "antus",
+      "chilorantus",
+      "epikantus",
+      "pantus",
+      "poliantus",
+      "priacantus",
+      "rantus",
+      "strophantus"
+    ],
+    "hits": 2
   },
   "anus": {
     "query": "anus",
@@ -1807,7 +2566,7 @@
       "varanus",
       "winterianus"
     ],
-    "hits": 2
+    "hits": 3
   },
   "anyam": {
     "query": "anyam",
@@ -1828,7 +2587,7 @@
       "penganyam",
       "teranyam"
     ],
-    "hits": 2
+    "hits": 4
   },
   "apala": {
     "query": "apala",
@@ -1985,6 +2744,41 @@
     ],
     "hits": 2
   },
+  "arami": {
+    "query": "arami",
+    "prefix_count": 3,
+    "prefix_words": [
+      "aramid",
+      "aramidae",
+      "aramidopsis"
+    ],
+    "suffix_count": 6,
+    "suffix_words": [
+      "darami",
+      "digarami",
+      "garami",
+      "harami",
+      "menggarami",
+      "tergarami"
+    ],
+    "hits": 1
+  },
+  "arane": {
+    "query": "arane",
+    "prefix_count": 2,
+    "prefix_words": [
+      "araneida",
+      "araneologi"
+    ],
+    "suffix_count": 4,
+    "suffix_words": [
+      "andarane",
+      "bendarane",
+      "larane",
+      "marane"
+    ],
+    "hits": 1
+  },
   "areng": {
     "query": "areng",
     "prefix_count": 2,
@@ -2014,7 +2808,7 @@
       "tenggareng",
       "wareng"
     ],
-    "hits": 1
+    "hits": 2
   },
   "arian": {
     "query": "arian",
@@ -2106,7 +2900,7 @@
       "vikarian",
       "wawarian"
     ],
-    "hits": 24
+    "hits": 49
   },
   "aril": {
     "query": "aril",
@@ -2149,7 +2943,7 @@
       "tenggarong",
       "nggarong"
     ],
-    "hits": 7
+    "hits": 9
   },
   "arta": {
     "query": "arta",
@@ -2193,7 +2987,7 @@
       "wisamarta",
       "yogyakarta"
     ],
-    "hits": 2
+    "hits": 4
   },
   "aruh": {
     "query": "aruh",
@@ -2291,7 +3085,74 @@
       "tingkarung",
       "warung"
     ],
-    "hits": 9
+    "hits": 11
+  },
+  "asak": {
+    "query": "asak",
+    "prefix_count": 5,
+    "prefix_words": [
+      "asak",
+      "asakahu",
+      "asakan",
+      "asaki",
+      "asakue"
+    ],
+    "suffix_count": 52,
+    "suffix_words": [
+      "asak",
+      "belasak",
+      "berasak",
+      "bergasak",
+      "berkasak",
+      "bermasak",
+      "berpasak",
+      "bersasak",
+      "bongkasak",
+      "buasasak",
+      "diasak",
+      "digasak",
+      "dimasak",
+      "dipasak",
+      "disasak",
+      "gasak",
+      "gelasak",
+      "harasak",
+      "hasak",
+      "ilyasak",
+      "kasak",
+      "kaumasak",
+      "kelasak",
+      "kerasak",
+      "koasak",
+      "krasak",
+      "lasak",
+      "makpasak",
+      "masak",
+      "memasak",
+      "menasak",
+      "mengasak",
+      "menggasak",
+      "menggelasak",
+      "menyasak",
+      "nalasak",
+      "ngasak",
+      "panglasak",
+      "papasak",
+      "pasak",
+      "pelasak",
+      "pemasak",
+      "penasak",
+      "pengasak",
+      "penggasak",
+      "sasak",
+      "tahasak",
+      "talasak",
+      "tasak",
+      "terasak",
+      "terpasak",
+      "wasak"
+    ],
+    "hits": 2
   },
   "asam": {
     "query": "asam",
@@ -2330,7 +3191,89 @@
       "terasam",
       "termasam"
     ],
-    "hits": 1
+    "hits": 3
+  },
+  "asar": {
+    "query": "asar",
+    "prefix_count": 4,
+    "prefix_words": [
+      "asar",
+      "asareng",
+      "asari",
+      "asaring"
+    ],
+    "suffix_count": 45,
+    "suffix_words": [
+      "adipasar",
+      "asar",
+      "basar",
+      "berdasar",
+      "berpasar",
+      "dasar",
+      "denpasar",
+      "disasar",
+      "gadulbasar",
+      "gelasar",
+      "hasar",
+      "kalikasar",
+      "kalkasar",
+      "kasar",
+      "kesasar",
+      "kuasar",
+      "kulakasar",
+      "lasar",
+      "lokapasar",
+      "makasar",
+      "masar",
+      "memperkasar",
+      "mendasar",
+      "mengasar",
+      "mengkasar",
+      "mengqasar",
+      "menyasar",
+      "mukhtasar",
+      "nasar",
+      "nondasar",
+      "nonpasar",
+      "nyasar",
+      "pasar",
+      "pelasar",
+      "pemasar",
+      "propasar",
+      "qasar",
+      "sasar",
+      "sedasar",
+      "selasar",
+      "sepasar",
+      "subpasar",
+      "superdasar",
+      "terkasar",
+      "tersasar"
+    ],
+    "hits": 2
+  },
+  "asek": {
+    "query": "asek",
+    "prefix_count": 4,
+    "prefix_words": [
+      "asek",
+      "aseksal",
+      "aseksual",
+      "aseksualitas"
+    ],
+    "suffix_count": 9,
+    "suffix_words": [
+      "asek",
+      "basek",
+      "kasek",
+      "pasek",
+      "riasek",
+      "tasek",
+      "tepasek",
+      "tomasek",
+      "wakasek"
+    ],
+    "hits": 2
   },
   "asel": {
     "query": "asel",
@@ -2353,7 +3296,7 @@
       "tasel",
       "yasel"
     ],
-    "hits": 2
+    "hits": 6
   },
   "asing": {
     "query": "asing",
@@ -2432,6 +3375,38 @@
       "wasir"
     ],
     "hits": 2
+  },
+  "asuh": {
+    "query": "asuh",
+    "prefix_count": 4,
+    "prefix_words": [
+      "asuh",
+      "asuhan",
+      "asuhannya",
+      "asuhnya"
+    ],
+    "suffix_count": 18,
+    "suffix_words": [
+      "asuh",
+      "baasuh",
+      "basuh",
+      "berbasuh",
+      "diasuh",
+      "dibasuh",
+      "kasuh",
+      "lasuh",
+      "masuh",
+      "membasuh",
+      "mengasuh",
+      "nasuh",
+      "pasuh",
+      "pelasuh",
+      "pembasuh",
+      "pengasuh",
+      "terasuh",
+      "terbasuh"
+    ],
+    "hits": 1
   },
   "asus": {
     "query": "asus",
@@ -2561,7 +3536,7 @@
       "satam",
       "secatam"
     ],
-    "hits": 2
+    "hits": 8
   },
   "atang": {
     "query": "atang",
@@ -2616,6 +3591,55 @@
       "watang"
     ],
     "hits": 2
+  },
+  "atar": {
+    "query": "atar",
+    "prefix_count": 4,
+    "prefix_words": [
+      "atar",
+      "ataran",
+      "ataren",
+      "atarinti"
+    ],
+    "suffix_count": 35,
+    "suffix_words": [
+      "apatar",
+      "atar",
+      "avatar",
+      "batar",
+      "berlatar",
+      "bertatar",
+      "capratar",
+      "catar",
+      "datar",
+      "dipatar",
+      "ditatar",
+      "kalakatar",
+      "kanatar",
+      "katar",
+      "katfatar",
+      "katkatar",
+      "latar",
+      "mematar",
+      "menatar",
+      "mendatar",
+      "natar",
+      "patar",
+      "penatar",
+      "pendatar",
+      "pengatar",
+      "petatar",
+      "qatar",
+      "satar",
+      "sedatar",
+      "syatar",
+      "tatar",
+      "tembatar",
+      "terdatar",
+      "tertatar",
+      "watar"
+    ],
+    "hits": 1
   },
   "atasi": {
     "query": "atasi",
@@ -2858,7 +3882,7 @@
       "zigomatik",
       "virustatik"
     ],
-    "hits": 22
+    "hits": 30
   },
   "ating": {
     "query": "ating",
@@ -2892,7 +3916,413 @@
       "revegetating",
       "tating"
     ],
-    "hits": 6
+    "hits": 8
+  },
+  "atlet": {
+    "query": "atlet",
+    "prefix_count": 4,
+    "prefix_words": [
+      "atlet",
+      "atletik",
+      "atletika",
+      "atletis"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "atlet",
+      "paraatlet"
+    ],
+    "hits": 1
+  },
+  "ator": {
+    "query": "ator",
+    "prefix_count": 5,
+    "prefix_words": [
+      "ator",
+      "atori",
+      "atoriolog",
+      "atoriolong",
+      "atorvastatin"
+    ],
+    "suffix_count": 328,
+    "suffix_words": [
+      "administrator",
+      "aerator",
+      "afiliator",
+      "agitator",
+      "agregator",
+      "ajudikator",
+      "akomodator",
+      "akselerator",
+      "aktivator",
+      "aktuator",
+      "akumulator",
+      "aligator",
+      "alokator",
+      "alternator",
+      "amalgamator",
+      "animator",
+      "anotator",
+      "antaroperator",
+      "aplikator",
+      "apresiator",
+      "arbitrator",
+      "artikulator",
+      "aspirator",
+      "atenuator",
+      "ator",
+      "auskultator",
+      "autentikator",
+      "autokolimator",
+      "autotransformator",
+      "aviator",
+      "bator",
+      "beradiator",
+      "bereskalator",
+      "berkarburator",
+      "bersimulator",
+      "bioaktivator",
+      "bioakumulator",
+      "bioindikator",
+      "biokatalisator",
+      "bioregulator",
+      "bioremediator",
+      "bioturbator",
+      "bokator",
+      "bronkodilator",
+      "carburator",
+      "dator",
+      "defibrilator",
+      "deflagrator",
+      "deflator",
+      "defoliator",
+      "dehidrator",
+      "deklamator",
+      "deklarator",
+      "dekorator",
+      "delegator",
+      "delineator",
+      "demodulator",
+      "demonstrator",
+      "denominator",
+      "depolarisator",
+      "dermabrator",
+      "desikator",
+      "determinator",
+      "detonator",
+      "diator",
+      "diktator",
+      "dilator",
+      "dinamisator",
+      "diseminator",
+      "disintegrator",
+      "diskriminator",
+      "distilator",
+      "dominator",
+      "donator",
+      "duplikator",
+      "edukator",
+      "eksaminator",
+      "eksfoliator",
+      "eksikator",
+      "ekskavator",
+      "eksplorator",
+      "ekuator",
+      "elektroanalisator",
+      "elektrostimulator",
+      "elevator",
+      "eliminator",
+      "emansipator",
+      "emulator",
+      "emulgator",
+      "enumerator",
+      "epilator",
+      "eskalator",
+      "estimator",
+      "evakuator",
+      "evaluator",
+      "evaporator",
+      "fabrikator",
+      "fasilitator",
+      "fiksator",
+      "flagrator",
+      "flokulator",
+      "formator",
+      "formulator",
+      "fornikator",
+      "fraksinator",
+      "frigerator",
+      "frimator",
+      "fumigator",
+      "gator",
+      "generator",
+      "geoisolator",
+      "germinator",
+      "girator",
+      "gislator",
+      "gladiator",
+      "gosiator",
+      "granulator",
+      "gulator",
+      "halogenerator",
+      "hidrator",
+      "hiperakumulator",
+      "iluminator",
+      "ilustrator",
+      "imitator",
+      "imperator",
+      "imunodilator",
+      "imunomodulator",
+      "imunoregulator",
+      "imunostimulator",
+      "inaktivator",
+      "indikator",
+      "inflator",
+      "informator",
+      "inisiator",
+      "inkubator",
+      "inovator",
+      "inseminator",
+      "insenerator",
+      "insinerator",
+      "inspirator",
+      "instalator",
+      "insulator",
+      "integrator",
+      "intergrator",
+      "intermediator",
+      "interogator",
+      "interpelator",
+      "interpolator",
+      "interpretator",
+      "intimidator",
+      "investigator",
+      "ionisator",
+      "iradiator",
+      "irigator",
+      "isolator",
+      "jaculator",
+      "kalibrator",
+      "kalkulator",
+      "kapisator",
+      "karburator",
+      "katalisator",
+      "klamator",
+      "klasifikator",
+      "klorinator",
+      "koagulator",
+      "kolaborator",
+      "kolator",
+      "kolimator",
+      "komediator",
+      "komentator",
+      "komparator",
+      "kompensator",
+      "kompilator",
+      "komunikator",
+      "komutator",
+      "kondensator",
+      "konsekrator",
+      "konsentrator",
+      "konservator",
+      "konserwator",
+      "konsolidator",
+      "konspirator",
+      "kooperator",
+      "koordinator",
+      "kopulator",
+      "korator",
+      "kordinator",
+      "korugator",
+      "kreator",
+      "kristalisator",
+      "ktator",
+      "kuator",
+      "kulator",
+      "kultivator",
+      "kurator",
+      "lakrimator",
+      "lator",
+      "legator",
+      "legislator",
+      "legitimator",
+      "lerator",
+      "levator",
+      "liberator",
+      "likuidator",
+      "literator",
+      "litigator",
+      "lokator",
+      "manipulator",
+      "masturbator",
+      "mediator",
+      "meditator",
+      "mobilisator",
+      "moderator",
+      "modifikator",
+      "modulator",
+      "monokromator",
+      "motivator",
+      "mulator",
+      "multioperator",
+      "multiplikator",
+      "multivibrator",
+      "mutator",
+      "nanomanipulator",
+      "narator",
+      "nator",
+      "navigator",
+      "negosiator",
+      "nerator",
+      "neuromodulator",
+      "neurostimulator",
+      "nominator",
+      "ntilator",
+      "numerator",
+      "obligator",
+      "observator",
+      "obturator",
+      "okludator",
+      "oksidator",
+      "operator",
+      "optoisolator",
+      "orator",
+      "ordonator",
+      "organisator",
+      "originator",
+      "orkestrator",
+      "osilator",
+      "osmoregulator",
+      "otorisator",
+      "oxidator",
+      "oxygenator",
+      "oxygenerator",
+      "ozonisator",
+      "pemotivator",
+      "penetrator",
+      "perforator",
+      "perkolator",
+      "plagiator",
+      "polarisator",
+      "polinator",
+      "potator",
+      "predator",
+      "predikator",
+      "preparator",
+      "presentator",
+      "proclamator",
+      "proklamator",
+      "prokurator",
+      "pronator",
+      "provokator",
+      "pulsator",
+      "radiator",
+      "rator",
+      "reformator",
+      "refrigerator",
+      "regulator",
+      "rehabilitator",
+      "rekomendator",
+      "rekonsiliator",
+      "replikator",
+      "resonator",
+      "respirator",
+      "reverberator",
+      "rforator",
+      "rkolator",
+      "rminator",
+      "rotator",
+      "rotavator",
+      "rvator",
+      "salvator",
+      "sediktator",
+      "senator",
+      "sertifikator",
+      "sikator",
+      "simulator",
+      "sintilator",
+      "skalator",
+      "sonator",
+      "sonikator",
+      "spektator",
+      "spekulator",
+      "spirator",
+      "splorator",
+      "stabilisator",
+      "stator",
+      "stereokomparator",
+      "sterilisator",
+      "stimulator",
+      "subindikator",
+      "subkoordinator",
+      "superadministrator",
+      "supinator",
+      "tabulator",
+      "tator",
+      "terminator",
+      "termoregulator",
+      "tonator",
+      "totalisator",
+      "transformator",
+      "travelator",
+      "turbogenerator",
+      "vaksinator",
+      "validator",
+      "vaporator",
+      "vasodilator",
+      "ventilator",
+      "verifikator",
+      "vibrator",
+      "visitator"
+    ],
+    "hits": 1
+  },
+  "atori": {
+    "query": "atori",
+    "prefix_count": 3,
+    "prefix_words": [
+      "atori",
+      "atoriolog",
+      "atoriolong"
+    ],
+    "suffix_count": 34,
+    "suffix_words": [
+      "afirmatori",
+      "aleatori",
+      "ambulatori",
+      "antisipatori",
+      "atori",
+      "dekstrorotatori",
+      "derogatori",
+      "dimediatori",
+      "dimoderatori",
+      "eksitatori",
+      "eksplanatori",
+      "eksploratori",
+      "gustatori",
+      "hortatori",
+      "inflamatori",
+      "kompensatori",
+      "konservatori",
+      "krematori",
+      "lavatori",
+      "levorotatori",
+      "matori",
+      "memediatori",
+      "memoderatori",
+      "mendiktatori",
+      "menguratori",
+      "observatori",
+      "partisipatori",
+      "predatori",
+      "regulatori",
+      "respiratori",
+      "rogatori",
+      "rvatori",
+      "saltatori",
+      "satori"
+    ],
+    "hits": 1
   },
   "atur": {
     "query": "atur",
@@ -2978,7 +4408,76 @@
       "vakatur",
       "verifikatur"
     ],
-    "hits": 2
+    "hits": 3
+  },
+  "aurat": {
+    "query": "aurat",
+    "prefix_count": 3,
+    "prefix_words": [
+      "aurat",
+      "auratifolia",
+      "auratus"
+    ],
+    "suffix_count": 5,
+    "suffix_words": [
+      "aurat",
+      "beraurat",
+      "laurat",
+      "maurat",
+      "taurat"
+    ],
+    "hits": 1
+  },
+  "awak": {
+    "query": "awak",
+    "prefix_count": 5,
+    "prefix_words": [
+      "awak",
+      "awakaca",
+      "awakepala",
+      "awakode",
+      "awakutu"
+    ],
+    "suffix_count": 36,
+    "suffix_words": [
+      "arawak",
+      "awak",
+      "bawak",
+      "berawak",
+      "bercawak",
+      "berlawak",
+      "biawak",
+      "cawak",
+      "cengkerawak",
+      "dawak",
+      "kawak",
+      "kerawak",
+      "ketetawak",
+      "lalawak",
+      "lawak",
+      "lelawak",
+      "melawak",
+      "membiawak",
+      "memperawak",
+      "mengawak",
+      "menyawak",
+      "merawak",
+      "ngawak",
+      "nirawak",
+      "pasawak",
+      "pawak",
+      "pelawak",
+      "rawak",
+      "sawak",
+      "senawak",
+      "serawak",
+      "tawak",
+      "tempawak",
+      "temulawak",
+      "tertawak",
+      "tetawak"
+    ],
+    "hits": 1
   },
   "awang": {
     "query": "awang",
@@ -3060,6 +4559,52 @@
     ],
     "hits": 9
   },
+  "awar": {
+    "query": "awar",
+    "prefix_count": 3,
+    "prefix_words": [
+      "awar",
+      "awaracun",
+      "awarima"
+    ],
+    "suffix_count": 33,
+    "suffix_words": [
+      "alawar",
+      "antipenawar",
+      "awar",
+      "bawar",
+      "bertawar",
+      "ditawar",
+      "gagawar",
+      "gawar",
+      "haliwawar",
+      "hawar",
+      "kawar",
+      "kelelawar",
+      "lawar",
+      "lelawar",
+      "mahawar",
+      "mawar",
+      "melawar",
+      "menawar",
+      "menyawar",
+      "nawar",
+      "ngelawar",
+      "nyawar",
+      "penawar",
+      "sawar",
+      "selawar",
+      "semawar",
+      "senawar",
+      "setawar",
+      "sinawar",
+      "sitawar",
+      "tawar",
+      "temawar",
+      "wawar"
+    ],
+    "hits": 1
+  },
   "awit": {
     "query": "awit",
     "prefix_count": 3,
@@ -3102,7 +4647,7 @@
       "nayab",
       "ngayab"
     ],
-    "hits": 5
+    "hits": 6
   },
   "ayak": {
     "query": "ayak",
@@ -3231,6 +4776,27 @@
     ],
     "hits": 2
   },
+  "azim": {
+    "query": "azim",
+    "prefix_count": 3,
+    "prefix_words": [
+      "azim",
+      "azimat",
+      "azimut"
+    ],
+    "suffix_count": 8,
+    "suffix_words": [
+      "astagfirullahalazim",
+      "azim",
+      "karbendazim",
+      "lawazim",
+      "lazim",
+      "nazim",
+      "selazim",
+      "terlazim"
+    ],
+    "hits": 3
+  },
   "balah": {
     "query": "balah",
     "prefix_count": 5,
@@ -3252,6 +4818,32 @@
       "mukabalah",
       "semukabalah",
       "tibalah"
+    ],
+    "hits": 2
+  },
+  "batik": {
+    "query": "batik",
+    "prefix_count": 3,
+    "prefix_words": [
+      "batik",
+      "batikam",
+      "batikan"
+    ],
+    "suffix_count": 13,
+    "suffix_words": [
+      "adiabatik",
+      "aerobatik",
+      "akrobatik",
+      "anabatik",
+      "batik",
+      "beraerobatik",
+      "berbatik",
+      "dibatik",
+      "ekobatik",
+      "katabatik",
+      "membatik",
+      "pembatik",
+      "robatik"
     ],
     "hits": 2
   },
@@ -3293,6 +4885,20 @@
     ],
     "hits": 2
   },
+  "biala": {
+    "query": "biala",
+    "prefix_count": 2,
+    "prefix_words": [
+      "biala",
+      "bialao"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "biala",
+      "kabiala"
+    ],
+    "hits": 1
+  },
   "biang": {
     "query": "biang",
     "prefix_count": 4,
@@ -3310,7 +4916,7 @@
       "sembiang",
       "tembiang"
     ],
-    "hits": 4
+    "hits": 9
   },
   "biat": {
     "query": "biat",
@@ -3330,7 +4936,89 @@
       "takbiat",
       "tanbiat"
     ],
+    "hits": 3
+  },
+  "bilik": {
+    "query": "bilik",
+    "prefix_count": 2,
+    "prefix_words": [
+      "bilik",
+      "biliknya"
+    ],
+    "suffix_count": 4,
+    "suffix_words": [
+      "berbilik",
+      "bilik",
+      "sebilik",
+      "sembilik"
+    ],
     "hits": 2
+  },
+  "bito": {
+    "query": "bito",
+    "prefix_count": 4,
+    "prefix_words": [
+      "bito",
+      "bitor",
+      "bitorquata",
+      "bitot"
+    ],
+    "suffix_count": 4,
+    "suffix_words": [
+      "bibito",
+      "bito",
+      "bolibito",
+      "letabito"
+    ],
+    "hits": 1
+  },
+  "blat": {
+    "query": "blat",
+    "prefix_count": 4,
+    "prefix_words": [
+      "blater",
+      "blatong",
+      "blatovir",
+      "blattaria"
+    ],
+    "suffix_count": 5,
+    "suffix_words": [
+      "berkiblat",
+      "kiblat",
+      "oblat",
+      "qiblat",
+      "seblat"
+    ],
+    "hits": 1
+  },
+  "bokan": {
+    "query": "bokan",
+    "prefix_count": 2,
+    "prefix_words": [
+      "bokan",
+      "bokango"
+    ],
+    "suffix_count": 17,
+    "suffix_words": [
+      "bobokan",
+      "bokan",
+      "cebokan",
+      "dininabobokan",
+      "gebokan",
+      "kobokan",
+      "meninabobokan",
+      "ninabobokan",
+      "obokan",
+      "pembobokan",
+      "penembokan",
+      "penggembokan",
+      "tabokan",
+      "tebokan",
+      "tembokan",
+      "terninabobokan",
+      "tombokan"
+    ],
+    "hits": 1
   },
   "bori": {
     "query": "bori",
@@ -3352,6 +5040,24 @@
       "warembori"
     ],
     "hits": 1
+  },
+  "brum": {
+    "query": "brum",
+    "prefix_count": 3,
+    "prefix_words": [
+      "brum",
+      "brumasi",
+      "brumbun"
+    ],
+    "suffix_count": 5,
+    "suffix_words": [
+      "brum",
+      "equilibrum",
+      "labrum",
+      "rubrum",
+      "serebrum"
+    ],
+    "hits": 2
   },
   "bungo": {
     "query": "bungo",
@@ -3382,7 +5088,27 @@
       "burma",
       "yaburma"
     ],
-    "hits": 8
+    "hits": 16
+  },
+  "ciki": {
+    "query": "ciki",
+    "prefix_count": 3,
+    "prefix_words": [
+      "ciki",
+      "cikilan",
+      "cikiringi"
+    ],
+    "suffix_count": 7,
+    "suffix_words": [
+      "caciki",
+      "ciki",
+      "diperciki",
+      "memerciki",
+      "meraciki",
+      "mereciki",
+      "terperciki"
+    ],
+    "hits": 2
   },
   "clea": {
     "query": "clea",
@@ -3432,6 +5158,27 @@
     "suffix_words": [
       "daik",
       "padaik"
+    ],
+    "hits": 4
+  },
+  "dakwa": {
+    "query": "dakwa",
+    "prefix_count": 5,
+    "prefix_words": [
+      "dakwa",
+      "dakwaan",
+      "dakwah",
+      "dakwahnya",
+      "dakwat"
+    ],
+    "suffix_count": 6,
+    "suffix_words": [
+      "berdakwa",
+      "dakwa",
+      "didakwa",
+      "mendakwa",
+      "pendakwa",
+      "terdakwa"
     ],
     "hits": 1
   },
@@ -3491,6 +5238,43 @@
       "sedarah"
     ],
     "hits": 1
+  },
+  "darus": {
+    "query": "darus",
+    "prefix_count": 3,
+    "prefix_words": [
+      "darus",
+      "darusalam",
+      "darussalam"
+    ],
+    "suffix_count": 7,
+    "suffix_words": [
+      "bertadarus",
+      "bertedarus",
+      "darus",
+      "indarus",
+      "tadarus",
+      "tandarus",
+      "tedarus"
+    ],
+    "hits": 1
+  },
+  "deha": {
+    "query": "deha",
+    "prefix_count": 4,
+    "prefix_words": [
+      "deha",
+      "dehal",
+      "dehalogenasi",
+      "deham"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "deha",
+      "pepedeha",
+      "sangkamadeha"
+    ],
+    "hits": 5
   },
   "densi": {
     "query": "densi",
@@ -3560,7 +5344,7 @@
       "penyolderan",
       "solderan"
     ],
-    "hits": 2
+    "hits": 3
   },
   "dikit": {
     "query": "dikit",
@@ -3584,6 +5368,24 @@
       "tersedikit"
     ],
     "hits": 2
+  },
+  "diks": {
+    "query": "diks",
+    "prefix_count": 5,
+    "prefix_words": [
+      "diks",
+      "diksa",
+      "diksar",
+      "diksarmil",
+      "diksi"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "apendiks",
+      "diks",
+      "radiks"
+    ],
+    "hits": 1
   },
   "diot": {
     "query": "diot",
@@ -3617,6 +5419,134 @@
       "sinekdoke"
     ],
     "hits": 2
+  },
+  "duksi": {
+    "query": "duksi",
+    "prefix_count": 5,
+    "prefix_words": [
+      "duksi",
+      "duksionisme",
+      "duksional",
+      "duksionistik",
+      "duksionis"
+    ],
+    "suffix_count": 52,
+    "suffix_words": [
+      "abduksi",
+      "aduksi",
+      "bereproduksi",
+      "berproduksi",
+      "bioreproduksi",
+      "deduksi",
+      "diinduksi",
+      "diintroduksi",
+      "diproduksi",
+      "direduksi",
+      "direproduksi",
+      "duksi",
+      "fotokonduksi",
+      "fotoreduksi",
+      "fototransduksi",
+      "induksi",
+      "introduksi",
+      "konduksi",
+      "kontraproduksi",
+      "koproduksi",
+      "memproduksi",
+      "memroduksi",
+      "menginduksi",
+      "mengintroduksi",
+      "mengonduksi",
+      "mereduksi",
+      "mereproduksi",
+      "mikroreproduksi",
+      "nonpereduksi",
+      "nonproduksi",
+      "obduksi",
+      "overproduksi",
+      "pascaproduksi",
+      "pemroduksi",
+      "penginduksi",
+      "pengintroduksi",
+      "pereduksi",
+      "pereproduksi",
+      "praproduksi",
+      "produksi",
+      "reduksi",
+      "reintroduksi",
+      "reproduksi",
+      "seduksi",
+      "sirkumduksi",
+      "subduksi",
+      "swaproduksi",
+      "tereduksi",
+      "terinduksi",
+      "terintroduksi",
+      "terproduksi",
+      "transduksi"
+    ],
+    "hits": 3
+  },
+  "duren": {
+    "query": "duren",
+    "prefix_count": 2,
+    "prefix_words": [
+      "duren",
+      "dureng"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "duren",
+      "kenduren"
+    ],
+    "hits": 2
+  },
+  "ekas": {
+    "query": "ekas",
+    "prefix_count": 3,
+    "prefix_words": [
+      "ekasegi",
+      "ekasila",
+      "ekasuku"
+    ],
+    "suffix_count": 15,
+    "suffix_words": [
+      "bekas",
+      "berbekas",
+      "berlekas",
+      "diperlekas",
+      "kekas",
+      "lekas",
+      "melekas",
+      "membekas",
+      "memperlekas",
+      "mengekas",
+      "palekas",
+      "pekas",
+      "sebekas",
+      "selekas",
+      "wekas"
+    ],
+    "hits": 1
+  },
+  "eksin": {
+    "query": "eksin",
+    "prefix_count": 2,
+    "prefix_words": [
+      "eksin",
+      "eksinnya"
+    ],
+    "suffix_count": 7,
+    "suffix_words": [
+      "aleksin",
+      "bromheksin",
+      "eksin",
+      "ekteksin",
+      "endeksin",
+      "fitoaleksin",
+      "oreksin"
+    ],
+    "hits": 3
   },
   "ektro": {
     "query": "ektro",
@@ -3833,7 +5763,7 @@
       "belli",
       "ruselli"
     ],
-    "hits": 1
+    "hits": 2
   },
   "emang": {
     "query": "emang",
@@ -3865,6 +5795,46 @@
       "semang"
     ],
     "hits": 2
+  },
+  "emis": {
+    "query": "emis",
+    "prefix_count": 5,
+    "prefix_words": [
+      "emis",
+      "emisar",
+      "emisi",
+      "emisivitas",
+      "emission"
+    ],
+    "suffix_count": 25,
+    "suffix_words": [
+      "akademis",
+      "alkemis",
+      "ekstremis",
+      "emblemis",
+      "emis",
+      "endemis",
+      "extremis",
+      "fonemis",
+      "gemis",
+      "grafemis",
+      "hiperemis",
+      "kemis",
+      "mengemis",
+      "monomorfemis",
+      "morfemis",
+      "morfofonemis",
+      "ngemis",
+      "nonakademis",
+      "pengemis",
+      "polemis",
+      "polimorfemis",
+      "polynemis",
+      "premis",
+      "remis",
+      "sistemis"
+    ],
+    "hits": 1
   },
   "enak": {
     "query": "enak",
@@ -3933,6 +5903,45 @@
       "pendar",
       "sendar",
       "sipendar"
+    ],
+    "hits": 1
+  },
+  "endi": {
+    "query": "endi",
+    "prefix_count": 4,
+    "prefix_words": [
+      "endiit",
+      "endilau",
+      "endit",
+      "endivia"
+    ],
+    "suffix_count": 25,
+    "suffix_words": [
+      "bendi",
+      "berbendi",
+      "bersendi",
+      "brendi",
+      "cendi",
+      "dendi",
+      "efendi",
+      "gendi",
+      "hendi",
+      "kendi",
+      "lendi",
+      "mehendi",
+      "membendi",
+      "mendi",
+      "menyendi",
+      "nyendi",
+      "pendi",
+      "procedendi",
+      "rendi",
+      "sekendi",
+      "sendi",
+      "sumendi",
+      "tendi",
+      "trendi",
+      "vivendi"
     ],
     "hits": 1
   },
@@ -4007,7 +6016,7 @@
       "tersentil",
       "ventil"
     ],
-    "hits": 3
+    "hits": 7
   },
   "envoi": {
     "query": "envoi",
@@ -4233,7 +6242,7 @@
       "veteran",
       "waleran"
     ],
-    "hits": 10
+    "hits": 16
   },
   "erang": {
     "query": "erang",
@@ -4316,7 +6325,62 @@
       "terserang",
       "ultraterang"
     ],
-    "hits": 7
+    "hits": 12
+  },
+  "eret": {
+    "query": "eret",
+    "prefix_count": 3,
+    "prefix_words": [
+      "eret",
+      "eretan",
+      "eretisme"
+    ],
+    "suffix_count": 42,
+    "suffix_words": [
+      "ateret",
+      "berderet",
+      "beret",
+      "berleret",
+      "bonceret",
+      "cenggeret",
+      "ceret",
+      "deret",
+      "dieret",
+      "diseret",
+      "eret",
+      "geret",
+      "heret",
+      "jeret",
+      "keret",
+      "kleret",
+      "leret",
+      "meleret",
+      "menceret",
+      "menderet",
+      "mengeret",
+      "menggeret",
+      "mengkeret",
+      "menyeret",
+      "meret",
+      "nyeret",
+      "operet",
+      "pengeret",
+      "penggeret",
+      "penyeret",
+      "pereret",
+      "peret",
+      "pleret",
+      "sederet",
+      "seleret",
+      "seret",
+      "spineret",
+      "tenggeret",
+      "teret",
+      "terseret",
+      "tonggeret",
+      "veret"
+    ],
+    "hits": 2
   },
   "erin": {
     "query": "erin",
@@ -4544,7 +6608,24 @@
       "mesofauna",
       "mikrofauna"
     ],
-    "hits": 6
+    "hits": 10
+  },
+  "ferin": {
+    "query": "ferin",
+    "prefix_count": 2,
+    "prefix_words": [
+      "feringgi",
+      "ferinsa"
+    ],
+    "suffix_count": 5,
+    "suffix_words": [
+      "laktoferin",
+      "lusiferin",
+      "mangiferin",
+      "ovotransferin",
+      "transferin"
+    ],
+    "hits": 1
   },
   "fiksi": {
     "query": "fiksi",
@@ -4562,7 +6643,7 @@
       "metafiksi",
       "nonfiksi"
     ],
-    "hits": 4
+    "hits": 5
   },
   "fitri": {
     "query": "fitri",
@@ -4579,6 +6660,22 @@
       "idulfitri"
     ],
     "hits": 3
+  },
+  "fluks": {
+    "query": "fluks",
+    "prefix_count": 2,
+    "prefix_words": [
+      "fluks",
+      "fluksi"
+    ],
+    "suffix_count": 4,
+    "suffix_words": [
+      "afluks",
+      "efluks",
+      "fluks",
+      "refluks"
+    ],
+    "hits": 1
   },
   "fokus": {
     "query": "fokus",
@@ -4652,7 +6749,26 @@
       "trifolia",
       "ulmifolia"
     ],
-    "hits": 14
+    "hits": 21
+  },
+  "frit": {
+    "query": "frit",
+    "prefix_count": 4,
+    "prefix_words": [
+      "frit",
+      "friter",
+      "fritis",
+      "frittata"
+    ],
+    "suffix_count": 5,
+    "suffix_words": [
+      "afrit",
+      "frit",
+      "ifrit",
+      "nefrit",
+      "proefrit"
+    ],
+    "hits": 2
   },
   "fufu": {
     "query": "fufu",
@@ -4666,6 +6782,21 @@
     "suffix_words": [
       "fufu",
       "nifufu"
+    ],
+    "hits": 2
+  },
+  "fumi": {
+    "query": "fumi",
+    "prefix_count": 3,
+    "prefix_words": [
+      "fumigan",
+      "fumigasi",
+      "fumigator"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "ifumi",
+      "mafumi"
     ],
     "hits": 2
   },
@@ -4684,6 +6815,49 @@
       "menganga",
       "nganga",
       "ternganga"
+    ],
+    "hits": 3
+  },
+  "gangi": {
+    "query": "gangi",
+    "prefix_count": 2,
+    "prefix_words": [
+      "gangi",
+      "gangiring"
+    ],
+    "suffix_count": 10,
+    "suffix_words": [
+      "dipegangi",
+      "ditunggangi",
+      "engangi",
+      "gangi",
+      "kautunggangi",
+      "memegangi",
+      "menegangi",
+      "menunggangi",
+      "merenggangi",
+      "tunggangi"
+    ],
+    "hits": 2
+  },
+  "gapit": {
+    "query": "gapit",
+    "prefix_count": 3,
+    "prefix_words": [
+      "gapit",
+      "gapitan",
+      "gapite"
+    ],
+    "suffix_count": 8,
+    "suffix_words": [
+      "digapit",
+      "gapit",
+      "mengapit",
+      "menggapit",
+      "panggapit",
+      "pengapit",
+      "penggapit",
+      "porogapit"
     ],
     "hits": 1
   },
@@ -4724,6 +6898,21 @@
     ],
     "hits": 1
   },
+  "garpu": {
+    "query": "garpu",
+    "prefix_count": 2,
+    "prefix_words": [
+      "garpu",
+      "garpuan"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "bergarpu",
+      "garpu",
+      "menggarpu"
+    ],
+    "hits": 3
+  },
   "gatot": {
     "query": "gatot",
     "prefix_count": 2,
@@ -4736,7 +6925,7 @@
       "gatot",
       "ngatot"
     ],
-    "hits": 3
+    "hits": 5
   },
   "gaung": {
     "query": "gaung",
@@ -4781,6 +6970,83 @@
       "seperinggawan"
     ],
     "hits": 2
+  },
+  "gawi": {
+    "query": "gawi",
+    "prefix_count": 4,
+    "prefix_words": [
+      "gawi",
+      "gawing",
+      "gawir",
+      "gawit"
+    ],
+    "suffix_count": 8,
+    "suffix_words": [
+      "begawi",
+      "gawi",
+      "hengawi",
+      "ngawi",
+      "pegawi",
+      "ragawi",
+      "sorgawi",
+      "surgawi"
+    ],
+    "hits": 1
+  },
+  "gelar": {
+    "query": "gelar",
+    "prefix_count": 5,
+    "prefix_words": [
+      "gelar",
+      "gelaran",
+      "gelarang",
+      "gelarnya",
+      "gelarunggaluku"
+    ],
+    "suffix_count": 12,
+    "suffix_words": [
+      "bergelar",
+      "caturgelar",
+      "digelar",
+      "dwigelar",
+      "gelar",
+      "mengelar",
+      "menggelar",
+      "nirgelar",
+      "pancagelar",
+      "singelar",
+      "tergelar",
+      "trigelar"
+    ],
+    "hits": 1
+  },
+  "genan": {
+    "query": "genan",
+    "prefix_count": 2,
+    "prefix_words": [
+      "genang",
+      "genangan"
+    ],
+    "suffix_count": 16,
+    "suffix_words": [
+      "angenan",
+      "kangenan",
+      "karagenan",
+      "keagenan",
+      "keheterogenan",
+      "kehomogenan",
+      "kekangenan",
+      "kekonvergenan",
+      "kepatogenan",
+      "keregenan",
+      "klangenan",
+      "penghidrogenan",
+      "penghomogenan",
+      "pengoksigenan",
+      "peragenan",
+      "perontgenan"
+    ],
+    "hits": 1
   },
   "getah": {
     "query": "getah",
@@ -4865,6 +7131,32 @@
       "wangiwangian",
       "wewangian"
     ],
+    "hits": 6
+  },
+  "giat": {
+    "query": "giat",
+    "prefix_count": 5,
+    "prefix_words": [
+      "giat",
+      "giatan",
+      "giatkan",
+      "giatnya",
+      "giatter"
+    ],
+    "suffix_count": 11,
+    "suffix_words": [
+      "bergiat",
+      "giat",
+      "lakgiat",
+      "mempergiat",
+      "memplagiat",
+      "mengiat",
+      "pambragiat",
+      "pegiat",
+      "penggiat",
+      "plagiat",
+      "rengiat"
+    ],
     "hits": 2
   },
   "gilas": {
@@ -4903,7 +7195,7 @@
       "ngilik",
       "tergilik"
     ],
-    "hits": 2
+    "hits": 3
   },
   "gins": {
     "query": "gins",
@@ -4918,7 +7210,35 @@
       "alongins",
       "gins"
     ],
-    "hits": 1
+    "hits": 3
+  },
+  "giran": {
+    "query": "giran",
+    "prefix_count": 4,
+    "prefix_words": [
+      "girang",
+      "girangan",
+      "girangkan",
+      "girangnya"
+    ],
+    "suffix_count": 14,
+    "suffix_words": [
+      "belangiran",
+      "berpinggiran",
+      "gigiran",
+      "kepinggiran",
+      "keterpinggiran",
+      "kugiran",
+      "nanggiran",
+      "ogiran",
+      "pelangiran",
+      "pelegiran",
+      "peminggiran",
+      "pendangiran",
+      "pinggiran",
+      "sangiran"
+    ],
+    "hits": 2
   },
   "gisa": {
     "query": "gisa",
@@ -4985,6 +7305,25 @@
       "mangois",
       "takegois",
       "teregois"
+    ],
+    "hits": 2
+  },
+  "gores": {
+    "query": "gores",
+    "prefix_count": 2,
+    "prefix_words": [
+      "gores",
+      "goresan"
+    ],
+    "suffix_count": 7,
+    "suffix_words": [
+      "antigores",
+      "bergores",
+      "digores",
+      "gores",
+      "menggores",
+      "penggores",
+      "tergores"
     ],
     "hits": 2
   },
@@ -5074,6 +7413,27 @@
     ],
     "hits": 1
   },
+  "habis": {
+    "query": "habis",
+    "prefix_count": 5,
+    "prefix_words": [
+      "habis",
+      "habisan",
+      "habisi",
+      "habiskan",
+      "habisnya"
+    ],
+    "suffix_count": 6,
+    "suffix_words": [
+      "berhabis",
+      "habis",
+      "khabis",
+      "menghabis",
+      "penghabis",
+      "sehabis"
+    ],
+    "hits": 1
+  },
   "hanat": {
     "query": "hanat",
     "prefix_count": 2,
@@ -5088,6 +7448,28 @@
       "wahanat"
     ],
     "hits": 4
+  },
+  "haram": {
+    "query": "haram",
+    "prefix_count": 5,
+    "prefix_words": [
+      "haram",
+      "haramain",
+      "harami",
+      "haramkan",
+      "haramonting"
+    ],
+    "suffix_count": 7,
+    "suffix_words": [
+      "alharam",
+      "baitulharam",
+      "haram",
+      "masjidilharam",
+      "masyarilharam",
+      "muharam",
+      "pengharam"
+    ],
+    "hits": 1
   },
   "hasil": {
     "query": "hasil",
@@ -5140,7 +7522,7 @@
       "tahiat",
       "uluhiat"
     ],
-    "hits": 4
+    "hits": 6
   },
   "hilir": {
     "query": "hilir",
@@ -5161,6 +7543,25 @@
     ],
     "hits": 2
   },
+  "hilo": {
+    "query": "hilo",
+    "prefix_count": 5,
+    "prefix_words": [
+      "hilo",
+      "hiloana",
+      "hilofagus",
+      "hilofobia",
+      "hiloi"
+    ],
+    "suffix_count": 4,
+    "suffix_words": [
+      "ahilo",
+      "hahilo",
+      "hilo",
+      "tehilo"
+    ],
+    "hits": 2
+  },
   "hohon": {
     "query": "hohon",
     "prefix_count": 2,
@@ -5173,7 +7574,7 @@
       "hohon",
       "kahohon"
     ],
-    "hits": 2
+    "hits": 4
   },
   "holu": {
     "query": "holu",
@@ -5189,6 +7590,23 @@
       "oholu"
     ],
     "hits": 1
+  },
+  "huwa": {
+    "query": "huwa",
+    "prefix_count": 3,
+    "prefix_words": [
+      "huwa",
+      "huwali",
+      "huwamalu"
+    ],
+    "suffix_count": 4,
+    "suffix_words": [
+      "belehuwa",
+      "huwa",
+      "ilhuwa",
+      "yehuwa"
+    ],
+    "hits": 3
   },
   "idol": {
     "query": "idol",
@@ -5207,6 +7625,36 @@
     ],
     "hits": 2
   },
+  "idola": {
+    "query": "idola",
+    "prefix_count": 2,
+    "prefix_words": [
+      "idola",
+      "idolakan"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "beridola",
+      "idola",
+      "pengidola"
+    ],
+    "hits": 1
+  },
+  "ihsan": {
+    "query": "ihsan",
+    "prefix_count": 2,
+    "prefix_words": [
+      "ihsan",
+      "ihsanat"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "beristihsan",
+      "ihsan",
+      "istihsan"
+    ],
+    "hits": 1
+  },
   "ikad": {
     "query": "ikad",
     "prefix_count": 4,
@@ -5224,7 +7672,7 @@
       "intikad",
       "itikad"
     ],
-    "hits": 2
+    "hits": 8
   },
   "ikada": {
     "query": "ikada",
@@ -5389,7 +7837,7 @@
       "wasilah",
       "wilah"
     ],
-    "hits": 2
+    "hits": 4
   },
   "ilai": {
     "query": "ilai",
@@ -5635,7 +8083,7 @@
       "xilan",
       "yalilan"
     ],
-    "hits": 4
+    "hits": 6
   },
   "ilang": {
     "query": "ilang",
@@ -5696,7 +8144,87 @@
       "tilang",
       "wilang"
     ],
-    "hits": 5
+    "hits": 9
+  },
+  "iling": {
+    "query": "iling",
+    "prefix_count": 3,
+    "prefix_words": [
+      "iling",
+      "ilingan",
+      "ilingofobia"
+    ],
+    "suffix_count": 41,
+    "suffix_words": [
+      "anakiling",
+      "bergiling",
+      "berkeliling",
+      "cengkiling",
+      "ciling",
+      "digiling",
+      "dikeliling",
+      "disekeliling",
+      "giling",
+      "giniling",
+      "hiling",
+      "iling",
+      "jiling",
+      "kaliling",
+      "kamiling",
+      "keliling",
+      "liling",
+      "mandailing",
+      "manggiling",
+      "menggiling",
+      "mengiling",
+      "miling",
+      "nggiling",
+      "parasailing",
+      "pengeliling",
+      "penggiling",
+      "refiling",
+      "remiling",
+      "segiling",
+      "sekeliling",
+      "senggiling",
+      "sentiling",
+      "shiling",
+      "siling",
+      "syiling",
+      "tailing",
+      "tenggiling",
+      "tergiling",
+      "trenggiling",
+      "triling",
+      "wijiling"
+    ],
+    "hits": 2
+  },
+  "ilok": {
+    "query": "ilok",
+    "prefix_count": 4,
+    "prefix_words": [
+      "ilok",
+      "ilokasi",
+      "ilokusi",
+      "ilokusioner"
+    ],
+    "suffix_count": 12,
+    "suffix_words": [
+      "bilok",
+      "cilok",
+      "dicilok",
+      "ilok",
+      "lilok",
+      "maktilok",
+      "mencilok",
+      "oilok",
+      "pailok",
+      "pasailok",
+      "pencilok",
+      "silok"
+    ],
+    "hits": 2
   },
   "imbal": {
     "query": "imbal",
@@ -5722,6 +8250,21 @@
       "timbal"
     ],
     "hits": 2
+  },
+  "imsa": {
+    "query": "imsa",
+    "prefix_count": 3,
+    "prefix_words": [
+      "imsak",
+      "imsakiah",
+      "imsakyih"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "ahimsa",
+      "nimsa"
+    ],
+    "hits": 1
   },
   "inggi": {
     "query": "inggi",
@@ -5756,7 +8299,7 @@
       "toribinggi",
       "ultratinggi"
     ],
-    "hits": 56
+    "hits": 79
   },
   "inggu": {
     "query": "inggu",
@@ -5781,7 +8324,26 @@
       "pinggu",
       "seminggu"
     ],
-    "hits": 2
+    "hits": 6
+  },
+  "ingus": {
+    "query": "ingus",
+    "prefix_count": 3,
+    "prefix_words": [
+      "ingus",
+      "ingusan",
+      "ingusnya"
+    ],
+    "suffix_count": 6,
+    "suffix_words": [
+      "anilingus",
+      "beringus",
+      "celingus",
+      "ingus",
+      "telingus",
+      "tingus"
+    ],
+    "hits": 1
   },
   "inkan": {
     "query": "inkan",
@@ -5877,6 +8439,55 @@
       "yakinkan"
     ],
     "hits": 4
+  },
+  "irah": {
+    "query": "irah",
+    "prefix_count": 4,
+    "prefix_words": [
+      "irah",
+      "irahan",
+      "irahu",
+      "irahutu"
+    ],
+    "suffix_count": 35,
+    "suffix_words": [
+      "atirah",
+      "basirah",
+      "bergairah",
+      "berzirah",
+      "bintirah",
+      "birah",
+      "dirah",
+      "gairah",
+      "girah",
+      "insyirah",
+      "irah",
+      "jasirah",
+      "jazirah",
+      "katirah",
+      "ketirah",
+      "magfirah",
+      "maghfirah",
+      "mirah",
+      "mutawatirah",
+      "nakirah",
+      "ngatirah",
+      "nirah",
+      "pasirah",
+      "pesirah",
+      "sarirah",
+      "sebergairah",
+      "segairah",
+      "sirah",
+      "tazkirah",
+      "tersirah",
+      "tetirah",
+      "tirah",
+      "wakirah",
+      "zakirah",
+      "zirah"
+    ],
+    "hits": 2
   },
   "iran": {
     "query": "iran",
@@ -6150,7 +8761,21 @@
       "usiran",
       "zikiran"
     ],
-    "hits": 19
+    "hits": 44
+  },
+  "irani": {
+    "query": "irani",
+    "prefix_count": 2,
+    "prefix_words": [
+      "irania",
+      "iranika"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "patirani",
+      "tirani"
+    ],
+    "hits": 6
   },
   "iring": {
     "query": "iring",
@@ -6211,7 +8836,83 @@
       "tipiring",
       "wiring"
     ],
-    "hits": 1
+    "hits": 3
+  },
+  "isak": {
+    "query": "isak",
+    "prefix_count": 4,
+    "prefix_words": [
+      "isak",
+      "isakaeng",
+      "isakalke",
+      "isakan"
+    ],
+    "suffix_count": 14,
+    "suffix_words": [
+      "berisak",
+      "bisak",
+      "isak",
+      "kapisak",
+      "kisak",
+      "lisak",
+      "meisak",
+      "merisak",
+      "nisak",
+      "perisak",
+      "pisak",
+      "risak",
+      "terisak",
+      "waisak"
+    ],
+    "hits": 2
+  },
+  "isian": {
+    "query": "isian",
+    "prefix_count": 2,
+    "prefix_words": [
+      "isian",
+      "isiang"
+    ],
+    "suffix_count": 36,
+    "suffix_words": [
+      "bersisian",
+      "efisian",
+      "isian",
+      "keambisian",
+      "kemusisian",
+      "kepolisian",
+      "kepraktisian",
+      "kepresisian",
+      "keteknisian",
+      "keterisian",
+      "pemartisian",
+      "pemolisian",
+      "pemosisian",
+      "pemuisian",
+      "pendefinisian",
+      "pendeposisian",
+      "pendisposisian",
+      "pengakuisisian",
+      "pengakusisian",
+      "pengekspedisian",
+      "pengekstradisian",
+      "pengisian",
+      "pengkondisian",
+      "pengognisian",
+      "pengomposisian",
+      "pengondisian",
+      "penutrisian",
+      "penyirkumsisian",
+      "penyisian",
+      "perevisian",
+      "perkoalisian",
+      "perpuisian",
+      "perselisian",
+      "pertelevisian",
+      "revisian",
+      "sisian"
+    ],
+    "hits": 7
   },
   "iskan": {
     "query": "iskan",
@@ -6329,7 +9030,179 @@
       "tuliskan",
       "wariskan"
     ],
-    "hits": 5
+    "hits": 12
+  },
+  "istik": {
+    "query": "istik",
+    "prefix_count": 5,
+    "prefix_words": [
+      "istikamah",
+      "istikharah",
+      "istikhlaf",
+      "istiklal",
+      "istikmal"
+    ],
+    "suffix_count": 157,
+    "suffix_words": [
+      "agonistik",
+      "altruistik",
+      "animistik",
+      "antagonistik",
+      "antibalistik",
+      "antiflogistik",
+      "antirealistik",
+      "antropolinguistik",
+      "aprioristik",
+      "artistik",
+      "atomistik",
+      "autistik",
+      "balistik",
+      "berjurnalistik",
+      "berkarakteristik",
+      "biolinguistik",
+      "biostatistik",
+      "bistik",
+      "chauvinistik",
+      "desentralistik",
+      "deterministik",
+      "dialinguistik",
+      "dikotomistik",
+      "dualistik",
+      "egoistik",
+      "ekistik",
+      "ekolinguistik",
+      "ekspresionistik",
+      "ekstralinguistik",
+      "elektrostatistik",
+      "empiristik",
+      "eristik",
+      "etnolinguistik",
+      "fatalistik",
+      "faunistik",
+      "feodalistik",
+      "fibrokistik",
+      "floristik",
+      "formalistik",
+      "fotojurnalistik",
+      "fotorealistik",
+      "futuristik",
+      "gastrolinguistik",
+      "gativistik",
+      "geostatistik",
+      "gonokoristik",
+      "hedonistik",
+      "helenistik",
+      "heuristik",
+      "hipokoristik",
+      "histik",
+      "holistik",
+      "humanistik",
+      "idealistik",
+      "ilusionistik",
+      "imperialistik",
+      "impresionistik",
+      "instrumentalistik",
+      "integralistik",
+      "intelektualistik",
+      "interaksionistik",
+      "intralinguistik",
+      "jurnalistik",
+      "kapitalistik",
+      "karakteristik",
+      "karekteristik",
+      "kasuistik",
+      "katalistik",
+      "kistik",
+      "kladistik",
+      "kognitivistik",
+      "kolektivistik",
+      "kolonialistik",
+      "kompromistik",
+      "komunalistik",
+      "konstruktivistik",
+      "kriminalistik",
+      "kristik",
+      "kruistik",
+      "kubistik",
+      "legalistik",
+      "leksikostatistik",
+      "linguistik",
+      "logistik",
+      "lokalistik",
+      "makrolinguistik",
+      "makrososiolinguistik",
+      "masokistik",
+      "mekanistik",
+      "melanistik",
+      "meristik",
+      "mesianistik",
+      "metaheuristik",
+      "metalinguistik",
+      "mikrolinguistik",
+      "mikrososiolinguistik",
+      "militeristik",
+      "misoginistik",
+      "mistik",
+      "monistik",
+      "monopolistik",
+      "monoteistik",
+      "mutualistik",
+      "narsisistik",
+      "narsistik",
+      "nasionalistik",
+      "nativistik",
+      "naturalistik",
+      "negativistik",
+      "nepotistik",
+      "neurolinguistik",
+      "nihilistik",
+      "nonstatistik",
+      "nonteistik",
+      "oportunistik",
+      "optimistik",
+      "paralinguistik",
+      "parsialistik",
+      "partikularistik",
+      "paternalistik",
+      "patristik",
+      "personalistik",
+      "pesimistik",
+      "pluralistik",
+      "polikistik",
+      "polisistik",
+      "positivistik",
+      "pralinguistik",
+      "primordialistik",
+      "probabilistik",
+      "psikolinguistik",
+      "publisistik",
+      "realistik",
+      "relativistik",
+      "ritualistik",
+      "romanistik",
+      "sadistik",
+      "seartistik",
+      "sekularistik",
+      "sentralistik",
+      "simplistik",
+      "sionistik",
+      "sosiolinguistik",
+      "statistik",
+      "stilistik",
+      "sufistik",
+      "sultanistik",
+      "surealistik",
+      "talinguistik",
+      "teistik",
+      "teolinguistik",
+      "tnolinguistik",
+      "turistik",
+      "urolinguistik",
+      "vandalistik",
+      "volunteristik",
+      "duksionistik"
+    ],
+    "hits": 1
   },
   "istis": {
     "query": "istis",
@@ -6454,7 +9327,7 @@
       "verbalistis",
       "logistis"
     ],
-    "hits": 6
+    "hits": 18
   },
   "itik": {
     "query": "itik",
@@ -6628,7 +9501,7 @@
       "tunapolitik",
       "xerofitik"
     ],
-    "hits": 20
+    "hits": 50
   },
   "jurk": {
     "query": "jurk",
@@ -6643,7 +9516,56 @@
       "jurk",
       "onderjurk"
     ],
+    "hits": 5
+  },
+  "kacau": {
+    "query": "kacau",
+    "prefix_count": 5,
+    "prefix_words": [
+      "kacau",
+      "kacauan",
+      "kacaukan",
+      "kacaulah",
+      "kacaun"
+    ],
+    "suffix_count": 4,
+    "suffix_words": [
+      "berkacau",
+      "dikacau",
+      "kacau",
+      "terkacau"
+    ],
+    "hits": 1
+  },
+  "kadin": {
+    "query": "kadin",
+    "prefix_count": 3,
+    "prefix_words": [
+      "kadin",
+      "kadinkes",
+      "kadinsos"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "ikadin",
+      "kadin"
+    ],
     "hits": 3
+  },
+  "kadir": {
+    "query": "kadir",
+    "prefix_count": 3,
+    "prefix_words": [
+      "kadir",
+      "kadiriah",
+      "kadirih"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "alkadir",
+      "kadir"
+    ],
+    "hits": 2
   },
   "kaiba": {
     "query": "kaiba",
@@ -6682,6 +9604,55 @@
     ],
     "hits": 2
   },
+  "kakak": {
+    "query": "kakak",
+    "prefix_count": 5,
+    "prefix_words": [
+      "kakak",
+      "kakakku",
+      "kakakmu",
+      "kakaknya",
+      "kakaktua"
+    ],
+    "suffix_count": 7,
+    "suffix_words": [
+      "bekakak",
+      "bercekakak",
+      "berkakak",
+      "cekakak",
+      "kakak",
+      "pekakak",
+      "terkakak"
+    ],
+    "hits": 2
+  },
+  "kanik": {
+    "query": "kanik",
+    "prefix_count": 5,
+    "prefix_words": [
+      "kanik",
+      "kanika",
+      "kanikgraha",
+      "kaniki",
+      "kanikir"
+    ],
+    "suffix_count": 12,
+    "suffix_words": [
+      "bermekanik",
+      "biomekanik",
+      "elektromekanik",
+      "geomekanik",
+      "hipovulkanik",
+      "kanik",
+      "mekanik",
+      "metavulkanik",
+      "smegmekanik",
+      "tektonovulkanik",
+      "vulkanik",
+      "iatromekanik"
+    ],
+    "hits": 3
+  },
   "kanya": {
     "query": "kanya",
     "prefix_count": 2,
@@ -6718,7 +9689,7 @@
       "tapikanya",
       "terbukanya"
     ],
-    "hits": 8
+    "hits": 10
   },
   "kasia": {
     "query": "kasia",
@@ -6737,6 +9708,67 @@
     ],
     "hits": 2
   },
+  "kerit": {
+    "query": "kerit",
+    "prefix_count": 3,
+    "prefix_words": [
+      "kerit",
+      "keritik",
+      "keriting"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "ankerit",
+      "kerit",
+      "ozokerit"
+    ],
+    "hits": 1
+  },
+  "kilan": {
+    "query": "kilan",
+    "prefix_count": 5,
+    "prefix_words": [
+      "kilan",
+      "kilang",
+      "kilangan",
+      "kilangangin",
+      "kilangnya"
+    ],
+    "suffix_count": 30,
+    "suffix_words": [
+      "bangkilan",
+      "bungkilan",
+      "cakilan",
+      "cikilan",
+      "cukilan",
+      "cungkilan",
+      "kabingkilan",
+      "kegokilan",
+      "kemuskilan",
+      "kemusykilan",
+      "kerikilan",
+      "kesangkilan",
+      "keterwakilan",
+      "ketidakterwakilan",
+      "kilan",
+      "nukilan",
+      "ombukilan",
+      "pencukilan",
+      "pencungkilan",
+      "pengerikilan",
+      "pengungkilan",
+      "penukilan",
+      "perwakilan",
+      "petakilan",
+      "sekilan",
+      "sikilan",
+      "tangkilan",
+      "terkilan",
+      "tingkilan",
+      "wakilan"
+    ],
+    "hits": 2
+  },
   "kimah": {
     "query": "kimah",
     "prefix_count": 2,
@@ -6751,6 +9783,53 @@
       "terkimah"
     ],
     "hits": 1
+  },
+  "kiran": {
+    "query": "kiran",
+    "prefix_count": 4,
+    "prefix_words": [
+      "kiran",
+      "kirana",
+      "kirang",
+      "kiranya"
+    ],
+    "suffix_count": 33,
+    "suffix_words": [
+      "afkiran",
+      "apkiran",
+      "berpikiran",
+      "berukiran",
+      "blokiran",
+      "cemukiran",
+      "fikiran",
+      "kefakiran",
+      "kekikiran",
+      "kemangkiran",
+      "keparkiran",
+      "kepikiran",
+      "ketersingkiran",
+      "kikiran",
+      "kiran",
+      "mungkiran",
+      "parkiran",
+      "pelangkiran",
+      "pemarkiran",
+      "pemblokiran",
+      "pemikiran",
+      "pemungkiran",
+      "pengafkiran",
+      "pengekiran",
+      "pengikiran",
+      "pengukiran",
+      "penyingkiran",
+      "perparkiran",
+      "pikiran",
+      "sepemikiran",
+      "sepikiran",
+      "ukiran",
+      "zikiran"
+    ],
+    "hits": 6
   },
   "kisme": {
     "query": "kisme",
@@ -6778,6 +9857,42 @@
       "sadomasokisme",
       "stoikisme",
       "takisme"
+    ],
+    "hits": 18
+  },
+  "kitab": {
+    "query": "kitab",
+    "prefix_count": 3,
+    "prefix_words": [
+      "kitab",
+      "kitabulah",
+      "kitabullah"
+    ],
+    "suffix_count": 7,
+    "suffix_words": [
+      "ahlilkitab",
+      "ahlulkitab",
+      "alkitab",
+      "berkitab",
+      "khizanatulkitab",
+      "kitab",
+      "umulkitab"
+    ],
+    "hits": 1
+  },
+  "klab": {
+    "query": "klab",
+    "prefix_count": 4,
+    "prefix_words": [
+      "klab",
+      "klabang",
+      "klabat",
+      "klabet"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "iklab",
+      "klab"
     ],
     "hits": 2
   },
@@ -6830,7 +9945,26 @@
       "tingklik",
       "trisiklik"
     ],
-    "hits": 4
+    "hits": 8
+  },
+  "kohi": {
+    "query": "kohi",
+    "prefix_count": 5,
+    "prefix_words": [
+      "kohi",
+      "kohinur",
+      "kohiosi",
+      "kohiponim",
+      "kohir"
+    ],
+    "suffix_count": 4,
+    "suffix_words": [
+      "ditokohi",
+      "kohi",
+      "konokohi",
+      "menokohi"
+    ],
+    "hits": 2
   },
   "konis": {
     "query": "konis",
@@ -6846,7 +9980,7 @@
       "konis",
       "markonis"
     ],
-    "hits": 5
+    "hits": 14
   },
   "krama": {
     "query": "krama",
@@ -6873,6 +10007,22 @@
     ],
     "hits": 1
   },
+  "kuil": {
+    "query": "kuil",
+    "prefix_count": 4,
+    "prefix_words": [
+      "kuil",
+      "kuilibrium",
+      "kuilo",
+      "kuilu"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "berkuil",
+      "kuil"
+    ],
+    "hits": 1
+  },
   "kulah": {
     "query": "kulah",
     "prefix_count": 2,
@@ -6889,6 +10039,99 @@
       "kulkulah",
       "lakulah",
       "rumahkulah"
+    ],
+    "hits": 1
+  },
+  "kulum": {
+    "query": "kulum",
+    "prefix_count": 4,
+    "prefix_words": [
+      "kulum",
+      "kuluman",
+      "kulumi",
+      "kulumnya"
+    ],
+    "suffix_count": 17,
+    "suffix_words": [
+      "bakulum",
+      "dikulum",
+      "divertikulum",
+      "genikulum",
+      "gubernakulum",
+      "inokulum",
+      "krepitakulum",
+      "kulum",
+      "kurikulum",
+      "nikulum",
+      "operkulum",
+      "oskulum",
+      "retikulum",
+      "retinakulum",
+      "spekulum",
+      "tinakulum",
+      "vaskulum"
+    ],
+    "hits": 1
+  },
+  "kusan": {
+    "query": "kusan",
+    "prefix_count": 4,
+    "prefix_words": [
+      "kusan",
+      "kusang",
+      "kusangka",
+      "kusanin"
+    ],
+    "suffix_count": 14,
+    "suffix_words": [
+      "bungkusan",
+      "dengkusan",
+      "kefokusan",
+      "kemangkusan",
+      "kerakusan",
+      "ketakfokusan",
+      "kukusan",
+      "kusan",
+      "pembungkusan",
+      "pemfokusan",
+      "pengukusan",
+      "pertikusan",
+      "ringkusan",
+      "tikusan"
+    ],
+    "hits": 1
+  },
+  "kusut": {
+    "query": "kusut",
+    "prefix_count": 2,
+    "prefix_words": [
+      "kusut",
+      "kusutnya"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "berkusut",
+      "kusut"
+    ],
+    "hits": 2
+  },
+  "lade": {
+    "query": "lade",
+    "prefix_count": 4,
+    "prefix_words": [
+      "ladeh",
+      "laden",
+      "ladenan",
+      "ladeni"
+    ],
+    "suffix_count": 6,
+    "suffix_words": [
+      "akolade",
+      "marmalade",
+      "marmelade",
+      "pomulade",
+      "rolade",
+      "tilalade"
     ],
     "hits": 1
   },
@@ -6971,7 +10214,7 @@
       "telahan",
       "wilahan"
     ],
-    "hits": 18
+    "hits": 23
   },
   "lahap": {
     "query": "lahap",
@@ -6988,7 +10231,7 @@
       "melahap",
       "pelahap"
     ],
-    "hits": 2
+    "hits": 4
   },
   "lahat": {
     "query": "lahat",
@@ -7007,7 +10250,26 @@
       "maslahat",
       "termaslahat"
     ],
-    "hits": 4
+    "hits": 8
+  },
+  "lahir": {
+    "query": "lahir",
+    "prefix_count": 5,
+    "prefix_words": [
+      "lahir",
+      "lahiriah",
+      "lahirkan",
+      "lahirlah",
+      "lahirnya"
+    ],
+    "suffix_count": 4,
+    "suffix_words": [
+      "lahir",
+      "pascalahir",
+      "pralahir",
+      "terlahir"
+    ],
+    "hits": 1
   },
   "lakah": {
     "query": "lakah",
@@ -7118,6 +10380,50 @@
       "tulakan",
       "ulakan"
     ],
+    "hits": 3
+  },
+  "lalah": {
+    "query": "lalah",
+    "prefix_count": 4,
+    "prefix_words": [
+      "lalah",
+      "lalahan",
+      "lalahiyo",
+      "lalahu"
+    ],
+    "suffix_count": 13,
+    "suffix_words": [
+      "belalah",
+      "dalalah",
+      "jalalah",
+      "kalalah",
+      "kelalah",
+      "lalah",
+      "melalah",
+      "palalah",
+      "pelalah",
+      "pulalah",
+      "silalah",
+      "sulalah",
+      "terlalah"
+    ],
+    "hits": 1
+  },
+  "lalap": {
+    "query": "lalap",
+    "prefix_count": 2,
+    "prefix_words": [
+      "lalap",
+      "lalapan"
+    ],
+    "suffix_count": 5,
+    "suffix_words": [
+      "dilalap",
+      "glalap",
+      "lalap",
+      "melalap",
+      "nelalap"
+    ],
     "hits": 2
   },
   "lapet": {
@@ -7132,7 +10438,7 @@
       "ailapet",
       "lapet"
     ],
-    "hits": 3
+    "hits": 5
   },
   "laria": {
     "query": "laria",
@@ -7185,7 +10491,7 @@
       "pelarik",
       "selarik"
     ],
-    "hits": 1
+    "hits": 3
   },
   "lasem": {
     "query": "lasem",
@@ -7202,6 +10508,43 @@
     ],
     "hits": 3
   },
+  "lasia": {
+    "query": "lasia",
+    "prefix_count": 3,
+    "prefix_words": [
+      "lasia",
+      "lasian",
+      "lasianthus"
+    ],
+    "suffix_count": 24,
+    "suffix_words": [
+      "akalasia",
+      "akatalasia",
+      "aklasia",
+      "akondroplasia",
+      "anaplasia",
+      "angiodisplasia",
+      "aplasia",
+      "australasia",
+      "desmoplasia",
+      "displasia",
+      "fibroplasia",
+      "hiperplasia",
+      "hipoplasia",
+      "keratomalasia",
+      "lasia",
+      "malasia",
+      "metaplasia",
+      "mielodisplasia",
+      "mikroglasia",
+      "mulasia",
+      "neoplasia",
+      "osteokondrodisplasia",
+      "osteomalasia",
+      "smoplasia"
+    ],
+    "hits": 1
+  },
   "latah": {
     "query": "latah",
     "prefix_count": 2,
@@ -7217,7 +10560,7 @@
       "telatah",
       "tlatah"
     ],
-    "hits": 4
+    "hits": 5
   },
   "latif": {
     "query": "latif",
@@ -7314,7 +10657,7 @@
       "sholeha",
       "soleha"
     ],
-    "hits": 1
+    "hits": 3
   },
   "leher": {
     "query": "leher",
@@ -7370,6 +10713,28 @@
       "lensa",
       "melensa",
       "telelensa"
+    ],
+    "hits": 1
+  },
+  "lepak": {
+    "query": "lepak",
+    "prefix_count": 2,
+    "prefix_words": [
+      "lepak",
+      "lepaka"
+    ],
+    "suffix_count": 10,
+    "suffix_words": [
+      "celepak",
+      "delepak",
+      "jelepak",
+      "kelepak",
+      "lelepak",
+      "lepak",
+      "melepak",
+      "mengelepak",
+      "menjelepak",
+      "pasilepak"
     ],
     "hits": 1
   },
@@ -7452,7 +10817,7 @@
       "seliang",
       "soliang"
     ],
-    "hits": 9
+    "hits": 15
   },
   "liar": {
     "query": "liar",
@@ -7480,7 +10845,7 @@
       "semiliar",
       "terliar"
     ],
-    "hits": 15
+    "hits": 21
   },
   "likan": {
     "query": "likan",
@@ -7589,7 +10954,7 @@
       "terkendalikan",
       "tilikan"
     ],
-    "hits": 13
+    "hits": 34
   },
   "liki": {
     "query": "liki",
@@ -7715,7 +11080,73 @@
       "tropolitik",
       "tunapolitik"
     ],
-    "hits": 17
+    "hits": 45
+  },
+  "loha": {
+    "query": "loha",
+    "prefix_count": 5,
+    "prefix_words": [
+      "loha",
+      "loham",
+      "lohan",
+      "lohankuo",
+      "lohansung"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "aloha",
+      "loha"
+    ],
+    "hits": 1
+  },
+  "lokan": {
+    "query": "lokan",
+    "prefix_count": 2,
+    "prefix_words": [
+      "lokan",
+      "lokananta"
+    ],
+    "suffix_count": 37,
+    "suffix_words": [
+      "amplokan",
+      "anjlokan",
+      "belokan",
+      "bersomplokan",
+      "ceblokan",
+      "ceplokan",
+      "colokan",
+      "dikilokan",
+      "elokan",
+      "gaplokan",
+      "geblokan",
+      "gojlokan",
+      "jolokan",
+      "kaplokan",
+      "keanjlokan",
+      "keelokan",
+      "kegoblokan",
+      "kelokan",
+      "keplokan",
+      "kolokan",
+      "koplokan",
+      "lokan",
+      "mengilokan",
+      "olokan",
+      "pembalokan",
+      "pembelokan",
+      "pemelokan",
+      "pencaplokan",
+      "penembolokan",
+      "pengeblokan",
+      "pengelokan",
+      "penggojlokan",
+      "penolokan",
+      "perbelokan",
+      "perselokan",
+      "selokan",
+      "solokan"
+    ],
+    "hits": 1
   },
   "luang": {
     "query": "luang",
@@ -7747,6 +11178,28 @@
     ],
     "hits": 1
   },
+  "luks": {
+    "query": "luks",
+    "prefix_count": 4,
+    "prefix_words": [
+      "luks",
+      "luksam",
+      "luksasi",
+      "luksemburg"
+    ],
+    "suffix_count": 8,
+    "suffix_words": [
+      "afluks",
+      "deluks",
+      "efluks",
+      "fluks",
+      "haluks",
+      "luks",
+      "poluks",
+      "refluks"
+    ],
+    "hits": 1
+  },
   "luruh": {
     "query": "luruh",
     "prefix_count": 2,
@@ -7763,6 +11216,35 @@
       "olehseluruh",
       "peluruh",
       "seluruh"
+    ],
+    "hits": 1
+  },
+  "lusif": {
+    "query": "lusif",
+    "prefix_count": 3,
+    "prefix_words": [
+      "lusif",
+      "lusiferase",
+      "lusiferin"
+    ],
+    "suffix_count": 16,
+    "suffix_words": [
+      "delusif",
+      "eksklusif",
+      "ekslusif",
+      "elusif",
+      "ilusif",
+      "inklusif",
+      "inkonklusif",
+      "klusif",
+      "kolusif",
+      "konklusif",
+      "lusif",
+      "noneksklusif",
+      "oklusif",
+      "reklusif",
+      "seeksklusif",
+      "tereksklusif"
     ],
     "hits": 1
   },
@@ -7800,6 +11282,112 @@
     ],
     "hits": 1
   },
+  "mamak": {
+    "query": "mamak",
+    "prefix_count": 3,
+    "prefix_words": [
+      "mamak",
+      "mamakmu",
+      "mamaknya"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "bermamak",
+      "mamak",
+      "momamak"
+    ],
+    "hits": 1
+  },
+  "manat": {
+    "query": "manat",
+    "prefix_count": 2,
+    "prefix_words": [
+      "manat",
+      "manatiang"
+    ],
+    "suffix_count": 4,
+    "suffix_words": [
+      "amanat",
+      "beramanat",
+      "manat",
+      "pengamanat"
+    ],
+    "hits": 2
+  },
+  "mania": {
+    "query": "mania",
+    "prefix_count": 5,
+    "prefix_words": [
+      "mania",
+      "maniafobia",
+      "maniak",
+      "manian",
+      "maniara"
+    ],
+    "suffix_count": 59,
+    "suffix_words": [
+      "ablutomania",
+      "agromania",
+      "akromania",
+      "anglomania",
+      "antomania",
+      "apimania",
+      "bibliomania",
+      "bolamania",
+      "busmania",
+      "demonomania",
+      "dermatilomania",
+      "dipsomania",
+      "diskomania",
+      "dromomania",
+      "egomania",
+      "ekomania",
+      "epomania",
+      "erotomania",
+      "fagomania",
+      "flagelomania",
+      "galomania",
+      "gamomania",
+      "gomania",
+      "grafomania",
+      "hagiomania",
+      "hipomania",
+      "islomania",
+      "jakmania",
+      "jasmania",
+      "katapedamania",
+      "kicaumania",
+      "kleptomania",
+      "koreomania",
+      "makromania",
+      "maksomania",
+      "mania",
+      "megalomania",
+      "melomania",
+      "mikromania",
+      "mitomania",
+      "monomania",
+      "nimfomania",
+      "nomania",
+      "nostomania",
+      "oniomania",
+      "onomatomania",
+      "piromania",
+      "poriomania",
+      "ptomania",
+      "ramania",
+      "restomania",
+      "romania",
+      "rumania",
+      "sitomania",
+      "tasmania",
+      "teknomania",
+      "teomania",
+      "trikotilomania",
+      "xenomania"
+    ],
+    "hits": 3
+  },
   "marus": {
     "query": "marus",
     "prefix_count": 2,
@@ -7813,6 +11401,110 @@
       "marus"
     ],
     "hits": 1
+  },
+  "matik": {
+    "query": "matik",
+    "prefix_count": 5,
+    "prefix_words": [
+      "matik",
+      "matika",
+      "matikan",
+      "matikawan",
+      "matikus"
+    ],
+    "suffix_count": 89,
+    "suffix_words": [
+      "akromatik",
+      "aksiomatik",
+      "alokromatik",
+      "aneusomatik",
+      "animatik",
+      "antiasmatik",
+      "antireumatik",
+      "apokromatik",
+      "aposematik",
+      "aromatik",
+      "artrokinematik",
+      "asimptomatik",
+      "asimtomatik",
+      "asmatik",
+      "automatik",
+      "bioklimatik",
+      "biosistematik",
+      "diagramatik",
+      "dikromatik",
+      "dilematik",
+      "diplomatik",
+      "dogmatik",
+      "dramatik",
+      "elektropneumatik",
+      "emblematik",
+      "empirematik",
+      "enigmatik",
+      "ensimatik",
+      "enzimatik",
+      "esktrasomatik",
+      "freatomagmatik",
+      "glosematik",
+      "heteroaromatik",
+      "heterokromatik",
+      "hipostomatik",
+      "idiokromatik",
+      "idiomatik",
+      "karismatik",
+      "kenematik",
+      "kharismatik",
+      "klimatik",
+      "kromatik",
+      "lodramatik",
+      "magmatik",
+      "makrosmatik",
+      "matematik",
+      "matik",
+      "melismatik",
+      "melodramatik",
+      "mematik",
+      "meristematik",
+      "monokromatik",
+      "nematik",
+      "neuropragmatik",
+      "nonenzimatik",
+      "numismatik",
+      "ortokromatik",
+      "otomatik",
+      "pankromatik",
+      "paradigmatik",
+      "parasematik",
+      "pegmatik",
+      "pneumatik",
+      "poliaromatik",
+      "polikromatik",
+      "polimatik",
+      "pragmatik",
+      "presimtomatik",
+      "prismatik",
+      "problematik",
+      "psikomatik",
+      "psikosomatik",
+      "rematik",
+      "reumatik",
+      "siklomatik",
+      "simptomatik",
+      "simtomatik",
+      "sinematik",
+      "sintagmatik",
+      "sistematik",
+      "skematik",
+      "somatik",
+      "sosiopragmatik",
+      "stigmatik",
+      "telematik",
+      "tematik",
+      "traumatik",
+      "trikromatik",
+      "zigomatik"
+    ],
+    "hits": 4
   },
   "matis": {
     "query": "matis",
@@ -7879,7 +11571,43 @@
       "terotomatis",
       "traumatis"
     ],
-    "hits": 35
+    "hits": 71
+  },
+  "medis": {
+    "query": "medis",
+    "prefix_count": 2,
+    "prefix_words": [
+      "medis",
+      "medisinal"
+    ],
+    "suffix_count": 10,
+    "suffix_words": [
+      "aeromedis",
+      "agromedis",
+      "biomedis",
+      "elektromedis",
+      "geomedis",
+      "medis",
+      "nonmedis",
+      "paramedis",
+      "pramedis",
+      "telemedis"
+    ],
+    "hits": 2
+  },
+  "mesat": {
+    "query": "mesat",
+    "prefix_count": 2,
+    "prefix_words": [
+      "mesat",
+      "mesatua"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "memesat",
+      "mesat"
+    ],
+    "hits": 1
   },
   "mesra": {
     "query": "mesra",
@@ -7894,6 +11622,68 @@
       "mesra",
       "semesra",
       "termesra"
+    ],
+    "hits": 1
+  },
+  "mian": {
+    "query": "mian",
+    "prefix_count": 5,
+    "prefix_words": [
+      "mian",
+      "miana",
+      "miang",
+      "miani",
+      "mianserin"
+    ],
+    "suffix_count": 30,
+    "suffix_words": [
+      "bohemian",
+      "bohmian",
+      "ekonomian",
+      "hemian",
+      "keastronomian",
+      "kebumian",
+      "keekonomian",
+      "keislamian",
+      "kekamian",
+      "keotonomian",
+      "kepribumian",
+      "keremian",
+      "keresmian",
+      "kermian",
+      "ketakalamian",
+      "kremian",
+      "lamian",
+      "mian",
+      "pembasmian",
+      "pembumian",
+      "pendikotomian",
+      "pengebumian",
+      "pengekonomian",
+      "pengompromian",
+      "pengotonomian",
+      "perekonomian",
+      "peresmian",
+      "permian",
+      "perumian",
+      "petemian"
+    ],
+    "hits": 1
+  },
+  "milih": {
+    "query": "milih",
+    "prefix_count": 2,
+    "prefix_words": [
+      "milih",
+      "milihan"
+    ],
+    "suffix_count": 5,
+    "suffix_words": [
+      "memilih",
+      "milih",
+      "pamilih",
+      "pemilih",
+      "semilih"
     ],
     "hits": 1
   },
@@ -7946,6 +11736,30 @@
     ],
     "hits": 2
   },
+  "mutan": {
+    "query": "mutan",
+    "prefix_count": 3,
+    "prefix_words": [
+      "mutan",
+      "mutanajis",
+      "mutandis"
+    ],
+    "suffix_count": 11,
+    "suffix_words": [
+      "berlumutan",
+      "keimutan",
+      "kemutan",
+      "kesemutan",
+      "limutan",
+      "lumutan",
+      "mutan",
+      "palamutan",
+      "penyelimutan",
+      "perselimutan",
+      "semutan"
+    ],
+    "hits": 1
+  },
   "nafi": {
     "query": "nafi",
     "prefix_count": 3,
@@ -7975,7 +11789,7 @@
       "tenahak",
       "ternahak"
     ],
-    "hits": 1
+    "hits": 5
   },
   "naik": {
     "query": "naik",
@@ -7996,6 +11810,39 @@
     ],
     "hits": 2
   },
+  "najis": {
+    "query": "najis",
+    "prefix_count": 2,
+    "prefix_words": [
+      "najis",
+      "najiskan"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "bernajis",
+      "mutanajis",
+      "najis"
+    ],
+    "hits": 1
+  },
+  "nalu": {
+    "query": "nalu",
+    "prefix_count": 3,
+    "prefix_words": [
+      "nalu",
+      "naluri",
+      "naluriah"
+    ],
+    "suffix_count": 5,
+    "suffix_words": [
+      "benalu",
+      "membenalu",
+      "menalu",
+      "nalu",
+      "winalu"
+    ],
+    "hits": 1
+  },
   "nanah": {
     "query": "nanah",
     "prefix_count": 3,
@@ -8010,7 +11857,113 @@
       "menanah",
       "nanah"
     ],
+    "hits": 5
+  },
+  "nanti": {
+    "query": "nanti",
+    "prefix_count": 4,
+    "prefix_words": [
+      "nanti",
+      "nantikan",
+      "nantilah",
+      "nantinya"
+    ],
+    "suffix_count": 9,
+    "suffix_words": [
+      "bernanti",
+      "dinanti",
+      "kinanti",
+      "mamananti",
+      "menanti",
+      "nanti",
+      "pananti",
+      "penanti",
+      "ternanti"
+    ],
     "hits": 2
+  },
+  "nazi": {
+    "query": "nazi",
+    "prefix_count": 5,
+    "prefix_words": [
+      "nazi",
+      "naziisme",
+      "nazilah",
+      "nazim",
+      "nazir"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "askenazi",
+      "nazi",
+      "neonazi"
+    ],
+    "hits": 2
+  },
+  "nefo": {
+    "query": "nefo",
+    "prefix_count": 3,
+    "prefix_words": [
+      "nefo",
+      "nefofobia",
+      "nefoskop"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "ganefo",
+      "nefo"
+    ],
+    "hits": 1
+  },
+  "nesa": {
+    "query": "nesa",
+    "prefix_count": 5,
+    "prefix_words": [
+      "nesa",
+      "nesale",
+      "nesan",
+      "nesang",
+      "nesap"
+    ],
+    "suffix_count": 9,
+    "suffix_words": [
+      "anamnesa",
+      "epirogenesa",
+      "muraenesa",
+      "nesa",
+      "orogenesa",
+      "pedogenesa",
+      "tektogenesa",
+      "telenesa",
+      "unesa"
+    ],
+    "hits": 1
+  },
+  "neus": {
+    "query": "neus",
+    "prefix_count": 4,
+    "prefix_words": [
+      "neus",
+      "neustin",
+      "neuston",
+      "neustonologi"
+    ],
+    "suffix_count": 12,
+    "suffix_words": [
+      "ankoneus",
+      "cartilagineus",
+      "ferrugineus",
+      "idoneus",
+      "kalkaneus",
+      "kutaneus",
+      "mukokutaneus",
+      "neus",
+      "pektineus",
+      "peroneus",
+      "sanguineus",
+      "testudineus"
+    ],
+    "hits": 7
   },
   "ngaku": {
     "query": "ngaku",
@@ -8025,6 +11978,43 @@
       "ngaku",
       "pengaku",
       "telingaku"
+    ],
+    "hits": 2
+  },
+  "ngana": {
+    "query": "ngana",
+    "prefix_count": 2,
+    "prefix_words": [
+      "ngana",
+      "nganam"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "longana",
+      "ngana",
+      "tangana"
+    ],
+    "hits": 2
+  },
+  "ngani": {
+    "query": "ngani",
+    "prefix_count": 2,
+    "prefix_words": [
+      "ngani",
+      "nganimi"
+    ],
+    "suffix_count": 10,
+    "suffix_words": [
+      "ditandatangani",
+      "ditangani",
+      "menandatangani",
+      "menangani",
+      "mengani",
+      "ngani",
+      "tandatangani",
+      "tangani",
+      "tertandatangani",
+      "tertangani"
     ],
     "hits": 1
   },
@@ -8058,7 +12048,7 @@
       "tangeh",
       "tersengeh"
     ],
-    "hits": 12
+    "hits": 37
   },
   "ngeng": {
     "query": "ngeng",
@@ -8189,7 +12179,7 @@
       "nggor",
       "tenggor"
     ],
-    "hits": 22
+    "hits": 29
   },
   "ngih": {
     "query": "ngih",
@@ -8225,7 +12215,7 @@
       "terdengih",
       "tersengih"
     ],
-    "hits": 8
+    "hits": 14
   },
   "ngihu": {
     "query": "ngihu",
@@ -8239,7 +12229,7 @@
       "kangihu",
       "ngihu"
     ],
-    "hits": 16
+    "hits": 19
   },
   "nging": {
     "query": "nging",
@@ -8267,7 +12257,7 @@
       "terseringing",
       "twinging"
     ],
-    "hits": 1
+    "hits": 2
   },
   "ngoh": {
     "query": "ngoh",
@@ -8286,7 +12276,7 @@
       "ngoh",
       "tungoh"
     ],
-    "hits": 2
+    "hits": 4
   },
   "ngok": {
     "query": "ngok",
@@ -8332,6 +12322,112 @@
       "serngok",
       "tangok",
       "tengok"
+    ],
+    "hits": 2
+  },
+  "ngong": {
+    "query": "ngong",
+    "prefix_count": 5,
+    "prefix_words": [
+      "ngong",
+      "ngongak",
+      "ngonggoi",
+      "ngongngobo",
+      "ngongu"
+    ],
+    "suffix_count": 20,
+    "suffix_words": [
+      "bengong",
+      "beulangong",
+      "blengong",
+      "buangong",
+      "dongong",
+      "entungong",
+      "galungong",
+      "jongong",
+      "lengong",
+      "longong",
+      "melongong",
+      "ngong",
+      "ongong",
+      "pangong",
+      "pengong",
+      "songong",
+      "terbengong",
+      "terlongong",
+      "tersongong",
+      "tongong"
+    ],
+    "hits": 2
+  },
+  "ngsa": {
+    "query": "ngsa",
+    "prefix_count": 2,
+    "prefix_words": [
+      "ngsa",
+      "ngsah"
+    ],
+    "suffix_count": 43,
+    "suffix_words": [
+      "adiwangsa",
+      "angsa",
+      "antarabangsa",
+      "antarbangsa",
+      "bangsa",
+      "berbangsa",
+      "berpangsa",
+      "berwangsa",
+      "caturwangsa",
+      "dimangsa",
+      "gangsa",
+      "ingsa",
+      "kalamangsa",
+      "kangsa",
+      "kasangsa",
+      "kedangsa",
+      "keluangsa",
+      "kulawangsa",
+      "langsa",
+      "lingsa",
+      "madumangsa",
+      "mangsa",
+      "memangsa",
+      "membangsa",
+      "merengsa",
+      "multibangsa",
+      "nelangsa",
+      "ngsa",
+      "nyalamangsa",
+      "pangsa",
+      "parawangsa",
+      "pemangsa",
+      "pengsa",
+      "pranatamangsa",
+      "rengsa",
+      "rumangsa",
+      "sebangsa",
+      "sepangsa",
+      "tangsa",
+      "tarawangsa",
+      "titimangsa",
+      "triwangsa",
+      "wangsa"
+    ],
+    "hits": 1
+  },
+  "nguru": {
+    "query": "nguru",
+    "prefix_count": 4,
+    "prefix_words": [
+      "ngurugi",
+      "ngurus",
+      "ngurusi",
+      "ngurusin"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "kanguru",
+      "nalenguru"
     ],
     "hits": 2
   },
@@ -8383,7 +12479,7 @@
       "telingus",
       "tingus"
     ],
-    "hits": 14
+    "hits": 35
   },
   "niaga": {
     "query": "niaga",
@@ -8403,7 +12499,7 @@
       "tataniaga",
       "wiraniaga"
     ],
-    "hits": 4
+    "hits": 6
   },
   "niat": {
     "query": "niat",
@@ -8423,7 +12519,7 @@
       "terniat",
       "uniat"
     ],
-    "hits": 2
+    "hits": 5
   },
   "nikah": {
     "query": "nikah",
@@ -8443,7 +12539,7 @@
       "pranikah",
       "ruhanikah"
     ],
-    "hits": 2
+    "hits": 5
   },
   "nikel": {
     "query": "nikel",
@@ -8462,6 +12558,25 @@
       "ronikel"
     ],
     "hits": 5
+  },
+  "niran": {
+    "query": "niran",
+    "prefix_count": 3,
+    "prefix_words": [
+      "niran",
+      "niranta",
+      "niranya"
+    ],
+    "suffix_count": 6,
+    "suffix_words": [
+      "interniran",
+      "kaniran",
+      "kepioniran",
+      "meniran",
+      "niran",
+      "penginterniran"
+    ],
+    "hits": 2
   },
   "nisan": {
     "query": "nisan",
@@ -8509,7 +12624,7 @@
       "nyaru",
       "penyaru"
     ],
-    "hits": 1
+    "hits": 3
   },
   "nyau": {
     "query": "nyau",
@@ -8557,7 +12672,7 @@
       "oceh",
       "pengoceh"
     ],
-    "hits": 1
+    "hits": 3
   },
   "ofon": {
     "query": "ofon",
@@ -8895,6 +13010,71 @@
     ],
     "hits": 2
   },
+  "oksin": {
+    "query": "oksin",
+    "prefix_count": 2,
+    "prefix_words": [
+      "oksin",
+      "oksintik"
+    ],
+    "suffix_count": 36,
+    "suffix_words": [
+      "aflatoksin",
+      "alfatoksin",
+      "andromedotoksin",
+      "antitoksin",
+      "apitoksin",
+      "autotoksin",
+      "azoferedoksin",
+      "biotoksin",
+      "ciguatoksin",
+      "digoksin",
+      "dioksin",
+      "eksotoksin",
+      "endotoksin",
+      "enterotoksin",
+      "feredoksin",
+      "fitotoksin",
+      "gliotoksin",
+      "hemotoksin",
+      "hepatotoksin",
+      "kloroksin",
+      "levotiroksin",
+      "melitoksin",
+      "mikotoksin",
+      "ndotoksin",
+      "neurotoksin",
+      "nterotoksin",
+      "okratoksin",
+      "oksin",
+      "oksitoksin",
+      "piridoksin",
+      "sitotoksin",
+      "tetrodotoksin",
+      "tiroksin",
+      "toksin",
+      "vivotoksin",
+      "zootoksin"
+    ],
+    "hits": 1
+  },
+  "okso": {
+    "query": "okso",
+    "prefix_count": 5,
+    "prefix_words": [
+      "okso",
+      "oksofluor",
+      "oksonat",
+      "oksonit",
+      "oksonium"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "okso",
+      "tokso"
+    ],
+    "hits": 1
+  },
   "olang": {
     "query": "olang",
     "prefix_count": 2,
@@ -8997,7 +13177,7 @@
       "timbolong",
       "tolong"
     ],
-    "hits": 8
+    "hits": 10
   },
   "omel": {
     "query": "omel",
@@ -9021,6 +13201,35 @@
       "secomel"
     ],
     "hits": 1
+  },
+  "omong": {
+    "query": "omong",
+    "prefix_count": 4,
+    "prefix_words": [
+      "omong",
+      "omongan",
+      "omongannya",
+      "omongkan"
+    ],
+    "suffix_count": 15,
+    "suffix_words": [
+      "belomong",
+      "beromong",
+      "dimomong",
+      "domong",
+      "keromong",
+      "kromong",
+      "memomong",
+      "mengomong",
+      "momong",
+      "ngomong",
+      "nomong",
+      "omong",
+      "pemomong",
+      "romong",
+      "tomong"
+    ],
+    "hits": 2
   },
   "onan": {
     "query": "onan",
@@ -9116,7 +13325,7 @@
       "totonan",
       "wetonan"
     ],
-    "hits": 4
+    "hits": 6
   },
   "ongah": {
     "query": "ongah",
@@ -9134,7 +13343,7 @@
       "terpongah",
       "tongah"
     ],
-    "hits": 5
+    "hits": 8
   },
   "ongga": {
     "query": "ongga",
@@ -9176,7 +13385,7 @@
       "terongka",
       "tongka"
     ],
-    "hits": 2
+    "hits": 6
   },
   "onik": {
     "query": "onik",
@@ -9311,7 +13520,7 @@
       "vulkanotektonik",
       "zeoponik"
     ],
-    "hits": 6
+    "hits": 16
   },
   "opini": {
     "query": "opini",
@@ -9326,6 +13535,222 @@
       "opini"
     ],
     "hits": 1
+  },
+  "oras": {
+    "query": "oras",
+    "prefix_count": 3,
+    "prefix_words": [
+      "oras",
+      "orasi",
+      "orasio"
+    ],
+    "suffix_count": 14,
+    "suffix_words": [
+      "baroras",
+      "boras",
+      "doras",
+      "horas",
+      "koras",
+      "loras",
+      "megalodoras",
+      "moras",
+      "ngeroras",
+      "noras",
+      "oras",
+      "pythagoras",
+      "simatoras",
+      "toras"
+    ],
+    "hits": 1
+  },
+  "orasi": {
+    "query": "orasi",
+    "prefix_count": 2,
+    "prefix_words": [
+      "orasi",
+      "orasio"
+    ],
+    "suffix_count": 57,
+    "suffix_words": [
+      "adorasi",
+      "ameliorasi",
+      "antarkorporasi",
+      "berdekorasi",
+      "berdeteriorasi",
+      "bereksplorasi",
+      "berevaporasi",
+      "berkolaborasi",
+      "berorasi",
+      "berperforasi",
+      "biodeteriorasi",
+      "deflorasi",
+      "dekorasi",
+      "deteriorasi",
+      "didekorasi",
+      "dieksplorasi",
+      "dielaborasi",
+      "diinkorporasi",
+      "direstorasi",
+      "diskolorasi",
+      "ekplorasi",
+      "ekspektorasi",
+      "eksplorasi",
+      "elaborasi",
+      "elektroporasi",
+      "evaporasi",
+      "florasi",
+      "imperforasi",
+      "inkorporasi",
+      "invigorasi",
+      "kolaborasi",
+      "korasi",
+      "korporasi",
+      "laborasi",
+      "liorasi",
+      "mendekorasi",
+      "mengeksplorasi",
+      "mengelaborasi",
+      "mengevaporasi",
+      "mengolaborasi",
+      "merestorasi",
+      "neurorestorasi",
+      "orasi",
+      "pendekorasi",
+      "pengeksplorasi",
+      "pengorasi",
+      "perforasi",
+      "peyorasi",
+      "redekorasi",
+      "restorasi",
+      "rforasi",
+      "riorasi",
+      "storasi",
+      "tereksplorasi",
+      "terkolaborasi",
+      "vaporasi",
+      "yorasi"
+    ],
+    "hits": 6
+  },
+  "orek": {
+    "query": "orek",
+    "prefix_count": 4,
+    "prefix_words": [
+      "orek",
+      "orekan",
+      "orekiete",
+      "oreksin"
+    ],
+    "suffix_count": 23,
+    "suffix_words": [
+      "bercorek",
+      "borek",
+      "corek",
+      "dicorek",
+      "dikorek",
+      "diorek",
+      "gorek",
+      "hiperkorek",
+      "korek",
+      "lorek",
+      "mencorek",
+      "menggorek",
+      "mengorek",
+      "morek",
+      "ngorek",
+      "norek",
+      "orek",
+      "pengorek",
+      "porek",
+      "sorek",
+      "tercorek",
+      "torek",
+      "tumorek"
+    ],
+    "hits": 5
+  },
+  "oris": {
+    "query": "oris",
+    "prefix_count": 5,
+    "prefix_words": [
+      "oris",
+      "orisasi",
+      "orisinal",
+      "orisinalitas",
+      "orisinil"
+    ],
+    "suffix_count": 68,
+    "suffix_words": [
+      "ahistoris",
+      "aksesoris",
+      "alegoris",
+      "anaforis",
+      "antisipatoris",
+      "antiteroris",
+      "aoris",
+      "arboris",
+      "artikulatoris",
+      "asesoris",
+      "auditoris",
+      "boris",
+      "diktatoris",
+      "ejakulatoris",
+      "ekskretoris",
+      "eksplanatoris",
+      "eksploratoris",
+      "ekspositoris",
+      "emansipatoris",
+      "floris",
+      "foris",
+      "gchloris",
+      "goris",
+      "halusinatoris",
+      "historis",
+      "honoris",
+      "horis",
+      "humoris",
+      "kataforis",
+      "kategoris",
+      "klitoris",
+      "kombinatoris",
+      "kompensatoris",
+      "kompositoris",
+      "kontrateroris",
+      "kuasihistoris",
+      "laboratoris",
+      "loris",
+      "mandatoris",
+      "metaforis",
+      "minoris",
+      "moris",
+      "motoris",
+      "multisensoris",
+      "nonhistoris",
+      "noris",
+      "oratoris",
+      "organisatoris",
+      "oris",
+      "parsipatoris",
+      "partisipatoris",
+      "pektoris",
+      "poris",
+      "predatoris",
+      "prehistoris",
+      "reflektoris",
+      "reformatoris",
+      "rekonsiliatoris",
+      "rekoris",
+      "retoris",
+      "roris",
+      "sensoris",
+      "sosiohistoris",
+      "taforis",
+      "teroris",
+      "toris",
+      "transhistoris",
+      "transitoris"
+    ],
+    "hits": 4
   },
   "orma": {
     "query": "orma",
@@ -9390,7 +13815,7 @@
       "tirosin",
       "tropomiosin"
     ],
-    "hits": 2
+    "hits": 4
   },
   "osit": {
     "query": "osit",
@@ -9498,7 +13923,7 @@
       "trombosit",
       "ukosit"
     ],
-    "hits": 4
+    "hits": 9
   },
   "osofi": {
     "query": "osofi",
@@ -9516,7 +13941,7 @@
       "osofi",
       "teosofi"
     ],
-    "hits": 2
+    "hits": 4
   },
   "oten": {
     "query": "oten",
@@ -9547,6 +13972,29 @@
       "proten",
       "roten",
       "zigoten"
+    ],
+    "hits": 2
+  },
+  "otop": {
+    "query": "otop",
+    "prefix_count": 4,
+    "prefix_words": [
+      "otop",
+      "otopet",
+      "otophora",
+      "otopsi"
+    ],
+    "suffix_count": 9,
+    "suffix_words": [
+      "biotop",
+      "ekotop",
+      "fotop",
+      "idiotop",
+      "isotop",
+      "markotop",
+      "otop",
+      "paleobiotop",
+      "radioisotop"
     ],
     "hits": 2
   },
@@ -9581,7 +14029,39 @@
       "lupalah",
       "palah"
     ],
-    "hits": 2
+    "hits": 3
+  },
+  "patis": {
+    "query": "patis",
+    "prefix_count": 3,
+    "prefix_words": [
+      "patis",
+      "patisah",
+      "patiseri"
+    ],
+    "suffix_count": 4,
+    "suffix_words": [
+      "apatis",
+      "hepatis",
+      "naturopatis",
+      "patis"
+    ],
+    "hits": 1
+  },
+  "pesek": {
+    "query": "pesek",
+    "prefix_count": 3,
+    "prefix_words": [
+      "pesek",
+      "pesekhem",
+      "pesekolah"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "pesek",
+      "terpesek"
+    ],
+    "hits": 4
   },
   "piang": {
     "query": "piang",
@@ -9600,7 +14080,7 @@
       "kompiang",
       "piang"
     ],
-    "hits": 1
+    "hits": 2
   },
   "pilot": {
     "query": "pilot",
@@ -9630,7 +14110,46 @@
       "berpisau",
       "pisau"
     ],
+    "hits": 3
+  },
+  "pler": {
+    "query": "pler",
+    "prefix_count": 4,
+    "prefix_words": [
+      "pler",
+      "plered",
+      "plerem",
+      "pleret"
+    ],
+    "suffix_count": 6,
+    "suffix_words": [
+      "doppler",
+      "eksempler",
+      "kepler",
+      "pler",
+      "stapler",
+      "stepler"
+    ],
     "hits": 1
+  },
+  "poni": {
+    "query": "poni",
+    "prefix_count": 5,
+    "prefix_words": [
+      "poni",
+      "ponian",
+      "ponil",
+      "ponim",
+      "ponir"
+    ],
+    "suffix_count": 4,
+    "suffix_words": [
+      "berponi",
+      "poni",
+      "saponi",
+      "simponi"
+    ],
+    "hits": 2
   },
   "puki": {
     "query": "puki",
@@ -9787,7 +14306,7 @@
       "rapuh",
       "terapuh"
     ],
-    "hits": 1
+    "hits": 2
   },
   "rasis": {
     "query": "rasis",
@@ -9809,6 +14328,21 @@
       "rasis"
     ],
     "hits": 2
+  },
+  "ratah": {
+    "query": "ratah",
+    "prefix_count": 2,
+    "prefix_words": [
+      "ratah",
+      "ratahan"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "meratah",
+      "ratah",
+      "seratah"
+    ],
+    "hits": 1
   },
   "ratak": {
     "query": "ratak",
@@ -9902,7 +14436,83 @@
       "teraspiratif",
       "terkolaboratif"
     ],
-    "hits": 5
+    "hits": 10
+  },
+  "ratus": {
+    "query": "ratus",
+    "prefix_count": 3,
+    "prefix_words": [
+      "ratus",
+      "ratusan",
+      "ratusannya"
+    ],
+    "suffix_count": 28,
+    "suffix_words": [
+      "alleteratus",
+      "alletteratus",
+      "allettratus",
+      "altostratus",
+      "aparatus",
+      "apparatus",
+      "auratus",
+      "beratus",
+      "citratus",
+      "duaratus",
+      "fibratus",
+      "keseratus",
+      "kuadratus",
+      "marmoratus",
+      "menyeratus",
+      "meratus",
+      "naucratus",
+      "nimbostratus",
+      "peratus",
+      "perseratus",
+      "ratus",
+      "rostratus",
+      "seperatus",
+      "seperseratus",
+      "seratus",
+      "sirostratus",
+      "stratus",
+      "vertebratus"
+    ],
+    "hits": 1
+  },
+  "raung": {
+    "query": "raung",
+    "prefix_count": 4,
+    "prefix_words": [
+      "raung",
+      "raungan",
+      "raungkan",
+      "raunglah"
+    ],
+    "suffix_count": 4,
+    "suffix_words": [
+      "meraung",
+      "peraung",
+      "raung",
+      "seraung"
+    ],
+    "hits": 1
+  },
+  "recht": {
+    "query": "recht",
+    "prefix_count": 4,
+    "prefix_words": [
+      "recht",
+      "rechten",
+      "rechtsstaats",
+      "rechtsstaat"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "oorlogsrecht",
+      "recht",
+      "ruprecht"
+    ],
+    "hits": 2
   },
   "rekan": {
     "query": "rekan",
@@ -9953,7 +14563,7 @@
       "baureksa",
       "reksa"
     ],
-    "hits": 1
+    "hits": 2
   },
   "reni": {
     "query": "reni",
@@ -10153,7 +14763,7 @@
       "weberian",
       "ksatrian"
     ],
-    "hits": 79
+    "hits": 155
   },
   "rias": {
     "query": "rias",
@@ -10205,7 +14815,7 @@
       "rica",
       "trica"
     ],
-    "hits": 5
+    "hits": 7
   },
   "ricau": {
     "query": "ricau",
@@ -10227,7 +14837,39 @@
       "mericau",
       "ricau"
     ],
-    "hits": 2
+    "hits": 3
+  },
+  "rihat": {
+    "query": "rihat",
+    "prefix_count": 2,
+    "prefix_words": [
+      "rihat",
+      "rihatnya"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "berihat",
+      "rihat"
+    ],
+    "hits": 3
+  },
+  "riko": {
+    "query": "riko",
+    "prefix_count": 4,
+    "prefix_words": [
+      "riko",
+      "rikondrium",
+      "rikoset",
+      "rikota"
+    ],
+    "suffix_count": 4,
+    "suffix_words": [
+      "buriko",
+      "riko",
+      "teriko",
+      "triko"
+    ],
+    "hits": 1
   },
   "riksa": {
     "query": "riksa",
@@ -10248,7 +14890,7 @@
       "terperiksa",
       "wantariksa"
     ],
-    "hits": 7
+    "hits": 13
   },
   "rina": {
     "query": "rina",
@@ -10305,6 +14947,58 @@
     ],
     "hits": 2
   },
+  "rinya": {
+    "query": "rinya",
+    "prefix_count": 2,
+    "prefix_words": [
+      "rinyah",
+      "rinyai"
+    ],
+    "suffix_count": 40,
+    "suffix_words": [
+      "arinya",
+      "berdirinya",
+      "cirinya",
+      "darinya",
+      "diberinya",
+      "dicarinya",
+      "dimungkirinya",
+      "dipelajarinya",
+      "dirinya",
+      "disadarinya",
+      "durinya",
+      "harinya",
+      "industrinya",
+      "istrinya",
+      "jarinya",
+      "jatidirinya",
+      "kirinya",
+      "larinya",
+      "lemarinya",
+      "memberinya",
+      "memperistrinya",
+      "mendasarinya",
+      "menghampirinya",
+      "mengingkarinya",
+      "menidurinya",
+      "menterinya",
+      "menularinya",
+      "menyadarinya",
+      "negerinya",
+      "penarinya",
+      "pencurinya",
+      "porinya",
+      "putrinya",
+      "sanubarinya",
+      "sarinya",
+      "sendirinya",
+      "tarinya",
+      "teorinya",
+      "tigrinya",
+      "tirinya"
+    ],
+    "hits": 2
+  },
   "risau": {
     "query": "risau",
     "prefix_count": 2,
@@ -10319,6 +15013,77 @@
       "risau"
     ],
     "hits": 3
+  },
+  "rise": {
+    "query": "rise",
+    "prefix_count": 5,
+    "prefix_words": [
+      "rise",
+      "risen",
+      "riser",
+      "riset",
+      "risetan"
+    ],
+    "suffix_count": 5,
+    "suffix_words": [
+      "enterprise",
+      "frise",
+      "larise",
+      "reprise",
+      "rise"
+    ],
+    "hits": 2
+  },
+  "rita": {
+    "query": "rita",
+    "prefix_count": 5,
+    "prefix_words": [
+      "rita",
+      "ritak",
+      "ritardando",
+      "ritase",
+      "ritasi"
+    ],
+    "suffix_count": 36,
+    "suffix_words": [
+      "ambarita",
+      "barita",
+      "berberita",
+      "bercerita",
+      "berita",
+      "cerita",
+      "derita",
+      "diderita",
+      "dukacarita",
+      "gerita",
+      "gurita",
+      "kirita",
+      "kuderita",
+      "kurita",
+      "marita",
+      "menderita",
+      "menggurita",
+      "naraberita",
+      "otorita",
+      "pambrita",
+      "panrita",
+      "pemberita",
+      "pencerita",
+      "penderita",
+      "piperita",
+      "rita",
+      "sarita",
+      "satwacarita",
+      "semenderita",
+      "terberita",
+      "terderita",
+      "trita",
+      "urita",
+      "warita",
+      "wiracarita",
+      "wiracerita"
+    ],
+    "hits": 1
   },
   "ritis": {
     "query": "ritis",
@@ -10383,7 +15148,30 @@
       "uretritis",
       "uritis"
     ],
-    "hits": 13
+    "hits": 24
+  },
+  "riya": {
+    "query": "riya",
+    "prefix_count": 5,
+    "prefix_words": [
+      "riya",
+      "riyadh",
+      "riyal",
+      "riyanca",
+      "riyankure"
+    ],
+    "suffix_count": 8,
+    "suffix_words": [
+      "abrahmacariya",
+      "ariya",
+      "griya",
+      "kriya",
+      "riya",
+      "satriya",
+      "swagriya",
+      "swakriya"
+    ],
+    "hits": 1
   },
   "rodok": {
     "query": "rodok",
@@ -10400,7 +15188,7 @@
       "serodok",
       "terodok"
     ],
-    "hits": 15
+    "hits": 26
   },
   "rokan": {
     "query": "rokan",
@@ -10482,7 +15270,7 @@
       "ngudoroso",
       "saroso"
     ],
-    "hits": 2
+    "hits": 5
   },
   "rosok": {
     "query": "rosok",
@@ -10505,6 +15293,22 @@
     ],
     "hits": 2
   },
+  "rote": {
+    "query": "rote",
+    "prefix_count": 4,
+    "prefix_words": [
+      "rote",
+      "roten",
+      "rotenburo",
+      "rotenon"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "cowrote",
+      "rote"
+    ],
+    "hits": 1
+  },
   "rowa": {
     "query": "rowa",
     "prefix_count": 3,
@@ -10519,6 +15323,56 @@
       "rowa"
     ],
     "hits": 3
+  },
+  "ruang": {
+    "query": "ruang",
+    "prefix_count": 2,
+    "prefix_words": [
+      "ruang",
+      "ruangan"
+    ],
+    "suffix_count": 13,
+    "suffix_words": [
+      "antarruang",
+      "asituruang",
+      "beruang",
+      "keruang",
+      "lirruang",
+      "meruang",
+      "musasaruang",
+      "peruang",
+      "piruang",
+      "ruang",
+      "seberuang",
+      "seruang",
+      "subruang"
+    ],
+    "hits": 2
+  },
+  "rungi": {
+    "query": "rungi",
+    "prefix_count": 3,
+    "prefix_words": [
+      "rungi",
+      "rungih",
+      "rungis"
+    ],
+    "suffix_count": 12,
+    "suffix_words": [
+      "diarungi",
+      "digandrungi",
+      "dikarungi",
+      "drungi",
+      "mencenderungi",
+      "mengarungi",
+      "menggandrungi",
+      "mengurungi",
+      "menyarungi",
+      "parungi",
+      "rungi",
+      "terarungi"
+    ],
+    "hits": 1
   },
   "rusuk": {
     "query": "rusuk",
@@ -10573,6 +15427,20 @@
     ],
     "hits": 2
   },
+  "sanad": {
+    "query": "sanad",
+    "prefix_count": 2,
+    "prefix_words": [
+      "sanad",
+      "sanadnya"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "bersanad",
+      "sanad"
+    ],
+    "hits": 1
+  },
   "sanu": {
     "query": "sanu",
     "prefix_count": 3,
@@ -10617,6 +15485,24 @@
       "sarok"
     ],
     "hits": 1
+  },
+  "sasak": {
+    "query": "sasak",
+    "prefix_count": 4,
+    "prefix_words": [
+      "sasak",
+      "sasaka",
+      "sasakala",
+      "sasakan"
+    ],
+    "suffix_count": 4,
+    "suffix_words": [
+      "bersasak",
+      "buasasak",
+      "disasak",
+      "sasak"
+    ],
+    "hits": 2
   },
   "sekta": {
     "query": "sekta",
@@ -10691,7 +15577,7 @@
       "terinisiasi",
       "transubstansiasi"
     ],
-    "hits": 1
+    "hits": 3
   },
   "siat": {
     "query": "siat",
@@ -10742,7 +15628,7 @@
       "residen",
       "siden"
     ],
-    "hits": 2
+    "hits": 9
   },
   "sihi": {
     "query": "sihi",
@@ -10761,7 +15647,7 @@
       "menyelisihi",
       "sihi"
     ],
-    "hits": 15
+    "hits": 26
   },
   "siksa": {
     "query": "siksa",
@@ -10777,7 +15663,7 @@
       "siksa",
       "tersiksa"
     ],
-    "hits": 8
+    "hits": 12
   },
   "silih": {
     "query": "silih",
@@ -10794,6 +15680,22 @@
       "silih"
     ],
     "hits": 2
+  },
+  "simis": {
+    "query": "simis",
+    "prefix_count": 3,
+    "prefix_words": [
+      "simis",
+      "simisme",
+      "simistis"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "pesimis",
+      "simis",
+      "terpesimis"
+    ],
+    "hits": 1
   },
   "sinol": {
     "query": "sinol",
@@ -10812,6 +15714,23 @@
       "resinol",
       "resorsinol",
       "sinol"
+    ],
+    "hits": 2
+  },
+  "sins": {
+    "query": "sins",
+    "prefix_count": 5,
+    "prefix_words": [
+      "sins",
+      "sinse",
+      "sinsepalus",
+      "sinsitium",
+      "sinsu"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "disins",
+      "sins"
     ],
     "hits": 2
   },
@@ -10917,7 +15836,7 @@
       "tradisinya",
       "variasinya"
     ],
-    "hits": 2
+    "hits": 4
   },
   "siong": {
     "query": "siong",
@@ -10931,7 +15850,54 @@
       "kamansiong",
       "siong"
     ],
-    "hits": 3
+    "hits": 7
+  },
+  "siran": {
+    "query": "siran",
+    "prefix_count": 5,
+    "prefix_words": [
+      "siran",
+      "sirandam",
+      "sirang",
+      "sirangau",
+      "sirangkak"
+    ],
+    "suffix_count": 32,
+    "suffix_words": [
+      "arsiran",
+      "berpelesiran",
+      "desiran",
+      "gangsiran",
+      "grosiran",
+      "kepasiran",
+      "kepelesiran",
+      "kepesisiran",
+      "kesalahtafsiran",
+      "kesisiran",
+      "ketafsiran",
+      "keterusiran",
+      "langsiran",
+      "lansiran",
+      "oksiran",
+      "pasiran",
+      "pelangsiran",
+      "pelansiran",
+      "pelesiran",
+      "penafsiran",
+      "penaksiran",
+      "pengarsiran",
+      "penggangsiran",
+      "pengglasiran",
+      "pengusiran",
+      "penyisiran",
+      "perpasiran",
+      "siran",
+      "sisiran",
+      "tafsiran",
+      "taksiran",
+      "usiran"
+    ],
+    "hits": 5
   },
   "siria": {
     "query": "siria",
@@ -10958,6 +15924,23 @@
     "suffix_words": [
       "bersirip",
       "sirip"
+    ],
+    "hits": 1
+  },
+  "sisih": {
+    "query": "sisih",
+    "prefix_count": 3,
+    "prefix_words": [
+      "sisih",
+      "sisihan",
+      "sisihkan"
+    ],
+    "suffix_count": 4,
+    "suffix_words": [
+      "bersisih",
+      "disisih",
+      "sisih",
+      "tersisih"
     ],
     "hits": 1
   },
@@ -11124,7 +16107,7 @@
       "vitreositas",
       "vortisitas"
     ],
-    "hits": 15
+    "hits": 41
   },
   "sitin": {
     "query": "sitin",
@@ -11156,7 +16139,37 @@
       "bersiul",
       "siul"
     ],
-    "hits": 1
+    "hits": 2
+  },
+  "siung": {
+    "query": "siung",
+    "prefix_count": 2,
+    "prefix_words": [
+      "siung",
+      "siungan"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "bersiung",
+      "siung"
+    ],
+    "hits": 2
+  },
+  "siur": {
+    "query": "siur",
+    "prefix_count": 3,
+    "prefix_words": [
+      "siur",
+      "siuran",
+      "siurnya"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "berkesiur",
+      "kesiur",
+      "siur"
+    ],
+    "hits": 13
   },
   "skar": {
     "query": "skar",
@@ -11176,7 +16189,7 @@
       "poskar",
       "skar"
     ],
-    "hits": 2
+    "hits": 3
   },
   "skop": {
     "query": "skop",
@@ -11279,6 +16292,41 @@
     ],
     "hits": 2
   },
+  "sofis": {
+    "query": "sofis",
+    "prefix_count": 4,
+    "prefix_words": [
+      "sofis",
+      "sofisme",
+      "sofistikasi",
+      "sofistri"
+    ],
+    "suffix_count": 4,
+    "suffix_words": [
+      "filosofis",
+      "osofis",
+      "sofis",
+      "teosofis"
+    ],
+    "hits": 3
+  },
+  "sogo": {
+    "query": "sogo",
+    "prefix_count": 5,
+    "prefix_words": [
+      "sogo",
+      "sogok",
+      "sogokan",
+      "sogolan",
+      "sogor"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "ikilahagasogo",
+      "sogo"
+    ],
+    "hits": 2
+  },
   "sogok": {
     "query": "sogok",
     "prefix_count": 2,
@@ -11318,6 +16366,23 @@
     ],
     "hits": 2
   },
+  "solek": {
+    "query": "solek",
+    "prefix_count": 2,
+    "prefix_words": [
+      "solek",
+      "solekan"
+    ],
+    "suffix_count": 5,
+    "suffix_words": [
+      "bersolek",
+      "isolek",
+      "mempersolek",
+      "pesolek",
+      "solek"
+    ],
+    "hits": 1
+  },
   "sori": {
     "query": "sori",
     "prefix_count": 3,
@@ -11346,7 +16411,7 @@
       "somatosensori",
       "sori"
     ],
-    "hits": 17
+    "hits": 29
   },
   "spid": {
     "query": "spid",
@@ -11381,7 +16446,7 @@
       "solenostele",
       "stele"
     ],
-    "hits": 12
+    "hits": 17
   },
   "stis": {
     "query": "stis",
@@ -11533,7 +16598,151 @@
       "verbalistis",
       "logistis"
     ],
-    "hits": 8
+    "hits": 27
+  },
+  "strik": {
+    "query": "strik",
+    "prefix_count": 4,
+    "prefix_words": [
+      "strik",
+      "striker",
+      "striksi",
+      "striktur"
+    ],
+    "suffix_count": 20,
+    "suffix_words": [
+      "berlistrik",
+      "distrik",
+      "epigastrik",
+      "fotolistrik",
+      "gastrik",
+      "geolistrik",
+      "hidrolistrik",
+      "hipogastrik",
+      "listrik",
+      "monogastrik",
+      "nasogastrik",
+      "nonlistrik",
+      "onderdistrik",
+      "orogastrik",
+      "poligastrik",
+      "rmolistrik",
+      "stomatogastrik",
+      "strik",
+      "termolistrik",
+      "tunalistrik"
+    ],
+    "hits": 2
+  },
+  "strip": {
+    "query": "strip",
+    "prefix_count": 4,
+    "prefix_words": [
+      "strip",
+      "stripes",
+      "striptis",
+      "striptize"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "komikstrip",
+      "strip"
+    ],
+    "hits": 3
+  },
+  "sual": {
+    "query": "sual",
+    "prefix_count": 4,
+    "prefix_words": [
+      "sual",
+      "sualak",
+      "sualan",
+      "sualang"
+    ],
+    "suffix_count": 36,
+    "suffix_words": [
+      "ambiseksual",
+      "androseksual",
+      "aseksual",
+      "audiovisual",
+      "autoseksual",
+      "biseksual",
+      "demiseksual",
+      "ekoseksual",
+      "euseksual",
+      "gineseksual",
+      "heteroseksual",
+      "hiperseksual",
+      "homoseksual",
+      "interseksual",
+      "kasual",
+      "konsensual",
+      "metroseksual",
+      "monoseksual",
+      "nonheteroseksual",
+      "nonkonsensual",
+      "omniseksual",
+      "panseksual",
+      "paraseksual",
+      "persepsual",
+      "poliseksual",
+      "prosesual",
+      "psikoseksual",
+      "sapioseksual",
+      "seksual",
+      "sensual",
+      "sesensual",
+      "sual",
+      "transeksual",
+      "uberseksual",
+      "uniseksual",
+      "visual"
+    ],
+    "hits": 2
+  },
+  "sukan": {
+    "query": "sukan",
+    "prefix_count": 3,
+    "prefix_words": [
+      "sukan",
+      "sukang",
+      "sukanya"
+    ],
+    "suffix_count": 31,
+    "suffix_words": [
+      "blusukan",
+      "busukan",
+      "diisukan",
+      "dipalsukan",
+      "disusukan",
+      "kebusukan",
+      "kekhusukan",
+      "kemasukan",
+      "kerasukan",
+      "ketermasukan",
+      "masukan",
+      "melesukan",
+      "memalsukan",
+      "memasukan",
+      "membisukan",
+      "mempalsukan",
+      "menafsukan",
+      "mengisukan",
+      "menyusukan",
+      "palsukan",
+      "pasukan",
+      "pemasukan",
+      "pembesukan",
+      "pembusukan",
+      "penusukan",
+      "perasukan",
+      "sepasukan",
+      "sukan",
+      "susukan",
+      "terpalsukan",
+      "tusukan"
+    ],
+    "hits": 1
   },
   "sulan": {
     "query": "sulan",
@@ -11561,6 +16770,41 @@
       "usulan"
     ],
     "hits": 2
+  },
+  "swana": {
+    "query": "swana",
+    "prefix_count": 2,
+    "prefix_words": [
+      "swanahi",
+      "swanama"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "botswana",
+      "tswana"
+    ],
+    "hits": 1
+  },
+  "tain": {
+    "query": "tain",
+    "prefix_count": 4,
+    "prefix_words": [
+      "tainan",
+      "taingan",
+      "taintena",
+      "taintune"
+    ],
+    "suffix_count": 7,
+    "suffix_words": [
+      "abstain",
+      "betain",
+      "ngatain",
+      "pantain",
+      "plantain",
+      "stain",
+      "syahadatain"
+    ],
+    "hits": 1
   },
   "takan": {
     "query": "takan",
@@ -11712,7 +16956,7 @@
       "totakan",
       "wartakan"
     ],
-    "hits": 6
+    "hits": 9
   },
   "talah": {
     "query": "talah",
@@ -11748,6 +16992,41 @@
     "suffix_words": [
       "atalat",
       "ftalat"
+    ],
+    "hits": 2
+  },
+  "talen": {
+    "query": "talen",
+    "prefix_count": 4,
+    "prefix_words": [
+      "talen",
+      "talenan",
+      "talenga",
+      "talenta"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "multitalen",
+      "naftalen",
+      "talen"
+    ],
+    "hits": 2
+  },
+  "talia": {
+    "query": "talia",
+    "prefix_count": 2,
+    "prefix_words": [
+      "taliabu",
+      "talian"
+    ],
+    "suffix_count": 6,
+    "suffix_words": [
+      "genitalia",
+      "instrumentalia",
+      "italia",
+      "nitalia",
+      "sakramentalia",
+      "sentimentalia"
     ],
     "hits": 1
   },
@@ -11894,7 +17173,22 @@
       "watase",
       "wattase"
     ],
-    "hits": 4
+    "hits": 12
+  },
+  "tasik": {
+    "query": "tasik",
+    "prefix_count": 2,
+    "prefix_words": [
+      "tasik",
+      "tasikmalaya"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "bertasik",
+      "sendratasik",
+      "tasik"
+    ],
+    "hits": 5
   },
   "tatik": {
     "query": "tatik",
@@ -11927,7 +17221,22 @@
       "viristatik",
       "virustatik"
     ],
-    "hits": 3
+    "hits": 4
+  },
+  "teduh": {
+    "query": "teduh",
+    "prefix_count": 2,
+    "prefix_words": [
+      "teduh",
+      "teduhan"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "berteduh",
+      "lautanteduh",
+      "teduh"
+    ],
+    "hits": 2
   },
   "teken": {
     "query": "teken",
@@ -12027,6 +17336,53 @@
     ],
     "hits": 1
   },
+  "tiar": {
+    "query": "tiar",
+    "prefix_count": 3,
+    "prefix_words": [
+      "tiara",
+      "tiarap",
+      "tiarka"
+    ],
+    "suffix_count": 5,
+    "suffix_words": [
+      "berikhtiar",
+      "beriktiar",
+      "ihtiar",
+      "ikhtiar",
+      "setiar"
+    ],
+    "hits": 1
+  },
+  "tikah": {
+    "query": "tikah",
+    "prefix_count": 2,
+    "prefix_words": [
+      "tikah",
+      "tikahwana"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "betikah",
+      "hatikah",
+      "tikah"
+    ],
+    "hits": 4
+  },
+  "tikai": {
+    "query": "tikai",
+    "prefix_count": 2,
+    "prefix_words": [
+      "tikai",
+      "tikaian"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "bertikai",
+      "tikai"
+    ],
+    "hits": 5
+  },
   "tikal": {
     "query": "tikal",
     "prefix_count": 2,
@@ -12057,7 +17413,7 @@
       "vertikal",
       "logistikal"
     ],
-    "hits": 5
+    "hits": 8
   },
   "tikam": {
     "query": "tikam",
@@ -12075,7 +17431,7 @@
       "tertikam",
       "tikam"
     ],
-    "hits": 5
+    "hits": 11
   },
   "tikel": {
     "query": "tikel",
@@ -12100,6 +17456,24 @@
       "stikel",
       "testikel",
       "tikel"
+    ],
+    "hits": 2
+  },
+  "tiket": {
+    "query": "tiket",
+    "prefix_count": 2,
+    "prefix_words": [
+      "tiket",
+      "tiketcom"
+    ],
+    "suffix_count": 6,
+    "suffix_words": [
+      "beretiket",
+      "bertiket",
+      "etiket",
+      "netiket",
+      "nontiket",
+      "tiket"
     ],
     "hits": 2
   },
@@ -12132,7 +17506,24 @@
       "tikus",
       "zigomatikus"
     ],
-    "hits": 2
+    "hits": 7
+  },
+  "tile": {
+    "query": "tile",
+    "prefix_count": 3,
+    "prefix_words": [
+      "tile",
+      "tilem",
+      "tilep"
+    ],
+    "suffix_count": 4,
+    "suffix_words": [
+      "apostile",
+      "gentile",
+      "tile",
+      "utile"
+    ],
+    "hits": 1
   },
   "tiol": {
     "query": "tiol",
@@ -12210,7 +17601,7 @@
       "teletipe",
       "tipe"
     ],
-    "hits": 4
+    "hits": 7
   },
   "tisik": {
     "query": "tisik",
@@ -12225,7 +17616,7 @@
       "ditisik",
       "tisik"
     ],
-    "hits": 5
+    "hits": 6
   },
   "tisis": {
     "query": "tisis",
@@ -12239,7 +17630,7 @@
       "hemoptisis",
       "tisis"
     ],
-    "hits": 8
+    "hits": 18
   },
   "tombe": {
     "query": "tombe",
@@ -12256,7 +17647,7 @@
       "ketombe",
       "tombe"
     ],
-    "hits": 1
+    "hits": 3
   },
   "tonik": {
     "query": "tonik",
@@ -12300,7 +17691,7 @@
       "uterotonik",
       "vulkanotektonik"
     ],
-    "hits": 11
+    "hits": 13
   },
   "toris": {
     "query": "toris",
@@ -12351,6 +17742,62 @@
       "transitoris"
     ],
     "hits": 5
+  },
+  "tosa": {
+    "query": "tosa",
+    "prefix_count": 4,
+    "prefix_words": [
+      "tosa",
+      "tosai",
+      "tosale",
+      "tosan"
+    ],
+    "suffix_count": 27,
+    "suffix_words": [
+      "adenomatosa",
+      "aldopentosa",
+      "berfruktosa",
+      "bersentosa",
+      "eritematosa",
+      "fetosa",
+      "fluktosa",
+      "fruktosa",
+      "galaktosa",
+      "glutosa",
+      "granulomatosa",
+      "heptosa",
+      "ketosa",
+      "laktosa",
+      "lepromatosa",
+      "maltosa",
+      "medikamentosa",
+      "oligofruktosa",
+      "pektosa",
+      "pentosa",
+      "sarmentosa",
+      "sentosa",
+      "tagatosa",
+      "tementosa",
+      "tomentosa",
+      "tosa",
+      "velamentosa"
+    ],
+    "hits": 2
+  },
+  "tost": {
+    "query": "tost",
+    "prefix_count": 3,
+    "prefix_words": [
+      "tostada",
+      "tostatika",
+      "tostones"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "fitost",
+      "stost"
+    ],
+    "hits": 1
   },
   "totok": {
     "query": "totok",
@@ -12426,7 +17873,7 @@
       "strian",
       "ksatrian"
     ],
-    "hits": 8
+    "hits": 14
   },
   "trium": {
     "query": "trium",
@@ -12456,7 +17903,7 @@
       "trium",
       "yttrium"
     ],
-    "hits": 9
+    "hits": 15
   },
   "troi": {
     "query": "troi",
@@ -12531,6 +17978,153 @@
     ],
     "hits": 2
   },
+  "tsar": {
+    "query": "tsar",
+    "prefix_count": 4,
+    "prefix_words": [
+      "tsar",
+      "tsarina",
+      "tsaris",
+      "tsarisme"
+    ],
+    "suffix_count": 4,
+    "suffix_words": [
+      "diklatsar",
+      "latsar",
+      "natsar",
+      "tsar"
+    ],
+    "hits": 1
+  },
+  "tual": {
+    "query": "tual",
+    "prefix_count": 5,
+    "prefix_words": [
+      "tual",
+      "tuala",
+      "tualah",
+      "tualang",
+      "tualon"
+    ],
+    "suffix_count": 39,
+    "suffix_words": [
+      "aktual",
+      "antiintelektual",
+      "artefaktual",
+      "artifaktual",
+      "aspektual",
+      "berintelektual",
+      "beritual",
+      "bertual",
+      "ekstratekstual",
+      "faktual",
+      "intelektual",
+      "intertekstual",
+      "intratekstual",
+      "ketual",
+      "konseptual",
+      "kontekstual",
+      "kontrafaktual",
+      "kontraktual",
+      "ktual",
+      "mutual",
+      "nonfaktual",
+      "nontekstual",
+      "nonvirtual",
+      "perpetual",
+      "perseptual",
+      "prakonseptual",
+      "prekonseptual",
+      "psikospiritual",
+      "ptual",
+      "pungtual",
+      "ritual",
+      "seaktual",
+      "spiritual",
+      "takaktual",
+      "tekstual",
+      "teraktual",
+      "terfaktual",
+      "tual",
+      "virtual"
+    ],
+    "hits": 2
+  },
+  "tunai": {
+    "query": "tunai",
+    "prefix_count": 2,
+    "prefix_words": [
+      "tunai",
+      "tunaikan"
+    ],
+    "suffix_count": 3,
+    "suffix_words": [
+      "nirtunai",
+      "nontunai",
+      "tunai"
+    ],
+    "hits": 1
+  },
+  "turan": {
+    "query": "turan",
+    "prefix_count": 3,
+    "prefix_words": [
+      "turan",
+      "turang",
+      "turangga"
+    ],
+    "suffix_count": 47,
+    "suffix_words": [
+      "aturan",
+      "benturan",
+      "beraturan",
+      "berbenturan",
+      "berketeraturan",
+      "berlenturan",
+      "boturan",
+      "caturan",
+      "denaturan",
+      "janturan",
+      "keberaturan",
+      "kekulturan",
+      "kelenturan",
+      "kelunturan",
+      "kepengaturan",
+      "kestrukturan",
+      "ketakberaturan",
+      "ketakteraturan",
+      "keteraturan",
+      "ketidaklenturan",
+      "ketidakteraturan",
+      "lanturan",
+      "lenturan",
+      "lunturan",
+      "maturan",
+      "naturan",
+      "panaturan",
+      "pelanturan",
+      "pelenturan",
+      "pelituran",
+      "pelunturan",
+      "pemanufakturan",
+      "pembenturan",
+      "peminiaturan",
+      "pengaturan",
+      "penstrukturan",
+      "penuturan",
+      "peraturan",
+      "perbenturan",
+      "percaturan",
+      "pertuturan",
+      "petuturan",
+      "puturan",
+      "takberaturan",
+      "tanoturan",
+      "turan",
+      "tuturan"
+    ],
+    "hits": 1
+  },
   "tusa": {
     "query": "tusa",
     "prefix_count": 5,
@@ -12547,6 +18141,25 @@
       "tusa"
     ],
     "hits": 2
+  },
+  "tusuk": {
+    "query": "tusuk",
+    "prefix_count": 2,
+    "prefix_words": [
+      "tusuk",
+      "tusukan"
+    ],
+    "suffix_count": 7,
+    "suffix_words": [
+      "bertusuk",
+      "ditusuk",
+      "ketusuk",
+      "rutusuk",
+      "setusuk",
+      "tertusuk",
+      "tusuk"
+    ],
+    "hits": 1
   },
   "uang": {
     "query": "uang",
@@ -12667,7 +18280,7 @@
       "uang",
       "ubuang"
     ],
-    "hits": 4
+    "hits": 7
   },
   "udang": {
     "query": "udang",
@@ -12742,7 +18355,52 @@
       "ukir",
       "wukir"
     ],
-    "hits": 1
+    "hits": 2
+  },
+  "ukur": {
+    "query": "ukur",
+    "prefix_count": 4,
+    "prefix_words": [
+      "ukur",
+      "ukuran",
+      "ukurannya",
+      "ukurlah"
+    ],
+    "suffix_count": 31,
+    "suffix_words": [
+      "bekukur",
+      "bercukur",
+      "berkelukur",
+      "berkukur",
+      "bersyukur",
+      "bukur",
+      "cukur",
+      "dicukur",
+      "dikukur",
+      "diukur",
+      "kelukur",
+      "kukur",
+      "lukur",
+      "mamukur",
+      "mencukur",
+      "mengukur",
+      "ngukur",
+      "nikukur",
+      "pencukur",
+      "pengukur",
+      "seukur",
+      "sukur",
+      "syukur",
+      "tekukur",
+      "tercukur",
+      "terkukur",
+      "terukur",
+      "toukukur",
+      "toukur",
+      "tukur",
+      "ukur"
+    ],
+    "hits": 2
   },
   "ulat": {
     "query": "ulat",
@@ -12799,7 +18457,7 @@
       "tulat",
       "ulat"
     ],
-    "hits": 2
+    "hits": 4
   },
   "ulung": {
     "query": "ulung",
@@ -12931,7 +18589,30 @@
       "tumang",
       "umang"
     ],
-    "hits": 5
+    "hits": 6
+  },
+  "umpat": {
+    "query": "umpat",
+    "prefix_count": 2,
+    "prefix_words": [
+      "umpat",
+      "umpatan"
+    ],
+    "suffix_count": 11,
+    "suffix_words": [
+      "ditumpat",
+      "diumpat",
+      "lumpat",
+      "lumumpat",
+      "mengumpat",
+      "menumpat",
+      "pengumpat",
+      "tertumpat",
+      "terumpat",
+      "tumpat",
+      "umpat"
+    ],
+    "hits": 3
   },
   "umum": {
     "query": "umum",
@@ -12949,7 +18630,7 @@
       "seumum",
       "umum"
     ],
-    "hits": 2
+    "hits": 3
   },
   "unan": {
     "query": "unan",
@@ -13148,7 +18829,26 @@
       "takberfungsi",
       "ungsi"
     ],
-    "hits": 23
+    "hits": 43
+  },
+  "upaya": {
+    "query": "upaya",
+    "prefix_count": 3,
+    "prefix_words": [
+      "upaya",
+      "upayakan",
+      "upayanya"
+    ],
+    "suffix_count": 6,
+    "suffix_words": [
+      "berupaya",
+      "mengupaya",
+      "seupaya",
+      "supaya",
+      "terupaya",
+      "upaya"
+    ],
+    "hits": 2
   },
   "ural": {
     "query": "ural",
@@ -13213,7 +18913,7 @@
       "transkultural",
       "ural"
     ],
-    "hits": 1
+    "hits": 3
   },
   "urang": {
     "query": "urang",
@@ -13251,7 +18951,7 @@
       "turang",
       "urang"
     ],
-    "hits": 5
+    "hits": 6
   },
   "urat": {
     "query": "urat",
@@ -13527,7 +19227,7 @@
       "utusan",
       "wulusan"
     ],
-    "hits": 4
+    "hits": 7
   },
   "usang": {
     "query": "usang",
@@ -13549,7 +19249,7 @@
       "tandusang",
       "usang"
     ],
-    "hits": 5
+    "hits": 13
   },
   "usil": {
     "query": "usil",
@@ -13571,7 +19271,7 @@
       "terusil",
       "usil"
     ],
-    "hits": 2
+    "hits": 4
   },
   "usir": {
     "query": "usir",
@@ -13609,6 +19309,24 @@
       "usir"
     ],
     "hits": 1
+  },
+  "usti": {
+    "query": "usti",
+    "prefix_count": 3,
+    "prefix_words": [
+      "ustik",
+      "ustilaginales",
+      "ustilospora"
+    ],
+    "suffix_count": 5,
+    "suffix_words": [
+      "bergusti",
+      "gusti",
+      "kusti",
+      "musti",
+      "susti"
+    ],
+    "hits": 6
   },
   "usung": {
     "query": "usung",
@@ -13679,7 +19397,34 @@
       "transversi",
       "versi"
     ],
-    "hits": 4
+    "hits": 7
+  },
+  "wahan": {
+    "query": "wahan",
+    "prefix_count": 3,
+    "prefix_words": [
+      "wahan",
+      "wahana",
+      "wahanat"
+    ],
+    "suffix_count": 14,
+    "suffix_words": [
+      "bawahan",
+      "kelewahan",
+      "kemewahan",
+      "mewahan",
+      "pawiwahan",
+      "pembawahan",
+      "pendakwahan",
+      "pengebawahan",
+      "penyawahan",
+      "persawahan",
+      "pesawahan",
+      "ruwahan",
+      "sebawahan",
+      "wahan"
+    ],
+    "hits": 1
   },
   "wahu": {
     "query": "wahu",
@@ -13695,7 +19440,22 @@
       "kawahu",
       "wahu"
     ],
-    "hits": 3
+    "hits": 4
+  },
+  "waid": {
+    "query": "waid",
+    "prefix_count": 3,
+    "prefix_words": [
+      "waid",
+      "waidin",
+      "waiduri"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "waid",
+      "zawaid"
+    ],
+    "hits": 2
   },
   "warsa": {
     "query": "warsa",
@@ -13724,7 +19484,7 @@
       "seluwarsa",
       "warsa"
     ],
-    "hits": 2
+    "hits": 10
   },
   "wati": {
     "query": "wati",
@@ -13789,7 +19549,7 @@
       "wirawati",
       "wisudawati"
     ],
-    "hits": 18
+    "hits": 60
   },
   "yaba": {
     "query": "yaba",
@@ -13830,7 +19590,7 @@
       "syala",
       "yala"
     ],
-    "hits": 4
+    "hits": 5
   },
   "yali": {
     "query": "yali",
@@ -13878,7 +19638,7 @@
       "wiyasa",
       "yasa"
     ],
-    "hits": 1
+    "hits": 3
   },
   "yata": {
     "query": "yata",
@@ -13903,6 +19663,21 @@
       "wiyata"
     ],
     "hits": 1
+  },
+  "yoha": {
+    "query": "yoha",
+    "prefix_count": 3,
+    "prefix_words": [
+      "yoha",
+      "yohanes",
+      "yohano"
+    ],
+    "suffix_count": 2,
+    "suffix_words": [
+      "acalyoha",
+      "yoha"
+    ],
+    "hits": 2
   },
   "zina": {
     "query": "zina",
