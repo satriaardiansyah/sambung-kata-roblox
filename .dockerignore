@@ -1,0 +1,13 @@
+.git
+.gitignore
+.DS_Store
+.env
+ocr/
+kamus.json
+kamus.txt
+kamusv2.txt
+kbbi_consolidated.json
+kbbi_filtered.json
+killerEnding.go
+test.go
+server
