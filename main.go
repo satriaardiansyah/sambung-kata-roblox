@@ -151,239 +151,114 @@ func deleteSuggestedSuffixHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(map[string]any{"status": "deleted", "query": query})
 }
 
-var killerSuffix = map[string]int{
-	// 5 Karakter
-	"orasi": 1000,
-	"kisme": 1000,
-	"sitas": 950,
-	"takan": 950,
-	"iskan": 950,
-	"likan": 950,
-	"litik": 950,
-	"aksis": 900,
-	"angsa": 1000,
-	"ering": 400,
-	"rodok": 1000,
-	"inggi": 900,
-	"abaka": 999,
-	"stele": 999,
-	"alari": 950,
-	"anasi": 950,
-	"entil": 950,
-	"anser": 900,
-	"nggor": 900,
-	"tipus": 900,
-	"ancar": 800,
-	"andur": 800,
-	"angus": 800,
-	"ansor": 800,
-	"antem": 800,
-	"arong": 800,
-	"arkil": 800,
-	"awang": 800,
-	"elli":  800,
-	"ensil": 800,
-	"ergot": 800,
-	"hapak": 800,
-	"kimah": 800,
-	"lahad": 800,
-	"latah": 800,
-	"matis": 900,
-	"ofoni": 800,
-	"oleac": 800,
-	"olong": 800,
-	"ritis": 800,
-	"tanai": 800,
-	"tisis": 800,
-	"tonik": 800,
-	"ungsi": 800,
-	"ahang": 580,
-	"fauna": 580,
-	"garot": 580,
-	"gatot": 580,
-	"mboli": 580,
-	"ngudo": 580,
-	"olang": 580,
-	"sosro": 580,
-	"amang": 550,
-	"hohon": 550,
-	"isian": 550,
-	"riksa": 550,
-	"trium": 550,
-	"hiran": 500,
-	"ganas": 450,
-	"garpu": 450,
-	"jijik": 450,
-	"kolam": 450,
-	"manat": 450,
-	"meula": 450,
-	"nusuk": 450,
-	"ratif": 450,
-	"umang": 450,
-	"burma": 400,
-	"fault": 400,
-	"ruang": 400,
-	"tikam": 400,
-	"duksi": 300,
-	"genik": 300,
-	"kanya": 300,
-	"logis": 300,
-	"nggar": 300,
-	"arian": 270,
-	"meter": 100,
-	"ogram": 100,
-
-	// 4 Karakter
-	"tusa": 800,
-	"eran": 800,
-	"atik": 800,
-	"rian": 800,
-	"iran": 550,
-	"alah": 800,
-	"unan": 999,
-	"inkan": 400,
-	"taat":  400,
-	"tiol":  350,
-	"ilok":  320,
-	"lipe":  320,
-	"anki":  300,
-	"atat":  300,
-	"epik":  300,
-	"inggu": 300,
-	"ngeh":  300,
-	"ngoh":  300,
-	"riko":  300,
-	"stis":  300,
-	"wati":  300,
-	"anah":  250,
-	"asel":  250,
-	"apet":  200,
-
-	// 3 Karakter
-	"eni": 300,
-	"ksa": 290,
-	"esi": 260,
-	"hih": 260,
-	"meh": 260,
-	"owa": 260,
-	"sih": 260,
-	"bou": 250,
-	"dot": 250,
-	"huh": 250,
-	"pei": 250,
-	"pso": 250,
-	"iya": 220,
-	"coe": 200,
-	"iki": 200,
-	"ipe": 200,
-	"moi": 200,
-	"voi": 200,
-	"yab": 200,
-
-	// 2 Karakter
-	"ns": 300,
-	"ml": 260,
-	"sm": 210,
-	"ez": 200,
-	"iu": 200,
-	"ou": 200,
-	"tl": 200,
-	"ks": 180,
-	"gy": 170,
-	"ox": 150,
-	"oo": 140,
-	"cy": 130,
-	"eo": 120,
-	"eq": 120,
-	"ex": 120,
-	"oi": 120,
-	"eh": 100,
-	"oh": 100,
-	"pp": 100,
-	"ts": 100,
-	"ia": 60,
-	"ng": 60,
-
-	// 1 Karakter
-	"F": 60,
-	"V": 60,
-	"c": 60,
-	"q": 60,
-	"w": 60,
-	"x": 60,
-	"z": 60,
-}
-
-
 // var killerSuffix = map[string]int{
 // 	// 5 Karakter
+// 	"orasi": 1000,
+// 	"kisme": 1000,
+// 	"sitas": 950,
+// 	"takan": 950,
+// 	"iskan": 950,
+// 	"likan": 950,
+// 	"litik": 950,
 // 	"aksis": 900,
 // 	"angsa": 1000,
-// 	"sitas": 1000,
+// 	"ering": 400,
 // 	"rodok": 1000,
-// 	"ering": 900,
+// 	"inggi": 900,
 // 	"abaka": 999,
 // 	"stele": 999,
 // 	"alari": 950,
 // 	"anasi": 950,
 // 	"entil": 950,
-// 	"takan": 950,
-// 	"iskan": 940,
-// 	"likan": 930,
-// 	"litik": 920,
-// 	"erang": 910,
 // 	"anser": 900,
-// 	"awang": 900,
-// 	"lahan": 900,
 // 	"nggor": 900,
 // 	"tipus": 900,
-// 	"ratif": 890,
-// 	"olong": 860,
-// 	"matis": 850,
-// 	"ritis": 840,
-// 	"adang": 815,
-// 	"ilang": 815,
-// 	"iring": 815,
-// 	"arung": 810,
-// 	"etika": 810,
-// 	"siasi": 810,
-// 	"ulung": 805,
-// 	"atang": 804,
-// 	"tesis": 801,
-// 	"inggi": 460,
-// 	"inkan": 400,
-// 	"inggu": 300,
+// 	"ancar": 800,
+// 	"andur": 800,
+// 	"angus": 800,
+// 	"ansor": 800,
+// 	"antem": 800,
+// 	"arong": 800,
+// 	"arkil": 800,
+// 	"awang": 800,
+// 	"elli":  800,
+// 	"ensil": 800,
+// 	"ergot": 800,
+// 	"hapak": 800,
+// 	"kimah": 800,
+// 	"lahad": 800,
+// 	"latah": 800,
+// 	"matis": 900,
+// 	"ofoni": 800,
+// 	"oleac": 800,
+// 	"olong": 800,
+// 	"ritis": 800,
+// 	"tanai": 800,
+// 	"tisis": 800,
+// 	"tonik": 800,
+// 	"ungsi": 800,
+// 	"ahang": 580,
+// 	"fauna": 580,
+// 	"garot": 580,
+// 	"gatot": 580,
+// 	"mboli": 580,
+// 	"ngudo": 580,
+// 	"olang": 580,
+// 	"sosro": 580,
+// 	"amang": 550,
+// 	"hohon": 550,
+// 	"isian": 550,
+// 	"riksa": 550,
+// 	"trium": 550,
+// 	"hiran": 500,
+// 	"ganas": 450,
+// 	"garpu": 450,
+// 	"jijik": 450,
+// 	"kolam": 450,
+// 	"manat": 450,
+// 	"meula": 450,
+// 	"nusuk": 450,
+// 	"ratif": 450,
+// 	"umang": 450,
+// 	"burma": 400,
+// 	"fault": 400,
+// 	"ruang": 400,
+// 	"tikam": 400,
+// 	"duksi": 300,
+// 	"genik": 300,
+// 	"kanya": 300,
+// 	"logis": 300,
+// 	"nggar": 300,
+// 	"arian": 270,
+// 	"meter": 100,
+// 	"ogram": 100,
 
 // 	// 4 Karakter
-// 	"eran": 1000,
-// 	"alah": 980,
-// 	"rian": 990,
-// 	"unan": 970,
-// 	"nggi": 880,
-// 	"ural": 830,
-// 	"anik": 820,
-// 	"urat": 810,
-// 	"ofon": 804,
 // 	"tusa": 800,
+// 	"eran": 800,
+// 	"atik": 800,
+// 	"rian": 800,
 // 	"iran": 550,
-// 	"taat": 400,
-// 	"tiol": 350,
-// 	"ilok": 320,
-// 	"lipe": 320,
-// 	"anki": 300,
-// 	"atat": 300,
-// 	"epik": 300,
-// 	"ngeh": 300,
-// 	"ngoh": 300,
-// 	"riko": 300,
-// 	"stis": 300,
-// 	"wati": 300,
-// 	"anah": 250,
-// 	"asel": 250,
-// 	"apet": 200,
+// 	"alah": 800,
+// 	"inkan": 400,
+// 	"taat":  400,
+// 	"tiol":  350,
+// 	"ilok":  320,
+// 	"lipe":  320,
+// 	"anki":  300,
+// 	"atat":  300,
+// 	"epik":  300,
+// 	"inggu": 300,
+// 	"ngeh":  300,
+// 	"ngoh":  300,
+// 	"riko":  300,
+// 	"stis":  300,
+// 	"wati":  300,
+// 	"anah":  250,
+// 	"asel":  250,
+// 	"apet":  200,
 
 // 	// 3 Karakter
-// 	"200": 350,
 // 	"eni": 300,
 // 	"ksa": 290,
 // 	"esi": 260,
@@ -438,6 +313,650 @@ var killerSuffix = map[string]int{
 // 	"z": 60,
 // }
 
+var killerSuffix = map[string]int{
+	// 5 Karakter (dari suggested_suffixes.json, 357 entri)
+	// sort: prefix_count ASC, hits DESC
+	"abaka" : 1000, // prefix_count=1, hits=12
+	"ering" : 1000, // prefix_count=1, hits=10
+	"ratif" : 1000, // prefix_count=1, hits=10
+	"litik" :  990, // prefix_count=2, hits=45
+	"ungsi" :  990, // prefix_count=2, hits=43
+	"likan" :  990, // prefix_count=2, hits=34
+	"angus" :  990, // prefix_count=2, hits=32
+	"nggor" :  980, // prefix_count=2, hits=29
+	"rodok" :  980, // prefix_count=2, hits=26
+	"ritis" :  980, // prefix_count=2, hits=24
+	"ngihu" :  980, // prefix_count=2, hits=19
+	"ansor" :  980, // prefix_count=2, hits=18
+	"kisme" :  970, // prefix_count=2, hits=18
+	"tisis" :  970, // prefix_count=2, hits=18
+	"anser" :  970, // prefix_count=2, hits=17
+	"stele" :  970, // prefix_count=2, hits=17
+	"alari" :  960, // prefix_count=2, hits=16
+	"konis" :  960, // prefix_count=2, hits=14
+	"riksa" :  960, // prefix_count=2, hits=13
+	"tonik" :  960, // prefix_count=2, hits=13
+	"usang" :  960, // prefix_count=2, hits=13
+	"antri" :  950, // prefix_count=2, hits=12
+	"erang" :  950, // prefix_count=2, hits=12
+	"iskan" :  950, // prefix_count=2, hits=12
+	"ancar" :  950, // prefix_count=2, hits=11
+	"arung" :  940, // prefix_count=2, hits=11
+	"tikam" :  940, // prefix_count=2, hits=11
+	"andur" :  940, // prefix_count=2, hits=10
+	"fauna" :  940, // prefix_count=2, hits=10
+	"kanya" :  930, // prefix_count=2, hits=10
+	"warsa" :  930, // prefix_count=2, hits=10
+	"arong" :  930, // prefix_count=2, hits=9
+	"awang" :  930, // prefix_count=2, hits=9
+	"siden" :  930, // prefix_count=2, hits=9
+	"ahana" :  920, // prefix_count=2, hits=8
+	"anjar" :  920, // prefix_count=2, hits=8
+	"ating" :  920, // prefix_count=2, hits=8
+	"ikada" :  920, // prefix_count=2, hits=8
+	"ongah" :  910, // prefix_count=2, hits=8
+	"tikal" :  910, // prefix_count=2, hits=8
+	"entil" :  910, // prefix_count=2, hits=7
+	"isian" :  910, // prefix_count=2, hits=7
+	"siong" :  910, // prefix_count=2, hits=7
+	"tikus" :  900, // prefix_count=2, hits=7
+	"versi" :  900, // prefix_count=2, hits=7
+	"angai" :  900, // prefix_count=2, hits=6
+	"angon" :  900, // prefix_count=2, hits=6
+	"ensil" :  890, // prefix_count=2, hits=6
+	"irani" :  890, // prefix_count=2, hits=6
+	"niaga" :  890, // prefix_count=2, hits=6
+	"orasi" :  890, // prefix_count=2, hits=6
+	"tisik" :  890, // prefix_count=2, hits=6
+	"umang" :  880, // prefix_count=2, hits=6
+	"urang" :  880, // prefix_count=2, hits=6
+	"gatot" :  880, // prefix_count=2, hits=5
+	"lakah" :  880, // prefix_count=2, hits=5
+	"lapet" :  870, // prefix_count=2, hits=5
+	"latah" :  870, // prefix_count=2, hits=5
+	"nahak" :  870, // prefix_count=2, hits=5
+	"tasik" :  870, // prefix_count=2, hits=5
+	"tikai" :  870, // prefix_count=2, hits=5
+	"ambua" :  860, // prefix_count=2, hits=4
+	"antek" :  860, // prefix_count=2, hits=4
+	"hanat" :  860, // prefix_count=2, hits=4
+	"hohon" :  860, // prefix_count=2, hits=4
+	"osofi" :  850, // prefix_count=2, hits=4
+	"tatik" :  850, // prefix_count=2, hits=4
+	"tikah" :  850, // prefix_count=2, hits=4
+	"eksin" :  850, // prefix_count=2, hits=3
+	"garpu" :  840, // prefix_count=2, hits=3
+	"gilik" :  840, // prefix_count=2, hits=3
+	"lasem" :  840, // prefix_count=2, hits=3
+	"nyaru" :  840, // prefix_count=2, hits=3
+	"pisau" :  840, // prefix_count=2, hits=3
+	"punan" :  830, // prefix_count=2, hits=3
+	"rafia" :  830, // prefix_count=2, hits=3
+	"ricau" :  830, // prefix_count=2, hits=3
+	"rihat" :  830, // prefix_count=2, hits=3
+	"risau" :  820, // prefix_count=2, hits=3
+	"siria" :  820, // prefix_count=2, hits=3
+	"tesis" :  820, // prefix_count=2, hits=3
+	"tombe" :  820, // prefix_count=2, hits=3
+	"ulung" :  820, // prefix_count=2, hits=3
+	"umpat" :  810, // prefix_count=2, hits=3
+	"ambak" :  810, // prefix_count=2, hits=2
+	"arama" :  810, // prefix_count=2, hits=2
+	"areng" :  810, // prefix_count=2, hits=2
+	"atang" :  800, // prefix_count=2, hits=2
+	"ayang" :  800, // prefix_count=2, hits=2
+	"bilik" :  800, // prefix_count=2, hits=2
+	"duren" :  800, // prefix_count=2, hits=2
+	"emang" :  800, // prefix_count=2, hits=2
+	"gangi" :  790, // prefix_count=2, hits=2
+	"gilas" :  790, // prefix_count=2, hits=2
+	"gitik" :  790, // prefix_count=2, hits=2
+	"gores" :  790, // prefix_count=2, hits=2
+	"kaiba" :  780, // prefix_count=2, hits=2
+	"kasia" :  780, // prefix_count=2, hits=2
+	"kusut" :  780, // prefix_count=2, hits=2
+	"lalap" :  780, // prefix_count=2, hits=2
+	"manat" :  780, // prefix_count=2, hits=2
+	"medis" :  770, // prefix_count=2, hits=2
+	"murni" :  770, // prefix_count=2, hits=2
+	"ngaku" :  770, // prefix_count=2, hits=2
+	"ngana" :  770, // prefix_count=2, hits=2
+	"nging" :  760, // prefix_count=2, hits=2
+	"pilot" :  760, // prefix_count=2, hits=2
+	"ramah" :  760, // prefix_count=2, hits=2
+	"rapuh" :  760, // prefix_count=2, hits=2
+	"ratak" :  760, // prefix_count=2, hits=2
+	"reksa" :  750, // prefix_count=2, hits=2
+	"rinya" :  750, // prefix_count=2, hits=2
+	"rokan" :  750, // prefix_count=2, hits=2
+	"rosok" :  750, // prefix_count=2, hits=2
+	"ruang" :  740, // prefix_count=2, hits=2
+	"silih" :  740, // prefix_count=2, hits=2
+	"siung" :  740, // prefix_count=2, hits=2
+	"sogok" :  740, // prefix_count=2, hits=2
+	"sokan" :  730, // prefix_count=2, hits=2
+	"talat" :  730, // prefix_count=2, hits=2
+	"teduh" :  730, // prefix_count=2, hits=2
+	"tikel" :  730, // prefix_count=2, hits=2
+	"tiket" :  730, // prefix_count=2, hits=2
+	"troli" :  720, // prefix_count=2, hits=2
+	"udang" :  720, // prefix_count=2, hits=2
+	"ursus" :  720, // prefix_count=2, hits=2
+	"afiks" :  720, // prefix_count=2, hits=1
+	"akasa" :  710, // prefix_count=2, hits=1
+	"aksos" :  710, // prefix_count=2, hits=1
+	"akuik" :  710, // prefix_count=2, hits=1
+	"anani" :  710, // prefix_count=2, hits=1
+	"anker" :  710, // prefix_count=2, hits=1
+	"ansar" :  700, // prefix_count=2, hits=1
+	"apang" :  700, // prefix_count=2, hits=1
+	"arane" :  700, // prefix_count=2, hits=1
+	"atasi" :  700, // prefix_count=2, hits=1
+	"biala" :  690, // prefix_count=2, hits=1
+	"bokan" :  690, // prefix_count=2, hits=1
+	"ektro" :  690, // prefix_count=2, hits=1
+	"envoi" :  690, // prefix_count=2, hits=1
+	"fasih" :  690, // prefix_count=2, hits=1
+	"ferin" :  680, // prefix_count=2, hits=1
+	"fluks" :  680, // prefix_count=2, hits=1
+	"fokus" :  680, // prefix_count=2, hits=1
+	"genan" :  680, // prefix_count=2, hits=1
+	"getah" :  670, // prefix_count=2, hits=1
+	"gusur" :  670, // prefix_count=2, hits=1
+	"hasut" :  670, // prefix_count=2, hits=1
+	"idola" :  670, // prefix_count=2, hits=1
+	"ihsan" :  670, // prefix_count=2, hits=1
+	"kimah" :  660, // prefix_count=2, hits=1
+	"kulah" :  660, // prefix_count=2, hits=1
+	"lenan" :  660, // prefix_count=2, hits=1
+	"lensa" :  660, // prefix_count=2, hits=1
+	"lepak" :  650, // prefix_count=2, hits=1
+	"lirih" :  650, // prefix_count=2, hits=1
+	"lokan" :  650, // prefix_count=2, hits=1
+	"luruh" :  650, // prefix_count=2, hits=1
+	"malah" :  640, // prefix_count=2, hits=1
+	"marus" :  640, // prefix_count=2, hits=1
+	"mesat" :  640, // prefix_count=2, hits=1
+	"mesra" :  640, // prefix_count=2, hits=1
+	"milih" :  640, // prefix_count=2, hits=1
+	"muran" :  630, // prefix_count=2, hits=1
+	"najis" :  630, // prefix_count=2, hits=1
+	"ngani" :  630, // prefix_count=2, hits=1
+	"nisan" :  630, // prefix_count=2, hits=1
+	"ofoni" :  620, // prefix_count=2, hits=1
+	"oksin" :  620, // prefix_count=2, hits=1
+	"olang" :  620, // prefix_count=2, hits=1
+	"ongga" :  620, // prefix_count=2, hits=1
+	"opini" :  620, // prefix_count=2, hits=1
+	"rapia" :  610, // prefix_count=2, hits=1
+	"ratah" :  610, // prefix_count=2, hits=1
+	"rusuk" :  610, // prefix_count=2, hits=1
+	"sanad" :  610, // prefix_count=2, hits=1
+	"sirip" :  600, // prefix_count=2, hits=1
+	"solek" :  600, // prefix_count=2, hits=1
+	"swana" :  600, // prefix_count=2, hits=1
+	"talia" :  600, // prefix_count=2, hits=1
+	"tania" :  600, // prefix_count=2, hits=1
+	"taraf" :  590, // prefix_count=2, hits=1
+	"teken" :  590, // prefix_count=2, hits=1
+	"totok" :  590, // prefix_count=2, hits=1
+	"tunai" :  590, // prefix_count=2, hits=1
+	"tusuk" :  580, // prefix_count=2, hits=1
+	"usung" :  580, // prefix_count=2, hits=1
+	"inggi" :  580, // prefix_count=3, hits=79
+	"matis" :  580, // prefix_count=3, hits=71
+	"sitas" :  580, // prefix_count=3, hits=41
+	"lahan" :  570, // prefix_count=3, hits=23
+	"folia" :  570, // prefix_count=3, hits=21
+	"anasi" :  570, // prefix_count=3, hits=20
+	"burma" :  570, // prefix_count=3, hits=16
+	"liang" :  560, // prefix_count=3, hits=15
+	"trium" :  560, // prefix_count=3, hits=15
+	"siksa" :  560, // prefix_count=3, hits=12
+	"olong" :  560, // prefix_count=3, hits=10
+	"ilang" :  560, // prefix_count=3, hits=9
+	"takan" :  550, // prefix_count=3, hits=9
+	"ahang" :  550, // prefix_count=3, hits=8
+	"angat" :  550, // prefix_count=3, hits=8
+	"lahat" :  550, // prefix_count=3, hits=8
+	"gular" :  540, // prefix_count=3, hits=7
+	"ongka" :  540, // prefix_count=3, hits=6
+	"sakai" :  540, // prefix_count=3, hits=6
+	"nanah" :  540, // prefix_count=3, hits=5
+	"nikel" :  530, // prefix_count=3, hits=5
+	"toris" :  530, // prefix_count=3, hits=5
+	"angen" :  530, // prefix_count=3, hits=4
+	"anyam" :  530, // prefix_count=3, hits=4
+	"apala" :  530, // prefix_count=3, hits=4
+	"lahap" :  520, // prefix_count=3, hits=4
+	"pesek" :  520, // prefix_count=3, hits=4
+	"talah" :  520, // prefix_count=3, hits=4
+	"ambel" :  520, // prefix_count=3, hits=3
+	"deran" :  510, // prefix_count=3, hits=3
+	"etika" :  510, // prefix_count=3, hits=3
+	"fitri" :  510, // prefix_count=3, hits=3
+	"ganga" :  510, // prefix_count=3, hits=3
+	"iring" :  510, // prefix_count=3, hits=3
+	"kadin" :  500, // prefix_count=3, hits=3
+	"lakan" :  500, // prefix_count=3, hits=3
+	"larik" :  500, // prefix_count=3, hits=3
+	"sekta" :  500, // prefix_count=3, hits=3
+	"siasi" :  490, // prefix_count=3, hits=3
+	"adang" :  490, // prefix_count=3, hits=2
+	"aktan" :  490, // prefix_count=3, hits=2
+	"alogi" :  490, // prefix_count=3, hits=2
+	"antus" :  490, // prefix_count=3, hits=2
+	"batik" :  480, // prefix_count=3, hits=2
+	"bungo" :  480, // prefix_count=3, hits=2
+	"hasil" :  480, // prefix_count=3, hits=2
+	"iling" :  480, // prefix_count=3, hits=2
+	"imbal" :  470, // prefix_count=3, hits=2
+	"kadir" :  470, // prefix_count=3, hits=2
+	"laria" :  470, // prefix_count=3, hits=2
+	"lawat" :  470, // prefix_count=3, hits=2
+	"leusi" :  470, // prefix_count=3, hits=2
+	"niran" :  460, // prefix_count=3, hits=2
+	"piang" :  460, // prefix_count=3, hits=2
+	"rasis" :  460, // prefix_count=3, hits=2
+	"sarah" :  460, // prefix_count=3, hits=2
+	"taria" :  450, // prefix_count=3, hits=2
+	"upaya" :  450, // prefix_count=3, hits=2
+	"ampan" :  450, // prefix_count=3, hits=1
+	"amuka" :  450, // prefix_count=3, hits=1
+	"anduk" :  440, // prefix_count=3, hits=1
+	"arami" :  440, // prefix_count=3, hits=1
+	"atala" :  440, // prefix_count=3, hits=1
+	"atori" :  440, // prefix_count=3, hits=1
+	"aurat" :  440, // prefix_count=3, hits=1
+	"danan" :  430, // prefix_count=3, hits=1
+	"darah" :  430, // prefix_count=3, hits=1
+	"darus" :  430, // prefix_count=3, hits=1
+	"endar" :  430, // prefix_count=3, hits=1
+	"gapit" :  420, // prefix_count=3, hits=1
+	"garas" :  420, // prefix_count=3, hits=1
+	"gaung" :  420, // prefix_count=3, hits=1
+	"ingus" :  420, // prefix_count=3, hits=1
+	"kerit" :  420, // prefix_count=3, hits=1
+	"kitab" :  410, // prefix_count=3, hits=1
+	"krama" :  410, // prefix_count=3, hits=1
+	"lasia" :  410, // prefix_count=3, hits=1
+	"leher" :  410, // prefix_count=3, hits=1
+	"lesit" :  400, // prefix_count=3, hits=1
+	"luang" :  400, // prefix_count=3, hits=1
+	"lusif" :  400, // prefix_count=3, hits=1
+	"makin" :  400, // prefix_count=3, hits=1
+	"mamak" :  400, // prefix_count=3, hits=1
+	"mutan" :  390, // prefix_count=3, hits=1
+	"oksia" :  390, // prefix_count=3, hits=1
+	"patis" :  390, // prefix_count=3, hits=1
+	"rango" :  390, // prefix_count=3, hits=1
+	"ratus" :  380, // prefix_count=3, hits=1
+	"rungi" :  380, // prefix_count=3, hits=1
+	"sarok" :  380, // prefix_count=3, hits=1
+	"simis" :  380, // prefix_count=3, hits=1
+	"sisih" :  380, // prefix_count=3, hits=1
+	"sitin" :  370, // prefix_count=3, hits=1
+	"sukan" :  370, // prefix_count=3, hits=1
+	"talik" :  370, // prefix_count=3, hits=1
+	"teler" :  370, // prefix_count=3, hits=1
+	"tetep" :  360, // prefix_count=3, hits=1
+	"turan" :  360, // prefix_count=3, hits=1
+	"wahan" :  360, // prefix_count=3, hits=1
+	"angsa" :  360, // prefix_count=4, hits=329
+	"arian" :  360, // prefix_count=4, hits=49
+	"aksis" :  350, // prefix_count=4, hits=20
+	"biang" :  350, // prefix_count=4, hits=9
+	"inggu" :  350, // prefix_count=4, hits=6
+	"kiran" :  350, // prefix_count=4, hits=6
+	"fiksi" :  340, // prefix_count=4, hits=5
+	"nikah" :  340, // prefix_count=4, hits=5
+	"inkan" :  340, // prefix_count=4, hits=4
+	"sinya" :  340, // prefix_count=4, hits=4
+	"palah" :  330, // prefix_count=4, hits=3
+	"sofis" :  330, // prefix_count=4, hits=3
+	"strip" :  330, // prefix_count=4, hits=3
+	"akari" :  330, // prefix_count=4, hits=2
+	"amang" :  330, // prefix_count=4, hits=2
+	"ambat" :  320, // prefix_count=4, hits=2
+	"antak" :  320, // prefix_count=4, hits=2
+	"gawan" :  320, // prefix_count=4, hits=2
+	"giran" :  320, // prefix_count=4, hits=2
+	"gitar" :  310, // prefix_count=4, hits=2
+	"guani" :  310, // prefix_count=4, hits=2
+	"hilir" :  310, // prefix_count=4, hits=2
+	"nanti" :  310, // prefix_count=4, hits=2
+	"nguru" :  310, // prefix_count=4, hits=2
+	"ograf" :  300, // prefix_count=4, hits=2
+	"oksik" :  300, // prefix_count=4, hits=2
+	"omong" :  300, // prefix_count=4, hits=2
+	"recht" :  300, // prefix_count=4, hits=2
+	"sasak" :  290, // prefix_count=4, hits=2
+	"strik" :  290, // prefix_count=4, hits=2
+	"talen" :  290, // prefix_count=4, hits=2
+	"adina" :  290, // prefix_count=4, hits=1
+	"alias" :  290, // prefix_count=4, hits=1
+	"andak" :  280, // prefix_count=4, hits=1
+	"atlet" :  280, // prefix_count=4, hits=1
+	"kulum" :  280, // prefix_count=4, hits=1
+	"kusan" :  280, // prefix_count=4, hits=1
+	"lalah" :  270, // prefix_count=4, hits=1
+	"raung" :  270, // prefix_count=4, hits=1
+	"istis" :  270, // prefix_count=5, hits=18
+	"trian" :  270, // prefix_count=5, hits=14
+	"aktif" :  270, // prefix_count=5, hits=5
+	"andar" :  260, // prefix_count=5, hits=5
+	"siran" :  260, // prefix_count=5, hits=5
+	"matik" :  260, // prefix_count=5, hits=4
+	"duksi" :  260, // prefix_count=5, hits=3
+	"kanik" :  250, // prefix_count=5, hits=3
+	"mania" :  250, // prefix_count=5, hits=3
+	"asing" :  250, // prefix_count=5, hits=2
+	"balah" :  250, // prefix_count=5, hits=2
+	"batis" :  240, // prefix_count=5, hits=2
+	"belar" :  240, // prefix_count=5, hits=2
+	"densi" :  240, // prefix_count=5, hits=2
+	"dikit" :  240, // prefix_count=5, hits=2
+	"garap" :  240, // prefix_count=5, hits=2
+	"kakak" :  230, // prefix_count=5, hits=2
+	"kilan" :  230, // prefix_count=5, hits=2
+	"latif" :  230, // prefix_count=5, hits=2
+	"lewat" :  230, // prefix_count=5, hits=2
+	"ngeng" :  220, // prefix_count=5, hits=2
+	"ngong" :  220, // prefix_count=5, hits=2
+	"rekan" :  220, // prefix_count=5, hits=2
+	"sinol" :  220, // prefix_count=5, hits=2
+	"sulan" :  220, // prefix_count=5, hits=2
+	"dakwa" :  210, // prefix_count=5, hits=1
+	"gelar" :  210, // prefix_count=5, hits=1
+	"habis" :  210, // prefix_count=5, hits=1
+	"haram" :  210, // prefix_count=5, hits=1
+	"istik" :  200, // prefix_count=5, hits=1
+	"kacau" :  200, // prefix_count=5, hits=1
+	"lahir" :  200, // prefix_count=5, hits=1
+
+	// 4 Karakter (dari suggested_suffixes.json, 225 entri)
+	// sort: prefix_count ASC, hits DESC
+	"nggi"  :  800, // prefix_count=1, hits=1
+	"unan"  :  800, // prefix_count=1, hits=1
+	"yata"  :  790, // prefix_count=1, hits=1
+	"erin"  :  790, // prefix_count=2, hits=1
+	"ilai"  :  790, // prefix_count=2, hits=1
+	"ngsa"  :  790, // prefix_count=2, hits=1
+	"rian"  :  780, // prefix_count=3, hits=155
+	"alah"  :  780, // prefix_count=3, hits=117
+	"sori"  :  780, // prefix_count=3, hits=29
+	"sihi"  :  770, // prefix_count=3, hits=26
+	"liar"  :  770, // prefix_count=3, hits=21
+	"akai"  :  770, // prefix_count=3, hits=19
+	"anik"  :  770, // prefix_count=3, hits=16
+	"eran"  :  760, // prefix_count=3, hits=16
+	"siur"  :  760, // prefix_count=3, hits=13
+	"siat"  :  760, // prefix_count=3, hits=9
+	"ahir"  :  750, // prefix_count=3, hits=8
+	"rica"  :  750, // prefix_count=3, hits=7
+	"usan"  :  750, // prefix_count=3, hits=7
+	"asel"  :  740, // prefix_count=3, hits=6
+	"ayab"  :  740, // prefix_count=3, hits=6
+	"hiat"  :  740, // prefix_count=3, hits=6
+	"onan"  :  740, // prefix_count=3, hits=6
+	"usti"  :  730, // prefix_count=3, hits=6
+	"jurk"  :  730, // prefix_count=3, hits=5
+	"yala"  :  730, // prefix_count=3, hits=5
+	"daik"  :  720, // prefix_count=3, hits=4
+	"eusi"  :  720, // prefix_count=3, hits=4
+	"ngoh"  :  720, // prefix_count=3, hits=4
+	"osin"  :  720, // prefix_count=3, hits=4
+	"ulat"  :  710, // prefix_count=3, hits=4
+	"wahu"  :  710, // prefix_count=3, hits=4
+	"apet"  :  710, // prefix_count=3, hits=3
+	"asam"  :  700, // prefix_count=3, hits=3
+	"azim"  :  700, // prefix_count=3, hits=3
+	"biat"  :  700, // prefix_count=3, hits=3
+	"gins"  :  700, // prefix_count=3, hits=3
+	"huwa"  :  690, // prefix_count=3, hits=3
+	"leha"  :  690, // prefix_count=3, hits=3
+	"oceh"  :  690, // prefix_count=3, hits=3
+	"orma"  :  680, // prefix_count=3, hits=3
+	"owar"  :  680, // prefix_count=3, hits=3
+	"rowa"  :  680, // prefix_count=3, hits=3
+	"skar"  :  680, // prefix_count=3, hits=3
+	"umum"  :  670, // prefix_count=3, hits=3
+	"ural"  :  670, // prefix_count=3, hits=3
+	"yasa"  :  670, // prefix_count=3, hits=3
+	"abah"  :  660, // prefix_count=3, hits=2
+	"adun"  :  660, // prefix_count=3, hits=2
+	"agih"  :  660, // prefix_count=3, hits=2
+	"akla"  :  650, // prefix_count=3, hits=2
+	"amas"  :  650, // prefix_count=3, hits=2
+	"apia"  :  650, // prefix_count=3, hits=2
+	"aril"  :  650, // prefix_count=3, hits=2
+	"brum"  :  640, // prefix_count=3, hits=2
+	"ciki"  :  640, // prefix_count=3, hits=2
+	"cuti"  :  640, // prefix_count=3, hits=2
+	"elan"  :  630, // prefix_count=3, hits=2
+	"elli"  :  630, // prefix_count=3, hits=2
+	"eret"  :  630, // prefix_count=3, hits=2
+	"fufu"  :  630, // prefix_count=3, hits=2
+	"fumi"  :  620, // prefix_count=3, hits=2
+	"gois"  :  620, // prefix_count=3, hits=2
+	"idol"  :  620, // prefix_count=3, hits=2
+	"ngok"  :  610, // prefix_count=3, hits=2
+	"nyau"  :  610, // prefix_count=3, hits=2
+	"ogan"  :  610, // prefix_count=3, hits=2
+	"siul"  :  610, // prefix_count=3, hits=2
+	"tret"  :  600, // prefix_count=3, hits=2
+	"ukir"  :  600, // prefix_count=3, hits=2
+	"waid"  :  600, // prefix_count=3, hits=2
+	"yoha"  :  590, // prefix_count=3, hits=2
+	"abur"  :  590, // prefix_count=3, hits=1
+	"adeg"  :  590, // prefix_count=3, hits=1
+	"adir"  :  590, // prefix_count=3, hits=1
+	"akam"  :  580, // prefix_count=3, hits=1
+	"alib"  :  580, // prefix_count=3, hits=1
+	"aneh"  :  580, // prefix_count=3, hits=1
+	"aruh"  :  570, // prefix_count=3, hits=1
+	"asus"  :  570, // prefix_count=3, hits=1
+	"atha"  :  570, // prefix_count=3, hits=1
+	"awar"  :  560, // prefix_count=3, hits=1
+	"awit"  :  560, // prefix_count=3, hits=1
+	"ayak"  :  560, // prefix_count=3, hits=1
+	"bori"  :  560, // prefix_count=3, hits=1
+	"clea"  :  550, // prefix_count=3, hits=1
+	"ekas"  :  550, // prefix_count=3, hits=1
+	"elis"  :  550, // prefix_count=3, hits=1
+	"enak"  :  540, // prefix_count=3, hits=1
+	"enen"  :  540, // prefix_count=3, hits=1
+	"gisa"  :  540, // prefix_count=3, hits=1
+	"gour"  :  540, // prefix_count=3, hits=1
+	"guta"  :  530, // prefix_count=3, hits=1
+	"holu"  :  530, // prefix_count=3, hits=1
+	"imsa"  :  530, // prefix_count=3, hits=1
+	"nafi"  :  520, // prefix_count=3, hits=1
+	"nalu"  :  520, // prefix_count=3, hits=1
+	"nefo"  :  520, // prefix_count=3, hits=1
+	"ofon"  :  520, // prefix_count=3, hits=1
+	"okol"  :  510, // prefix_count=3, hits=1
+	"omel"  :  510, // prefix_count=3, hits=1
+	"oras"  :  510, // prefix_count=3, hits=1
+	"puki"  :  500, // prefix_count=3, hits=1
+	"raih"  :  500, // prefix_count=3, hits=1
+	"reni"  :  500, // prefix_count=3, hits=1
+	"sanu"  :  500, // prefix_count=3, hits=1
+	"tiar"  :  490, // prefix_count=3, hits=1
+	"tile"  :  490, // prefix_count=3, hits=1
+	"tost"  :  490, // prefix_count=3, hits=1
+	"troi"  :  480, // prefix_count=3, hits=1
+	"ujar"  :  480, // prefix_count=3, hits=1
+	"ulur"  :  480, // prefix_count=3, hits=1
+	"urat"  :  480, // prefix_count=3, hits=1
+	"usir"  :  470, // prefix_count=3, hits=1
+	"yali"  :  470, // prefix_count=3, hits=1
+	"zina"  :  470, // prefix_count=3, hits=1
+	"wati"  :  460, // prefix_count=4, hits=60
+	"ngeh"  :  460, // prefix_count=4, hits=37
+	"atik"  :  460, // prefix_count=4, hits=30
+	"stis"  :  450, // prefix_count=4, hits=27
+	"onik"  :  450, // prefix_count=4, hits=16
+	"ahad"  :  450, // prefix_count=4, hits=12
+	"anje"  :  450, // prefix_count=4, hits=9
+	"osit"  :  440, // prefix_count=4, hits=9
+	"ikad"  :  440, // prefix_count=4, hits=8
+	"klik"  :  440, // prefix_count=4, hits=8
+	"anah"  :  430, // prefix_count=4, hits=7
+	"neus"  :  430, // prefix_count=4, hits=7
+	"tipe"  :  430, // prefix_count=4, hits=7
+	"uang"  :  430, // prefix_count=4, hits=7
+	"ilan"  :  420, // prefix_count=4, hits=6
+	"deha"  :  420, // prefix_count=4, hits=5
+	"niat"  :  420, // prefix_count=4, hits=5
+	"orek"  :  410, // prefix_count=4, hits=5
+	"alik"  :  410, // prefix_count=4, hits=4
+	"arta"  :  410, // prefix_count=4, hits=4
+	"usil"  :  410, // prefix_count=4, hits=4
+	"anus"  :  400, // prefix_count=4, hits=3
+	"afir"  :  400, // prefix_count=4, hits=2
+	"alap"  :  400, // prefix_count=4, hits=2
+	"alto"  :  390, // prefix_count=4, hits=2
+	"amah"  :  390, // prefix_count=4, hits=2
+	"apas"  :  390, // prefix_count=4, hits=2
+	"asar"  :  390, // prefix_count=4, hits=2
+	"asek"  :  380, // prefix_count=4, hits=2
+	"asir"  :  380, // prefix_count=4, hits=2
+	"atal"  :  380, // prefix_count=4, hits=2
+	"diot"  :  370, // prefix_count=4, hits=2
+	"frit"  :  370, // prefix_count=4, hits=2
+	"ilok"  :  370, // prefix_count=4, hits=2
+	"irah"  :  360, // prefix_count=4, hits=2
+	"isak"  :  360, // prefix_count=4, hits=2
+	"kait"  :  360, // prefix_count=4, hits=2
+	"klab"  :  360, // prefix_count=4, hits=2
+	"otop"  :  350, // prefix_count=4, hits=2
+	"rias"  :  350, // prefix_count=4, hits=2
+	"spid"  :  350, // prefix_count=4, hits=2
+	"sual"  :  340, // prefix_count=4, hits=2
+	"tiol"  :  340, // prefix_count=4, hits=2
+	"tosa"  :  340, // prefix_count=4, hits=2
+	"ukur"  :  340, // prefix_count=4, hits=2
+	"abar"  :  330, // prefix_count=4, hits=1
+	"abut"  :  330, // prefix_count=4, hits=1
+	"asuh"  :  330, // prefix_count=4, hits=1
+	"atar"  :  320, // prefix_count=4, hits=1
+	"bito"  :  320, // prefix_count=4, hits=1
+	"blat"  :  320, // prefix_count=4, hits=1
+	"endi"  :  320, // prefix_count=4, hits=1
+	"gawi"  :  310, // prefix_count=4, hits=1
+	"kuil"  :  310, // prefix_count=4, hits=1
+	"lade"  :  310, // prefix_count=4, hits=1
+	"luks"  :  300, // prefix_count=4, hits=1
+	"pler"  :  300, // prefix_count=4, hits=1
+	"riko"  :  300, // prefix_count=4, hits=1
+	"rote"  :  300, // prefix_count=4, hits=1
+	"tain"  :  290, // prefix_count=4, hits=1
+	"tsar"  :  290, // prefix_count=4, hits=1
+	"itik"  :  290, // prefix_count=5, hits=50
+	"iran"  :  280, // prefix_count=5, hits=44
+	"ngus"  :  280, // prefix_count=5, hits=35
+	"ngih"  :  280, // prefix_count=5, hits=14
+	"tase"  :  270, // prefix_count=5, hits=12
+	"atam"  :  270, // prefix_count=5, hits=8
+	"gian"  :  270, // prefix_count=5, hits=6
+	"roso"  :  270, // prefix_count=5, hits=5
+	"adar"  :  260, // prefix_count=5, hits=4
+	"ilah"  :  260, // prefix_count=5, hits=4
+	"oris"  :  260, // prefix_count=5, hits=4
+	"yaba"  :  250, // prefix_count=5, hits=4
+	"atur"  :  250, // prefix_count=5, hits=3
+	"abla"  :  250, // prefix_count=5, hits=2
+	"akta"  :  250, // prefix_count=5, hits=2
+	"anof"  :  240, // prefix_count=5, hits=2
+	"asak"  :  240, // prefix_count=5, hits=2
+	"doke"  :  240, // prefix_count=5, hits=2
+	"giat"  :  230, // prefix_count=5, hits=2
+	"hilo"  :  230, // prefix_count=5, hits=2
+	"kohi"  :  230, // prefix_count=5, hits=2
+	"liki"  :  230, // prefix_count=5, hits=2
+	"naik"  :  220, // prefix_count=5, hits=2
+	"nazi"  :  220, // prefix_count=5, hits=2
+	"oten"  :  220, // prefix_count=5, hits=2
+	"poni"  :  210, // prefix_count=5, hits=2
+	"rina"  :  210, // prefix_count=5, hits=2
+	"rise"  :  210, // prefix_count=5, hits=2
+	"rosi"  :  210, // prefix_count=5, hits=2
+	"same"  :  200, // prefix_count=5, hits=2
+	"sins"  :  200, // prefix_count=5, hits=2
+	"skop"  :  200, // prefix_count=5, hits=2
+	"sogo"  :  190, // prefix_count=5, hits=2
+	"trol"  :  190, // prefix_count=5, hits=2
+	"tual"  :  190, // prefix_count=5, hits=2
+	"tusa"  :  180, // prefix_count=5, hits=2
+	"abak"  :  180, // prefix_count=5, hits=1
+	"abun"  :  180, // prefix_count=5, hits=1
+	"ator"  :  180, // prefix_count=5, hits=1
+	"awak"  :  170, // prefix_count=5, hits=1
+	"diks"  :  170, // prefix_count=5, hits=1
+	"emis"  :  170, // prefix_count=5, hits=1
+	"loha"  :  160, // prefix_count=5, hits=1
+	"mian"  :  160, // prefix_count=5, hits=1
+	"nesa"  :  160, // prefix_count=5, hits=1
+	"okso"  :  160, // prefix_count=5, hits=1
+	"rita"  :  150, // prefix_count=5, hits=1
+	"riya"  :  150, // prefix_count=5, hits=1
+
+	// 3 Karakter
+	"eni": 300,
+	"ksa": 290,
+	"esi": 260,
+	"hih": 260,
+	"meh": 260,
+	"owa": 260,
+	"sih": 260,
+	"bou": 250,
+	"dot": 250,
+	"huh": 250,
+	"pei": 250,
+	"pso": 250,
+	"iya": 220,
+	"coe": 200,
+	"iki": 200,
+	"ipe": 200,
+	"moi": 200,
+	"voi": 200,
+	"yab": 200,
+
+	// 2 Karakter
+	"ns": 300,
+	"ml": 260,
+	"sm": 210,
+	"ez": 200,
+	"iu": 200,
+	"ou": 200,
+	"tl": 200,
+	"ks": 180,
+	"gy": 170,
+	"ox": 150,
+	"oo": 140,
+	"cy": 130,
+	"eo": 120,
+	"eq": 120,
+	"ex": 120,
+	"oi": 120,
+	"eh": 100,
+	"oh": 100,
+	"pp": 100,
+	"ts": 100,
+	"ia": 60,
+	"ng": 60,
+
+	// 1 Karakter
+	"F": 60,
+	"V": 60,
+	"c": 60,
+	"q": 60,
+	"w": 60,
+	"x": 60,
+	"z": 60,
+
+}
 
 
 

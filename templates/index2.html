@@ -300,15 +300,15 @@
         margin: 12px 0 10px;
       }
 
-      #result {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        max-height: 1000px;
-        overflow-y: auto;
-        scrollbar-width: thin;
-        scrollbar-color: var(--surface2) transparent;
+     #result {
+          list-style: none;
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 8px;
+          max-height: 1000px;
+          overflow-y: auto;
+          scrollbar-width: thin;
+          scrollbar-color: var(--surface2) transparent;
       }
       #result::-webkit-scrollbar {
         width: 4px;
@@ -319,21 +319,19 @@
       }
 
       #result li:not(.empty-state-li) {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-        padding: 7px 12px;
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        font-size: 0.85rem;
-        color: var(--text);
-        cursor: pointer;
-        transition:
-          background 0.2s,
-          border-color 0.2s,
-          transform 0.15s;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 8px;
+          padding: 8px 12px;
+          background: var(--surface2);
+          border: 1px solid var(--border);
+          border-radius: 10px;
+          font-size: 0.85rem;
+          color: var(--text);
+          cursor: pointer;
+          transition: .2s;
+          min-width: 0;
       }
       #result li:hover {
         background: rgba(255, 255, 255, 0.05);
