@@ -10,7 +10,11 @@ import (
 	"os"
 	"sort"
 	"strings"
-	"sync"
+
+	"github.com/satriaardiansyah/sambung-kata-roblox/db"
+	"github.com/satriaardiansyah/sambung-kata-roblox/handlers"
+	"github.com/satriaardiansyah/sambung-kata-roblox/middleware"
+	"github.com/satriaardiansyah/sambung-kata-roblox/shared"
 )
 
 //go:embed kbbi_updated.json
@@ -19,46 +23,7 @@ var kamusData []byte
 var words []string
 var suffixIndex = map[string][]string{}
 
-var deletedWords []string
-var deletedMu    sync.Mutex
-const deletedFile = "deleted_words.json"
-
-// =============================================
-// SUGGESTED SUFFIX LOGGER
-// Menyimpan query yang berpotensi jadi "killerSuffix" baru:
-// - panjang query > 3
-// - sebagai PREFIX hasilnya cuma 1-3 kata (susah disambung lawan)
-// - sebagai SUFFIX hasilnya >= 3 kata (banyak korban yang bisa kena)
-// =============================================
-var suggestedSuffixes = map[string]SuggestedSuffixEntry{}
-var suggestedMu sync.Mutex
-const suggestedFile = "suggested_suffixes.json"
-
-type SuggestedSuffixEntry struct {
-	Query        string   `json:"query"`
-	PrefixCount  int      `json:"prefix_count"`
-	PrefixWords  []string `json:"prefix_words"`
-	SuffixCount  int      `json:"suffix_count"`
-	SuffixWords  []string `json:"suffix_words"`
-	Hits         int      `json:"hits"` // berapa kali query ini muncul lagi
-}
-
-func loadSuggestedSuffixes() {
-	data, err := os.ReadFile(suggestedFile)
-	if err != nil {
-		return
-	}
-	json.Unmarshal(data, &suggestedSuffixes)
-	fmt.Printf("Suggested suffixes dimuat: %d entri\n", len(suggestedSuffixes))
-}
-
-func saveSuggestedSuffixes() {
-	data, _ := json.MarshalIndent(suggestedSuffixes, "", "  ")
-	os.WriteFile(suggestedFile, data, 0644)
-}
-
 // maybeLogSuggestedSuffix mengecek kriteria dan menyimpan kalau cocok.
-// Dipanggil dari searchHandler, pakai data words yang sudah ada (tanpa query ulang berat).
 func maybeLogSuggestedSuffix(query string) {
 	if len(query) <= 3 {
 		return
@@ -72,7 +37,7 @@ func maybeLogSuggestedSuffix(query string) {
 		}
 	}
 
-	// Kriteria 1: awalan sedikit (1-3 kata)
+	// Kriteria 1: awalan sedikit (1-5 kata)
 	if len(prefixWords) < 1 || len(prefixWords) > 5 {
 		return
 	}
@@ -85,47 +50,20 @@ func maybeLogSuggestedSuffix(query string) {
 		}
 	}
 
-	// Kriteria 2: akhiran banyak (>= 3 kata)
+	// Kriteria 2: akhiran banyak (>= 2 kata)
 	if len(suffixWords) < 2 {
 		return
 	}
 
-	suggestedMu.Lock()
-	defer suggestedMu.Unlock()
-
-	if existing, ok := suggestedSuffixes[query]; ok {
-		existing.Hits++
-		suggestedSuffixes[query] = existing
-	} else {
-		suggestedSuffixes[query] = SuggestedSuffixEntry{
-			Query:       query,
-			PrefixCount: len(prefixWords),
-			PrefixWords: prefixWords,
-			SuffixCount: len(suffixWords),
-			SuffixWords: suffixWords,
-			Hits:        1,
-		}
-	}
-	saveSuggestedSuffixes()
+	db.SaveSuggestedSuffix(query, len(prefixWords), prefixWords, len(suffixWords), suffixWords)
 }
 
 func suggestedSuffixHandler(w http.ResponseWriter, r *http.Request) {
-	suggestedMu.Lock()
-	defer suggestedMu.Unlock()
-
-	items := make([]SuggestedSuffixEntry, 0, len(suggestedSuffixes))
-	for _, v := range suggestedSuffixes {
-		items = append(items, v)
+	items, err := db.GetSuggestedSuffixes()
+	if err != nil {
+		http.Error(w, "Gagal mengambil data", 500)
+		return
 	}
-
-	// Urutkan: paling sering muncul (hits) di atas, lalu suffix_count terbanyak
-	sort.Slice(items, func(i, j int) bool {
-		if items[i].Hits != items[j].Hits {
-			return items[i].Hits > items[j].Hits
-		}
-		return items[i].SuffixCount > items[j].SuffixCount
-	})
-
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(items)
 }
@@ -137,15 +75,11 @@ func deleteSuggestedSuffixHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	suggestedMu.Lock()
-	defer suggestedMu.Unlock()
-
-	if _, ok := suggestedSuffixes[query]; !ok {
-		http.Error(w, "entri tidak ditemukan", 404)
+	err := db.DeleteSuggestedSuffix(query)
+	if err != nil {
+		http.Error(w, "entri tidak ditemukan atau gagal dihapus", 500)
 		return
 	}
-	delete(suggestedSuffixes, query)
-	saveSuggestedSuffixes()
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(map[string]any{"status": "deleted", "query": query})
@@ -1027,7 +961,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	query      := strings.ToLower(r.URL.Query().Get("q"))
 	mode       := r.URL.Query().Get("mode")
 	searchMode := r.URL.Query().Get("searchMode")
-	prioritas  := r.URL.Query().Get("prioritas") // ← TAMBAH INI
+	prioritas  := r.URL.Query().Get("prioritas")
 
     // Parse prioritas jadi slice
     var prioritasList []string
@@ -1056,6 +990,8 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		candidates = words
 	}
 
+	activeKillerSuffixes := db.GetKillerSuffixesFromCache()
+
 	var scored []WordScore
 	for _, word := range candidates {
 		if mode == "prefix" && !strings.HasPrefix(word, query) {
@@ -1083,28 +1019,28 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 
 		if searchMode == "brutal" {
 			if len(word) >= 5 {
-				if bonus, ok := killerSuffix[word[len(word)-5:]]; ok {
+				if bonus, ok := activeKillerSuffixes[word[len(word)-5:]]; ok {
 					score -= bonus
 				}
 			}
 			if len(word) >= 4 {
-				if bonus, ok := killerSuffix[word[len(word)-4:]]; ok {
+				if bonus, ok := activeKillerSuffixes[word[len(word)-4:]]; ok {
 					score -= bonus
 				}
 			}
 		}
 		if len(word) >= 3 {
-			if bonus, ok := killerSuffix[word[len(word)-3:]]; ok {
+			if bonus, ok := activeKillerSuffixes[word[len(word)-3:]]; ok {
 				score -= bonus
 			}
 		}
 		if len(word) >= 2 {
-			if bonus, ok := killerSuffix[word[len(word)-2:]]; ok {
+			if bonus, ok := activeKillerSuffixes[word[len(word)-2:]]; ok {
 				score -= bonus
 			}
 		}
 		if len(word) >= 1 {
-			if bonus, ok := killerSuffix[word[len(word)-1:]]; ok {
+			if bonus, ok := activeKillerSuffixes[word[len(word)-1:]]; ok {
 				score -= bonus
 			}
 		}
@@ -1250,6 +1186,8 @@ func searchHandlerV2(w http.ResponseWriter, r *http.Request) {
 		candidates = words
 	}
 
+	activeKillerSuffixes := db.GetKillerSuffixesFromCache()
+
 	var scored []WordScore
 
 	for _, word := range candidates {
@@ -1322,7 +1260,7 @@ func searchHandlerV2(w http.ResponseWriter, r *http.Request) {
 					continue
 				}
 				end := word[len(word)-suffixLen:]
-				if bonus, ok := killerSuffix[end]; ok {
+				if bonus, ok := activeKillerSuffixes[end]; ok {
 					score -= bonus
 					break // hanya ambil match terpanjang
 				}
@@ -1334,7 +1272,7 @@ func searchHandlerV2(w http.ResponseWriter, r *http.Request) {
 					continue
 				}
 				end := word[len(word)-suffixLen:]
-				if bonus, ok := killerSuffix[end]; ok {
+				if bonus, ok := activeKillerSuffixes[end]; ok {
 					score -= bonus
 					break
 				}
@@ -1364,63 +1302,12 @@ func searchHandlerV2(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(result)
 }
 
-// Channel untuk broadcast ke semua client
-var sseClients = map[chan string]bool{}
-var sseMu sync.Mutex
-
-func autoInputHandler(w http.ResponseWriter, r *http.Request) {
-    word := strings.ToLower(r.URL.Query().Get("q"))
-    if word == "" {
-        return
-    }
-
-    // Broadcast ke semua SSE client
-    sseMu.Lock()
-    for ch := range sseClients {
-        select {
-        case ch <- word:
-        default:
-        }
-    }
-    sseMu.Unlock()
-
-    w.WriteHeader(http.StatusOK)
-}
-
-func sseHandler(w http.ResponseWriter, r *http.Request) {
-    w.Header().Set("Content-Type", "text/event-stream")
-    w.Header().Set("Cache-Control", "no-cache")
-    w.Header().Set("Connection", "keep-alive")
-    w.Header().Set("Access-Control-Allow-Origin", "*")
-
-    ch := make(chan string, 5)
-    sseMu.Lock()
-    sseClients[ch] = true
-    sseMu.Unlock()
-
-    defer func() {
-        sseMu.Lock()
-        delete(sseClients, ch)
-        sseMu.Unlock()
-    }()
-
-    for {
-        select {
-        case word := <-ch:
-            fmt.Fprintf(w, "data: %s\n\n", word)
-            w.(http.Flusher).Flush()
-        case <-r.Context().Done():
-            return
-        }
-    }
-}
-
 func loadDeleted() {
-    data, err := os.ReadFile(deletedFile)
+    deletedWords, err := db.GetDeletedWords()
     if err != nil {
+        fmt.Printf("Gagal memuat deleted words dari database: %v\n", err)
         return
     }
-    json.Unmarshal(data, &deletedWords)
     fmt.Printf("Deleted words dimuat: %d kata\n", len(deletedWords))
 
     // Buat set untuk lookup cepat
@@ -1441,20 +1328,12 @@ func loadDeleted() {
     fmt.Printf("Words setelah filter: %d kata\n", len(words))
 }
 
-func saveDeleted() {
-    data, _ := json.MarshalIndent(deletedWords, "", "  ")
-    os.WriteFile(deletedFile, data, 0644)
-}
-
 func deleteWordHandler(w http.ResponseWriter, r *http.Request) {
     word := strings.ToLower(strings.TrimSpace(r.URL.Query().Get("q")))
     if word == "" {
         http.Error(w, "query kosong", 400)
         return
     }
-
-    deletedMu.Lock()
-    defer deletedMu.Unlock()
 
     // Hapus dari words
     newWords := words[:0]
@@ -1473,8 +1352,11 @@ func deleteWordHandler(w http.ResponseWriter, r *http.Request) {
     words = newWords
 
     // Simpan ke deleted list
-    deletedWords = append(deletedWords, word)
-    saveDeleted()
+    err := db.DeleteWord(word)
+    if err != nil {
+        http.Error(w, "gagal menyimpan ke database", 500)
+        return
+    }
 
     // Rebuild index
     prefixIndex = map[string][]string{}
@@ -1495,8 +1377,10 @@ func killerSuffixHandler(w http.ResponseWriter, r *http.Request) {
         Score  int    `json:"score"`
     }
 
-    items := make([]SuffixItem, 0, len(killerSuffix))
-    for suffix, score := range killerSuffix {
+    activeKillerSuffixes := db.GetKillerSuffixesFromCache()
+
+    items := make([]SuffixItem, 0, len(activeKillerSuffixes))
+    for suffix, score := range activeKillerSuffixes {
         items = append(items, SuffixItem{Suffix: suffix, Score: score})
     }
 
@@ -1510,8 +1394,13 @@ func killerSuffixHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func suggestedSuffixDataHandler(w http.ResponseWriter, r *http.Request) {
+    items, err := db.GetSuggestedSuffixes()
+    if err != nil {
+        http.Error(w, "Gagal mengambil data", 500)
+        return
+    }
     w.Header().Set("Content-Type", "application/json")
-    json.NewEncoder(w).Encode(suggestedSuffixes)
+    json.NewEncoder(w).Encode(items)
 }
 
 // ============================================================================
@@ -1529,10 +1418,12 @@ var typingSuffixes []TypingSuffix
 func buildTypingSuffixIndex() {
 	suffixCount := map[string]int{}
 	
+    activeKillerSuffixes := db.GetKillerSuffixesFromCache()
+
 	// Scan words to count matches for each killerSuffix key
 	for _, w := range words {
 		wClean := strings.ToLower(strings.TrimSpace(w))
-		for suf := range killerSuffix {
+		for suf := range activeKillerSuffixes {
 			if strings.HasSuffix(wClean, suf) {
 				suffixCount[suf]++
 			}
@@ -1545,7 +1436,7 @@ func buildTypingSuffixIndex() {
 			list = append(list, TypingSuffix{
 				Suffix: suf,
 				Count:  count,
-				Score:  killerSuffix[suf],
+				Score:  activeKillerSuffixes[suf],
 			})
 		}
 	}
@@ -1565,7 +1456,7 @@ func buildTypingSuffixIndex() {
 	})
 
 	typingSuffixes = list
-	fmt.Printf("Typing suffix index built: %d suffixes (sourced from killerSuffix)\n", len(typingSuffixes))
+	fmt.Printf("Typing suffix index built: %d suffixes (sourced from database)\n", len(typingSuffixes))
 }
 
 func apiTypingSuffixesHandler(w http.ResponseWriter, r *http.Request) {
@@ -1624,13 +1515,16 @@ func apiTypingWordsHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+    // Initialize Database
+    db.InitDB("")
+    db.SeedInitialKillerSuffixes(killerSuffix)
+
     // 1. Load data dulu
     loadKamus()
-	loadDeleted() 
-	loadSuggestedSuffixes()
+    loadDeleted() 
     buildIndex()
-	buildSmartIndex()
-	buildTypingSuffixIndex()
+    buildSmartIndex()
+    buildTypingSuffixIndex()
 
 	// halaman utama
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -1647,28 +1541,47 @@ func main() {
 	})
 
 	http.HandleFunc("/launcher.html", func(w http.ResponseWriter, r *http.Request) {
-    http.ServeFile(w, r, "./templates/launcher.html")
+        http.ServeFile(w, r, "./templates/launcher.html")
 	})
+	
 	http.HandleFunc("/widget2.html", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./templates/widget2.html")
 	})
 
-	// API
+    // Authentication Views & API
+    http.HandleFunc("/login", handlers.LoginViewHandler)
+    http.HandleFunc("/api/login", handlers.LoginAPIHandler)
+    http.HandleFunc("/register", handlers.RegisterViewHandler)
+    http.HandleFunc("/api/register", handlers.RegisterAPIHandler)
+    http.HandleFunc("/logout", handlers.LogoutHandler)
+
+    // User/Admin Dashboard (Protected by Session)
+    http.HandleFunc("/dashboard", middleware.SessionRequired(handlers.DashboardViewHandler))
+    http.HandleFunc("/api/dashboard/user-info", middleware.SessionRequired(handlers.UserInfoAPIHandler))
+    http.HandleFunc("/api/dashboard/stats", middleware.SessionRequired(handlers.DashboardStatsAPIHandler))
+    http.HandleFunc("/api/dashboard/killer-suffixes", middleware.SessionRequired(handlers.KillerSuffixesAPIHandler))
+    http.HandleFunc("/api/dashboard/deleted-words", middleware.SessionRequired(handlers.DeletedWordsAPIHandler))
+    http.HandleFunc("/api/dashboard/suggested-suffixes", middleware.SessionRequired(handlers.SuggestedSuffixesAPIHandler))
+    http.HandleFunc("/api/dashboard/typing-history", middleware.SessionRequired(handlers.TypingHistoryAPIHandler))
+    http.HandleFunc("/api/dashboard/regenerate-token", middleware.SessionRequired(handlers.RegenerateTokenHandler))
+
+	// Search & SSE APIs (Publicly Accessible)
 	http.HandleFunc("/search", searchHandler)
-	http.HandleFunc("/search2",  searchHandlerV2)
-	http.HandleFunc("/auto-input", autoInputHandler)
-	http.HandleFunc("/sse", sseHandler)
+	http.HandleFunc("/search2", searchHandlerV2)
+	http.HandleFunc("/auto-input", shared.AutoInputHandler)
+	http.HandleFunc("/sse", shared.SSEHandler)
 	http.HandleFunc("/delete-word", deleteWordHandler)  
 	http.HandleFunc("/danger-words", dangerWordsHandler)
 	http.HandleFunc("/killer-suffix", killerSuffixHandler)
 	http.HandleFunc("/suggested-suffix", suggestedSuffixHandler)
 	http.HandleFunc("/delete-suggested-suffix", deleteSuggestedSuffixHandler)
+	
 	http.HandleFunc("/rekomendasi", func(w http.ResponseWriter, r *http.Request) {
-    http.ServeFile(w, r, "./templates/suggested-analysis.html")
+        http.ServeFile(w, r, "./templates/suggested-analysis.html")
 	})
 	http.HandleFunc("/api/suggested-suffix-data", suggestedSuffixDataHandler)
 
-	// Typing Practice Routes
+	// Typing Practice Routes (Publicly Accessible)
 	http.HandleFunc("/typing", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./templates/typing.html")
 	})

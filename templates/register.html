@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daftar — Kamus Sambung Kata</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0d0d14;
+        --surface: #15151f;
+        --surface2: #1c1c2a;
+        --border: rgba(255, 255, 255, 0.07);
+        --accent: #6ee7b7; /* Green accent for registration */
+        --accent2: #ff6b9d;
+        --text: #e8e8f0;
+        --muted: #6b6b85;
+        --radius: 16px;
+        --glow: 0 0 40px rgba(110, 231, 183, 0.1);
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(110, 231, 183, 0.08) 0%, transparent 70%);
+        top: -100px;
+        right: -100px;
+        pointer-events: none;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(circle, rgba(255, 107, 157, 0.08) 0%, transparent 70%);
+        bottom: -80px;
+        left: -80px;
+        pointer-events: none;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 420px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 40px 32px;
+        box-shadow: 0 8px 60px rgba(0, 0, 0, 0.5), var(--glow);
+        text-align: center;
+        animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .logo h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.2rem;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+
+      .logo p {
+        font-size: 0.88rem;
+        color: var(--muted);
+        margin-bottom: 32px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-bottom: 8px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px 16px;
+        background: var(--surface2);
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius);
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.95rem;
+        outline: none;
+        transition: border-color 0.25s, box-shadow 0.25s;
+      }
+
+      input:focus {
+        border-color: rgba(110, 231, 183, 0.5);
+        box-shadow: 0 0 0 3px rgba(110, 231, 183, 0.08);
+      }
+
+      .btn {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(135deg, var(--accent), #34d399);
+        border: none;
+        border-radius: var(--radius);
+        color: #0d0d14;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        margin-top: 10px;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(110, 231, 183, 0.3);
+      }
+
+      .btn:active {
+        transform: translateY(0);
+      }
+
+      .error-msg {
+        color: var(--accent2);
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+        display: none;
+        padding: 10px;
+        background: rgba(255, 107, 157, 0.1);
+        border: 1px solid rgba(255, 107, 157, 0.2);
+        border-radius: 10px;
+      }
+
+      .footer-links {
+        margin-top: 24px;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      .footer-links a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .footer-links a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="logo">
+        <h1>Daftar</h1>
+        <p>Buat akun baru helper Sambung Kata</p>
+      </div>
+
+      <div id="error" class="error-msg"></div>
+
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Masukkan username" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Minimal 6 karakter" required />
+        </div>
+        <button type="submit" class="btn">Daftar</button>
+      </form>
+
+      <div class="footer-links">
+        Sudah punya akun? <a href="/login">Masuk disini</a>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById('registerForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const errDiv = document.getElementById('error');
+        errDiv.style.display = 'none';
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if (password.length < 6) {
+          errDiv.textContent = 'Password harus minimal 6 karakter.';
+          errDiv.style.display = 'block';
+          return;
+        }
+
+        try {
+          const res = await fetch('/api/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+          });
+
+          const data = await res.json();
+          if (!res.ok) {
+            throw new Error(data.error || 'Pendaftaran gagal.');
+          }
+
+          alert('Pendaftaran berhasil! Silakan login.');
+          window.location.href = data.redirect || '/login';
+        } catch (err) {
+          errDiv.textContent = err.message;
+          errDiv.style.display = 'block';
+        }
+      });
+    </script>
+  </body>
+</html>
