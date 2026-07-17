@@ -317,13 +317,12 @@ var killerSuffix = map[string]int{
 	// 5 Karakter (dari suggested_suffixes.json, 357 entri)
 	// sort: prefix_count ASC, hits DESC
 	"abaka" : 1000, // prefix_count=1, hits=12
-	"ering" : 1000, // prefix_count=1, hits=10
 	"ratif" : 1000, // prefix_count=1, hits=10
 	"litik" :  990, // prefix_count=2, hits=45
 	"ungsi" :  990, // prefix_count=2, hits=43
 	"likan" :  990, // prefix_count=2, hits=34
 	"angus" :  990, // prefix_count=2, hits=32
-	"nggor" :  980, // prefix_count=2, hits=29
+	"nggor" :  700, // prefix_count=2, hits=29
 	"rodok" :  980, // prefix_count=2, hits=26
 	"ritis" :  980, // prefix_count=2, hits=24
 	"ngihu" :  980, // prefix_count=2, hits=19
@@ -504,8 +503,8 @@ var killerSuffix = map[string]int{
 	"tusuk" :  580, // prefix_count=2, hits=1
 	"usung" :  580, // prefix_count=2, hits=1
 	"inggi" :  580, // prefix_count=3, hits=79
-	"matis" :  580, // prefix_count=3, hits=71
-	"sitas" :  580, // prefix_count=3, hits=41
+	"matis" :  900, // prefix_count=3, hits=71
+	"sitas" :  900, // prefix_count=3, hits=41
 	"lahan" :  570, // prefix_count=3, hits=23
 	"folia" :  570, // prefix_count=3, hits=21
 	"anasi" :  570, // prefix_count=3, hits=20
