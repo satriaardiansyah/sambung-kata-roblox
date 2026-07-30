@@ -1045,7 +1045,7 @@
               type="text"
               class="modal-search-input"
               id="prioritasManual"
-              placeholder="Ketik manual (contoh: nggar, kan, i)..."
+              placeholder="Ketik manual (pisah spasi/koma, contoh: nggar kan i)..."
               autocomplete="off"
               oninput="handleManualPrioritasChange()"
               style="padding-left: 32px !important; border-color: rgba(110, 231, 183, 0.25);"
@@ -1341,7 +1341,7 @@
         const val = document.getElementById("prioritasManual").value || "";
         manualPrioritas = new Set(
           val
-            .split(",")
+            .split(/[\s,;]+/)
             .map((s) => s.trim().toLowerCase())
             .filter((s) => s.length > 0),
         );
@@ -1352,7 +1352,7 @@
         triggerSearch();
       }
 
-      const DEFAULT_ACTIVE_WORDS = ["angsa"]; // ← tambah kata di sini
+      const DEFAULT_ACTIVE_WORDS = []; // ← tambah kata di sini
 
       async function loadPrioritasWords() {
         try {
@@ -1422,7 +1422,7 @@
                 const inputVal =
                   document.getElementById("prioritasManual").value || "";
                 const words = inputVal
-                  .split(",")
+                  .split(/[\s,;]+/)
                   .map((s) => s.trim().toLowerCase())
                   .filter((s) => s !== suffix && s.length > 0);
                 document.getElementById("prioritasManual").value =
