@@ -247,34 +247,39 @@
         }
       }
 
-      .btn-danger {
-        background: rgba(255, 80, 80, 0.1);
-        border: 1.5px solid rgba(255, 80, 80, 0.25);
-        color: #ff6b6b;
-        position: relative;
+      .checkbox-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 12px;
+        background: var(--surface2);
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius);
+        color: var(--text);
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: pointer;
+        user-select: none;
+        transition:
+          border-color 0.2s,
+          background 0.2s,
+          color 0.2s;
+        white-space: nowrap;
       }
-      .btn-danger:hover {
-        background: rgba(255, 80, 80, 0.18);
-        border-color: rgba(255, 80, 80, 0.45);
+      .checkbox-pill:hover {
+        border-color: rgba(247, 201, 72, 0.3);
       }
-      .btn-danger.has-active {
-        background: rgba(255, 80, 80, 0.2);
-        border-color: rgba(255, 80, 80, 0.55);
-        box-shadow: 0 0 12px rgba(255, 80, 80, 0.2);
+      .checkbox-pill input[type="checkbox"] {
+        accent-color: var(--accent);
+        width: 14px;
+        height: 14px;
+        cursor: pointer;
       }
-
-      .badge-count {
-        display: none;
-        background: #ff5050;
-        color: white;
-        border-radius: 10px;
-        padding: 1px 6px;
-        font-size: 0.7rem;
+      .checkbox-pill:has(input:checked) {
+        background: rgba(247, 201, 72, 0.12);
+        border-color: rgba(247, 201, 72, 0.45);
+        color: var(--accent);
         font-weight: 700;
-        line-height: 1.4;
-      }
-      .badge-count.show {
-        display: inline;
       }
 
       #mode-indicator {
@@ -404,9 +409,16 @@
         margin-bottom: 4px;
       }
 
+      #result.is-long-text {
+        grid-template-columns: 1fr;
+      }
+
       .word-label {
         flex: 1;
         cursor: pointer;
+        min-width: 0;
+        overflow-wrap: break-word;
+        word-break: break-all;
       }
       .match {
         color: var(--accent);
@@ -927,12 +939,13 @@
       </div>
 
       <div class="controls">
-        <select id="mode">
-          <option value="prefix">🔡 Awalan</option>
-          <option value="suffix">🔤 Akhiran</option>
-        </select>
+        <div class="toggle-pill">
+          <input type="radio" id="modePrefix" name="mode" value="prefix" checked />
+          <label for="modePrefix">Awal</label>
+          <input type="radio" id="modeSuffix" name="mode" value="suffix" />
+          <label for="modeSuffix">Akhir</label>
+        </div>
 
-        <!-- Ganti radio button dengan toggle pill -->
         <div class="toggle-pill">
           <input type="radio" id="normal" name="searchMode" value="normal" />
           <label for="normal">Normal</label>
@@ -947,14 +960,6 @@
         </div>
 
         <button
-          class="btn btn-danger"
-          id="btnBahaya"
-          onclick="openWarningModal()"
-        >
-          ⚠️ Bahaya
-          <span class="badge-count" id="badgeCount">0</span>
-        </button>
-        <button
           class="btn btn-prioritas"
           id="btnPrioritas"
           onclick="openPrioritasModal()"
@@ -962,9 +967,11 @@
           ⭐ Prioritas
           <span class="badge-count-p" id="badgeCountP">0</span>
         </button>
-        <!-- <button class="btn btn-love" id="loveBtn" onclick="showLove()">
-          <span class="heart-icon">💖</span> Spesial
-        </button> -->
+
+        <label class="checkbox-pill">
+          <input type="checkbox" id="sortLongText" onchange="triggerSearch();" />
+          <span>Long Text</span>
+        </label>
       </div>
 
       <div class="divider"></div>
@@ -977,59 +984,6 @@
           <span>🔍</span>Mulai ketik untuk mencari kata...
         </li>
       </ul>
-    </div>
-
-    <!-- ═══ WARNING MODAL ═══ -->
-    <div
-      class="modal-overlay"
-      id="warningModal"
-      onclick="closeWarningModal(event)"
-    >
-      <div class="modal-box" onclick="event.stopPropagation()">
-        <div class="modal-header">
-          <h2>⚠️ Warning Words</h2>
-          <button class="modal-close" onclick="closeWarningModal()">✕</button>
-        </div>
-        <p class="modal-desc">
-          Centang akhiran yang ingin ditandai merah pada hasil pencarian.
-        </p>
-
-        <!-- Search di modal warning -->
-        <div class="modal-search-wrap">
-          <svg
-            width="13"
-            height="13"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="11" cy="11" r="8" />
-            <path d="m21 21-4.35-4.35" />
-          </svg>
-          <input
-            type="text"
-            class="modal-search-input warn-search"
-            id="warningSearch"
-            placeholder="Cari akhiran..."
-            autocomplete="off"
-            oninput="renderWarningList()"
-          />
-        </div>
-        <div class="modal-search-count" id="warningSearchCount"></div>
-
-        <div class="warning-list" id="warningList"></div>
-        <div class="modal-actions">
-          <button class="btn-modal" onclick="selectAllWarnings(true)">
-            ✓ Pilih Semua
-          </button>
-          <button class="btn-modal" onclick="selectAllWarnings(false)">
-            ✕ Hapus Semua
-          </button>
-        </div>
-      </div>
     </div>
 
     <!-- ═══ PRIORITAS MODAL ═══ -->
@@ -1128,65 +1082,42 @@
     <div id="toast"></div>
 
     <script>
-      // ══════════════════════════════════════
-      // WARNING WORDS
-      // ══════════════════════════════════════
-      // const WARNING_WORDS = [
-      //   "nggar",
-      //   "genik",
-      //   "logis",
-      //   "iran",
-      //   "iat",
-      //   "nggil",
-      //   "ahang",
-      //   "alah",
-      //   "riksa",
-      //   "anah",
-      //   "ratif",
-      //   "duksi",
-      //   "garot",
-      //   "gatot",
-      //   "fauna",
-      //   "inkan",
-      //   "garpu",
-      //   "umang",
-      //   "ansor",
-
-      // ];
-
-      let WARNING_WORDS = [];
-
-      fetch("/killer-suffix")
-        .then((res) => res.json())
-        .then((data) => {
-          // hanya ambil suffix-nya
-          WARNING_WORDS = data.map((item) => item.suffix);
-
-          console.log(WARNING_WORDS);
-        });
-
-      const activeWarnings = new Set();
       let lastResults = [];
       let dangerPrefixIndex = new Set();
 
+      function getMode() {
+        return (
+          document.querySelector('input[name="mode"]:checked')?.value ||
+          "prefix"
+        );
+      }
+
       async function buildDangerIndex() {
-        if (activeWarnings.size === 0) {
+        const combinedPrioritas = new Set([
+          ...activePrioritas,
+          ...manualPrioritas,
+        ]);
+        if (combinedPrioritas.size === 0) {
           dangerPrefixIndex = new Set();
           if (lastResults.length) renderResult(lastResults);
           return;
         }
-        const suffixes = [...activeWarnings].join(",");
-        const res = await fetch(
-          `/danger-words?suffixes=${encodeURIComponent(suffixes)}`,
-        );
-        const data = await res.json();
-        dangerPrefixIndex = new Set();
-        for (const [, katalist] of Object.entries(data)) {
-          for (const kata of katalist) {
-            for (let l = 1; l <= Math.min(5, kata.length); l++) {
-              dangerPrefixIndex.add(kata.slice(0, l).toLowerCase());
+        const suffixes = [...combinedPrioritas].join(",");
+        try {
+          const res = await fetch(
+            `/danger-words?suffixes=${encodeURIComponent(suffixes)}`,
+          );
+          const data = await res.json();
+          dangerPrefixIndex = new Set();
+          for (const [, katalist] of Object.entries(data)) {
+            for (const kata of katalist) {
+              for (let l = 1; l <= Math.min(5, kata.length); l++) {
+                dangerPrefixIndex.add(kata.slice(0, l).toLowerCase());
+              }
             }
           }
+        } catch (err) {
+          console.error("Error building danger index:", err);
         }
         if (lastResults.length) renderResult(lastResults);
       }
@@ -1200,87 +1131,10 @@
         return false;
       }
 
-      function renderWarningList() {
-        const container = document.getElementById("warningList");
-        const filter = (
-          document.getElementById("warningSearch").value || ""
-        ).toLowerCase();
-        const filtered = WARNING_WORDS.filter((s) => s.includes(filter));
-
-        document.getElementById("warningSearchCount").textContent = filter
-          ? `${filtered.length} dari ${WARNING_WORDS.length} akhiran`
-          : "";
-
-        container.innerHTML = "";
-        filtered.forEach((suffix) => {
-          const checked = activeWarnings.has(suffix);
-          const label = document.createElement("label");
-          label.className = "warning-item" + (checked ? " checked" : "");
-          label.innerHTML = `
-            <input type="checkbox" ${checked ? "checked" : ""}>
-            <span class="warning-suffix">…${suffix}</span>
-            <span class="warning-suffix-hint">akhiran kata</span>`;
-          const cb = label.querySelector("input");
-          cb.addEventListener("change", () => {
-            if (cb.checked) {
-              activeWarnings.add(suffix);
-              label.classList.add("checked");
-              // ✅ Sync ke Prioritas
-              activePrioritas.add(suffix);
-            } else {
-              activeWarnings.delete(suffix);
-              label.classList.remove("checked");
-              // ✅ Sync ke Prioritas
-              activePrioritas.delete(suffix);
-            }
-            updateBadge();
-            updateBadgeP(); // ✅ tambah ini
-            buildDangerIndex();
-            triggerSearch(); // ✅ tambah ini
-          });
-          container.appendChild(label);
-        });
-      }
-
-      function updateBadge() {
-        const badge = document.getElementById("badgeCount");
-        const btn = document.getElementById("btnBahaya");
-        const n = activeWarnings.size;
-        badge.textContent = n;
-        badge.classList.toggle("show", n > 0);
-        btn.classList.toggle("has-active", n > 0);
-      }
-
-      function openWarningModal() {
-        document.getElementById("warningSearch").value = "";
-        renderWarningList();
-        document.getElementById("warningModal").classList.add("active");
-      }
-      function closeWarningModal(e) {
-        if (!e || e.target === document.getElementById("warningModal"))
-          document.getElementById("warningModal").classList.remove("active");
-      }
-      function selectAllWarnings(val) {
-        const filter = (
-          document.getElementById("warningSearch").value || ""
-        ).toLowerCase();
-        const filtered = WARNING_WORDS.filter((s) => s.includes(filter));
-        filtered.forEach((s) => {
-          val ? activeWarnings.add(s) : activeWarnings.delete(s);
-          val ? activePrioritas.add(s) : activePrioritas.delete(s); // ✅ sync
-        });
-        renderWarningList();
-        updateBadge();
-        updateBadgeP(); // ✅
-        buildDangerIndex();
-        triggerSearch(); // ✅
-      }
-
       // ══════════════════════════════════════
       // SEARCH
       // ══════════════════════════════════════
       const input = document.getElementById("search");
-      const modeEl = document.getElementById("mode");
       const result = document.getElementById("result");
       const modeDot = document.getElementById("mode-dot");
       const modeLabel = document.getElementById("mode-label");
@@ -1290,12 +1144,16 @@
         clearTimeout(timeout);
         timeout = setTimeout(async () => {
           const q = input.value.trim();
-          const m = modeEl.value;
+          const m = getMode();
           const sm = document.querySelector(
             'input[name="searchMode"]:checked',
           ).value;
-          const combinedPrioritas = new Set([...activePrioritas, ...manualPrioritas]);
+          const combinedPrioritas = new Set([
+            ...activePrioritas,
+            ...manualPrioritas,
+          ]);
           const prioritasParam = [...combinedPrioritas].join(",");
+          const sortLongText = document.getElementById("sortLongText")?.checked || false;
 
           if (!q) {
             showEmpty();
@@ -1305,7 +1163,7 @@
 
           try {
             const res = await fetch(
-              `/search?q=${encodeURIComponent(q)}&mode=${m}&searchMode=${sm}&prioritas=${encodeURIComponent(prioritasParam)}`,
+              `/search?q=${encodeURIComponent(q)}&mode=${m}&searchMode=${sm}&prioritas=${encodeURIComponent(prioritasParam)}&sortLongText=${sortLongText}`,
             );
             const data = await res.json();
             lastResults = data || [];
@@ -1317,13 +1175,15 @@
       }
 
       input.addEventListener("keyup", triggerSearch);
-      modeEl.addEventListener("change", triggerSearch);
+      document
+        .querySelectorAll('input[name="mode"]')
+        .forEach((r) => r.addEventListener("change", triggerSearch));
       document
         .querySelectorAll('input[name="searchMode"]')
         .forEach((r) => r.addEventListener("change", triggerSearch));
 
       // ══════════════════════════════════════
-      // RENDER — BUG FIX: isPrioritas di dalam forEach
+      // RENDER
       // ══════════════════════════════════════
       function highlightMatch(word, query, m) {
         if (m === "prefix") {
@@ -1340,14 +1200,24 @@
           return;
         }
 
+        const isLongTextChecked = document.getElementById("sortLongText")?.checked || false;
+        result.classList.toggle("is-long-text", isLongTextChecked);
+
         const q = input.value.trim().toLowerCase();
-        const m = modeEl.value;
+        const m = getMode();
         const fragment = document.createDocumentFragment();
 
-        const combinedPrioritas = new Set([...activePrioritas, ...manualPrioritas]);
+        const combinedPrioritas = new Set([
+          ...activePrioritas,
+          ...manualPrioritas,
+        ]);
 
-        data.slice(0, 50).forEach((word, i) => {
-          // ✅ FIX: isPrioritas dihitung per-kata di dalam forEach
+        let listToRender = [...data];
+        if (isLongTextChecked) {
+          listToRender.sort((a, b) => b.length - a.length);
+        }
+
+        listToRender.slice(0, 50).forEach((word, i) => {
           const isPrioritas =
             combinedPrioritas.size > 0 &&
             [...combinedPrioritas].some((suf) => word.endsWith(suf));
@@ -1389,7 +1259,9 @@
       // ══════════════════════════════════════
       async function deleteWord(word, liEl) {
         try {
-          const res = await fetch(`/delete-word?q=${encodeURIComponent(word)}`);
+          const res = await fetch(
+            `/delete-word?q=${encodeURIComponent(word)}`,
+          );
           if (!res.ok) throw new Error();
           liEl.style.transition =
             "opacity 0.25s, transform 0.25s, max-height 0.3s";
@@ -1415,6 +1287,7 @@
       function showEmpty(msg) {
         const icon = msg ? "⚠️" : "🔍";
         const text = msg || "Mulai ketik untuk mencari kata...";
+        result.classList.remove("is-long-text");
         result.innerHTML = `<li class="empty-state empty-state-li" style="border:none;background:none;"><span>${icon}</span>${text}</li>`;
       }
       function showToast(msg) {
@@ -1431,12 +1304,13 @@
       function showLove() {
         document.getElementById("love-overlay").classList.add("active");
         const btn = document.getElementById("loveBtn");
-        btn.classList.add("beating");
-        setTimeout(() => btn.classList.remove("beating"), 1800);
+        if (btn) btn.classList.add("beating");
+        setTimeout(() => btn && btn.classList.remove("beating"), 1800);
         const hearts = ["💗", "💕", "💓", "🌸", "✨", "💝", "🩷", "💞"];
         for (let i = 0; i < 18; i++)
           setTimeout(
-            () => spawnHeart(hearts[Math.floor(Math.random() * hearts.length)]),
+            () =>
+              spawnHeart(hearts[Math.floor(Math.random() * hearts.length)]),
             i * 80,
           );
       }
@@ -1465,36 +1339,20 @@
 
       function handleManualPrioritasChange() {
         const val = document.getElementById("prioritasManual").value || "";
-        const prevManual = new Set(manualPrioritas);
-        
         manualPrioritas = new Set(
-          val.split(",")
-             .map((s) => s.trim().toLowerCase())
-             .filter((s) => s.length > 0)
+          val
+            .split(",")
+            .map((s) => s.trim().toLowerCase())
+            .filter((s) => s.length > 0),
         );
-
-        // Sync ke warnings jika akhiran manual baru ada di WARNING_WORDS
-        manualPrioritas.forEach((suffix) => {
-          if (WARNING_WORDS.includes(suffix)) {
-            activeWarnings.add(suffix);
-          }
-        });
-
-        // Hapus dari warnings jika sudah tidak di manualPrioritas maupun activePrioritas
-        prevManual.forEach((suffix) => {
-          if (!manualPrioritas.has(suffix) && WARNING_WORDS.includes(suffix) && !activePrioritas.has(suffix)) {
-            activeWarnings.delete(suffix);
-          }
-        });
 
         renderPrioritasList();
         updateBadgeP();
-        updateBadge();
         buildDangerIndex();
         triggerSearch();
       }
 
-      const DEFAULT_ACTIVE_WORDS = [ "angsa"]; // ← tambah kata di sini
+      const DEFAULT_ACTIVE_WORDS = ["angsa"]; // ← tambah kata di sini
 
       async function loadPrioritasWords() {
         try {
@@ -1509,20 +1367,14 @@
       }
 
       function applyDefaultActives() {
-        // Ambil akhiran dari kata-kata default
-        // Cocokkan dengan suffix yang ada di PRIORITAS_DATA
         DEFAULT_ACTIVE_WORDS.forEach((word) => {
           PRIORITAS_DATA.forEach(({ suffix }) => {
             if (word.endsWith(suffix)) {
               activePrioritas.add(suffix);
-              if (WARNING_WORDS.includes(suffix)) {
-                activeWarnings.add(suffix);
-              }
             }
           });
         });
 
-        updateBadge();
         updateBadgeP();
         buildDangerIndex();
       }
@@ -1542,9 +1394,9 @@
 
         container.innerHTML = "";
         filtered.forEach(({ suffix, score }) => {
-          const checked = activePrioritas.has(suffix) || manualPrioritas.has(suffix);
+          const checked =
+            activePrioritas.has(suffix) || manualPrioritas.has(suffix);
 
-          // badge warna berdasarkan skor
           let scoreClass = "score-low";
           if (score >= 500) scoreClass = "score-high";
           else if (score >= 250) scoreClass = "score-mid";
@@ -1563,27 +1415,23 @@
             if (cb.checked) {
               activePrioritas.add(suffix);
               label.classList.add("checked");
-              // ✅ Sync ke Warning (hanya jika suffix ada di WARNING_WORDS)
-              if (WARNING_WORDS.includes(suffix)) {
-                activeWarnings.add(suffix);
-              }
             } else {
               activePrioritas.delete(suffix);
               if (manualPrioritas.has(suffix)) {
                 manualPrioritas.delete(suffix);
-                const inputVal = document.getElementById("prioritasManual").value || "";
-                const words = inputVal.split(",").map(s => s.trim().toLowerCase()).filter(s => s !== suffix && s.length > 0);
-                document.getElementById("prioritasManual").value = words.join(", ");
+                const inputVal =
+                  document.getElementById("prioritasManual").value || "";
+                const words = inputVal
+                  .split(",")
+                  .map((s) => s.trim().toLowerCase())
+                  .filter((s) => s !== suffix && s.length > 0);
+                document.getElementById("prioritasManual").value =
+                  words.join(", ");
               }
               label.classList.remove("checked");
-              // ✅ Sync ke Warning
-              if (WARNING_WORDS.includes(suffix)) {
-                activeWarnings.delete(suffix);
-              }
             }
             updateBadgeP();
-            updateBadge(); // ✅ tambah ini
-            buildDangerIndex(); // ✅ tambah ini
+            buildDangerIndex();
             triggerSearch();
           });
           container.appendChild(label);
@@ -1593,7 +1441,10 @@
       function updateBadgeP() {
         const badge = document.getElementById("badgeCountP");
         const btn = document.getElementById("btnPrioritas");
-        const combinedPrioritas = new Set([...activePrioritas, ...manualPrioritas]);
+        const combinedPrioritas = new Set([
+          ...activePrioritas,
+          ...manualPrioritas,
+        ]);
         const n = combinedPrioritas.size;
         badge.textContent = n;
         badge.classList.toggle("show", n > 0);
@@ -1624,12 +1475,6 @@
           val
             ? activePrioritas.add(d.suffix)
             : activePrioritas.delete(d.suffix);
-          // ✅ sync ke warning jika suffix ada di WARNING_WORDS
-          if (WARNING_WORDS.includes(d.suffix)) {
-            val
-              ? activeWarnings.add(d.suffix)
-              : activeWarnings.delete(d.suffix);
-          }
           if (!val) {
             if (manualPrioritas.has(d.suffix)) {
               manualPrioritas.delete(d.suffix);
@@ -1641,13 +1486,14 @@
             manualPrioritas.clear();
             document.getElementById("prioritasManual").value = "";
           } else {
-            document.getElementById("prioritasManual").value = [...manualPrioritas].join(", ");
+            document.getElementById("prioritasManual").value = [
+              ...manualPrioritas,
+            ].join(", ");
           }
         }
         renderPrioritasList();
         updateBadgeP();
-        updateBadge(); // ✅
-        buildDangerIndex(); // ✅
+        buildDangerIndex();
         triggerSearch();
       }
 

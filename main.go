@@ -1023,25 +1023,21 @@ func buildIndex() {
 }
 
 func searchHandler(w http.ResponseWriter, r *http.Request) {
-	query      := strings.ToLower(r.URL.Query().Get("q"))
-	mode       := r.URL.Query().Get("mode")
-	searchMode := r.URL.Query().Get("searchMode")
-	prioritas  := r.URL.Query().Get("prioritas") // ← TAMBAH INI
+	query        := strings.ToLower(r.URL.Query().Get("q"))
+	mode         := r.URL.Query().Get("mode")
+	searchMode   := r.URL.Query().Get("searchMode")
+	prioritas    := r.URL.Query().Get("prioritas") // ← TAMBAH INI
+	sortLongText := r.URL.Query().Get("sortLongText") == "true" || r.URL.Query().Get("longText") == "true"
 
-    // Parse prioritas jadi slice
-    var prioritasList []string
-    if prioritas != "" {
-        for _, p := range strings.Split(prioritas, ",") {
-            p = strings.TrimSpace(p)
-            if p != "" {
-                prioritasList = append(prioritasList, p)
-            }
-        }
-    }
-
-	type WordScore struct {
-		Word  string
-		Score int
+	// Parse prioritas jadi slice
+	var prioritasList []string
+	if prioritas != "" {
+		for _, p := range strings.Split(prioritas, ",") {
+			p = strings.TrimSpace(p)
+			if p != "" {
+				prioritasList = append(prioritasList, p)
+			}
+		}
 	}
 
 	var candidates []string
@@ -1051,8 +1047,52 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		} else if mode == "suffix" {
 			candidates = suffixIndex[query[len(query)-2:]]
 		}
-	} else {
+	}
+	if len(candidates) == 0 {
 		candidates = words
+	}
+
+	if sortLongText {
+		var filteredCandidates []string
+		seen := make(map[string]bool)
+		for _, word := range candidates {
+			if mode == "prefix" && !strings.HasPrefix(word, query) {
+				continue
+			}
+			if mode == "suffix" && !strings.HasSuffix(word, query) {
+				continue
+			}
+			if len(word) < 2 {
+				continue
+			}
+			if !seen[word] {
+				seen[word] = true
+				filteredCandidates = append(filteredCandidates, word)
+			}
+		}
+
+		sort.Slice(filteredCandidates, func(i, j int) bool {
+			if len(filteredCandidates[i]) == len(filteredCandidates[j]) {
+				return filteredCandidates[i] < filteredCandidates[j]
+			}
+			return len(filteredCandidates[i]) > len(filteredCandidates[j])
+		})
+
+		limit := 50
+		result := make([]string, 0, limit)
+		for i := 0; i < len(filteredCandidates) && i < limit; i++ {
+			result = append(result, filteredCandidates[i])
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(result)
+		go maybeLogSuggestedSuffix(query)
+		return
+	}
+
+	type WordScore struct {
+		Word  string
+		Score int
 	}
 
 	var scored []WordScore
@@ -1109,11 +1149,11 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		for _, pSuffix := range prioritasList {
-            if strings.HasSuffix(word, pSuffix) {
-                score -= 2000 // nilai sangat rendah = muncul paling atas
-                break
-            }
-        }
+			if strings.HasSuffix(word, pSuffix) {
+				score -= 2000 // nilai sangat rendah = muncul paling atas
+				break
+			}
+		}
 
 		scored = append(scored, WordScore{Word: word, Score: score})
 	}
@@ -1123,7 +1163,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	})
 
 	// Return []string biasa — warning logic ada di FE
-	limit  := 50
+	limit := 50
 	result := make([]string, 0, limit)
 	for i := 0; i < len(scored) && i < limit; i++ {
 		result = append(result, scored[i].Word)
