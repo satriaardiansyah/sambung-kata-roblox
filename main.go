@@ -970,26 +970,75 @@ var killerSuffix = map[string]int{
 	"z": 60,
 }
 
+const killerSuffixFile = "killer_suffixes.json"
+
+type KillerSuffixEntry struct {
+	Suffix string `json:"suffix"`
+	Score  int    `json:"score"`
+}
+
+var (
+	killerSuffixList []KillerSuffixEntry
+	killerSuffixMu   sync.RWMutex
+)
+
+func loadKillerSuffixes() {
+	killerSuffixMu.Lock()
+	defer killerSuffixMu.Unlock()
+
+	data, err := os.ReadFile(killerSuffixFile)
+	if err == nil && len(data) > 0 {
+		var loadedList []KillerSuffixEntry
+		if err := json.Unmarshal(data, &loadedList); err == nil && len(loadedList) > 0 {
+			killerSuffixList = loadedList
+			newMap := make(map[string]int, len(killerSuffixList))
+			for _, item := range killerSuffixList {
+				newMap[item.Suffix] = item.Score
+			}
+			killerSuffix = newMap
+			fmt.Printf("Killer suffixes dimuat dari JSON: %d entri\n", len(killerSuffixList))
+			return
+		}
+	}
+
+	killerSuffixList = make([]KillerSuffixEntry, 0, len(killerSuffix))
+	for suffix, score := range killerSuffix {
+		killerSuffixList = append(killerSuffixList, KillerSuffixEntry{
+			Suffix: suffix,
+			Score:  score,
+		})
+	}
+	sort.Slice(killerSuffixList, func(i, j int) bool {
+		if killerSuffixList[i].Score != killerSuffixList[j].Score {
+			return killerSuffixList[i].Score > killerSuffixList[j].Score
+		}
+		return killerSuffixList[i].Suffix < killerSuffixList[j].Suffix
+	})
+
+	saveKillerSuffixesLocked()
+	fmt.Printf("Killer suffixes default diinisialisasi: %d entri\n", len(killerSuffixList))
+}
+
+func saveKillerSuffixesLocked() {
+	data, _ := json.MarshalIndent(killerSuffixList, "", "  ")
+	os.WriteFile(killerSuffixFile, data, 0644)
+}
+
+func getKillerSuffixScore(suffix string) (int, bool) {
+	killerSuffixMu.RLock()
+	defer killerSuffixMu.RUnlock()
+	score, ok := killerSuffix[suffix]
+	return score, ok
+}
+
 var killerOpener = map[string]int{
 	"bouea":       0,
 	"ofonik":      0,
-	"aksismus":    0,
-	"ansori":      0,
 	"iranika":     0,
 	"iranga":      0,
-	"garpuan":     0,
-	"olanggara":   0,
-	"ahangkara":   0,
 	"umangkapala": 0,
 	"gatotkaca":   0,
-	"tikaman":     0,
-	"faunasia":    0,
-	"faunal":      0,
-	"tisisme":     0,
-	"angsang":     0,
-	"tonikum,":    0,
 	"ikadabuki":   0,
-	"alarima":     0,
 	"arongan":     0,
 	"tipuse":      0,
 	"litikafobia": 0,
@@ -1133,28 +1182,28 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 
 		if searchMode == "brutal" {
 			if len(word) >= 5 {
-				if bonus, ok := killerSuffix[word[len(word)-5:]]; ok {
+				if bonus, ok := getKillerSuffixScore(word[len(word)-5:]); ok {
 					score -= bonus
 				}
 			}
 			if len(word) >= 4 {
-				if bonus, ok := killerSuffix[word[len(word)-4:]]; ok {
+				if bonus, ok := getKillerSuffixScore(word[len(word)-4:]); ok {
 					score -= bonus
 				}
 			}
 		}
 		if len(word) >= 3 {
-			if bonus, ok := killerSuffix[word[len(word)-3:]]; ok {
+			if bonus, ok := getKillerSuffixScore(word[len(word)-3:]); ok {
 				score -= bonus
 			}
 		}
 		if len(word) >= 2 {
-			if bonus, ok := killerSuffix[word[len(word)-2:]]; ok {
+			if bonus, ok := getKillerSuffixScore(word[len(word)-2:]); ok {
 				score -= bonus
 			}
 		}
 		if len(word) >= 1 {
-			if bonus, ok := killerSuffix[word[len(word)-1:]]; ok {
+			if bonus, ok := getKillerSuffixScore(word[len(word)-1:]); ok {
 				score -= bonus
 			}
 		}
@@ -1374,7 +1423,7 @@ func searchHandlerV2(w http.ResponseWriter, r *http.Request) {
 					continue
 				}
 				end := word[len(word)-suffixLen:]
-				if bonus, ok := killerSuffix[end]; ok {
+				if bonus, ok := getKillerSuffixScore(end); ok {
 					score -= bonus
 					break // hanya ambil match terpanjang
 				}
@@ -1386,7 +1435,7 @@ func searchHandlerV2(w http.ResponseWriter, r *http.Request) {
 					continue
 				}
 				end := word[len(word)-suffixLen:]
-				if bonus, ok := killerSuffix[end]; ok {
+				if bonus, ok := getKillerSuffixScore(end); ok {
 					score -= bonus
 					break
 				}
@@ -1541,25 +1590,53 @@ func deleteWordHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(map[string]any{"status": "deleted", "word": word})
 }
 
-// Handler baru: kembalikan semua key dari killerSuffix beserta skornya
+// Handler baru: kembalikan semua key dari killerSuffix sesuai urutan ranking
 func killerSuffixHandler(w http.ResponseWriter, r *http.Request) {
-	type SuffixItem struct {
-		Suffix string `json:"suffix"`
-		Score  int    `json:"score"`
-	}
-
-	items := make([]SuffixItem, 0, len(killerSuffix))
-	for suffix, score := range killerSuffix {
-		items = append(items, SuffixItem{Suffix: suffix, Score: score})
-	}
-
-	// Sort by score descending (yang paling "mematikan" di atas)
-	sort.Slice(items, func(i, j int) bool {
-		return items[i].Score > items[j].Score
-	})
+	killerSuffixMu.RLock()
+	defer killerSuffixMu.RUnlock()
 
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(items)
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	json.NewEncoder(w).Encode(killerSuffixList)
+}
+
+func saveKillerSuffixHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method tidak diizinkan", http.StatusMethodNotAllowed)
+		return
+	}
+
+	var newList []KillerSuffixEntry
+	err := json.NewDecoder(r.Body).Decode(&newList)
+	if err != nil {
+		http.Error(w, "JSON tidak valid", http.StatusBadRequest)
+		return
+	}
+
+	cleanList := make([]KillerSuffixEntry, 0, len(newList))
+	newMap := make(map[string]int, len(newList))
+	for _, item := range newList {
+		item.Suffix = strings.ToLower(strings.TrimSpace(item.Suffix))
+		if item.Suffix != "" {
+			cleanList = append(cleanList, item)
+			newMap[item.Suffix] = item.Score
+		}
+	}
+
+	killerSuffixMu.Lock()
+	killerSuffixList = cleanList
+	killerSuffix = newMap
+	saveKillerSuffixesLocked()
+	killerSuffixMu.Unlock()
+
+	buildTypingSuffixIndex()
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	json.NewEncoder(w).Encode(map[string]any{
+		"status": "success",
+		"count":  len(cleanList),
+	})
 }
 
 var (
@@ -1727,10 +1804,17 @@ var typingSuffixes []TypingSuffix
 func buildTypingSuffixIndex() {
 	suffixCount := map[string]int{}
 
+	killerSuffixMu.RLock()
+	currentMap := make(map[string]int, len(killerSuffix))
+	for k, v := range killerSuffix {
+		currentMap[k] = v
+	}
+	killerSuffixMu.RUnlock()
+
 	// Scan words to count matches for each killerSuffix key
 	for _, w := range words {
 		wClean := strings.ToLower(strings.TrimSpace(w))
-		for suf := range killerSuffix {
+		for suf := range currentMap {
 			if strings.HasSuffix(wClean, suf) {
 				suffixCount[suf]++
 			}
@@ -1743,7 +1827,7 @@ func buildTypingSuffixIndex() {
 			list = append(list, TypingSuffix{
 				Suffix: suf,
 				Count:  count,
-				Score:  killerSuffix[suf],
+				Score:  currentMap[suf],
 			})
 		}
 	}
@@ -1826,6 +1910,7 @@ func main() {
 	loadKamus()
 	loadDeleted()
 	loadSuggestedSuffixes()
+	loadKillerSuffixes()
 	buildIndex()
 	buildSmartIndex()
 	buildKBBIRekomendasi()
@@ -1860,6 +1945,10 @@ func main() {
 	http.HandleFunc("/delete-word", deleteWordHandler)
 	http.HandleFunc("/danger-words", dangerWordsHandler)
 	http.HandleFunc("/killer-suffix", killerSuffixHandler)
+	http.HandleFunc("/api/killer-suffix/save", saveKillerSuffixHandler)
+	http.HandleFunc("/setting-killer-suffix", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./templates/killer-suffix-setting.html")
+	})
 	http.HandleFunc("/suggested-suffix", suggestedSuffixHandler)
 	http.HandleFunc("/delete-suggested-suffix", deleteSuggestedSuffixHandler)
 	http.HandleFunc("/rekomendasi", func(w http.ResponseWriter, r *http.Request) {

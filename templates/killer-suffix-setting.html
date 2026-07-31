@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Setting Killer Suffix & Ranking - Kamus Sambung Kata</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0d0d14;
+        --surface: #15151f;
+        --surface2: #1c1c2a;
+        --surface3: #252538;
+        --border: rgba(255, 255, 255, 0.08);
+        --accent: #f7c948;
+        --accent-glow: rgba(247, 201, 72, 0.2);
+        --accent2: #ff6b9d;
+        --accent3: #6ee7b7;
+        --danger: #ff5252;
+        --danger-glow: rgba(255, 82, 82, 0.2);
+        --text: #e8e8f0;
+        --text-muted: #71718a;
+        --radius: 14px;
+        --font-sans: "DM Sans", sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 16px 50px;
+        position: relative;
+        overflow-y: auto;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: -10%;
+        left: -10%;
+        width: 120%;
+        height: 120%;
+        background:
+          radial-gradient(circle at 15% 15%, rgba(247, 201, 72, 0.04) 0%, transparent 45%),
+          radial-gradient(circle at 85% 85%, rgba(255, 107, 157, 0.04) 0%, transparent 45%);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 900px;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      /* HEADER */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .header-title h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        background: linear-gradient(135deg, var(--accent), #ff9d3d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .header-title p {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        margin-top: 2px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .nav-btn {
+        background: var(--surface2);
+        color: var(--text);
+        text-decoration: none;
+        padding: 8px 14px;
+        border-radius: 10px;
+        font-size: 0.82rem;
+        font-weight: 500;
+        border: 1px solid var(--border);
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .nav-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: translateY(-1px);
+      }
+
+      /* ACTION BAR */
+      .action-bar {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .search-box {
+        position: relative;
+        flex: 1;
+        min-width: 220px;
+      }
+
+      .search-box svg {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-muted);
+        pointer-events: none;
+      }
+
+      .search-box input {
+        width: 100%;
+        padding: 9px 12px 9px 38px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        color: var(--text);
+        font-family: var(--font-sans);
+        font-size: 0.88rem;
+        outline: none;
+        transition: all 0.2s ease;
+      }
+
+      .search-box input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-glow);
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 9px 16px;
+        border-radius: 10px;
+        font-family: var(--font-sans);
+        font-size: 0.85rem;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        user-select: none;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--accent), #ff9d3d);
+        color: #0d0d14;
+        box-shadow: 0 4px 15px var(--accent-glow);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(247, 201, 72, 0.35);
+      }
+
+      .btn-secondary {
+        background: var(--surface2);
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
+
+      .btn-secondary:hover {
+        border-color: rgba(255, 255, 255, 0.2);
+        background: var(--surface3);
+      }
+
+      .badge-counter {
+        background: rgba(247, 201, 72, 0.12);
+        color: var(--accent);
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 20px;
+        border: 1px solid rgba(247, 201, 72, 0.25);
+      }
+
+      /* ADD CARD */
+      .add-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px 20px;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .add-card h3 {
+        font-size: 0.9rem;
+        color: var(--accent);
+        font-weight: 600;
+        width: 100%;
+        margin-bottom: 2px;
+      }
+
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        flex: 1;
+        min-width: 140px;
+      }
+
+      .input-group label {
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .input-group input {
+        padding: 8px 12px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text);
+        font-family: var(--font-mono);
+        font-size: 0.88rem;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+
+      .input-group input:focus {
+        border-color: var(--accent);
+      }
+
+      /* LIST AREA */
+      .ranking-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      .ranking-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 8px 12px 8px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 12px;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        font-weight: 700;
+      }
+
+      .items-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        max-height: 620px;
+        overflow-y: auto;
+        padding-right: 4px;
+        scrollbar-width: thin;
+        scrollbar-color: var(--surface3) transparent;
+      }
+
+      .item-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 8px 14px;
+        transition: all 0.2s ease;
+        user-select: none;
+      }
+
+      .item-row:hover {
+        border-color: rgba(247, 201, 72, 0.3);
+        background: var(--surface3);
+      }
+
+      .item-row.dragging {
+        opacity: 0.4;
+        border-style: dashed;
+        border-color: var(--accent);
+        background: var(--surface3);
+      }
+
+      .drag-handle {
+        cursor: grab;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        padding: 4px;
+        transition: color 0.2s;
+      }
+
+      .drag-handle:hover {
+        color: var(--accent);
+      }
+
+      .rank-number {
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        font-weight: 700;
+        min-width: 38px;
+        padding: 3px 8px;
+        border-radius: 6px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text-muted);
+      }
+
+      .rank-1 {
+        background: rgba(247, 201, 72, 0.2);
+        color: var(--accent);
+        border: 1px solid rgba(247, 201, 72, 0.4);
+      }
+      .rank-2 {
+        background: rgba(225, 225, 235, 0.15);
+        color: #e1e1eb;
+        border: 1px solid rgba(225, 225, 235, 0.3);
+      }
+      .rank-3 {
+        background: rgba(205, 127, 50, 0.2);
+        color: #cd7f32;
+        border: 1px solid rgba(205, 127, 50, 0.3);
+      }
+
+      .suffix-input-wrap {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .suffix-text {
+        font-family: var(--font-mono);
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text);
+        background: none;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        padding: 4px 8px;
+        width: 120px;
+        transition: all 0.2s;
+      }
+
+      .suffix-text:focus {
+        border-color: var(--accent);
+        background: var(--surface);
+        outline: none;
+      }
+
+      .score-input {
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--accent3);
+        background: rgba(110, 231, 183, 0.08);
+        border: 1px solid rgba(110, 231, 183, 0.2);
+        border-radius: 6px;
+        padding: 4px 8px;
+        width: 85px;
+        text-align: center;
+        outline: none;
+        transition: all 0.2s;
+      }
+
+      .score-input:focus {
+        border-color: var(--accent3);
+        background: var(--surface);
+      }
+
+      .item-controls {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+
+      .btn-icon {
+        background: var(--surface);
+        color: var(--text-muted);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        width: 28px;
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 0.75rem;
+        transition: all 0.15s;
+      }
+
+      .btn-icon:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+        background: var(--surface2);
+      }
+
+      .btn-icon.btn-danger:hover {
+        color: var(--danger);
+        border-color: var(--danger);
+        background: rgba(255, 82, 82, 0.1);
+      }
+
+      /* EMPTY STATE */
+      .empty-state {
+        text-align: center;
+        padding: 40px 20px;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+
+      /* TOAST */
+      .toast {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background: var(--surface2);
+        border: 1px solid var(--accent);
+        color: var(--text);
+        padding: 12px 20px;
+        border-radius: 12px;
+        font-size: 0.88rem;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 100;
+      }
+
+      .toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      @media (max-width: 600px) {
+        .action-bar, .add-card {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .suffix-text {
+          width: 90px;
+        }
+        .score-input {
+          width: 70px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- HEADER -->
+      <header>
+        <div class="header-title">
+          <h1>⚙️ Setting Killer Suffix & Ranking</h1>
+          <p>Kelola daftar prefix/suffix mematikan dan urutan ranking operasinya</p>
+        </div>
+        <div class="nav-links">
+          <a href="/" class="nav-btn">🏠 Halaman Utama</a>
+          <a href="/typing" class="nav-btn">⌨️ Latihan Typing</a>
+          <a href="/rekomendasi-kbbi" class="nav-btn">📚 Rekomendasi KBBI</a>
+        </div>
+      </header>
+
+      <!-- ACTION TOOLBAR -->
+      <div class="action-bar">
+        <div class="search-box">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <input type="text" id="searchInput" placeholder="Cari suffix/prefix..." oninput="filterItems()" />
+        </div>
+        <div class="action-buttons">
+          <span class="badge-counter" id="totalCount">0 Suffix</span>
+          <button class="btn btn-secondary" onclick="loadData()">🔄 Refresh</button>
+          <button class="btn btn-primary" id="saveBtn" onclick="saveData()">💾 Simpan Urutan Ranking</button>
+        </div>
+      </div>
+
+      <!-- ADD NEW FORM CARD -->
+      <div class="add-card">
+        <h3>➕ Tambah Suffix / Prefix Baru</h3>
+        <div class="input-group">
+          <label>Suffix / Prefix String</label>
+          <input type="text" id="newSuffix" placeholder="misal: alau" />
+        </div>
+        <div class="input-group">
+          <label>Skor / Bobot Bonus</label>
+          <input type="number" id="newScore" value="1000" step="10" />
+        </div>
+        <button class="btn btn-primary" onclick="addNewItem()" style="align-self: flex-end;">➕ Tambahkan</button>
+      </div>
+
+      <!-- RANKING LIST -->
+      <div class="ranking-card">
+        <div class="ranking-header">
+          <span>Rank & Drag</span>
+          <span>Suffix / Prefix</span>
+          <span style="text-align: center; width: 85px;">Skor Bonus</span>
+          <span style="text-align: right;">Aksi Posisi / Hapus</span>
+        </div>
+        <div class="items-container" id="itemsContainer">
+          <!-- Item rows rendered via JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="toast">
+      <span id="toastIcon">✅</span>
+      <span id="toastMsg">Perubahan berhasil disimpan!</span>
+    </div>
+
+    <script>
+      let suffixData = [];
+
+      async function loadData() {
+        try {
+          const res = await fetch('/killer-suffix');
+          if (!res.ok) throw new Error('Gagal memuat data');
+          suffixData = await res.json();
+          renderList();
+          showToast('ℹ️ Data berhasil dimuat', 'info');
+        } catch (err) {
+          console.error(err);
+          showToast('❌ Gagal memuat data dari server', 'error');
+        }
+      }
+
+      function renderList() {
+        const container = document.getElementById('itemsContainer');
+        const query = document.getElementById('searchInput').value.trim().toLowerCase();
+        
+        container.innerHTML = '';
+        
+        let visibleCount = 0;
+        suffixData.forEach((item, index) => {
+          if (query && !item.suffix.toLowerCase().includes(query)) {
+            return;
+          }
+          visibleCount++;
+
+          const row = document.createElement('div');
+          row.className = 'item-row';
+          row.draggable = true;
+          row.dataset.index = index;
+
+          let rankClass = '';
+          if (index === 0) rankClass = 'rank-1';
+          else if (index === 1) rankClass = 'rank-2';
+          else if (index === 2) rankClass = 'rank-3';
+
+          row.innerHTML = `
+            <div class="drag-handle" title="Geser untuk mengubah urutan">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+              </svg>
+            </div>
+            <div class="rank-number ${rankClass}">#${index + 1}</div>
+            <div class="suffix-input-wrap">
+              <input type="text" class="suffix-text" value="${escapeHtml(item.suffix)}" onchange="updateItemSuffix(${index}, this.value)" />
+            </div>
+            <input type="number" class="score-input" value="${item.score}" onchange="updateItemScore(${index}, this.value)" title="Skor bonus" />
+            <div class="item-controls">
+              <button class="btn-icon" onclick="moveItem(${index}, -1)" title="Naikkan urutan">▲</button>
+              <button class="btn-icon" onclick="moveItem(${index}, 1)" title="Turunkan urutan">▼</button>
+              <button class="btn-icon btn-danger" onclick="deleteItem(${index})" title="Hapus suffix">🗑️</button>
+            </div>
+          `;
+
+          // Drag and drop events
+          row.addEventListener('dragstart', handleDragStart);
+          row.addEventListener('dragover', handleDragOver);
+          row.addEventListener('drop', handleDrop);
+          row.addEventListener('dragend', handleDragEnd);
+
+          container.appendChild(row);
+        });
+
+        document.getElementById('totalCount').innerText = `${suffixData.length} Suffix`;
+
+        if (visibleCount === 0) {
+          container.innerHTML = `<div class="empty-state">Tidak ada suffix ditemukan.</div>`;
+        }
+      }
+
+      function filterItems() {
+        renderList();
+      }
+
+      function updateItemSuffix(index, val) {
+        val = val.trim().toLowerCase();
+        if (!val) return;
+        suffixData[index].suffix = val;
+      }
+
+      function updateItemScore(index, val) {
+        let score = parseInt(val) || 0;
+        suffixData[index].score = score;
+      }
+
+      function moveItem(index, direction) {
+        const targetIndex = index + direction;
+        if (targetIndex < 0 || targetIndex >= suffixData.length) return;
+        
+        const temp = suffixData[index];
+        suffixData[index] = suffixData[targetIndex];
+        suffixData[targetIndex] = temp;
+        
+        renderList();
+      }
+
+      function deleteItem(index) {
+        const item = suffixData[index];
+        if (confirm(`Apakah Anda yakin ingin menghapus '${item.suffix}' dari ranking?`)) {
+          suffixData.splice(index, 1);
+          renderList();
+          showToast(`🗑️ '${item.suffix}' dihapus dari daftar`, 'info');
+        }
+      }
+
+      function addNewItem() {
+        const sufInput = document.getElementById('newSuffix');
+        const scoreInput = document.getElementById('newScore');
+
+        const suffix = sufInput.value.trim().toLowerCase();
+        const score = parseInt(scoreInput.value) || 1000;
+
+        if (!suffix) {
+          alert('Harap masukkan teks suffix!');
+          return;
+        }
+
+        const existsIndex = suffixData.findIndex(x => x.suffix === suffix);
+        if (existsIndex !== -1) {
+          alert(`Suffix '${suffix}' sudah ada di posisi #${existsIndex + 1}!`);
+          return;
+        }
+
+        // Tambah ke paling atas list
+        suffixData.unshift({ suffix: suffix, score: score });
+        sufInput.value = '';
+        renderList();
+        showToast(`✨ '${suffix}' ditambahkan ke Rank #1`, 'success');
+      }
+
+      async function saveData() {
+        const saveBtn = document.getElementById('saveBtn');
+        saveBtn.disabled = true;
+        saveBtn.innerText = '⏳ Menyimpan...';
+
+        try {
+          const res = await fetch('/api/killer-suffix/save', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(suffixData)
+          });
+
+          if (!res.ok) throw new Error('Gagal menyimpan perubahan');
+          const result = await res.json();
+          showToast(`💾 Success! ${result.count} suffix & ranking tersimpan.`, 'success');
+        } catch (err) {
+          console.error(err);
+          showToast('❌ Terjadi kesalahan saat menyimpan', 'error');
+        } finally {
+          saveBtn.disabled = false;
+          saveBtn.innerText = '💾 Simpan Urutan Ranking';
+        }
+      }
+
+      // DRAG AND DROP HANDLERS
+      let dragSrcIndex = null;
+
+      function handleDragStart(e) {
+        dragSrcIndex = parseInt(this.dataset.index);
+        this.classList.add('dragging');
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/plain', dragSrcIndex);
+      }
+
+      function handleDragOver(e) {
+        if (e.preventDefault) e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+        return false;
+      }
+
+      function handleDrop(e) {
+        if (e.stopPropagation) e.stopPropagation();
+        const targetIndex = parseInt(this.dataset.index);
+        if (dragSrcIndex !== null && dragSrcIndex !== targetIndex) {
+          const itemToMove = suffixData.splice(dragSrcIndex, 1)[0];
+          suffixData.splice(targetIndex, 0, itemToMove);
+          renderList();
+        }
+        return false;
+      }
+
+      function handleDragEnd() {
+        this.classList.remove('dragging');
+        dragSrcIndex = null;
+      }
+
+      function escapeHtml(str) {
+        return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+      }
+
+      function showToast(msg, type = 'success') {
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toastMsg');
+        const toastIcon = document.getElementById('toastIcon');
+
+        toastMsg.innerText = msg;
+        toastIcon.innerText = type === 'success' ? '✅' : (type === 'error' ? '❌' : 'ℹ️');
+
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 3500);
+      }
+
+      // Inisialisasi saat pertama buka
+      loadData();
+    </script>
+  </body>
+</html>

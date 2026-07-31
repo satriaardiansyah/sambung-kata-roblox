@@ -1,0 +1,2562 @@
+[
+  {
+    "suffix": "abaka",
+    "score": 1000
+  },
+  {
+    "suffix": "alau",
+    "score": 1000
+  },
+  {
+    "suffix": "anai",
+    "score": 1000
+  },
+  {
+    "suffix": "arau",
+    "score": 1000
+  },
+  {
+    "suffix": "arjo",
+    "score": 1000
+  },
+  {
+    "suffix": "ea",
+    "score": 1000
+  },
+  {
+    "suffix": "ii",
+    "score": 1000
+  },
+  {
+    "suffix": "irang",
+    "score": 1000
+  },
+  {
+    "suffix": "liran",
+    "score": 1000
+  },
+  {
+    "suffix": "ratif",
+    "score": 1000
+  },
+  {
+    "suffix": "rutan",
+    "score": 1000
+  },
+  {
+    "suffix": "ry",
+    "score": 1000
+  },
+  {
+    "suffix": "tikan",
+    "score": 1000
+  },
+  {
+    "suffix": "angus",
+    "score": 990
+  },
+  {
+    "suffix": "likan",
+    "score": 990
+  },
+  {
+    "suffix": "litik",
+    "score": 990
+  },
+  {
+    "suffix": "ungsi",
+    "score": 990
+  },
+  {
+    "suffix": "ansor",
+    "score": 980
+  },
+  {
+    "suffix": "ngihu",
+    "score": 980
+  },
+  {
+    "suffix": "ritis",
+    "score": 980
+  },
+  {
+    "suffix": "rodok",
+    "score": 980
+  },
+  {
+    "suffix": "anser",
+    "score": 970
+  },
+  {
+    "suffix": "kisme",
+    "score": 970
+  },
+  {
+    "suffix": "stele",
+    "score": 970
+  },
+  {
+    "suffix": "tisis",
+    "score": 970
+  },
+  {
+    "suffix": "alari",
+    "score": 960
+  },
+  {
+    "suffix": "konis",
+    "score": 960
+  },
+  {
+    "suffix": "riksa",
+    "score": 960
+  },
+  {
+    "suffix": "tonik",
+    "score": 960
+  },
+  {
+    "suffix": "usang",
+    "score": 960
+  },
+  {
+    "suffix": "ancar",
+    "score": 950
+  },
+  {
+    "suffix": "antri",
+    "score": 950
+  },
+  {
+    "suffix": "erang",
+    "score": 950
+  },
+  {
+    "suffix": "iskan",
+    "score": 950
+  },
+  {
+    "suffix": "andur",
+    "score": 940
+  },
+  {
+    "suffix": "arung",
+    "score": 940
+  },
+  {
+    "suffix": "fauna",
+    "score": 940
+  },
+  {
+    "suffix": "tikam",
+    "score": 940
+  },
+  {
+    "suffix": "arong",
+    "score": 930
+  },
+  {
+    "suffix": "awang",
+    "score": 930
+  },
+  {
+    "suffix": "kanya",
+    "score": 930
+  },
+  {
+    "suffix": "siden",
+    "score": 930
+  },
+  {
+    "suffix": "warsa",
+    "score": 930
+  },
+  {
+    "suffix": "ahana",
+    "score": 920
+  },
+  {
+    "suffix": "anjar",
+    "score": 920
+  },
+  {
+    "suffix": "ating",
+    "score": 920
+  },
+  {
+    "suffix": "ikada",
+    "score": 920
+  },
+  {
+    "suffix": "entil",
+    "score": 910
+  },
+  {
+    "suffix": "isian",
+    "score": 910
+  },
+  {
+    "suffix": "ongah",
+    "score": 910
+  },
+  {
+    "suffix": "siong",
+    "score": 910
+  },
+  {
+    "suffix": "tikal",
+    "score": 910
+  },
+  {
+    "suffix": "angai",
+    "score": 900
+  },
+  {
+    "suffix": "angon",
+    "score": 900
+  },
+  {
+    "suffix": "matis",
+    "score": 900
+  },
+  {
+    "suffix": "sitas",
+    "score": 900
+  },
+  {
+    "suffix": "tikus",
+    "score": 900
+  },
+  {
+    "suffix": "versi",
+    "score": 900
+  },
+  {
+    "suffix": "ensil",
+    "score": 890
+  },
+  {
+    "suffix": "irani",
+    "score": 890
+  },
+  {
+    "suffix": "niaga",
+    "score": 890
+  },
+  {
+    "suffix": "orasi",
+    "score": 890
+  },
+  {
+    "suffix": "tisik",
+    "score": 890
+  },
+  {
+    "suffix": "gatot",
+    "score": 880
+  },
+  {
+    "suffix": "lakah",
+    "score": 880
+  },
+  {
+    "suffix": "umang",
+    "score": 880
+  },
+  {
+    "suffix": "urang",
+    "score": 880
+  },
+  {
+    "suffix": "lapet",
+    "score": 870
+  },
+  {
+    "suffix": "latah",
+    "score": 870
+  },
+  {
+    "suffix": "nahak",
+    "score": 870
+  },
+  {
+    "suffix": "tasik",
+    "score": 870
+  },
+  {
+    "suffix": "tikai",
+    "score": 870
+  },
+  {
+    "suffix": "ambua",
+    "score": 860
+  },
+  {
+    "suffix": "antek",
+    "score": 860
+  },
+  {
+    "suffix": "hanat",
+    "score": 860
+  },
+  {
+    "suffix": "hohon",
+    "score": 860
+  },
+  {
+    "suffix": "eksin",
+    "score": 850
+  },
+  {
+    "suffix": "osofi",
+    "score": 850
+  },
+  {
+    "suffix": "tatik",
+    "score": 850
+  },
+  {
+    "suffix": "tikah",
+    "score": 850
+  },
+  {
+    "suffix": "garpu",
+    "score": 840
+  },
+  {
+    "suffix": "gilik",
+    "score": 840
+  },
+  {
+    "suffix": "lasem",
+    "score": 840
+  },
+  {
+    "suffix": "nyaru",
+    "score": 840
+  },
+  {
+    "suffix": "pisau",
+    "score": 840
+  },
+  {
+    "suffix": "punan",
+    "score": 830
+  },
+  {
+    "suffix": "rafia",
+    "score": 830
+  },
+  {
+    "suffix": "ricau",
+    "score": 830
+  },
+  {
+    "suffix": "rihat",
+    "score": 830
+  },
+  {
+    "suffix": "risau",
+    "score": 820
+  },
+  {
+    "suffix": "siria",
+    "score": 820
+  },
+  {
+    "suffix": "tesis",
+    "score": 820
+  },
+  {
+    "suffix": "tombe",
+    "score": 820
+  },
+  {
+    "suffix": "ulung",
+    "score": 820
+  },
+  {
+    "suffix": "ambak",
+    "score": 810
+  },
+  {
+    "suffix": "arama",
+    "score": 810
+  },
+  {
+    "suffix": "areng",
+    "score": 810
+  },
+  {
+    "suffix": "umpat",
+    "score": 810
+  },
+  {
+    "suffix": "atang",
+    "score": 800
+  },
+  {
+    "suffix": "ayang",
+    "score": 800
+  },
+  {
+    "suffix": "bilik",
+    "score": 800
+  },
+  {
+    "suffix": "duren",
+    "score": 800
+  },
+  {
+    "suffix": "emang",
+    "score": 800
+  },
+  {
+    "suffix": "nggi",
+    "score": 800
+  },
+  {
+    "suffix": "unan",
+    "score": 800
+  },
+  {
+    "suffix": "erin",
+    "score": 790
+  },
+  {
+    "suffix": "gangi",
+    "score": 790
+  },
+  {
+    "suffix": "gilas",
+    "score": 790
+  },
+  {
+    "suffix": "gitik",
+    "score": 790
+  },
+  {
+    "suffix": "gores",
+    "score": 790
+  },
+  {
+    "suffix": "ilai",
+    "score": 790
+  },
+  {
+    "suffix": "ngsa",
+    "score": 790
+  },
+  {
+    "suffix": "yata",
+    "score": 790
+  },
+  {
+    "suffix": "alah",
+    "score": 780
+  },
+  {
+    "suffix": "kaiba",
+    "score": 780
+  },
+  {
+    "suffix": "kasia",
+    "score": 780
+  },
+  {
+    "suffix": "kusut",
+    "score": 780
+  },
+  {
+    "suffix": "lalap",
+    "score": 780
+  },
+  {
+    "suffix": "manat",
+    "score": 780
+  },
+  {
+    "suffix": "rian",
+    "score": 780
+  },
+  {
+    "suffix": "sori",
+    "score": 780
+  },
+  {
+    "suffix": "akai",
+    "score": 770
+  },
+  {
+    "suffix": "anik",
+    "score": 770
+  },
+  {
+    "suffix": "liar",
+    "score": 770
+  },
+  {
+    "suffix": "medis",
+    "score": 770
+  },
+  {
+    "suffix": "murni",
+    "score": 770
+  },
+  {
+    "suffix": "ngaku",
+    "score": 770
+  },
+  {
+    "suffix": "ngana",
+    "score": 770
+  },
+  {
+    "suffix": "sihi",
+    "score": 770
+  },
+  {
+    "suffix": "eran",
+    "score": 760
+  },
+  {
+    "suffix": "nging",
+    "score": 760
+  },
+  {
+    "suffix": "pilot",
+    "score": 760
+  },
+  {
+    "suffix": "ramah",
+    "score": 760
+  },
+  {
+    "suffix": "rapuh",
+    "score": 760
+  },
+  {
+    "suffix": "ratak",
+    "score": 760
+  },
+  {
+    "suffix": "siat",
+    "score": 760
+  },
+  {
+    "suffix": "siur",
+    "score": 760
+  },
+  {
+    "suffix": "ahir",
+    "score": 750
+  },
+  {
+    "suffix": "reksa",
+    "score": 750
+  },
+  {
+    "suffix": "rica",
+    "score": 750
+  },
+  {
+    "suffix": "rinya",
+    "score": 750
+  },
+  {
+    "suffix": "rokan",
+    "score": 750
+  },
+  {
+    "suffix": "rosok",
+    "score": 750
+  },
+  {
+    "suffix": "usan",
+    "score": 750
+  },
+  {
+    "suffix": "asel",
+    "score": 740
+  },
+  {
+    "suffix": "ayab",
+    "score": 740
+  },
+  {
+    "suffix": "hiat",
+    "score": 740
+  },
+  {
+    "suffix": "onan",
+    "score": 740
+  },
+  {
+    "suffix": "ruang",
+    "score": 740
+  },
+  {
+    "suffix": "silih",
+    "score": 740
+  },
+  {
+    "suffix": "siung",
+    "score": 740
+  },
+  {
+    "suffix": "sogok",
+    "score": 740
+  },
+  {
+    "suffix": "jurk",
+    "score": 730
+  },
+  {
+    "suffix": "sokan",
+    "score": 730
+  },
+  {
+    "suffix": "talat",
+    "score": 730
+  },
+  {
+    "suffix": "teduh",
+    "score": 730
+  },
+  {
+    "suffix": "tikel",
+    "score": 730
+  },
+  {
+    "suffix": "tiket",
+    "score": 730
+  },
+  {
+    "suffix": "usti",
+    "score": 730
+  },
+  {
+    "suffix": "yala",
+    "score": 730
+  },
+  {
+    "suffix": "afiks",
+    "score": 720
+  },
+  {
+    "suffix": "daik",
+    "score": 720
+  },
+  {
+    "suffix": "eusi",
+    "score": 720
+  },
+  {
+    "suffix": "ngoh",
+    "score": 720
+  },
+  {
+    "suffix": "osin",
+    "score": 720
+  },
+  {
+    "suffix": "troli",
+    "score": 720
+  },
+  {
+    "suffix": "udang",
+    "score": 720
+  },
+  {
+    "suffix": "ursus",
+    "score": 720
+  },
+  {
+    "suffix": "akasa",
+    "score": 710
+  },
+  {
+    "suffix": "aksos",
+    "score": 710
+  },
+  {
+    "suffix": "akuik",
+    "score": 710
+  },
+  {
+    "suffix": "anani",
+    "score": 710
+  },
+  {
+    "suffix": "anker",
+    "score": 710
+  },
+  {
+    "suffix": "apet",
+    "score": 710
+  },
+  {
+    "suffix": "ulat",
+    "score": 710
+  },
+  {
+    "suffix": "wahu",
+    "score": 710
+  },
+  {
+    "suffix": "ansar",
+    "score": 700
+  },
+  {
+    "suffix": "apang",
+    "score": 700
+  },
+  {
+    "suffix": "arane",
+    "score": 700
+  },
+  {
+    "suffix": "asam",
+    "score": 700
+  },
+  {
+    "suffix": "atasi",
+    "score": 700
+  },
+  {
+    "suffix": "azim",
+    "score": 700
+  },
+  {
+    "suffix": "biat",
+    "score": 700
+  },
+  {
+    "suffix": "gins",
+    "score": 700
+  },
+  {
+    "suffix": "nggor",
+    "score": 700
+  },
+  {
+    "suffix": "biala",
+    "score": 690
+  },
+  {
+    "suffix": "bokan",
+    "score": 690
+  },
+  {
+    "suffix": "ektro",
+    "score": 690
+  },
+  {
+    "suffix": "envoi",
+    "score": 690
+  },
+  {
+    "suffix": "fasih",
+    "score": 690
+  },
+  {
+    "suffix": "huwa",
+    "score": 690
+  },
+  {
+    "suffix": "leha",
+    "score": 690
+  },
+  {
+    "suffix": "oceh",
+    "score": 690
+  },
+  {
+    "suffix": "ferin",
+    "score": 680
+  },
+  {
+    "suffix": "fluks",
+    "score": 680
+  },
+  {
+    "suffix": "fokus",
+    "score": 680
+  },
+  {
+    "suffix": "genan",
+    "score": 680
+  },
+  {
+    "suffix": "orma",
+    "score": 680
+  },
+  {
+    "suffix": "owar",
+    "score": 680
+  },
+  {
+    "suffix": "rowa",
+    "score": 680
+  },
+  {
+    "suffix": "skar",
+    "score": 680
+  },
+  {
+    "suffix": "getah",
+    "score": 670
+  },
+  {
+    "suffix": "gusur",
+    "score": 670
+  },
+  {
+    "suffix": "hasut",
+    "score": 670
+  },
+  {
+    "suffix": "idola",
+    "score": 670
+  },
+  {
+    "suffix": "ihsan",
+    "score": 670
+  },
+  {
+    "suffix": "umum",
+    "score": 670
+  },
+  {
+    "suffix": "ural",
+    "score": 670
+  },
+  {
+    "suffix": "yasa",
+    "score": 670
+  },
+  {
+    "suffix": "abah",
+    "score": 660
+  },
+  {
+    "suffix": "adun",
+    "score": 660
+  },
+  {
+    "suffix": "agih",
+    "score": 660
+  },
+  {
+    "suffix": "kimah",
+    "score": 660
+  },
+  {
+    "suffix": "kulah",
+    "score": 660
+  },
+  {
+    "suffix": "lenan",
+    "score": 660
+  },
+  {
+    "suffix": "lensa",
+    "score": 660
+  },
+  {
+    "suffix": "akla",
+    "score": 650
+  },
+  {
+    "suffix": "amas",
+    "score": 650
+  },
+  {
+    "suffix": "apia",
+    "score": 650
+  },
+  {
+    "suffix": "aril",
+    "score": 650
+  },
+  {
+    "suffix": "lepak",
+    "score": 650
+  },
+  {
+    "suffix": "lirih",
+    "score": 650
+  },
+  {
+    "suffix": "lokan",
+    "score": 650
+  },
+  {
+    "suffix": "luruh",
+    "score": 650
+  },
+  {
+    "suffix": "brum",
+    "score": 640
+  },
+  {
+    "suffix": "ciki",
+    "score": 640
+  },
+  {
+    "suffix": "cuti",
+    "score": 640
+  },
+  {
+    "suffix": "malah",
+    "score": 640
+  },
+  {
+    "suffix": "marus",
+    "score": 640
+  },
+  {
+    "suffix": "mesat",
+    "score": 640
+  },
+  {
+    "suffix": "mesra",
+    "score": 640
+  },
+  {
+    "suffix": "milih",
+    "score": 640
+  },
+  {
+    "suffix": "elan",
+    "score": 630
+  },
+  {
+    "suffix": "elli",
+    "score": 630
+  },
+  {
+    "suffix": "eret",
+    "score": 630
+  },
+  {
+    "suffix": "fufu",
+    "score": 630
+  },
+  {
+    "suffix": "muran",
+    "score": 630
+  },
+  {
+    "suffix": "najis",
+    "score": 630
+  },
+  {
+    "suffix": "ngani",
+    "score": 630
+  },
+  {
+    "suffix": "nisan",
+    "score": 630
+  },
+  {
+    "suffix": "fumi",
+    "score": 620
+  },
+  {
+    "suffix": "gois",
+    "score": 620
+  },
+  {
+    "suffix": "idol",
+    "score": 620
+  },
+  {
+    "suffix": "ofoni",
+    "score": 620
+  },
+  {
+    "suffix": "oksin",
+    "score": 620
+  },
+  {
+    "suffix": "olang",
+    "score": 620
+  },
+  {
+    "suffix": "ongga",
+    "score": 620
+  },
+  {
+    "suffix": "opini",
+    "score": 620
+  },
+  {
+    "suffix": "ngok",
+    "score": 610
+  },
+  {
+    "suffix": "nyau",
+    "score": 610
+  },
+  {
+    "suffix": "ogan",
+    "score": 610
+  },
+  {
+    "suffix": "rapia",
+    "score": 610
+  },
+  {
+    "suffix": "ratah",
+    "score": 610
+  },
+  {
+    "suffix": "rusuk",
+    "score": 610
+  },
+  {
+    "suffix": "sanad",
+    "score": 610
+  },
+  {
+    "suffix": "siul",
+    "score": 610
+  },
+  {
+    "suffix": "sirip",
+    "score": 600
+  },
+  {
+    "suffix": "solek",
+    "score": 600
+  },
+  {
+    "suffix": "swana",
+    "score": 600
+  },
+  {
+    "suffix": "talia",
+    "score": 600
+  },
+  {
+    "suffix": "tania",
+    "score": 600
+  },
+  {
+    "suffix": "tret",
+    "score": 600
+  },
+  {
+    "suffix": "ukir",
+    "score": 600
+  },
+  {
+    "suffix": "waid",
+    "score": 600
+  },
+  {
+    "suffix": "abur",
+    "score": 590
+  },
+  {
+    "suffix": "adeg",
+    "score": 590
+  },
+  {
+    "suffix": "adir",
+    "score": 590
+  },
+  {
+    "suffix": "taraf",
+    "score": 590
+  },
+  {
+    "suffix": "teken",
+    "score": 590
+  },
+  {
+    "suffix": "totok",
+    "score": 590
+  },
+  {
+    "suffix": "tunai",
+    "score": 590
+  },
+  {
+    "suffix": "yoha",
+    "score": 590
+  },
+  {
+    "suffix": "akam",
+    "score": 580
+  },
+  {
+    "suffix": "alib",
+    "score": 580
+  },
+  {
+    "suffix": "aneh",
+    "score": 580
+  },
+  {
+    "suffix": "inggi",
+    "score": 580
+  },
+  {
+    "suffix": "tusuk",
+    "score": 580
+  },
+  {
+    "suffix": "usung",
+    "score": 580
+  },
+  {
+    "suffix": "anasi",
+    "score": 570
+  },
+  {
+    "suffix": "aruh",
+    "score": 570
+  },
+  {
+    "suffix": "asus",
+    "score": 570
+  },
+  {
+    "suffix": "atha",
+    "score": 570
+  },
+  {
+    "suffix": "burma",
+    "score": 570
+  },
+  {
+    "suffix": "folia",
+    "score": 570
+  },
+  {
+    "suffix": "lahan",
+    "score": 570
+  },
+  {
+    "suffix": "awar",
+    "score": 560
+  },
+  {
+    "suffix": "awit",
+    "score": 560
+  },
+  {
+    "suffix": "ayak",
+    "score": 560
+  },
+  {
+    "suffix": "bori",
+    "score": 560
+  },
+  {
+    "suffix": "ilang",
+    "score": 560
+  },
+  {
+    "suffix": "liang",
+    "score": 560
+  },
+  {
+    "suffix": "olong",
+    "score": 560
+  },
+  {
+    "suffix": "siksa",
+    "score": 560
+  },
+  {
+    "suffix": "trium",
+    "score": 560
+  },
+  {
+    "suffix": "ahang",
+    "score": 550
+  },
+  {
+    "suffix": "angat",
+    "score": 550
+  },
+  {
+    "suffix": "clea",
+    "score": 550
+  },
+  {
+    "suffix": "ekas",
+    "score": 550
+  },
+  {
+    "suffix": "elis",
+    "score": 550
+  },
+  {
+    "suffix": "lahat",
+    "score": 550
+  },
+  {
+    "suffix": "takan",
+    "score": 550
+  },
+  {
+    "suffix": "enak",
+    "score": 540
+  },
+  {
+    "suffix": "enen",
+    "score": 540
+  },
+  {
+    "suffix": "gisa",
+    "score": 540
+  },
+  {
+    "suffix": "gour",
+    "score": 540
+  },
+  {
+    "suffix": "gular",
+    "score": 540
+  },
+  {
+    "suffix": "nanah",
+    "score": 540
+  },
+  {
+    "suffix": "ongka",
+    "score": 540
+  },
+  {
+    "suffix": "sakai",
+    "score": 540
+  },
+  {
+    "suffix": "angen",
+    "score": 530
+  },
+  {
+    "suffix": "anyam",
+    "score": 530
+  },
+  {
+    "suffix": "apala",
+    "score": 530
+  },
+  {
+    "suffix": "guta",
+    "score": 530
+  },
+  {
+    "suffix": "holu",
+    "score": 530
+  },
+  {
+    "suffix": "imsa",
+    "score": 530
+  },
+  {
+    "suffix": "nikel",
+    "score": 530
+  },
+  {
+    "suffix": "toris",
+    "score": 530
+  },
+  {
+    "suffix": "ambel",
+    "score": 520
+  },
+  {
+    "suffix": "lahap",
+    "score": 520
+  },
+  {
+    "suffix": "nafi",
+    "score": 520
+  },
+  {
+    "suffix": "nalu",
+    "score": 520
+  },
+  {
+    "suffix": "nefo",
+    "score": 520
+  },
+  {
+    "suffix": "ofon",
+    "score": 520
+  },
+  {
+    "suffix": "pesek",
+    "score": 520
+  },
+  {
+    "suffix": "talah",
+    "score": 520
+  },
+  {
+    "suffix": "deran",
+    "score": 510
+  },
+  {
+    "suffix": "etika",
+    "score": 510
+  },
+  {
+    "suffix": "fitri",
+    "score": 510
+  },
+  {
+    "suffix": "ganga",
+    "score": 510
+  },
+  {
+    "suffix": "iring",
+    "score": 510
+  },
+  {
+    "suffix": "okol",
+    "score": 510
+  },
+  {
+    "suffix": "omel",
+    "score": 510
+  },
+  {
+    "suffix": "oras",
+    "score": 510
+  },
+  {
+    "suffix": "kadin",
+    "score": 500
+  },
+  {
+    "suffix": "lakan",
+    "score": 500
+  },
+  {
+    "suffix": "larik",
+    "score": 500
+  },
+  {
+    "suffix": "puki",
+    "score": 500
+  },
+  {
+    "suffix": "raih",
+    "score": 500
+  },
+  {
+    "suffix": "reni",
+    "score": 500
+  },
+  {
+    "suffix": "sanu",
+    "score": 500
+  },
+  {
+    "suffix": "sekta",
+    "score": 500
+  },
+  {
+    "suffix": "adang",
+    "score": 490
+  },
+  {
+    "suffix": "aktan",
+    "score": 490
+  },
+  {
+    "suffix": "alogi",
+    "score": 490
+  },
+  {
+    "suffix": "antus",
+    "score": 490
+  },
+  {
+    "suffix": "siasi",
+    "score": 490
+  },
+  {
+    "suffix": "tiar",
+    "score": 490
+  },
+  {
+    "suffix": "tile",
+    "score": 490
+  },
+  {
+    "suffix": "tost",
+    "score": 490
+  },
+  {
+    "suffix": "batik",
+    "score": 480
+  },
+  {
+    "suffix": "bungo",
+    "score": 480
+  },
+  {
+    "suffix": "hasil",
+    "score": 480
+  },
+  {
+    "suffix": "iling",
+    "score": 480
+  },
+  {
+    "suffix": "troi",
+    "score": 480
+  },
+  {
+    "suffix": "ujar",
+    "score": 480
+  },
+  {
+    "suffix": "ulur",
+    "score": 480
+  },
+  {
+    "suffix": "urat",
+    "score": 480
+  },
+  {
+    "suffix": "imbal",
+    "score": 470
+  },
+  {
+    "suffix": "kadir",
+    "score": 470
+  },
+  {
+    "suffix": "laria",
+    "score": 470
+  },
+  {
+    "suffix": "lawat",
+    "score": 470
+  },
+  {
+    "suffix": "leusi",
+    "score": 470
+  },
+  {
+    "suffix": "usir",
+    "score": 470
+  },
+  {
+    "suffix": "yali",
+    "score": 470
+  },
+  {
+    "suffix": "zina",
+    "score": 470
+  },
+  {
+    "suffix": "atik",
+    "score": 460
+  },
+  {
+    "suffix": "ngeh",
+    "score": 460
+  },
+  {
+    "suffix": "niran",
+    "score": 460
+  },
+  {
+    "suffix": "piang",
+    "score": 460
+  },
+  {
+    "suffix": "rasis",
+    "score": 460
+  },
+  {
+    "suffix": "sarah",
+    "score": 460
+  },
+  {
+    "suffix": "wati",
+    "score": 460
+  },
+  {
+    "suffix": "ahad",
+    "score": 450
+  },
+  {
+    "suffix": "ampan",
+    "score": 450
+  },
+  {
+    "suffix": "amuka",
+    "score": 450
+  },
+  {
+    "suffix": "anje",
+    "score": 450
+  },
+  {
+    "suffix": "onik",
+    "score": 450
+  },
+  {
+    "suffix": "stis",
+    "score": 450
+  },
+  {
+    "suffix": "taria",
+    "score": 450
+  },
+  {
+    "suffix": "upaya",
+    "score": 450
+  },
+  {
+    "suffix": "anduk",
+    "score": 440
+  },
+  {
+    "suffix": "arami",
+    "score": 440
+  },
+  {
+    "suffix": "atala",
+    "score": 440
+  },
+  {
+    "suffix": "atori",
+    "score": 440
+  },
+  {
+    "suffix": "aurat",
+    "score": 440
+  },
+  {
+    "suffix": "ikad",
+    "score": 440
+  },
+  {
+    "suffix": "klik",
+    "score": 440
+  },
+  {
+    "suffix": "osit",
+    "score": 440
+  },
+  {
+    "suffix": "anah",
+    "score": 430
+  },
+  {
+    "suffix": "danan",
+    "score": 430
+  },
+  {
+    "suffix": "darah",
+    "score": 430
+  },
+  {
+    "suffix": "darus",
+    "score": 430
+  },
+  {
+    "suffix": "endar",
+    "score": 430
+  },
+  {
+    "suffix": "neus",
+    "score": 430
+  },
+  {
+    "suffix": "tipe",
+    "score": 430
+  },
+  {
+    "suffix": "uang",
+    "score": 430
+  },
+  {
+    "suffix": "deha",
+    "score": 420
+  },
+  {
+    "suffix": "gapit",
+    "score": 420
+  },
+  {
+    "suffix": "garas",
+    "score": 420
+  },
+  {
+    "suffix": "gaung",
+    "score": 420
+  },
+  {
+    "suffix": "ilan",
+    "score": 420
+  },
+  {
+    "suffix": "ingus",
+    "score": 420
+  },
+  {
+    "suffix": "kerit",
+    "score": 420
+  },
+  {
+    "suffix": "niat",
+    "score": 420
+  },
+  {
+    "suffix": "alik",
+    "score": 410
+  },
+  {
+    "suffix": "arta",
+    "score": 410
+  },
+  {
+    "suffix": "kitab",
+    "score": 410
+  },
+  {
+    "suffix": "krama",
+    "score": 410
+  },
+  {
+    "suffix": "lasia",
+    "score": 410
+  },
+  {
+    "suffix": "leher",
+    "score": 410
+  },
+  {
+    "suffix": "orek",
+    "score": 410
+  },
+  {
+    "suffix": "usil",
+    "score": 410
+  },
+  {
+    "suffix": "afir",
+    "score": 400
+  },
+  {
+    "suffix": "alap",
+    "score": 400
+  },
+  {
+    "suffix": "anus",
+    "score": 400
+  },
+  {
+    "suffix": "lesit",
+    "score": 400
+  },
+  {
+    "suffix": "luang",
+    "score": 400
+  },
+  {
+    "suffix": "lusif",
+    "score": 400
+  },
+  {
+    "suffix": "makin",
+    "score": 400
+  },
+  {
+    "suffix": "mamak",
+    "score": 400
+  },
+  {
+    "suffix": "alto",
+    "score": 390
+  },
+  {
+    "suffix": "amah",
+    "score": 390
+  },
+  {
+    "suffix": "apas",
+    "score": 390
+  },
+  {
+    "suffix": "asar",
+    "score": 390
+  },
+  {
+    "suffix": "mutan",
+    "score": 390
+  },
+  {
+    "suffix": "oksia",
+    "score": 390
+  },
+  {
+    "suffix": "patis",
+    "score": 390
+  },
+  {
+    "suffix": "rango",
+    "score": 390
+  },
+  {
+    "suffix": "asek",
+    "score": 380
+  },
+  {
+    "suffix": "asir",
+    "score": 380
+  },
+  {
+    "suffix": "atal",
+    "score": 380
+  },
+  {
+    "suffix": "ratus",
+    "score": 380
+  },
+  {
+    "suffix": "rungi",
+    "score": 380
+  },
+  {
+    "suffix": "sarok",
+    "score": 380
+  },
+  {
+    "suffix": "simis",
+    "score": 380
+  },
+  {
+    "suffix": "sisih",
+    "score": 380
+  },
+  {
+    "suffix": "diot",
+    "score": 370
+  },
+  {
+    "suffix": "frit",
+    "score": 370
+  },
+  {
+    "suffix": "ilok",
+    "score": 370
+  },
+  {
+    "suffix": "sitin",
+    "score": 370
+  },
+  {
+    "suffix": "sukan",
+    "score": 370
+  },
+  {
+    "suffix": "talik",
+    "score": 370
+  },
+  {
+    "suffix": "teler",
+    "score": 370
+  },
+  {
+    "suffix": "angsa",
+    "score": 360
+  },
+  {
+    "suffix": "arian",
+    "score": 360
+  },
+  {
+    "suffix": "irah",
+    "score": 360
+  },
+  {
+    "suffix": "isak",
+    "score": 360
+  },
+  {
+    "suffix": "kait",
+    "score": 360
+  },
+  {
+    "suffix": "klab",
+    "score": 360
+  },
+  {
+    "suffix": "tetep",
+    "score": 360
+  },
+  {
+    "suffix": "turan",
+    "score": 360
+  },
+  {
+    "suffix": "wahan",
+    "score": 360
+  },
+  {
+    "suffix": "aksis",
+    "score": 350
+  },
+  {
+    "suffix": "biang",
+    "score": 350
+  },
+  {
+    "suffix": "inggu",
+    "score": 350
+  },
+  {
+    "suffix": "kiran",
+    "score": 350
+  },
+  {
+    "suffix": "otop",
+    "score": 350
+  },
+  {
+    "suffix": "rias",
+    "score": 350
+  },
+  {
+    "suffix": "spid",
+    "score": 350
+  },
+  {
+    "suffix": "fiksi",
+    "score": 340
+  },
+  {
+    "suffix": "inkan",
+    "score": 340
+  },
+  {
+    "suffix": "nikah",
+    "score": 340
+  },
+  {
+    "suffix": "sinya",
+    "score": 340
+  },
+  {
+    "suffix": "sual",
+    "score": 340
+  },
+  {
+    "suffix": "tiol",
+    "score": 340
+  },
+  {
+    "suffix": "tosa",
+    "score": 340
+  },
+  {
+    "suffix": "ukur",
+    "score": 340
+  },
+  {
+    "suffix": "abar",
+    "score": 330
+  },
+  {
+    "suffix": "abut",
+    "score": 330
+  },
+  {
+    "suffix": "akari",
+    "score": 330
+  },
+  {
+    "suffix": "amang",
+    "score": 330
+  },
+  {
+    "suffix": "asuh",
+    "score": 330
+  },
+  {
+    "suffix": "palah",
+    "score": 330
+  },
+  {
+    "suffix": "sofis",
+    "score": 330
+  },
+  {
+    "suffix": "strip",
+    "score": 330
+  },
+  {
+    "suffix": "ambat",
+    "score": 320
+  },
+  {
+    "suffix": "antak",
+    "score": 320
+  },
+  {
+    "suffix": "atar",
+    "score": 320
+  },
+  {
+    "suffix": "bito",
+    "score": 320
+  },
+  {
+    "suffix": "blat",
+    "score": 320
+  },
+  {
+    "suffix": "endi",
+    "score": 320
+  },
+  {
+    "suffix": "gawan",
+    "score": 320
+  },
+  {
+    "suffix": "giran",
+    "score": 320
+  },
+  {
+    "suffix": "gawi",
+    "score": 310
+  },
+  {
+    "suffix": "gitar",
+    "score": 310
+  },
+  {
+    "suffix": "guani",
+    "score": 310
+  },
+  {
+    "suffix": "hilir",
+    "score": 310
+  },
+  {
+    "suffix": "kuil",
+    "score": 310
+  },
+  {
+    "suffix": "lade",
+    "score": 310
+  },
+  {
+    "suffix": "nanti",
+    "score": 310
+  },
+  {
+    "suffix": "nguru",
+    "score": 310
+  },
+  {
+    "suffix": "eni",
+    "score": 300
+  },
+  {
+    "suffix": "luks",
+    "score": 300
+  },
+  {
+    "suffix": "ns",
+    "score": 300
+  },
+  {
+    "suffix": "ograf",
+    "score": 300
+  },
+  {
+    "suffix": "oksik",
+    "score": 300
+  },
+  {
+    "suffix": "omong",
+    "score": 300
+  },
+  {
+    "suffix": "pler",
+    "score": 300
+  },
+  {
+    "suffix": "recht",
+    "score": 300
+  },
+  {
+    "suffix": "riko",
+    "score": 300
+  },
+  {
+    "suffix": "rote",
+    "score": 300
+  },
+  {
+    "suffix": "adina",
+    "score": 290
+  },
+  {
+    "suffix": "alias",
+    "score": 290
+  },
+  {
+    "suffix": "itik",
+    "score": 290
+  },
+  {
+    "suffix": "ksa",
+    "score": 290
+  },
+  {
+    "suffix": "sasak",
+    "score": 290
+  },
+  {
+    "suffix": "strik",
+    "score": 290
+  },
+  {
+    "suffix": "tain",
+    "score": 290
+  },
+  {
+    "suffix": "talen",
+    "score": 290
+  },
+  {
+    "suffix": "tsar",
+    "score": 290
+  },
+  {
+    "suffix": "andak",
+    "score": 280
+  },
+  {
+    "suffix": "atlet",
+    "score": 280
+  },
+  {
+    "suffix": "iran",
+    "score": 280
+  },
+  {
+    "suffix": "kulum",
+    "score": 280
+  },
+  {
+    "suffix": "kusan",
+    "score": 280
+  },
+  {
+    "suffix": "ngih",
+    "score": 280
+  },
+  {
+    "suffix": "ngus",
+    "score": 280
+  },
+  {
+    "suffix": "aktif",
+    "score": 270
+  },
+  {
+    "suffix": "atam",
+    "score": 270
+  },
+  {
+    "suffix": "gian",
+    "score": 270
+  },
+  {
+    "suffix": "istis",
+    "score": 270
+  },
+  {
+    "suffix": "lalah",
+    "score": 270
+  },
+  {
+    "suffix": "raung",
+    "score": 270
+  },
+  {
+    "suffix": "roso",
+    "score": 270
+  },
+  {
+    "suffix": "tase",
+    "score": 270
+  },
+  {
+    "suffix": "trian",
+    "score": 270
+  },
+  {
+    "suffix": "adar",
+    "score": 260
+  },
+  {
+    "suffix": "andar",
+    "score": 260
+  },
+  {
+    "suffix": "duksi",
+    "score": 260
+  },
+  {
+    "suffix": "esi",
+    "score": 260
+  },
+  {
+    "suffix": "hih",
+    "score": 260
+  },
+  {
+    "suffix": "ilah",
+    "score": 260
+  },
+  {
+    "suffix": "matik",
+    "score": 260
+  },
+  {
+    "suffix": "meh",
+    "score": 260
+  },
+  {
+    "suffix": "ml",
+    "score": 260
+  },
+  {
+    "suffix": "oris",
+    "score": 260
+  },
+  {
+    "suffix": "owa",
+    "score": 260
+  },
+  {
+    "suffix": "sih",
+    "score": 260
+  },
+  {
+    "suffix": "siran",
+    "score": 260
+  },
+  {
+    "suffix": "abla",
+    "score": 250
+  },
+  {
+    "suffix": "akta",
+    "score": 250
+  },
+  {
+    "suffix": "asing",
+    "score": 250
+  },
+  {
+    "suffix": "atur",
+    "score": 250
+  },
+  {
+    "suffix": "balah",
+    "score": 250
+  },
+  {
+    "suffix": "bou",
+    "score": 250
+  },
+  {
+    "suffix": "dot",
+    "score": 250
+  },
+  {
+    "suffix": "huh",
+    "score": 250
+  },
+  {
+    "suffix": "kanik",
+    "score": 250
+  },
+  {
+    "suffix": "mania",
+    "score": 250
+  },
+  {
+    "suffix": "pei",
+    "score": 250
+  },
+  {
+    "suffix": "pso",
+    "score": 250
+  },
+  {
+    "suffix": "yaba",
+    "score": 250
+  },
+  {
+    "suffix": "anof",
+    "score": 240
+  },
+  {
+    "suffix": "asak",
+    "score": 240
+  },
+  {
+    "suffix": "batis",
+    "score": 240
+  },
+  {
+    "suffix": "belar",
+    "score": 240
+  },
+  {
+    "suffix": "densi",
+    "score": 240
+  },
+  {
+    "suffix": "dikit",
+    "score": 240
+  },
+  {
+    "suffix": "doke",
+    "score": 240
+  },
+  {
+    "suffix": "garap",
+    "score": 240
+  },
+  {
+    "suffix": "giat",
+    "score": 230
+  },
+  {
+    "suffix": "hilo",
+    "score": 230
+  },
+  {
+    "suffix": "kakak",
+    "score": 230
+  },
+  {
+    "suffix": "kilan",
+    "score": 230
+  },
+  {
+    "suffix": "kohi",
+    "score": 230
+  },
+  {
+    "suffix": "latif",
+    "score": 230
+  },
+  {
+    "suffix": "lewat",
+    "score": 230
+  },
+  {
+    "suffix": "liki",
+    "score": 230
+  },
+  {
+    "suffix": "iya",
+    "score": 220
+  },
+  {
+    "suffix": "naik",
+    "score": 220
+  },
+  {
+    "suffix": "nazi",
+    "score": 220
+  },
+  {
+    "suffix": "ngeng",
+    "score": 220
+  },
+  {
+    "suffix": "ngong",
+    "score": 220
+  },
+  {
+    "suffix": "oten",
+    "score": 220
+  },
+  {
+    "suffix": "rekan",
+    "score": 220
+  },
+  {
+    "suffix": "sinol",
+    "score": 220
+  },
+  {
+    "suffix": "sulan",
+    "score": 220
+  },
+  {
+    "suffix": "dakwa",
+    "score": 210
+  },
+  {
+    "suffix": "gelar",
+    "score": 210
+  },
+  {
+    "suffix": "habis",
+    "score": 210
+  },
+  {
+    "suffix": "haram",
+    "score": 210
+  },
+  {
+    "suffix": "poni",
+    "score": 210
+  },
+  {
+    "suffix": "rina",
+    "score": 210
+  },
+  {
+    "suffix": "rise",
+    "score": 210
+  },
+  {
+    "suffix": "rosi",
+    "score": 210
+  },
+  {
+    "suffix": "sm",
+    "score": 210
+  },
+  {
+    "suffix": "coe",
+    "score": 200
+  },
+  {
+    "suffix": "ez",
+    "score": 200
+  },
+  {
+    "suffix": "iki",
+    "score": 200
+  },
+  {
+    "suffix": "ipe",
+    "score": 200
+  },
+  {
+    "suffix": "istik",
+    "score": 200
+  },
+  {
+    "suffix": "iu",
+    "score": 200
+  },
+  {
+    "suffix": "kacau",
+    "score": 200
+  },
+  {
+    "suffix": "lahir",
+    "score": 200
+  },
+  {
+    "suffix": "moi",
+    "score": 200
+  },
+  {
+    "suffix": "ou",
+    "score": 200
+  },
+  {
+    "suffix": "same",
+    "score": 200
+  },
+  {
+    "suffix": "sins",
+    "score": 200
+  },
+  {
+    "suffix": "skop",
+    "score": 200
+  },
+  {
+    "suffix": "tl",
+    "score": 200
+  },
+  {
+    "suffix": "voi",
+    "score": 200
+  },
+  {
+    "suffix": "yab",
+    "score": 200
+  },
+  {
+    "suffix": "sogo",
+    "score": 190
+  },
+  {
+    "suffix": "trol",
+    "score": 190
+  },
+  {
+    "suffix": "tual",
+    "score": 190
+  },
+  {
+    "suffix": "abak",
+    "score": 180
+  },
+  {
+    "suffix": "abun",
+    "score": 180
+  },
+  {
+    "suffix": "ks",
+    "score": 180
+  },
+  {
+    "suffix": "tusa",
+    "score": 180
+  },
+  {
+    "suffix": "awak",
+    "score": 170
+  },
+  {
+    "suffix": "diks",
+    "score": 170
+  },
+  {
+    "suffix": "emis",
+    "score": 170
+  },
+  {
+    "suffix": "gy",
+    "score": 170
+  },
+  {
+    "suffix": "loha",
+    "score": 160
+  },
+  {
+    "suffix": "mian",
+    "score": 160
+  },
+  {
+    "suffix": "nesa",
+    "score": 160
+  },
+  {
+    "suffix": "okso",
+    "score": 160
+  },
+  {
+    "suffix": "ox",
+    "score": 150
+  },
+  {
+    "suffix": "rita",
+    "score": 150
+  },
+  {
+    "suffix": "riya",
+    "score": 150
+  },
+  {
+    "suffix": "oo",
+    "score": 140
+  },
+  {
+    "suffix": "cy",
+    "score": 130
+  },
+  {
+    "suffix": "eo",
+    "score": 120
+  },
+  {
+    "suffix": "eq",
+    "score": 120
+  },
+  {
+    "suffix": "ex",
+    "score": 120
+  },
+  {
+    "suffix": "oi",
+    "score": 120
+  },
+  {
+    "suffix": "ator",
+    "score": 100
+  },
+  {
+    "suffix": "eh",
+    "score": 100
+  },
+  {
+    "suffix": "oh",
+    "score": 100
+  },
+  {
+    "suffix": "pp",
+    "score": 100
+  },
+  {
+    "suffix": "ts",
+    "score": 100
+  },
+  {
+    "suffix": "F",
+    "score": 60
+  },
+  {
+    "suffix": "V",
+    "score": 60
+  },
+  {
+    "suffix": "c",
+    "score": 60
+  },
+  {
+    "suffix": "ia",
+    "score": 60
+  },
+  {
+    "suffix": "ng",
+    "score": 60
+  },
+  {
+    "suffix": "q",
+    "score": 60
+  },
+  {
+    "suffix": "w",
+    "score": 60
+  },
+  {
+    "suffix": "x",
+    "score": 60
+  },
+  {
+    "suffix": "z",
+    "score": 60
+  }
+]
