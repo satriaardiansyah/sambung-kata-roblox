@@ -13,7 +13,7 @@ import (
 	"sync"
 )
 
-//go:embed kbbi_updated.json
+//go:embed kbbi_update_v2.json
 var kamusData []byte
 
 var words []string
@@ -316,6 +316,16 @@ func deleteSuggestedSuffixHandler(w http.ResponseWriter, r *http.Request) {
 var killerSuffix = map[string]int{
 	// 5 Karakter (dari suggested_suffixes.json, 357 entri)
 	// sort: prefix_count ASC, hits DESC
+	"alau": 1000,
+	"arau": 1000,
+	"anai": 1000,
+	"irang": 1000,
+	"rutan": 1000,
+	"tikan": 1000,
+	"liran": 1000,
+	"arjo": 1000,
+	"ry": 1000,
+	"ii": 1000,
 	"abaka" : 1000, // prefix_count=1, hits=12
 	"ratif" : 1000, // prefix_count=1, hits=10
 	"litik" :  990, // prefix_count=2, hits=45

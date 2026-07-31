@@ -305,6 +305,20 @@
         margin: 12px 0 10px;
       }
 
+      .result-info {
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin-bottom: 10px;
+        padding: 0 4px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .result-info strong {
+        color: var(--accent);
+        font-weight: 600;
+      }
+
      #result {
           list-style: none;
           display: grid;
@@ -933,10 +947,10 @@
         />
       </div>
 
-      <div id="mode-indicator">
+      <!-- <div id="mode-indicator">
         <span id="mode-dot"></span>
         <span id="mode-label"></span>
-      </div>
+      </div> -->
 
       <div class="controls">
         <div class="toggle-pill">
@@ -970,11 +984,13 @@
 
         <label class="checkbox-pill">
           <input type="checkbox" id="sortLongText" onchange="triggerSearch();" />
-          <span>Long Text</span>
+          <span>Long</span>
         </label>
       </div>
 
       <div class="divider"></div>
+
+      <div class="result-info" id="resultInfo" style="display: none;"></div>
 
       <ul id="result">
         <li
@@ -1196,9 +1212,12 @@
 
       function renderResult(data) {
         if (!data || !data.length) {
+          updateResultCount(0);
           showEmpty("😕 Tidak ada hasil.");
           return;
         }
+
+        updateResultCount(data.length);
 
         const isLongTextChecked = document.getElementById("sortLongText")?.checked || false;
         result.classList.toggle("is-long-text", isLongTextChecked);
@@ -1228,12 +1247,22 @@
           else if (warn) li.classList.add("is-warning");
           else if (i === 0) li.classList.add("best");
 
+          li.ondblclick = (e) => {
+            e.stopPropagation();
+            copyToClipboard(word);
+          };
+
           const lbl = document.createElement("span");
           lbl.className = "word-label";
+          lbl.title = "Klik 1x untuk isi input, 2x untuk menyalin";
           lbl.innerHTML = highlightMatch(word, q, m);
           lbl.onclick = () => {
             input.value = word;
             input.focus();
+          };
+          lbl.ondblclick = (e) => {
+            e.stopPropagation();
+            copyToClipboard(word);
           };
 
           const del = document.createElement("button");
@@ -1275,6 +1304,7 @@
           }, 250);
           setTimeout(() => liEl.remove(), 500);
           lastResults = lastResults.filter((w) => w !== word);
+          updateResultCount(lastResults.length);
           showToast(`🗑️ "${word}" dihapus dari kamus`);
         } catch {
           showToast("⚠️ Gagal menghapus kata.");
@@ -1284,7 +1314,53 @@
       // ══════════════════════════════════════
       // UTILS
       // ══════════════════════════════════════
+      function updateResultCount(total) {
+        const resultInfo = document.getElementById("resultInfo");
+        if (!resultInfo) return;
+        if (total <= 0) {
+          resultInfo.style.display = "none";
+          resultInfo.innerHTML = "";
+          return;
+        }
+        resultInfo.style.display = "flex";
+        const displayed = Math.min(total, 50);
+        if (total > 50) {
+          resultInfo.innerHTML = `<span>Menampilkan <strong>${displayed}</strong> dari <strong>${total}</strong> kata</span>`;
+        } else {
+          resultInfo.innerHTML = `<span>Total <strong>${total}</strong> kata ditemukan</span>`;
+        }
+      }
+
+      function copyToClipboard(text) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(() => {
+            showToast(`📋 "${text}" berhasil disalin!`);
+          }).catch(() => {
+            fallbackCopy(text);
+          });
+        } else {
+          fallbackCopy(text);
+        }
+      }
+
+      function fallbackCopy(text) {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand("copy");
+          showToast(`📋 "${text}" berhasil disalin!`);
+        } catch (err) {
+          showToast("⚠️ Gagal menyalin kata.");
+        }
+        document.body.removeChild(ta);
+      }
+
       function showEmpty(msg) {
+        updateResultCount(0);
         const icon = msg ? "⚠️" : "🔍";
         const text = msg || "Mulai ketik untuk mencari kata...";
         result.classList.remove("is-long-text");
