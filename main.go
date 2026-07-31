@@ -991,12 +991,37 @@ func loadKillerSuffixes() {
 		var loadedList []KillerSuffixEntry
 		if err := json.Unmarshal(data, &loadedList); err == nil && len(loadedList) > 0 {
 			killerSuffixList = loadedList
+
+			// Cek apakah ada skor yang sama atau tidak menurun terurut
+			hasDuplicates := false
+			seen := make(map[int]bool)
+			for i, item := range killerSuffixList {
+				if seen[item.Score] || (i > 0 && item.Score >= killerSuffixList[i-1].Score) {
+					hasDuplicates = true
+					break
+				}
+				seen[item.Score] = true
+			}
+
+			if hasDuplicates {
+				// Berikan skor unik terurut berdasarkan ranking (Rank #1 paling tinggi)
+				startScore := 3000
+				for i := range killerSuffixList {
+					score := startScore - (i * 5)
+					if score < 10 {
+						score = 10
+					}
+					killerSuffixList[i].Score = score
+				}
+				saveKillerSuffixesLocked()
+			}
+
 			newMap := make(map[string]int, len(killerSuffixList))
 			for _, item := range killerSuffixList {
 				newMap[item.Suffix] = item.Score
 			}
 			killerSuffix = newMap
-			fmt.Printf("Killer suffixes dimuat dari JSON: %d entri\n", len(killerSuffixList))
+			fmt.Printf("Killer suffixes dimuat dari JSON (poin unik terurut): %d entri\n", len(killerSuffixList))
 			return
 		}
 	}
@@ -1015,8 +1040,24 @@ func loadKillerSuffixes() {
 		return killerSuffixList[i].Suffix < killerSuffixList[j].Suffix
 	})
 
+	// Berikan poin unik berdasarkan urutan ranking (Rank #1 = tertinggi, beda step 5)
+	startScore := 3000
+	for i := range killerSuffixList {
+		score := startScore - (i * 5)
+		if score < 10 {
+			score = 10
+		}
+		killerSuffixList[i].Score = score
+	}
+
+	newMap := make(map[string]int, len(killerSuffixList))
+	for _, item := range killerSuffixList {
+		newMap[item.Suffix] = item.Score
+	}
+	killerSuffix = newMap
+
 	saveKillerSuffixesLocked()
-	fmt.Printf("Killer suffixes default diinisialisasi: %d entri\n", len(killerSuffixList))
+	fmt.Printf("Killer suffixes default diinisialisasi dengan poin ranking unik: %d entri\n", len(killerSuffixList))
 }
 
 func saveKillerSuffixesLocked() {

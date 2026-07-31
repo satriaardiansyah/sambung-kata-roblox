@@ -65,7 +65,7 @@
 
       .container {
         width: 100%;
-        max-width: 900px;
+        max-width: 950px;
         z-index: 10;
         display: flex;
         flex-direction: column;
@@ -228,7 +228,7 @@
         border: 1px solid rgba(247, 201, 72, 0.25);
       }
 
-      /* ADD CARD */
+      /* CARD */
       .add-card {
         background: var(--surface);
         border: 1px solid var(--border);
@@ -534,6 +534,28 @@
         </div>
       </div>
 
+      <!-- AUTO POINT RANKING TOOLBAR CARD -->
+      <div class="add-card" style="background: rgba(247, 201, 72, 0.04); border-color: rgba(247, 201, 72, 0.2);">
+        <h3 style="color: var(--accent);">
+          ⚡ Rangking Poin Unik (Rank #1 Poin Paling Besar & Poin Tidak Boleh Sama)
+        </h3>
+        <div class="input-group">
+          <label>Poin Awal (Rank #1)</label>
+          <input type="number" id="startScore" value="3000" step="50" onchange="autoAssignUniqueScores()" />
+        </div>
+        <div class="input-group">
+          <label>Selisih Poin / Step</label>
+          <input type="number" id="stepScore" value="5" step="1" min="1" onchange="autoAssignUniqueScores()" />
+        </div>
+        <div class="input-group" style="flex: 0 0 auto; justify-content: center; align-items: flex-start;">
+          <label style="cursor: pointer; display: flex; align-items: center; gap: 8px; text-transform: none; font-size: 0.82rem; color: var(--text); padding-top: 18px;">
+            <input type="checkbox" id="autoScoreCheck" checked style="accent-color: var(--accent); width: 16px; height: 16px; cursor: pointer;" />
+            Auto-Poin Unik saat Digeser
+          </label>
+        </div>
+        <button class="btn btn-secondary" onclick="autoAssignUniqueScores()" style="border-color: var(--accent); color: var(--accent); align-self: flex-end;">⚡ Hitung Poin Rangking</button>
+      </div>
+
       <!-- ADD NEW FORM CARD -->
       <div class="add-card">
         <h3>➕ Tambah Suffix / Prefix Baru</h3>
@@ -542,10 +564,10 @@
           <input type="text" id="newSuffix" placeholder="misal: alau" />
         </div>
         <div class="input-group">
-          <label>Skor / Bobot Bonus</label>
-          <input type="number" id="newScore" value="1000" step="10" />
+          <label>Skor / Bobot Bonus Initial</label>
+          <input type="number" id="newScore" value="3000" step="10" />
         </div>
-        <button class="btn btn-primary" onclick="addNewItem()" style="align-self: flex-end;">➕ Tambahkan</button>
+        <button class="btn btn-primary" onclick="addNewItem()" style="align-self: flex-end;">➕ Tambahkan ke Rank #1</button>
       </div>
 
       <!-- RANKING LIST -->
@@ -553,7 +575,7 @@
         <div class="ranking-header">
           <span>Rank & Drag</span>
           <span>Suffix / Prefix</span>
-          <span style="text-align: center; width: 85px;">Skor Bonus</span>
+          <span style="text-align: center; width: 85px;">Poin (Unik)</span>
           <span style="text-align: right;">Aksi Posisi / Hapus</span>
         </div>
         <div class="items-container" id="itemsContainer">
@@ -576,11 +598,60 @@
           const res = await fetch('/killer-suffix');
           if (!res.ok) throw new Error('Gagal memuat data');
           suffixData = await res.json();
+          
+          // Pastikan poin awal unik & sesuai rank saat dimuat jika belum unik
+          checkAndFixRankingScores(true);
+
           renderList();
           showToast('ℹ️ Data berhasil dimuat', 'info');
         } catch (err) {
           console.error(err);
           showToast('❌ Gagal memuat data dari server', 'error');
+        }
+      }
+
+      function autoAssignUniqueScores(silent = false) {
+        const startScoreInput = document.getElementById('startScore');
+        const stepInput = document.getElementById('stepScore');
+
+        let startScore = parseInt(startScoreInput ? startScoreInput.value : 3000) || 3000;
+        let step = parseInt(stepInput ? stepInput.value : 5) || 5;
+
+        // Auto assign strictly unique descending scores matching rank order:
+        // Rank #1 (index 0) gets highest startScore
+        // Rank #2 (index 1) gets startScore - step
+        // ...
+        suffixData.forEach((item, index) => {
+          let score = startScore - (index * step);
+          if (score < 10) score = 10;
+          item.score = score;
+        });
+
+        renderList();
+        if (!silent) {
+          showToast('⚡ Poin unik otomatis dihitung (Rank #1 paling besar)', 'success');
+        }
+      }
+
+      function checkAndFixRankingScores(silent = false) {
+        let hasDuplicates = false;
+        let isNotDescending = false;
+
+        const seenScores = new Set();
+        for (let i = 0; i < suffixData.length; i++) {
+          if (seenScores.has(suffixData[i].score)) {
+            hasDuplicates = true;
+            break;
+          }
+          seenScores.add(suffixData[i].score);
+          if (i > 0 && suffixData[i].score >= suffixData[i - 1].score) {
+            isNotDescending = true;
+            break;
+          }
+        }
+
+        if (hasDuplicates || isNotDescending) {
+          autoAssignUniqueScores(silent);
         }
       }
 
@@ -617,7 +688,7 @@
             <div class="suffix-input-wrap">
               <input type="text" class="suffix-text" value="${escapeHtml(item.suffix)}" onchange="updateItemSuffix(${index}, this.value)" />
             </div>
-            <input type="number" class="score-input" value="${item.score}" onchange="updateItemScore(${index}, this.value)" title="Skor bonus" />
+            <input type="number" class="score-input" value="${item.score}" onchange="updateItemScore(${index}, this.value)" title="Poin unik" />
             <div class="item-controls">
               <button class="btn-icon" onclick="moveItem(${index}, -1)" title="Naikkan urutan">▲</button>
               <button class="btn-icon" onclick="moveItem(${index}, 1)" title="Turunkan urutan">▼</button>
@@ -654,6 +725,11 @@
       function updateItemScore(index, val) {
         let score = parseInt(val) || 0;
         suffixData[index].score = score;
+
+        const autoCheck = document.getElementById('autoScoreCheck');
+        if (autoCheck && autoCheck.checked) {
+          checkAndFixRankingScores(true);
+        }
       }
 
       function moveItem(index, direction) {
@@ -664,24 +740,32 @@
         suffixData[index] = suffixData[targetIndex];
         suffixData[targetIndex] = temp;
         
-        renderList();
+        const autoCheck = document.getElementById('autoScoreCheck');
+        if (!autoCheck || autoCheck.checked) {
+          autoAssignUniqueScores(true);
+        } else {
+          renderList();
+        }
       }
 
       function deleteItem(index) {
         const item = suffixData[index];
         if (confirm(`Apakah Anda yakin ingin menghapus '${item.suffix}' dari ranking?`)) {
           suffixData.splice(index, 1);
-          renderList();
+          
+          const autoCheck = document.getElementById('autoScoreCheck');
+          if (!autoCheck || autoCheck.checked) {
+            autoAssignUniqueScores(true);
+          } else {
+            renderList();
+          }
           showToast(`🗑️ '${item.suffix}' dihapus dari daftar`, 'info');
         }
       }
 
       function addNewItem() {
         const sufInput = document.getElementById('newSuffix');
-        const scoreInput = document.getElementById('newScore');
-
         const suffix = sufInput.value.trim().toLowerCase();
-        const score = parseInt(scoreInput.value) || 1000;
 
         if (!suffix) {
           alert('Harap masukkan teks suffix!');
@@ -694,14 +778,24 @@
           return;
         }
 
-        // Tambah ke paling atas list
-        suffixData.unshift({ suffix: suffix, score: score });
+        // Tambah ke paling atas list (Rank #1)
+        suffixData.unshift({ suffix: suffix, score: 3000 });
         sufInput.value = '';
-        renderList();
+
+        const autoCheck = document.getElementById('autoScoreCheck');
+        if (!autoCheck || autoCheck.checked) {
+          autoAssignUniqueScores(true);
+        } else {
+          renderList();
+        }
+
         showToast(`✨ '${suffix}' ditambahkan ke Rank #1`, 'success');
       }
 
       async function saveData() {
+        // Enforce uniqueness and strict rank order before saving
+        checkAndFixRankingScores(true);
+
         const saveBtn = document.getElementById('saveBtn');
         saveBtn.disabled = true;
         saveBtn.innerText = '⏳ Menyimpan...';
@@ -715,7 +809,7 @@
 
           if (!res.ok) throw new Error('Gagal menyimpan perubahan');
           const result = await res.json();
-          showToast(`💾 Success! ${result.count} suffix & ranking tersimpan.`, 'success');
+          showToast(`💾 Success! ${result.count} suffix & poin ranking unik tersimpan.`, 'success');
         } catch (err) {
           console.error(err);
           showToast('❌ Terjadi kesalahan saat menyimpan', 'error');
@@ -747,7 +841,13 @@
         if (dragSrcIndex !== null && dragSrcIndex !== targetIndex) {
           const itemToMove = suffixData.splice(dragSrcIndex, 1)[0];
           suffixData.splice(targetIndex, 0, itemToMove);
-          renderList();
+          
+          const autoCheck = document.getElementById('autoScoreCheck');
+          if (!autoCheck || autoCheck.checked) {
+            autoAssignUniqueScores(true);
+          } else {
+            renderList();
+          }
         }
         return false;
       }
