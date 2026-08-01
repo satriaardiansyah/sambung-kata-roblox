@@ -726,9 +726,27 @@
         let score = parseInt(val) || 0;
         suffixData[index].score = score;
 
+        // Urutkan suffixData berdasarkan skor secara descending
+        suffixData.sort((a, b) => b.score - a.score);
+
         const autoCheck = document.getElementById('autoScoreCheck');
         if (autoCheck && autoCheck.checked) {
-          checkAndFixRankingScores(true);
+          let hasDuplicates = false;
+          const seenScores = new Set();
+          for (let i = 0; i < suffixData.length; i++) {
+            if (seenScores.has(suffixData[i].score)) {
+              hasDuplicates = true;
+              break;
+            }
+            seenScores.add(suffixData[i].score);
+          }
+          if (hasDuplicates) {
+            autoAssignUniqueScores(true);
+          } else {
+            renderList();
+          }
+        } else {
+          renderList();
         }
       }
 
