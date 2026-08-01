@@ -962,7 +962,7 @@
 
         <div class="toggle-pill">
           <input type="radio" id="normal" name="searchMode" value="normal" />
-          <label for="normal">Normal</label>
+          <label for="normal">Nor</label>
           <input
             type="radio"
             id="brutal"
@@ -970,7 +970,7 @@
             value="brutal"
             checked
           />
-          <label for="brutal">Brutal</label>
+          <label for="brutal">Bru</label>
         </div>
 
         <button
@@ -978,17 +978,17 @@
           id="btnPrioritas"
           onclick="openPrioritasModal()"
         >
-          ⭐ Prioritas
+          ⭐ Prior
           <span class="badge-count-p" id="badgeCountP">0</span>
         </button>
 
         <a href="/setting-killer-suffix" class="btn" style="background: var(--surface2); color: var(--text); border: 1.5px solid var(--border); text-decoration: none; border-radius: var(--radius); padding: 7px 12px; font-size: 0.85rem; font-weight: 500; display: inline-flex; align-items: center; gap: 4px;">
-          ⚙️ Setting Suffix
+          ⚙️
         </a>
 
         <label class="checkbox-pill">
           <input type="checkbox" id="sortLongText" onchange="triggerSearch();" />
-          <span>Long</span>
+          <span>L</span>
         </label>
       </div>
 
@@ -1539,10 +1539,26 @@
         document.getElementById("prioritasSearch").value = "";
         renderPrioritasList();
         document.getElementById("prioritasModal").classList.add("active");
+        
+        // Langsung fokus ke ketik manual
+        const manualInput = document.getElementById("prioritasManual");
+        if (manualInput) {
+          setTimeout(() => {
+            manualInput.focus();
+            manualInput.select();
+          }, 50);
+        }
       }
       function closePrioritasModal(e) {
-        if (!e || e.target === document.getElementById("prioritasModal"))
+        if (!e || e.target === document.getElementById("prioritasModal")) {
           document.getElementById("prioritasModal").classList.remove("active");
+          const mainSearchInput = document.getElementById("search");
+          if (mainSearchInput) {
+            setTimeout(() => {
+              mainSearchInput.focus();
+            }, 50);
+          }
+        }
       }
       function selectAllPrioritas(val) {
         const filter = (
@@ -1611,6 +1627,21 @@
         }
       };
       evtSource.onerror = () => console.log("SSE disconnected, retrying...");
+
+      // Keyboard shortcut for toggling prioritas modal (Escape or Backtick)
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" || e.key === "`" || e.code === "Backquote") {
+          const modal = document.getElementById("prioritasModal");
+          if (modal) {
+            e.preventDefault();
+            if (modal.classList.contains("active")) {
+              closePrioritasModal();
+            } else {
+              openPrioritasModal();
+            }
+          }
+        }
+      });
 
       // Init
       loadPrioritasWords();
