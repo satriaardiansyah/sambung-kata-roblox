@@ -153,167 +153,6 @@ func deleteSuggestedSuffixHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(map[string]any{"status": "deleted", "query": query})
 }
 
-// var killerSuffix = map[string]int{
-// 	// 5 Karakter
-// 	"orasi": 1000,
-// 	"kisme": 1000,
-// 	"sitas": 950,
-// 	"takan": 950,
-// 	"iskan": 950,
-// 	"likan": 950,
-// 	"litik": 950,
-// 	"aksis": 900,
-// 	"angsa": 1000,
-// 	"ering": 400,
-// 	"rodok": 1000,
-// 	"inggi": 900,
-// 	"abaka": 999,
-// 	"stele": 999,
-// 	"alari": 950,
-// 	"anasi": 950,
-// 	"entil": 950,
-// 	"anser": 900,
-// 	"nggor": 900,
-// 	"tipus": 900,
-// 	"ancar": 800,
-// 	"andur": 800,
-// 	"angus": 800,
-// 	"ansor": 800,
-// 	"antem": 800,
-// 	"arong": 800,
-// 	"arkil": 800,
-// 	"awang": 800,
-// 	"elli":  800,
-// 	"ensil": 800,
-// 	"ergot": 800,
-// 	"hapak": 800,
-// 	"kimah": 800,
-// 	"lahad": 800,
-// 	"latah": 800,
-// 	"matis": 900,
-// 	"ofoni": 800,
-// 	"oleac": 800,
-// 	"olong": 800,
-// 	"ritis": 800,
-// 	"tanai": 800,
-// 	"tisis": 800,
-// 	"tonik": 800,
-// 	"ungsi": 800,
-// 	"ahang": 580,
-// 	"fauna": 580,
-// 	"garot": 580,
-// 	"gatot": 580,
-// 	"mboli": 580,
-// 	"ngudo": 580,
-// 	"olang": 580,
-// 	"sosro": 580,
-// 	"amang": 550,
-// 	"hohon": 550,
-// 	"isian": 550,
-// 	"riksa": 550,
-// 	"trium": 550,
-// 	"hiran": 500,
-// 	"ganas": 450,
-// 	"garpu": 450,
-// 	"jijik": 450,
-// 	"kolam": 450,
-// 	"manat": 450,
-// 	"meula": 450,
-// 	"nusuk": 450,
-// 	"ratif": 450,
-// 	"umang": 450,
-// 	"burma": 400,
-// 	"fault": 400,
-// 	"ruang": 400,
-// 	"tikam": 400,
-// 	"duksi": 300,
-// 	"genik": 300,
-// 	"kanya": 300,
-// 	"logis": 300,
-// 	"nggar": 300,
-// 	"arian": 270,
-// 	"meter": 100,
-// 	"ogram": 100,
-
-// 	// 4 Karakter
-// 	"tusa": 800,
-// 	"eran": 800,
-// 	"atik": 800,
-// 	"rian": 800,
-// 	"iran": 550,
-// 	"alah": 800,
-// 	"inkan": 400,
-// 	"taat":  400,
-// 	"tiol":  350,
-// 	"ilok":  320,
-// 	"lipe":  320,
-// 	"anki":  300,
-// 	"atat":  300,
-// 	"epik":  300,
-// 	"inggu": 300,
-// 	"ngeh":  300,
-// 	"ngoh":  300,
-// 	"riko":  300,
-// 	"stis":  300,
-// 	"wati":  300,
-// 	"anah":  250,
-// 	"asel":  250,
-// 	"apet":  200,
-
-// 	// 3 Karakter
-// 	"eni": 300,
-// 	"ksa": 290,
-// 	"esi": 260,
-// 	"hih": 260,
-// 	"meh": 260,
-// 	"owa": 260,
-// 	"sih": 260,
-// 	"bou": 250,
-// 	"dot": 250,
-// 	"huh": 250,
-// 	"pei": 250,
-// 	"pso": 250,
-// 	"iya": 220,
-// 	"coe": 200,
-// 	"iki": 200,
-// 	"ipe": 200,
-// 	"moi": 200,
-// 	"voi": 200,
-// 	"yab": 200,
-
-// 	// 2 Karakter
-// 	"ns": 300,
-// 	"ml": 260,
-// 	"sm": 210,
-// 	"ez": 200,
-// 	"iu": 200,
-// 	"ou": 200,
-// 	"tl": 200,
-// 	"ks": 180,
-// 	"gy": 170,
-// 	"ox": 150,
-// 	"oo": 140,
-// 	"cy": 130,
-// 	"eo": 120,
-// 	"eq": 120,
-// 	"ex": 120,
-// 	"oi": 120,
-// 	"eh": 100,
-// 	"oh": 100,
-// 	"pp": 100,
-// 	"ts": 100,
-// 	"ia": 60,
-// 	"ng": 60,
-
-// 	// 1 Karakter
-// 	"F": 60,
-// 	"V": 60,
-// 	"c": 60,
-// 	"q": 60,
-// 	"w": 60,
-// 	"x": 60,
-// 	"z": 60,
-// }
 
 var killerSuffix = map[string]int{
 	// 5 Karakter (dari suggested_suffixes.json, 357 entri)
@@ -1221,31 +1060,46 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 			score += lengthDiff * 5
 		}
 
+		// if searchMode == "brutal" {
+		// 	if len(word) >= 5 {
+		// 		if bonus, ok := getKillerSuffixScore(word[len(word)-5:]); ok {
+		// 			score -= bonus
+		// 		}
+		// 	}
+		// 	if len(word) >= 4 {
+		// 		if bonus, ok := getKillerSuffixScore(word[len(word)-4:]); ok {
+		// 			score -= bonus
+		// 		}
+		// 	}
+		// }
+		// if len(word) >= 3 {
+		// 	if bonus, ok := getKillerSuffixScore(word[len(word)-3:]); ok {
+		// 		score -= bonus
+		// 	}
+		// }
+		// if len(word) >= 2 {
+		// 	if bonus, ok := getKillerSuffixScore(word[len(word)-2:]); ok {
+		// 		score -= bonus
+		// 	}
+		// }
+		// if len(word) >= 1 {
+		// 	if bonus, ok := getKillerSuffixScore(word[len(word)-1:]); ok {
+		// 		score -= bonus
+		// 	}
+		// }
+
+		maxLen := 3
 		if searchMode == "brutal" {
-			if len(word) >= 5 {
-				if bonus, ok := getKillerSuffixScore(word[len(word)-5:]); ok {
-					score -= bonus
-				}
-			}
-			if len(word) >= 4 {
-				if bonus, ok := getKillerSuffixScore(word[len(word)-4:]); ok {
-					score -= bonus
-				}
-			}
+			maxLen = 5
 		}
-		if len(word) >= 3 {
-			if bonus, ok := getKillerSuffixScore(word[len(word)-3:]); ok {
-				score -= bonus
+		for suffixLen := maxLen; suffixLen >= 1; suffixLen-- {
+			if suffixLen > len(word) {
+				continue
 			}
-		}
-		if len(word) >= 2 {
-			if bonus, ok := getKillerSuffixScore(word[len(word)-2:]); ok {
+			end := word[len(word)-suffixLen:]
+			if bonus, ok := getKillerSuffixScore(end); ok {
 				score -= bonus
-			}
-		}
-		if len(word) >= 1 {
-			if bonus, ok := getKillerSuffixScore(word[len(word)-1:]); ok {
-				score -= bonus
+				break // hanya ambil match terpanjang, tidak akumulasi
 			}
 		}
 
